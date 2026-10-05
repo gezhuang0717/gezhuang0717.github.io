@@ -1,0 +1,294 @@
+status,http,url,redirected_to,seconds,error,used_in
+BROKEN,0,http:///www.monrol.com.tr,,0.0,InvalidURL: Invalid URL 'http:///www.monrol.com.tr': No host supplied,data/facilities/facilities.json
+BROKEN,0,http://http://www.positronpharma.com/sobre-nosotros/,,0.0,"ConnectionError: HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //www.positronpharma.com/sobre-nosotros/ (Caused by NameResolutionError(""HTTPConnection",data/facilities/facilities.json
+BROKEN,0,http://http://www.svetamarina.com/,,0.0,"ConnectionError: HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //www.svetamarina.com/ (Caused by NameResolutionError(""HTTPConnection(host='http', port",data/facilities/facilities.json
+BROKEN,0,http://inmas-dhaka.org,,0.2,"ConnectionError: HTTPConnectionPool(host='inmas-dhaka.org', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='inmas-dhaka.org', por",data/facilities/facilities.json
+BROKEN,404,http://klinikaikozpont.unideb.hu/hu/bemutatkozas-nuklearis-medicina,https://klinikaikozpont.unideb.hu/hu/bemutatkozas-nuklearis-medicina,2.0,,data/facilities/facilities.json
+BROKEN,0,http://pet.hull.ac.uk,,0.6,"ConnectionError: HTTPConnectionPool(host='pet.hull.ac.uk', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='pet.hull.ac.uk', port=",data/facilities/facilities.json
+BROKEN,0,http://pet.rad.jhmi.edu,,0.2,"ConnectionError: HTTPConnectionPool(host='pet.rad.jhmi.edu', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='pet.rad.jhmi.edu', p",data/facilities/facilities.json
+BROKEN,0,http://radiology.hku.hk/en/Research-Services/Cyclotron,,40.6,"ConnectTimeout: HTTPConnectionPool(host='radiology.hku.hk', port=80): Max retries exceeded with url: /en/Research-Services/Cyclotron (Caused by ConnectTimeoutError(<HTTPConnect",data/facilities/facilities.json
+BROKEN,0,http://slcj.uw.edu.pl/en,,3.4,"SSLError: HTTPSConnectionPool(host='www.slcj.uw.edu.pl', port=443): Max retries exceeded with url: /en (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_",data/facilities/facilities.json
+BROKEN,0,http://www.cermep.fr,,5.1,"ConnectionError: HTTPConnectionPool(host='www.cermep.fr', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='www.cermep.fr', port=80",data/facilities/facilities.json
+BROKEN,0,http://www.ciramiami.com,,0.1,"ConnectionError: HTTPConnectionPool(host='www.ciramiami.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='www.ciramiami.com',",data/facilities/facilities.json
+BROKEN,0,http://www.circ.nus.edu.sg,,0.7,"ConnectionError: HTTPConnectionPool(host='www.circ.nus.edu.sg', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='www.circ.nus.edu.",data/facilities/facilities.json
+BROKEN,404,http://www.dkfz.de/en/radiochemie/Projects/Cyclotron.html,https://www.dkfz.de/en/radiochemie/Projects/Cyclotron.html,3.5,,data/facilities/facilities.json
+BROKEN,404,http://www.hadassah-med.com/medical-care/departments/nuclear-medicine/cyclotron-radiochemistry,,1.3,,data/facilities/facilities.json
+BROKEN,0,http://www.incan.salud.gob.mx/,,0.6,"SSLError: HTTPSConnectionPool(host='incan.salud.gob.mx', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VE",data/facilities/facilities.json
+BROKEN,0,http://www.m2i.ie,,0.1,"ConnectionError: HTTPConnectionPool(host='www.m2i.ie', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='www.m2i.ie', port=80): Fai",data/facilities/facilities.json
+BROKEN,0,http://www.monrol.com.tr,,40.4,"ConnectTimeout: HTTPConnectionPool(host='www.monrol.com.tr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.monrol.com.tr',",data/facilities/facilities.json
+BROKEN,0,http://www.nci.moh.gov.my,,0.7,"ConnectionError: HTTPConnectionPool(host='www.nci.moh.gov.my', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='www.nci.moh.gov.my",data/facilities/facilities.json
+BROKEN,404,http://www.radlink.com.sg/srp,https://www.radlink.com.sg/srp,6.2,,data/facilities/facilities.json
+BROKEN,0,http://www.razavihospital.com,,2.8,"ConnectionError: HTTPConnectionPool(host='www.razavihospital.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPConnection(host='www.razavihosp",data/facilities/facilities.json
+BROKEN,0,http://www.sparklepet.it/en/index.htm,,3.1,"SSLError: HTTPSConnectionPool(host='www.sparklepet.it', port=443): Max retries exceeded with url: /en/index.htm (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CER",data/facilities/facilities.json
+BROKEN,0,http://www.tlabs.ac.za,,2.6,"SSLError: HTTPSConnectionPool(host='www.tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIF",data/facilities/facilities.json
+BROKEN,404,http://www.uab.edu/medicine/radiology/advanced-imaging-facility/cyclotron-production,https://www.uab.edu/medicine/radiology/advanced-imaging-facility/cyclotron-production,2.5,,data/facilities/facilities.json
+BROKEN,404,http://www.uhlbd.com/departments/nuclear-medicine,https://www.uhlbd.com/departments/nuclear-medicine,3.4,,data/facilities/facilities.json
+BROKEN,404,http://www.ukr.de/kliniken-institute/nuklearmedizin/index.php,https://www.ukr.de/kliniken-institute/nuklearmedizin/index.php,2.8,,data/facilities/facilities.json
+BROKEN,0,https:///www.monrol.com.tr/,,0.0,InvalidURL: Invalid URL 'https:///www.monrol.com.tr/': No host supplied,data/facilities/facilities.json
+BROKEN,404,https://arxiv.org/abs/,,0.3,,layouts/_partials/zg/paper.html
+BROKEN,0,https://cai.centre.uq.edu.au/profile/122/rajiv-bhalla,,0.3,"ConnectionError: HTTPSConnectionPool(host='cai.centre.uq.edu.au', port=443): Max retries exceeded with url: /profile/122/rajiv-bhalla (Caused by NameResolutionError(""HTTPSConnec",data/facilities/facilities.json
+BROKEN,404,https://ekistudio.com/gmsnew,,0.7,,data/facilities/facilities.json
+BROKEN,0,https://eng.hallym.or.k,,0.1,"ConnectionError: HTTPSConnectionPool(host='eng.hallym.or.k', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPSConnection(host='eng.hallym.or.k', ",data/facilities/facilities.json
+BROKEN,0,https://kfsh.med.sa,,1.1,"ConnectionError: HTTPSConnectionPool(host='kfsh.med.sa', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPSConnection(host='kfsh.med.sa', port=443",data/facilities/facilities.json
+BROKEN,404,https://physics.anu.edu.au/nuclear/hiaf/,,1.7,,data/facilities/facilities.json
+BROKEN,404,https://radiationoncology.uw.edu/research/cyclotron/,https://www.radiationoncology.uw.edu/research/cyclotron/,0.4,,data/facilities/facilities.json
+BROKEN,404,https://telixpharma.com/news-media/telix-seneffe-progress-update/,,1.3,,data/facilities/facilities.json
+BROKEN,0,https://tlabs.ac.za/,,1.2,"SSLError: HTTPSConnectionPool(host='tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FA",data/facilities/facilities.json
+BROKEN,0,https://www.chetec-infra.eu/,,1.7,"SSLError: HTTPSConnectionPool(host='www.chetec-infra.eu', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_V",content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; layouts/_shortcodes/daily-links.html
+BROKEN,0,https://www.hkdyfy.cn/en/,,41.8,"ConnectTimeout: HTTPSConnectionPool(host='www.hkdyfy.cn', port=443): Max retries exceeded with url: /en/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.hkdyfy.cn', p",data/facilities/facilities.json
+BROKEN,404,https://www.juama.com/H2/index.html,,0.6,,data/facilities/facilities.json
+BROKEN,404,https://www.jyu.fi/en/people/brian-koote,,1.5,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+BROKEN,0,https://www.kxc120.cn/,,41.4,"ConnectTimeout: HTTPSConnectionPool(host='www.kxc120.cn', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kxc120.cn', port",data/facilities/facilities.json
+BROKEN,0,https://www.mll-muenchen.de/,,0.3,"ConnectionError: HTTPSConnectionPool(host='www.mll-muenchen.de', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPSConnection(host='www.mll-muench",data/facilities/facilities.json
+BROKEN,0,https://www.monrol.com.tr/,,40.4,"ConnectTimeout: HTTPSConnectionPool(host='www.monrol.com.tr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.monrol.com.t",data/facilities/facilities.json
+BROKEN,0,https://www.myzxyy.com/guider/,,0.3,"ConnectionError: HTTPSConnectionPool(host='www.myzxyy.com', port=443): Max retries exceeded with url: /guider/ (Caused by NameResolutionError(""HTTPSConnection(host='www.myzxyy.c",data/facilities/facilities.json
+BROKEN,0,https://www.pesrmyy.com/,,41.0,"ConnectTimeout: HTTPSConnectionPool(host='www.pesrmyy.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.pesrmyy.com', ",data/facilities/facilities.json
+BROKEN,404,https://www.qst.go.jp/site/taka-english/list63-167.html,,1.1,,data/facilities/facilities.json
+BROKEN,404,https://www.r2ibf.com.br/,,0.7,,data/facilities/facilities.json
+BROKEN,0,https://www.slhd.nsw.gov.au,,42.4,"ReadTimeout: HTTPSConnectionPool(host='slhd.health.nsw.gov.au', port=443): Read timed out. (read timeout=20)",data/facilities/facilities.json
+BROKEN,0,https://www.wcyclopharma.maww,,0.2,"ConnectionError: HTTPSConnectionPool(host='www.wcyclopharma.maww', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(""HTTPSConnection(host='www.wcycloph",data/facilities/facilities.json
+CHECK,500,http://www.asst-spedalicivili.it,http://www.asst-spedalicivili.it/,1.2,,data/facilities/facilities.json
+CHECK,403,http://www.beaconhospital.com.my/cyclotron,https://www.beaconhospital.com.my/cyclotron,0.2,,data/facilities/facilities.json
+CHECK,502,http://www.ciae.ac.cn/,,1.3,,data/facilities/facilities.json
+CHECK,412,http://www.en.jdyfy.com/index.htm,,0.6,,data/facilities/facilities.json
+CHECK,403,http://www.feofaniya.org,http://www.feofaniya.org/,1.0,,data/facilities/facilities.json
+CHECK,403,http://www.nkti.gov.ph/index.php/services/kidney-pancreas-transplant/pet-ct-center,,2.1,,data/facilities/facilities.json
+CHECK,500,http://www.radnusa.com,http://www.radnusa.com/,2.4,,data/facilities/facilities.json
+CHECK,400,https://doi.org/%s,https://doi.org/%25s,0.4,,layouts/_partials/zg/paper.html
+CHECK,403,https://doi.org/10.1103/bgj9-mzcq,https://link.aps.org/doi/10.1103/bgj9-mzcq,0.8,,data/daily/manual/2026-09.yaml
+CHECK,403,https://doi.org/10.7566/JPSCP.35.011023,https://journals.jps.jp/doi/10.7566/JPSCP.35.011023,0.9,,data/gallery.yaml
+CHECK,403,https://journals.aps.org/prc,,0.2,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://journals.aps.org/prl,,0.2,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://sciprofiles.com/profile/zhuang-ge,,0.2,,content/de/publications.md; content/en/publications.md; content/fi/publications.md; content/ja/publications.md; content/zh/publications.md
+CHECK,403,https://www-nds.iaea.org/amdc/,,0.6,,data/glossary.yaml
+CHECK,403,https://www.austin.org.au/PET_for_health_professionals/#Section1,,0.2,,data/facilities/facilities.json
+CHECK,403,https://www.cancer.gov.co/,,0.2,,data/facilities/facilities.json
+CHECK,403,https://www.cardiff.ac.uk/wales-research-diagnostic-pet-imaging-centre,,0.7,,data/facilities/facilities.json
+CHECK,403,https://www.jyu.fi/en/people/marlom-de-oliveira-ramalho,,2.0,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+CHECK,999,https://www.linkedin.com/in/zhuang-ge-847898202,,1.0,,site.yaml
+CHECK,403,https://www.mdpi.com/journal/atoms,,0.2,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://www.mdpi.com/journal/sensors/special_issues/8I8CN6PDV1,,0.2,,content/de/cv.md; content/de/group.md; content/en/cv.md; content/en/group.md; content/fi/cv.md; content/fi/group.md; content/ja/cv.md; content/ja/group.md; content/zh/cv.md; content/zh/group.md
+CHECK,403,https://www.researchgate.net/profile/Zhuang-Ge,,0.2,,content/de/cv.md; content/en/cv.md; content/fi/cv.md; content/ja/cv.md; content/zh/cv.md; site.yaml
+CHECK,403,https://www.sciencedirect.com/journal/international-journal-of-mass-spectrometry,,0.3,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a-accelerators-spectrometers-detectors-and-associated-equipment,,0.3,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-b-beam-interactions-with-materials-and-atoms,,0.3,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://www.sciencedirect.com/journal/nuclear-physics-a,,0.3,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://www.sciencedirect.com/journal/physics-letters-b,,0.3,,layouts/_shortcodes/daily-links.html
+CHECK,403,https://www.scopus.com/authid/detail.uri?authorId=56915277300,,0.2,,content/de/cv.md; content/de/publications.md; content/en/cv.md; content/en/publications.md; content/fi/cv.md; content/fi/publications.md; content/ja/cv.md; content/ja/publications.md; content/zh/cv.md; content/zh/publications.md
+CHECK,403,https://www.uc.pt/en/,,1.5,,data/facilities/facilities.json
+OK,200,http://cr.chus.qc.ca/services-outils/plateformes/centre-dimagerie-moleculaire-de-sherbrooke/,https://www.santeestrie.qc.ca/accueil,0.9,,data/facilities/facilities.json
+OK,200,http://cyclotron.lbl.gov,https://cyclotron.lbl.gov/,0.6,,data/facilities/facilities.json
+OK,200,http://eng.amc.seoul.kr,https://eng.amc.seoul.kr/gb/lang/main.do,1.9,,data/facilities/facilities.json
+OK,200,http://fcdn.org.ar,https://www.fcdn.org.ar/,0.8,,data/facilities/facilities.json
+OK,200,http://feeds.aps.org/rss/recent/prc.xml,,0.4,,tools/feeds.yaml
+OK,200,http://feeds.aps.org/rss/recent/prl.xml,,0.2,,tools/feeds.yaml
+OK,200,http://feeds.aps.org/rss/tocsec/PRL-NuclearPhysics.xml,,0.4,,tools/feeds.yaml
+OK,200,http://medicopus.hu,http://medicopus.hu/,2.7,,data/facilities/facilities.json
+OK,200,http://rad.pitt.edu/pet.html,,0.5,,data/facilities/facilities.json
+OK,200,http://radiofarmacia.facmed.unam.mx/,https://radiofarmacia.facmed.unam.mx/,0.9,,data/facilities/facilities.json
+OK,200,http://vietsingclinic.com.vn/,,1.3,,data/facilities/facilities.json
+OK,200,http://www.acompet.it,https://www.acompet.it/,4.3,,data/facilities/facilities.json
+OK,200,http://www.aeoi.org.ir,https://www.aeoi.org.ir:443/,15.8,,data/facilities/facilities.json
+OK,200,http://www.atomki.hu,https://atomki.hu/,2.2,,data/facilities/facilities.json
+OK,200,http://www.cchen.cl,https://www.cchen.cl/,1.7,,data/facilities/facilities.json
+OK,200,http://www.ciclolab.com.do,https://www.ciclolab.com.do/,0.2,,data/facilities/facilities.json
+OK,200,http://www.ciclotronperu.com,https://www.ciclotronperu.com/,0.8,,data/facilities/facilities.json
+OK,200,http://www.cyc.ucl.ac.be,https://uclouvain.be/en/research-institutes/irmp/crc-cyclotron-resource-centre,1.6,,data/facilities/facilities.json
+OK,200,http://www.cyclotron.nl,https://www.cyclotron.nl/,0.9,,data/facilities/facilities.json
+OK,200,http://www.essalud.gob.pe,http://www.essalud.gob.pe/,1.3,,data/facilities/facilities.json
+OK,200,http://www.gadingpluit-hospital.com,https://gadingpluit-hospital.com/,4.4,,data/facilities/facilities.json
+OK,200,http://www.incart.gob.do,https://www.incart.gob.do/,3.2,,data/facilities/facilities.json
+OK,200,http://www.inp.kz,https://inp.kz/ru,4.3,,data/facilities/facilities.json
+OK,200,http://www.jyu.fi,https://www.jyu.fi/fi,1.7,,data/facilities/facilities.json
+OK,200,http://www.lantheus.com,https://www.lantheus.com/,0.2,,data/facilities/facilities.json
+OK,200,http://www.medicheck.com.tr,https://medicheck.com.tr/,1.7,,data/facilities/facilities.json
+OK,200,http://www.monrol-uae.com,https://www.monrol-uae.com/,2.0,,data/facilities/facilities.json
+OK,200,http://www.nipne.ro,https://www.nipne.ro/,1.4,,data/facilities/facilities.json
+OK,200,http://www.ntm.az/en/index.html,https://www.ntm.az/en/index.html,0.9,,data/facilities/facilities.json
+OK,200,http://www.parsisotope.com,https://parsisotope.com/,13.0,,data/facilities/facilities.json
+OK,200,http://www.pet.az,http://www.pet.az/,0.6,,data/facilities/facilities.json
+OK,200,http://www.petlabs.co.za,https://petlabs.co.za/,4.0,,data/facilities/facilities.json
+OK,200,http://www.radiofarmaciadecentroamerica.com/,https://radiofarmaciadecentroamerica.com/,0.4,,data/facilities/facilities.json
+OK,200,http://www.stlukes.com.ph/health-specialties-and-services/institutes-departments-centers-and-services/positron-emission-tomography-service,https://www.stlukes.com.ph/health-specialties-and-services/institutes-departments-centers-and-services/positron-emission-tomography-service,1.4,,data/facilities/facilities.json
+OK,200,http://www.telixpharma.com/,https://telixpharma.com/,0.8,,data/facilities/facilities.json
+OK,200,http://www.theneuro.ca,https://www.mcgill.ca/neuro/,1.0,,data/facilities/facilities.json
+OK,200,http://www.ujf.cas.cz/,https://www.ujf.cas.cz/cs/,2.8,,data/facilities/facilities.json
+OK,200,http://www.ukaachen.de/kliniken-institute/klinik-fuer-nuklearmedizin.html,https://www.ukaachen.de/kliniken-institute/klinik-fuer-nuklearmedizin/,2.2,,data/facilities/facilities.json
+OK,200,http://www.xcsyy.com.cn/,,1.4,,data/facilities/facilities.json
+OK,200,https://academicjobsonline.org/ajo/jobs,,0.5,,layouts/_shortcodes/daily-links.html
+OK,200,https://base.web.cern.ch/,,1.0,,data/facilities/facilities.json
+OK,200,https://biokosmos.gr/,https://www.biokosmos.eu/,1.7,,data/facilities/facilities.json
+OK,200,https://careers.cern/,,0.7,,layouts/_shortcodes/daily-links.html
+OK,200,https://cyclotron.tamu.edu/,,0.3,,data/facilities/facilities.json
+OK,200,https://de.wikipedia.org/wiki/Argonne_National_Laboratory,,0.3,,data/facilities/facilities.json
+OK,200,https://de.wikipedia.org/wiki/GSI_Helmholtzzentrum_f%C3%BCr_Schwerionenforschung,,0.2,,data/facilities/facilities.json
+OK,200,https://de.wikipedia.org/wiki/KATRIN,,0.2,,data/facilities/facilities.json
+OK,200,https://de.wikipedia.org/wiki/Laboratori_Nazionali_del_Gran_Sasso,,0.2,,data/facilities/facilities.json
+OK,200,https://de.wikipedia.org/wiki/Max-Planck-Institut_f%C3%BCr_Kernphysik,,0.3,,data/facilities/facilities.json
+OK,200,https://doctorshospital.mx/en/cancerology/cyclotron/,,0.1,,data/facilities/facilities.json
+OK,200,https://doi.org/10.1140/epja/s10050-026-01883-8,https://link.springer.com/10.1140/epja/s10050-026-01883-8,0.5,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://doi.org/10.11804/NuclPhysRev.36.03.294,https://www.sciengine.com/NPR/doi/10.11804/NuclPhysRev.36.03.294,3.3,,content/de/research.md; content/en/research.md; content/fi/research.md; content/ja/research.md; content/zh/research.md
+OK,200,https://dpg-physik.de/veranstaltungen/2024/nuclear_astrophysics_with_ion_storage_rings,https://www.dpg-physik.de/veranstaltungen/2024/nuclear_astrophysics_with_ion_storage_rings,1.6,,data/talks.yaml
+OK,200,https://dragon.triumf.ca/,,0.5,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://en.wikipedia.org/wiki/Australian_National_University,,0.4,,data/facilities/facilities.json
+OK,200,https://en.wikipedia.org/wiki/CERN,,0.1,,data/facilities/facilities.json
+OK,200,https://en.wikipedia.org/wiki/Facility_for_Rare_Isotope_Beams,,0.2,,data/facilities/facilities.json
+OK,200,https://en.wikipedia.org/wiki/IThemba_LABS,,0.2,,data/facilities/facilities.json
+OK,200,https://en.wikipedia.org/wiki/Joint_Institute_for_Nuclear_Research,,0.3,,data/facilities/facilities.json
+OK,200,https://en.wikipedia.org/wiki/Radioactive_Isotope_Beam_Factory,,0.2,,data/facilities/facilities.json
+OK,200,https://en.wikipedia.org/wiki/TRIUMF,,0.3,,data/facilities/facilities.json
+OK,200,https://english.imp.cas.cn/,,1.5,,data/facilities/facilities.json; layouts/_shortcodes/daily-links.html
+OK,200,https://english.imp.cas.cn/research/facilities/HIAF/,,1.5,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities/facilities.json
+OK,200,https://euraxess.ec.europa.eu/jobs/search,,0.2,,layouts/_shortcodes/daily-links.html
+OK,200,https://fair-center.eu/,,1.2,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://feeds.aps.org/rss/recent/physics.xml,,0.0,,tools/feeds.yaml
+OK,200,https://flerovlab.jinr.ru/,,1.2,,data/facilities/facilities.json
+OK,200,https://frib.msu.edu/,,0.5,,data/facilities/facilities.json
+OK,200,https://frib.msu.edu/about/visit-frib,,0.4,,data/facilities/core-sources.json; data/facilities/facilities.json
+OK,200,https://frib.msu.edu/careers,,0.3,,layouts/_shortcodes/daily-links.html
+OK,200,https://frib.msu.edu/news-center/news,,0.4,,layouts/_shortcodes/daily-links.html
+OK,200,https://frib.msu.edu/user-facilities/frib/instruments/lebit,,0.2,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://fsunuc.physics.fsu.edu/,,0.3,,data/facilities/facilities.json
+OK,200,https://gbiomed.kuleuven.be/english/research/50000677/50000683,https://idp.kuleuven.be/idp/profile/SAML2/Redirect/SSO?execution=e1s1,3.5,,data/facilities/facilities.json
+OK,200,https://gezhuang0717.github.io/,,0.2,,data/daily/manual/2026-10.yaml; site.yaml
+OK,200,https://hospitals.aku.edu/Pages/contact-us.aspx,https://hospitals.aku.edu/pakistan/contact-us,0.8,,data/facilities/facilities.json
+OK,200,https://indico.cern.ch/event/1717022/,,1.6,,data/talks.yaml
+OK,200,https://indico.global/event/9991,https://indico.global/event/9991/,2.0,,data/talks.yaml
+OK,200,https://indico.gsi.de/event/12838/timetable/,,2.2,,data/talks.yaml
+OK,200,https://indico.gsi.de/event/22417/timetable/#20250820,,2.1,,data/talks.yaml
+OK,200,https://indico.gsi.de/event/4596/,,1.5,,data/talks.yaml
+OK,200,https://indico.icc.ub.edu/event/341/,,1.8,,data/talks.yaml
+OK,200,https://indico.ihep.ac.cn/event/20843/,,2.4,,data/talks.yaml
+OK,200,https://indico.in2p3.fr/event/30430/,,1.9,,data/talks.yaml
+OK,200,https://indico.in2p3.fr/event/31364/,,1.9,,data/talks.yaml
+OK,200,https://indico.ph.tum.de/event/3470/,,2.3,,data/talks.yaml
+OK,200,https://indico.rcnp.osaka-u.ac.jp/event/2571,https://indico.rcnp.osaka-u.ac.jp/auth_indico/?ref=/event/2571,1.3,,data/talks.yaml
+OK,200,https://info.arxiv.org/help/api/user-manual.html,,0.2,,tools/feeds.yaml
+OK,200,https://inspirehep.net/authors/2600261,,0.6,,content/de/cv.md; content/de/publications.md; content/en/cv.md; content/en/publications.md; content/fi/cv.md; content/fi/publications.md; content/ja/cv.md; content/ja/publications.md; content/zh/cv.md; content/zh/publications.md
+OK,200,https://inspirehep.net/jobs,,0.6,,layouts/_shortcodes/daily-links.html
+OK,200,https://iontraps.net/,,1.4,,layouts/_shortcodes/daily-links.html
+OK,200,https://iontraps.net/feed/,,1.2,,tools/feeds.yaml
+OK,200,https://iopscience.iop.org/journal/0004-637X,,0.8,,layouts/_shortcodes/daily-links.html
+OK,200,https://iopscience.iop.org/journal/0954-3899,,0.8,,layouts/_shortcodes/daily-links.html
+OK,200,https://iopscience.iop.org/journal/1674-1137,,4.2,,layouts/_shortcodes/daily-links.html
+OK,200,https://irenaweb.org/,https://www.irenaweb.org/,0.8,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; layouts/_shortcodes/daily-links.html
+OK,200,https://isnap.nd.edu/,,0.6,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities/facilities.json
+OK,200,https://isolde.cern/,,1.0,,data/daily/manual/2026-10.yaml; data/facilities/core-sources.json; data/facilities/facilities.json; layouts/_shortcodes/daily-links.html
+OK,200,https://isolde.web.cern.ch/,https://isolde.cern/,1.5,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://isoltrap.web.cern.ch/,https://auth.cern.ch/auth/realms/cern/protocol/openid-connect/auth?response_type=code&scope=openid&client_id=webframeworks-webeos-isoltrap&state=Y0i09xevUg3_iH2G4Rmkk10EuTM&redirect_uri=https%3A%2F%2Fisoltrap.web.cern.ch%2Foidc%2Fcallback&nonce=W71rBbdJjDoseWXXhJKwSC4tlifn1_V6NsxQuIfTl_4&code_challenge=IdogP-2wl2yVmWsGJwwRy-W8cWeE8IBx7uN2H7jgZ04&code_challenge_method=S256,2.1,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://istros.sav.sk,https://fu.sav.sk/wp-content/uploads/uploaded/departments/ojf/events/ISTROS/,2.4,,data/talks.yaml
+OK,200,https://kclpure.kcl.ac.uk/portal/antony.gee.html,https://kclpure.kcl.ac.uk/portal/en/persons/antony.gee/,0.8,,data/facilities/facilities.json
+OK,200,https://link.springer.com/journal/10050,,0.1,,layouts/_shortcodes/daily-links.html
+OK,200,https://link.springer.com/journal/10751,,0.1,,layouts/_shortcodes/daily-links.html
+OK,200,https://local.infobel.be/BE100010120-027723673/betaplus_pharma-woluwe_saint_lambert.html,https://local.infobel.be/BE100010120-027700924/betaplus_pharma-woluwe_saint_lambert.html,2.3,,data/facilities/facilities.json
+OK,200,https://loop.frontiersin.org/people/2204803/overview,,1.4,,content/de/publications.md; content/en/publications.md; content/fi/publications.md; content/ja/publications.md; content/zh/publications.md
+OK,200,https://luna.lngs.infn.it/,,1.0,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities/facilities.json
+OK,200,https://msutoday.msu.edu/,,0.8,,layouts/_shortcodes/daily-links.html
+OK,200,https://nairobiwesthospital.com/,,0.1,,data/facilities/facilities.json
+OK,200,https://nancyclotep.com/,,0.5,,data/facilities/facilities.json
+OK,200,https://ntof-exp.web.cern.ch/,https://auth.cern.ch/auth/realms/cern/protocol/openid-connect/auth?response_type=code&scope=openid&client_id=webframeworks-webeos-ntof-exp&state=UM7J5c0j7XW1NyNWy2zu2zzF39c&redirect_uri=https%3A%2F%2Fntof-exp.web.cern.ch%2Foidc%2Fcallback&nonce=2NeM4b1ebMPw4jnlRMlmcR6IdNpzkpa0N2OCndQkjDM&code_challenge=D5APQG6MSme_6HIz573uMKEDMNIG47Lb-uGraGZnVT0&code_challenge_method=S256,1.7,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities/facilities.json
+OK,200,https://nucleus.iaea.org/rrdb/home,,0.7,,data/facilities/facilities.json
+OK,200,https://nucleus.iaea.org/sites/accelerators/Pages/Cyclotron.aspx,,0.9,,data/facilities/facilities.json
+OK,200,https://nupecc.org/ssf/ssf_final.xlsx,,0.9,,data/facilities/core-sources.json; data/facilities/facilities.json
+OK,200,https://nupecc.org/ssf/table_ssf_lrp2017.pdf,,0.8,,data/facilities/core-sources.json; data/facilities/facilities.json
+OK,200,https://omr.by/home-en,,1.3,,data/facilities/facilities.json
+OK,200,https://orcid.org/0000-0001-8586-6134,,0.4,,content/de/cv.md; content/de/publications.md; content/en/cv.md; content/en/publications.md; content/fi/cv.md; content/fi/publications.md; content/ja/cv.md; content/ja/publications.md; content/zh/cv.md; content/zh/publications.md; site.yaml
+OK,200,https://phys.org/rss-feed/physics-news/nuclear-physics/,,0.4,,tools/feeds.yaml
+OK,200,https://procon2023.fuw.edu.pl/,,2.4,,data/talks.yaml
+OK,200,https://radiology.ucsf.edu/research/core-services/probes,https://radiology.ucsf.edu/research/core-services/radiopharmaceutical-facility-rpf,0.8,,data/facilities/facilities.json
+OK,200,https://researchportal.vub.be/en/organisations/cyclotron,https://researchportal.vub.be/en/organisations/cyclotron/,1.1,,data/facilities/facilities.json
+OK,200,https://sanjavier.com.mx/,,0.2,,data/facilities/facilities.json
+OK,200,https://sites.google.com/view/oryxisotopes/,https://accounts.google.com/v3/signin/identifier?continue=https://sites.google.com/view/oryxisotopes/&followup=https://sites.google.com/view/oryxisotopes/&osid=1&passive=1209600&service=wise&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S1930071565:1791235669771055,0.4,,data/facilities/facilities.json
+OK,200,https://titan.triumf.ca/,,0.3,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://triumf.ca/contact-triumf/,,0.2,,data/facilities/core-sources.json; data/facilities/facilities.json
+OK,200,https://triumf.ca/feed,https://triumf.ca/feed/,0.2,,tools/feeds.yaml
+OK,200,https://turkupetcentre.fi/radiochemistry/,https://turkupetcentre.fi/core-facilities/radiochemistry/,1.3,,data/facilities/facilities.json
+OK,200,https://voices.uchicago.edu/cyclotron/,,0.7,,data/facilities/facilities.json
+OK,200,https://www-windows.gsi.de/frs-ion-catcher/,,0.8,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://www.anl.gov/atlas,,0.3,,data/facilities/facilities.json; layouts/_shortcodes/daily-links.html
+OK,200,https://www.arronax-nantes.fr/gip-arronax/gip-arronax-contact/,,0.9,,data/facilities/facilities.json
+OK,200,https://www.bing.com/ck/a,https://www.bing.com/search?q=microsoft,0.3,,data/facilities/facilities.json
+OK,200,https://www.c-raytherapeutics.com/qyjs,,1.2,,data/facilities/facilities.json
+OK,200,https://www.chuliege.be/jcms/c2_16987040/de/medecine-nucleaire-et-imagerie-oncologique/nos-equipes,https://www.medecine-nucleaire.chuliege.be/cms/c_73960/fr/equipe,3.2,,data/facilities/facilities.json
+OK,200,https://www.ciclotroncolombia.com/,,1.1,,data/facilities/facilities.json
+OK,200,https://www.clatterbridgecc.nhs.uk,https://www.clatterbridgecc.nhs.uk/,1.2,,data/facilities/facilities.json
+OK,200,https://www.cyclotek.com,https://cyclotek.com/,2.5,,data/facilities/facilities.json
+OK,200,https://www.cyclotek.com/,https://cyclotek.com/,2.5,,data/facilities/facilities.json
+OK,200,https://www.cyclotron.nl,https://www.cyclotron.nl/,0.4,,data/facilities/facilities.json
+OK,200,https://www.docrates.com,https://docrates.mehilainen.fi/,1.2,,data/facilities/facilities.json
+OK,200,https://www.dpg-verhandlungen.de/year/2022/conference/mainz/part/hk?lang=en,,0.8,,data/talks.yaml
+OK,200,https://www.ectstar.eu/,,0.6,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.ectstar.eu/feed/,,0.4,,tools/feeds.yaml
+OK,200,https://www.ed.ac.uk/clinical-sciences/edinburgh-imaging,https://clinical-sciences.ed.ac.uk/edinburgh-imaging,1.2,,data/facilities/facilities.json
+OK,200,https://www.eli-np.ro/,,1.0,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities/facilities.json
+OK,200,https://www.erasme.ulb.ac.be/fr/services-de-soins/imagerie/medecine-nucleaire#equipe,https://www.erasme.be/fr/services-erasme#equipe,2.0,,data/facilities/facilities.json
+OK,200,https://www.fondazionetecnomed.it,https://fondazionetecnomed.it/,2.5,,data/facilities/facilities.json
+OK,200,https://www.ganil-spiral2.eu/,,1.1,,data/facilities/facilities.json; layouts/_shortcodes/daily-links.html
+OK,200,https://www.ganil-spiral2.eu/feed/,,1.0,,tools/feeds.yaml
+OK,200,https://www.geonames.org/1804430/,https://www.geonames.org/1804430/lanzhou.html,0.9,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/1806776/,https://www.geonames.org/1806776/huizhou.html,0.9,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/1816670/,https://www.geonames.org/1816670/beijing.html,0.8,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/1835235/,https://www.geonames.org/1835235/daejeon.html,0.8,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/1907300/,https://www.geonames.org/1907300/wako.html,1.3,,data/facilities/core-sources.json
+OK,200,https://www.geonames.org/2660646/,https://www.geonames.org/2660646/geneva.html,1.3,,data/facilities/core-sources.json
+OK,200,https://www.geonames.org/2874225/,https://www.geonames.org/2874225/mainz.html,1.1,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/2922582/,https://www.geonames.org/2922582/garching.html,1.0,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/3029241/,https://www.geonames.org/3029241/caen.html,0.9,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/4174715/,https://www.geonames.org/4174715/tallahassee.html,1.0,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/4682464/,https://www.geonames.org/4682464/college-station.html,0.8,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/4926563/,https://www.geonames.org/4926563/south-bend.html,1.0,,data/facilities/facilities.json
+OK,200,https://www.geonames.org/4991640/,https://www.geonames.org/4991640/east-lansing.html,0.8,,data/facilities/core-sources.json
+OK,200,https://www.geonames.org/6173331/,https://www.geonames.org/6173331/vancouver.html,0.7,,data/facilities/core-sources.json
+OK,200,https://www.geonames.org/655194/,https://www.geonames.org/655194/jyvaeskylae.html,0.7,,data/facilities/core-sources.json; data/facilities/facilities.json
+OK,200,https://www.gigacyclotron.uliege.be/cms/c_4221332/en/gigacyclotron,https://idp.uliege.be/simplesaml/module.php/multiauthcontext/discovery?AuthState=_30ff3d9aa8f02c731fdedb292f1a1e2aeac6d86c22%3Ahttps%3A%2F%2Fidp.uliege.be%2Fsimplesaml%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dhttps%253A%252F%252Fcas.uliege.be%252Fsimplesaml%252Fmodule.php%252Fsaml%252Fsp%252Fmetadata.php%252Fcasserver%26RelayState%3Dhttps%253A%252F%252Fcas.uliege.be%252Fsimplesaml%252Fmodule.php%252Fcasserver%252Fcas.php%252Flogin%253Fservice%253Dhttps%25253A%25252F%25252Fwww.gigacyclotron.uliege.be%25252F%25253Ff%25253D1%252526authenticateWithCAS%25253Dtrue%252526redirect%25253Dhttps%2525253A%2525252F%2525252Fwww.gigacyclotron.uliege.be%2525252Fcms%2525252Fc_4221332%2525252Fen%2525252Fgigacyclotron%26cookieTime%3D1791235679,6.6,,data/facilities/facilities.json
+OK,200,https://www.gilhospital.com,https://www.gilhospital.com/,1.4,,data/facilities/facilities.json
+OK,200,https://www.gsi.de/,https://www.gsi.de/start/aktuelles,1.2,,data/facilities/facilities.json
+OK,200,https://www.gsi.de/en/jobscareer,,1.0,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.gsi.de/en/start/news,,0.9,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.hit.edu.cn/,,23.0,,data/facilities/facilities.json
+OK,200,https://www.hlbryy.com/,,1.0,,data/facilities/facilities.json
+OK,200,https://www.hzdr.de/db/Cms?pNid=1779,,1.1,,data/facilities/facilities.json
+OK,200,https://www.iaea.org/feeds/topnews,,0.3,,tools/feeds.yaml
+OK,200,https://www.ibs.re.kr/,https://www.ibs.re.kr/eng.do,1.2,,data/facilities/facilities.json
+OK,200,https://www.irb.hr/eng/News/The-New-Cyclotron-at-RBI,,0.7,,data/facilities/facilities.json
+OK,200,https://www.ire.eu/en/,,0.9,,data/facilities/facilities.json
+OK,200,https://www.iwithu.net/,,1.5,,data/facilities/facilities.json
+OK,200,https://www.jinaweb.org/,,0.6,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; layouts/_shortcodes/daily-links.html
+OK,200,https://www.jyu.fi/en/people/zhuang-ge,,0.9,,content/de/_index.md; content/de/publications.md; content/en/_index.md; content/en/publications.md; content/fi/_index.md; content/ja/_index.md; content/ja/publications.md; content/zh/_index.md; content/zh/publications.md; site.yaml
+OK,200,https://www.jyu.fi/en/projects/mass-measurements-of-exotic-nz-nuclei-up-to-100sn-and-the-vicinity-for-nuclear-physics-and-nuclear,,0.9,,content/de/_index.md; content/de/projects.md; content/de/publications.md; content/de/research.md; content/en/_index.md; content/en/projects.md; content/en/publications.md; content/en/research.md; content/fi/_index.md; content/fi/projects.md; content/fi/publications.md; content/fi/research.md; content/ja/_index.md; content/ja/projects.md; content/ja/publications.md; content/ja/research.md; content/zh/_index.md; content/zh/projects.md; content/zh/publications.md; content/zh/research.md
+OK,200,https://www.jyu.fi/en/research-groups/exotic-nuclei-and-beams-igisol,,0.8,,data/daily/manual/2026-10.yaml; data/facilities/core-sources.json; data/facilities/facilities.json; data/glossary.yaml; layouts/_shortcodes/daily-links.html
+OK,200,https://www.jyu.fi/en/science/accelerator-laboratory/facilities-and-instruments-at-the-accelerator-laboratory/nuclear-physics-facilities,https://www.jyu.fi/en/science/accelerator-laboratory/facilities-and-instruments/nuclear-physics-facilities,0.9,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://www.jyu.fi/fi/henkilot/zhuang-ge,,0.8,,content/fi/publications.md
+OK,200,https://www.katrin.kit.edu/,,0.8,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities/facilities.json
+OK,202,https://www.lens.org/lens/orcid/0000-0001-8586-6134,,0.4,,content/de/publications.md; content/en/publications.md; content/fi/publications.md; content/ja/publications.md; content/zh/publications.md
+OK,200,https://www.lnl.infn.it/,,1.6,,data/facilities/facilities.json
+OK,200,https://www.mpi-hd.mpg.de/,https://www.mpi-hd.mpg.de/mpi/de/,1.1,,data/facilities/facilities.json
+OK,200,https://www.mpi-hd.mpg.de/blaum/,https://www.mpi-hd.mpg.de/mpi/de/forschung/abteilungen-und-gruppen/gespeicherte-und-gekuehlte-ionen,0.9,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://www.nature.com/nphys.rss,,0.1,,tools/feeds.yaml
+OK,200,https://www.nature.com/subjects/nuclear-astrophysics,,1.2,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.nature.com/subjects/nuclear-physics,,1.3,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.nishina.riken.jp/news/index.html,,0.7,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.nishina.riken.jp/researcher/APR/APR049/pdf/180.pdf,,0.7,,content/de/research.md; content/en/research.md; content/fi/research.md; content/ja/research.md; content/zh/research.md; data/publications.yaml
+OK,200,https://www.nishina.riken.jp/researcher/APR/APR050/pdf/contents.pdf,,0.5,,data/publications.yaml
+OK,200,https://www.nishina.riken.jp/researcher/APR/APR051/pdf/152.pdf,,0.4,,data/gallery.yaml; data/publications.yaml
+OK,200,https://www.nishina.riken.jp/ribf/,,0.5,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities/facilities.json
+OK,200,https://www.nishina.riken.jp/ribf/R3/overview.html,,0.4,,content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md
+OK,200,https://www.nupecc.org/,,0.4,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.onjcancercentre.org,https://www.onjcancercentre.org/,1.1,,data/facilities/facilities.json
+OK,200,https://www.ottawaheart.ca/researchers/resources-services/core-facilities-and-infrastructure/pet-research-radiochemistry,https://www.ottawaheart.ca/researchers/resources-and-services/core-facilities-and-infrastructure/pet-research-radiochemistry,0.5,,data/facilities/facilities.json
+OK,200,https://www.riken.jp/en/access/wako-map/index.html,,0.4,,data/facilities/core-sources.json; data/facilities/facilities.json
+OK,200,https://www.riken.jp/en/careers/,,0.4,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.sahmri.org,https://sahmri.org.au/,0.3,,data/facilities/facilities.json
+OK,200,https://www.scgh.health.wa.gov.au/Our-Services/Service-directory/RAPID,,0.9,,data/facilities/facilities.json
+OK,200,https://www.swslhd.health.nsw.gov.au,https://www.swslhd.health.nsw.gov.au/,1.0,,data/facilities/facilities.json
+OK,200,https://www.triga.uni-mainz.de/,,0.8,,data/facilities/facilities.json
+OK,200,https://www.triumf.ca,https://triumf.ca/,0.4,,data/facilities/facilities.json
+OK,200,https://www.triumf.ca/,https://triumf.ca/,0.3,,data/facilities/facilities.json; layouts/_shortcodes/daily-links.html
+OK,200,https://www.triumf.ca/careers,https://triumf.ca/careers/,0.3,,layouts/_shortcodes/daily-links.html
+OK,200,https://www.ugent.be,https://www.ugent.be/,0.6,,data/facilities/facilities.json
+OK,200,https://www.uzgent.be/team-nucleaire-geneeskunde,,0.7,,data/facilities/facilities.json
+OK,200,https://www.vecc.gov.in,https://www.vecc.gov.in/,3.5,,data/facilities/facilities.json
+OK,200,https://www.webofscience.com/wos/author/record/1631872,,0.1,,content/de/cv.md; content/en/cv.md; content/fi/cv.md; content/ja/cv.md; content/zh/cv.md
+OK,200,https://www.webofscience.com/wos/author/record/L-1172-2015,,0.1,,content/de/publications.md; content/en/publications.md; content/fi/publications.md; content/ja/publications.md; content/zh/publications.md
+OK,200,https://www.zhhospital.cn/index.html,,1.4,,data/facilities/facilities.json
+OK,200,https://www.zyklotron-ag.de,https://www.zyklotron-ag.de/,1.4,,data/facilities/facilities.json

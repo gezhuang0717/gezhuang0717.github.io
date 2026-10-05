@@ -1,0 +1,78 @@
+293 links: {'OK': 216, 'CHECK': 29, 'BROKEN': 48}
+BROKEN   0 http:///www.monrol.com.tr  ← data/facilities/facilities.json InvalidURL: Invalid URL 'http:///www.monrol.com.tr': No host supplied
+BROKEN   0 http://http://www.positronpharma.com/sobre-nosotros/  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //www.positronpharma.com/sobre-nosotros/ (Caused by NameResolutionError("HTTPConnection
+BROKEN   0 http://http://www.svetamarina.com/  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //www.svetamarina.com/ (Caused by NameResolutionError("HTTPConnection(host='http', port
+BROKEN   0 http://inmas-dhaka.org  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='inmas-dhaka.org', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='inmas-dhaka.org', por
+BROKEN 404 http://klinikaikozpont.unideb.hu/hu/bemutatkozas-nuklearis-medicina  ← data/facilities/facilities.json 
+BROKEN   0 http://pet.hull.ac.uk  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='pet.hull.ac.uk', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='pet.hull.ac.uk', port=
+BROKEN   0 http://pet.rad.jhmi.edu  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='pet.rad.jhmi.edu', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='pet.rad.jhmi.edu', p
+BROKEN   0 http://radiology.hku.hk/en/Research-Services/Cyclotron  ← data/facilities/facilities.json ConnectTimeout: HTTPConnectionPool(host='radiology.hku.hk', port=80): Max retries exceeded with url: /en/Research-Services/Cyclotron (Caused by ConnectTimeoutError(<HTTPConnect
+BROKEN   0 http://slcj.uw.edu.pl/en  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.slcj.uw.edu.pl', port=443): Max retries exceeded with url: /en (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_
+BROKEN   0 http://www.cermep.fr  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='www.cermep.fr', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.cermep.fr', port=80
+BROKEN   0 http://www.ciramiami.com  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='www.ciramiami.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.ciramiami.com',
+BROKEN   0 http://www.circ.nus.edu.sg  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='www.circ.nus.edu.sg', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.circ.nus.edu.
+BROKEN 404 http://www.dkfz.de/en/radiochemie/Projects/Cyclotron.html  ← data/facilities/facilities.json 
+BROKEN 404 http://www.hadassah-med.com/medical-care/departments/nuclear-medicine/cyclotron-radiochemistry  ← data/facilities/facilities.json 
+BROKEN   0 http://www.incan.salud.gob.mx/  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='incan.salud.gob.mx', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VE
+BROKEN   0 http://www.m2i.ie  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='www.m2i.ie', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.m2i.ie', port=80): Fai
+BROKEN   0 http://www.monrol.com.tr  ← data/facilities/facilities.json ConnectTimeout: HTTPConnectionPool(host='www.monrol.com.tr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.monrol.com.tr',
+BROKEN   0 http://www.nci.moh.gov.my  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='www.nci.moh.gov.my', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.nci.moh.gov.my
+BROKEN 404 http://www.radlink.com.sg/srp  ← data/facilities/facilities.json 
+BROKEN   0 http://www.razavihospital.com  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='www.razavihospital.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.razavihosp
+BROKEN   0 http://www.sparklepet.it/en/index.htm  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.sparklepet.it', port=443): Max retries exceeded with url: /en/index.htm (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CER
+BROKEN   0 http://www.tlabs.ac.za  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIF
+BROKEN 404 http://www.uab.edu/medicine/radiology/advanced-imaging-facility/cyclotron-production  ← data/facilities/facilities.json 
+BROKEN 404 http://www.uhlbd.com/departments/nuclear-medicine  ← data/facilities/facilities.json 
+BROKEN 404 http://www.ukr.de/kliniken-institute/nuklearmedizin/index.php  ← data/facilities/facilities.json 
+BROKEN   0 https:///www.monrol.com.tr/  ← data/facilities/facilities.json InvalidURL: Invalid URL 'https:///www.monrol.com.tr/': No host supplied
+BROKEN 404 https://arxiv.org/abs/  ← layouts/_partials/zg/paper.html 
+BROKEN   0 https://cai.centre.uq.edu.au/profile/122/rajiv-bhalla  ← data/facilities/facilities.json ConnectionError: HTTPSConnectionPool(host='cai.centre.uq.edu.au', port=443): Max retries exceeded with url: /profile/122/rajiv-bhalla (Caused by NameResolutionError("HTTPSConnec
+BROKEN 404 https://ekistudio.com/gmsnew  ← data/facilities/facilities.json 
+BROKEN   0 https://eng.hallym.or.k  ← data/facilities/facilities.json ConnectionError: HTTPSConnectionPool(host='eng.hallym.or.k', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='eng.hallym.or.k', 
+BROKEN   0 https://kfsh.med.sa  ← data/facilities/facilities.json ConnectionError: HTTPSConnectionPool(host='kfsh.med.sa', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='kfsh.med.sa', port=443
+BROKEN 404 https://physics.anu.edu.au/nuclear/hiaf/  ← data/facilities/facilities.json 
+BROKEN 404 https://radiationoncology.uw.edu/research/cyclotron/  ← data/facilities/facilities.json 
+BROKEN 404 https://telixpharma.com/news-media/telix-seneffe-progress-update/  ← data/facilities/facilities.json 
+BROKEN   0 https://tlabs.ac.za/  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FA
+BROKEN   0 https://www.chetec-infra.eu/  ← content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; layouts/_shortc SSLError: HTTPSConnectionPool(host='www.chetec-infra.eu', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_V
+BROKEN   0 https://www.hkdyfy.cn/en/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.hkdyfy.cn', port=443): Max retries exceeded with url: /en/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.hkdyfy.cn', p
+BROKEN 404 https://www.juama.com/H2/index.html  ← data/facilities/facilities.json 
+BROKEN 404 https://www.jyu.fi/en/people/brian-koote  ← content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md 
+BROKEN   0 https://www.kxc120.cn/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.kxc120.cn', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kxc120.cn', port
+BROKEN   0 https://www.mll-muenchen.de/  ← data/facilities/facilities.json ConnectionError: HTTPSConnectionPool(host='www.mll-muenchen.de', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='www.mll-muench
+BROKEN   0 https://www.monrol.com.tr/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.monrol.com.tr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.monrol.com.t
+BROKEN   0 https://www.myzxyy.com/guider/  ← data/facilities/facilities.json ConnectionError: HTTPSConnectionPool(host='www.myzxyy.com', port=443): Max retries exceeded with url: /guider/ (Caused by NameResolutionError("HTTPSConnection(host='www.myzxyy.c
+BROKEN   0 https://www.pesrmyy.com/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.pesrmyy.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.pesrmyy.com', 
+BROKEN 404 https://www.qst.go.jp/site/taka-english/list63-167.html  ← data/facilities/facilities.json 
+BROKEN 404 https://www.r2ibf.com.br/  ← data/facilities/facilities.json 
+BROKEN   0 https://www.slhd.nsw.gov.au  ← data/facilities/facilities.json ReadTimeout: HTTPSConnectionPool(host='slhd.health.nsw.gov.au', port=443): Read timed out. (read timeout=20)
+BROKEN   0 https://www.wcyclopharma.maww  ← data/facilities/facilities.json ConnectionError: HTTPSConnectionPool(host='www.wcyclopharma.maww', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='www.wcycloph
+CHECK  500 http://www.asst-spedalicivili.it  ← data/facilities/facilities.json 
+CHECK  403 http://www.beaconhospital.com.my/cyclotron  ← data/facilities/facilities.json 
+CHECK  502 http://www.ciae.ac.cn/  ← data/facilities/facilities.json 
+CHECK  412 http://www.en.jdyfy.com/index.htm  ← data/facilities/facilities.json 
+CHECK  403 http://www.feofaniya.org  ← data/facilities/facilities.json 
+CHECK  403 http://www.nkti.gov.ph/index.php/services/kidney-pancreas-transplant/pet-ct-center  ← data/facilities/facilities.json 
+CHECK  500 http://www.radnusa.com  ← data/facilities/facilities.json 
+CHECK  400 https://doi.org/%s  ← layouts/_partials/zg/paper.html 
+CHECK  403 https://doi.org/10.1103/bgj9-mzcq  ← data/daily/manual/2026-09.yaml 
+CHECK  403 https://doi.org/10.7566/JPSCP.35.011023  ← data/gallery.yaml 
+CHECK  403 https://journals.aps.org/prc  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://journals.aps.org/prl  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://sciprofiles.com/profile/zhuang-ge  ← content/de/publications.md; content/en/publications.md; content/fi/publications.md; content/ja/publications.md; content/ 
+CHECK  403 https://www-nds.iaea.org/amdc/  ← data/glossary.yaml 
+CHECK  403 https://www.austin.org.au/PET_for_health_professionals/#Section1  ← data/facilities/facilities.json 
+CHECK  403 https://www.cancer.gov.co/  ← data/facilities/facilities.json 
+CHECK  403 https://www.cardiff.ac.uk/wales-research-diagnostic-pet-imaging-centre  ← data/facilities/facilities.json 
+CHECK  403 https://www.jyu.fi/en/people/marlom-de-oliveira-ramalho  ← content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md 
+CHECK  999 https://www.linkedin.com/in/zhuang-ge-847898202  ← site.yaml 
+CHECK  403 https://www.mdpi.com/journal/atoms  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://www.mdpi.com/journal/sensors/special_issues/8I8CN6PDV1  ← content/de/cv.md; content/de/group.md; content/en/cv.md; content/en/group.md; content/fi/cv.md; content/fi/group.md; con 
+CHECK  403 https://www.researchgate.net/profile/Zhuang-Ge  ← content/de/cv.md; content/en/cv.md; content/fi/cv.md; content/ja/cv.md; content/zh/cv.md; site.yaml 
+CHECK  403 https://www.sciencedirect.com/journal/international-journal-of-mass-spectrometry  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a-accelerators-spectrometers-detectors-and-associated-equipment  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-b-beam-interactions-with-materials-and-atoms  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://www.sciencedirect.com/journal/nuclear-physics-a  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://www.sciencedirect.com/journal/physics-letters-b  ← layouts/_shortcodes/daily-links.html 
+CHECK  403 https://www.scopus.com/authid/detail.uri?authorId=56915277300  ← content/de/cv.md; content/de/publications.md; content/en/cv.md; content/en/publications.md; content/fi/cv.md; content/fi 
+CHECK  403 https://www.uc.pt/en/  ← data/facilities/facilities.json 
