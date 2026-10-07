@@ -1,0 +1,189 @@
+(function (host) {
+  "use strict";
+  if (host.ZGPhysics) { if (typeof module !== "undefined" && module.exports) module.exports = host.ZGPhysics; return; }
+  const C = Object.freeze({ uKeV: 931494.10242, uKg: 1.66053906660e-27, electronU: 5.48579909065e-4, e: 1.602176634e-19, version: "CODATA2018/AME2020" });
+  const FWHM = 2 * Math.sqrt(2 * Math.log(2));
+  const numeric = x => typeof x === "number" && Number.isFinite(x);
+  function primitive(id, v, e, est = false, sigmaEst = false) { return { v, e, est, sigmaEst, offset: 0, terms: { [id]: { c: 1, e, v, est, sigmaEst } } }; }
+  function combine(...terms) {
+    if (terms.some(([, x]) => !x || !numeric(x.v))) return null;
+    const p = {}; let offset = 0;
+    for (const [c, x] of terms) {
+      offset += c * (x.offset ?? x.v);
+      for (const [id, t] of Object.entries(x.terms || {})) {
+        p[id] ||= { c: 0, e: t.e, v: t.v, est: t.est, sigmaEst:t.sigmaEst }; p[id].c += c * t.c;
+      }
+    }
+    for (const id of Object.keys(p)) if (Math.abs(p[id].c) < 1e-14) delete p[id];
+    const e = Object.values(p).some(t => !numeric(t.e)) ? null : Math.sqrt(Object.values(p).reduce((s, t) => s + (t.c * t.e) ** 2, 0));
+    const v = offset + Object.values(p).reduce((s,t)=>s+t.c*t.v,0), est = Object.values(p).some(t=>t.est);
+    return { v, e, est, sigmaEst:Object.values(p).some(t=>t.sigmaEst), offset, terms: p, uncertainty_model: "diagonal primitive covariance; repeated inputs combined" };
+  }
+  const constant = v => ({ v, e: 0, est: false, offset: v, terms: {} });
+  function catalogue(data, ameData) {
+    const states = new Map(data.states.map(s => [s.id, s])), groups = new Map(), ground = new Map();
+    data.states.forEach(s => { const k = s.element.toLowerCase() + s.A; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(s); if (!s.source_state_index) ground.set(k, s); });
+    const ame = new Map(ameData.rows.map(r => [r[2].toLowerCase() + r[1], r]));
+    function atom(A, element, state = 0, massSource = "ame") {
+      const k = element.toLowerCase() + A, gs = ground.get(k), st = gs && states.get(`${gs.Z}-${gs.N}-${state}`), am = ame.get(k);
+      if (!st || st.existence === "withdrawn") throw new Error(`Unavailable state: ${A}${element}[${state}]`);
+      if (state && (!numeric(st.excitation.value) || st.excitation.qualifier)) throw new Error(`Excitation energy unavailable or limited: ${A}${element}[${st.label}]`);
+      const useAme = massSource === "ame" && am && numeric(am[3]);
+      const me = useAme ? am[3] : gs.mass_excess.value, er = useAme ? am[4] : gs.mass_excess.uncertainty;
+      if (!numeric(me) || (!useAme && gs.mass_excess.qualifier)) throw new Error(`Mass unavailable: ${A}${element}`);
+      const src = useAme ? "AME2020" : "NUBASE2020";
+      let value = combine([1, constant(A)], [1 / C.uKeV, primitive(`${src}:${gs.id}`, me, er, useAme ? !!am[5] : gs.mass_excess.value_extrapolated, useAme ? !!am[6] : gs.mass_excess.uncertainty_extrapolated)]);
+      if (state) value = combine([1, value], [1 / C.uKeV, primitive(`NUBASE2020:Ex:${st.id}`, st.excitation.value, st.excitation.uncertainty, st.excitation.value_extrapolated, st.excitation.uncertainty_extrapolated)]);
+      return { value, state: st, A, Z: gs.Z, label: `${A}${gs.element}${state ? `[${st.label}]` : ""}`, source: src + (state ? " + NUBASE2020 excitation" : "") };
+    }
+    function resolve(text, options = {}) {
+      let s = String(text).trim().replace(/\s/g, ""), q = options.q ?? 1, w = options.w ?? 1, m;
+      if ((m = s.match(/:([\d.]+)$/))) { w = +m[1]; s = s.slice(0, m.index); }
+      if ((m = s.match(/\+(\d+)$/))) { q = +m[1]; s = s.slice(0, m.index); }
+      else if ((m = s.match(/^(\d+(?:m\d*)?[A-Za-z]{1,2}(?:m\d*|\*)?)(\d+)\+$/))) { q = +m[2]; s = m[1]; }
+      else s = s.replace(/\+$/, "");
+      if (!Number.isInteger(q) || q < 1 || q > 100 || !numeric(w) || w < 0) throw new Error("Charge must be an integer 1–100; population must be nonnegative.");
+      if ((m = s.match(/^([A-Za-z]{1,2})-?(\d+)$/))) s = m[2] + m[1];
+      let explicit = 0;
+      if ((m = s.match(/^(\d+)m(\d*)([A-Za-z]{1,2})$/))) { explicit = +(m[2] || 1); s = m[1] + m[3]; }
+      else if ((m = s.match(/^(\d+[A-Za-z]{1,2})(?:m(\d*)|\*)$/))) { explicit = +(m[2] || 1); s = m[1]; }
+      else if ((m = s.match(/^(\d+)([A-Za-z]{1,2})\[([gmnpqrxij]|\d+)\]$/))) { const labels = { g: 0, m: 1, n: 2, p: 3, q: 4, r: 5, x: 6, i: 8, j: 9 }; explicit = m[3] in labels ? labels[m[3]] : +m[3]; s = m[1] + m[2]; }
+      function readings(t) {
+        if (!t) return [[]];
+        const a = t.match(/^(\d+)([A-Z][a-z]?|[a-z]{1,2})(\d*)/); if (!a) return [];
+        const out = [];
+        for (let n = 0; n <= a[3].length; n++) {
+          const count = +(a[3].slice(0, n) || 1); if (count < 1 || count > 1000) continue;
+          let x; try { x = atom(+a[1], a[2], explicit, options.massSource); } catch (_) { continue; }
+          const rest = t.slice(a[1].length + a[2].length + n);
+          if (explicit && rest) continue;
+          for (const r of readings(rest)) out.push([{ ...x, count }, ...r]);
+        }
+        return out;
+      }
+      const variants = readings(s);
+      if (!variants.length) throw new Error(`Unknown, unavailable or nonnumeric ion/state: ${text}`);
+      if (variants.length > 1) throw new Error(`Ambiguous molecular input: ${text}; use an explicit isotope composition.`);
+      const atoms = variants[0], value = combine(...atoms.map(a => [a.count, a.value]));
+      const M = value.v, ionMassU = M - q * C.electronU;
+      if (!(ionMassU > 0) || q > atoms.reduce((z, a) => z + a.count * a.Z, 0)) throw new Error("Charge exceeds the ion's electron count.");
+      return { M, e: value.e == null ? null : value.e * C.uKeV, value, est: value.est, uncertainty_extrapolated:value.sigmaEst, q, w, ionMassU,
+        A: atoms.reduce((a, x) => a + x.A * x.count, 0), atoms,
+        label: atoms.map(a => a.label + (a.count > 1 ? `×${a.count}` : "")).join("·") + ` +${q}`,
+        source: [...new Set(atoms.map(a => a.source))].join("; "), txt: text,
+        mass_convention: "atomic mass minus q electron masses; ionization and molecular binding energies omitted" };
+    }
+    return { states, groups, ground, resolve, atom, metadata: {...data.source,ground_mass_source:ameData.metadata || {description:ameData.source}} };
+  }
+  const loads = new Map();
+  function load(catalogueUrl, ameUrl) {
+    const k = catalogueUrl + "|" + ameUrl;
+    if (!loads.has(k)) loads.set(k, Promise.all([catalogueUrl, ameUrl].map(async u => { const r = await fetch(u); if (!r.ok) throw new Error(`Nuclear data unavailable (${r.status})`); return r.json(); })).then(([d, a]) => catalogue(d, a)));
+    return loads.get(k);
+  }
+  function frequency(ion, B) { if (!(B > 0)) throw new Error("B must be positive"); return ion.q * C.e * B / (2 * Math.PI * ion.ionMassU * C.uKg); }
+  function penning(ion, B, voltage, d) {
+    const nc = frequency(ion, B), nz = voltage >= 0 && d > 0 ? Math.sqrt(ion.q * C.e * voltage / (ion.ionMassU * C.uKg * d * d)) / (2 * Math.PI) : NaN;
+    const D = nc * nc - 2 * nz * nz, stable = D > 0 && nz > 0;
+    const np = D >= 0 ? (nc + Math.sqrt(D)) / 2 : null;
+    const nm = np > 0 ? nz * nz / (2 * np) : null;
+    return { nc, nz, np, nm, stable, marginal: D === 0 || voltage === 0, convention: "Phi=U0(2z²−x²−y²)/(4d²)" };
+  }
+  function mrtof(ions, p) {
+    if (!(p.laps >= 0 && Number.isInteger(p.laps)) || !(p.referenceUs > 0 && p.lapUs > 0 && p.widthNs > 0 && p.broadeningNs >= 0 && p.delayUs >= 0)) throw new Error("Invalid MR-TOF time, width or lap count.");
+    const norm = ions.reduce((s, i) => s + i.w, 0); if (!(norm > 0)) throw new Error("At least one population must be positive.");
+    const fw = Math.hypot(p.widthNs, p.laps * p.broadeningNs);
+    const species = ions.map(i => { const flight = (p.referenceUs + p.laps * p.lapUs) * 1000 * Math.sqrt(i.ionMassU / i.q / 100), time = p.delayUs * 1000 + flight;
+      const life = i.atoms.length === 1 ? i.atoms[0].state.half_life : null;
+      const survival = life?.status === "stable" ? 1 : life?.seconds > 0 && !life.qualifier ? Math.exp(-Math.LN2 * flight * 1e-9 / life.seconds) : null;
+      return { ...i, w: i.w / norm, time, flight, fwhm: fw, sigma: fw / FWHM, resolvingPower: flight / (2 * fw), survival }; });
+    const pairs = []; for (let i = 0; i < species.length; i++) for (let j = i + 1; j < species.length; j++) {
+      const dm = combine([1, species[j].value], [-1, species[i].value]);
+      pairs.push({ i, j, dt: species[j].time - species[i].time, widths: Math.abs(species[j].time - species[i].time) / fw, dmKeV: dm.v * C.uKeV, eKeV: dm.e == null ? null : dm.e * C.uKeV }); }
+    return { species, pairs, width: fw, origin: species[0].time, parameters: p };
+  }
+  function calibration(t, refTime, refIon, q, delay, sigT = 0, sigRef = 0, sigDelay = 0) {
+    if (!(t > delay && refTime > delay && q > 0) || [sigT, sigRef, sigDelay].some(x => x < 0)) throw new Error("Calibration times must exceed delay.");
+    const a = t - delay, b = refTime - delay, mass = refIon.ionMassU * q / refIon.q * (a / b) ** 2;
+    const derivatives = [2 * mass / a, -2 * mass / b, 2 * mass * (1 / b - 1 / a)];
+    const e = refIon.e == null ? null : Math.hypot(...derivatives.map((d, i) => d * [sigT, sigRef, sigDelay][i]), mass / refIon.ionMassU * refIon.e / C.uKeV);
+    return { atomicMassU: mass + q * C.electronU, uncertaintyU: e, uncertainty_model: "independent times/reference mass; shared time-zero derivative combined" };
+  }
+  function conversion(detuning, T, scheme = "rect") {
+    if (!(T > 0)) throw new Error("Excitation time must be positive");
+    const d = 2 * Math.PI * detuning;
+    if (scheme === "rect") { const g = Math.PI / (2 * T), o = Math.hypot(2 * g, d); return (2 * g / o) ** 2 * Math.sin(o * T / 2) ** 2; }
+    const tau = 0.1 * T, wait = 0.8 * T, g = Math.PI / (4 * tau), o = Math.hypot(2 * g, d);
+    return 4 * (2 * g / o) ** 2 * Math.sin(o * tau / 2) ** 2 * (Math.cos(d * wait / 2) * Math.cos(o * tau / 2) - d / o * Math.sin(d * wait / 2) * Math.sin(o * tau / 2)) ** 2;
+  }
+  const tof = F => 62 + 193 / Math.sqrt(1 + 1.876 * F);
+  const tofMean = F => 0.92 * tof(F) + 0.08 * 255;
+  const tofShape = (d, T, scheme) => (255 - tofMean(conversion(d, T, scheme))) / (255 - tofMean(1));
+  function mixture(ions, f, p) {
+    const W = ions.reduce((s, i) => s + i.w, 0); if (!(W > 0)) throw new Error("At least one population must be positive.");
+    return ions.reduce((s, i) => s + i.w / W * tofMean(conversion(f - frequency(i, p.B), p.T, p.scheme)), 0);
+  }
+  function rng(seed) { let a = seed >>> 0; return () => { a += 0x6D2B79F5; let t = a; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function gaussian(random) { return Math.sqrt(-2 * Math.log(Math.max(Number.MIN_VALUE, random()))) * Math.cos(2 * Math.PI * random()); }
+  function acquire(ions, p, lo, hi, points = 31, counts = 20, seed = 20261007) {
+    if (!(hi > lo) || !Number.isFinite(lo+hi) || !Number.isInteger(points) || points < 5 || points > 201 || !Number.isInteger(counts) || counts < 2 || counts > 10000) throw new Error("Use an increasing scan, 5–201 frequency points and 2–10000 ions per point.");
+    const random = rng(seed), W = ions.reduce((s, i) => s + i.w, 0), events = [], scan = [];
+    if (!(W > 0)) throw new Error("At least one population must be positive.");
+    for (let j = 0; j < points; j++) {
+      const f = lo + (hi - lo) * j / (points - 1), values = [];
+      for (let k = 0; k < counts; k++) { let x = random() * W, species = 0; while (species < ions.length - 1 && (x -= ions[species].w) > 0) species++;
+        const F = conversion(f - frequency(ions[species], p.B), p.T, p.scheme), value = random() < 0.08 ? 255 + 9 * gaussian(random) : tof(F) + 7 * gaussian(random);
+        values.push(value); events.push({ f, tof: value, species }); }
+      const mean = values.reduce((s, x) => s + x, 0) / counts, variance = values.reduce((s, x) => s + (x - mean) ** 2, 0) / (counts - 1);
+      scan.push({ f, mean, se: Math.sqrt(variance / counts), n: counts });
+    }
+    return { scan, events, seed };
+  }
+  function fitSingle(scan, p, target) {
+    if (new Set(scan.map(s=>s.f)).size < 5 || scan.some(s => !(s.n >= 2 && s.se > 0) || !Number.isFinite(s.f+s.mean+s.se))) return { status: "insufficient data" };
+    const lo = Math.min(...scan.map(s => s.f)), hi = Math.max(...scan.map(s => s.f));
+    function profile(center) {
+      let S = 0, Sx = 0, Sxx = 0, Sy = 0, Sxy = 0;
+      for (const r of scan) { const x = tofShape(r.f - center, p.T, p.scheme), w = 1 / r.se ** 2; S += w; Sx += w * x; Sxx += w * x * x; Sy += w * r.mean; Sxy += w * x * r.mean; }
+      const den = S * Sxx - Sx * Sx; if (!(den > 1e-12 * S * Sxx)) return { chi2: Infinity };
+      let depth = (Sy * Sx - Sxy * S) / den, baseline = (Sy + depth * Sx) / S;
+      if (depth < 0) { depth = 0; baseline = Sy / S; }
+      const predict = f => baseline - depth * tofShape(f - center, p.T, p.scheme);
+      return { center, baseline, depth, predict, chi2: scan.reduce((s, r) => s + ((r.mean - predict(r.f)) / r.se) ** 2, 0) };
+    }
+    const N = Math.max(600, Math.min(5000, Math.ceil((hi - lo) * p.T * 100))), grid = [];
+    for (let i = 0; i <= N; i++) grid.push(profile(lo + (hi - lo) * i / N));
+    let index = 0; grid.forEach((g, i) => { if (g.chi2 < grid[index].chi2) index = i; });
+    if (!Number.isFinite(grid[index].chi2)) return { status: "unconstrained fit" };
+    if (index === 0 || index === N) { const fit = grid[index]; return { ...fit, status: "boundary-limited fit", interval: [null, null], bias: fit.center - target, dof: scan.length - 3, reducedChi2: fit.chi2 / (scan.length - 3), residuals: scan.map(r => ({ f: r.f, residual: r.mean - fit.predict(r.f), se: r.se })) }; }
+    let a = grid[index - 1].center, b = grid[index + 1].center;
+    for (let i = 0; i < 40; i++) { const x = a + (b - a) / 3, y = b - (b - a) / 3; if (profile(x).chi2 < profile(y).chi2) b = y; else a = x; }
+    const fit = profile((a + b) / 2), threshold = fit.chi2 + 1;
+    function crossing(direction) { let last = fit.center, step = (hi - lo) / N;
+      for (let c = fit.center + direction * step; c >= lo && c <= hi; c += direction * step) { if (profile(c).chi2 >= threshold) { let near = last, far = c; for (let k = 0; k < 32; k++) { const m = (near + far) / 2; if (profile(m).chi2 < threshold) near = m; else far = m; } return (near + far) / 2; } last = c; } return null; }
+    const left = crossing(-1), right = crossing(1), modes = grid.filter((g, i) => i > 0 && i < N && g.chi2 < grid[i - 1].chi2 && g.chi2 < grid[i + 1].chi2 && g.chi2 <= fit.chi2 + 1).length;
+    return { ...fit, status: fit.depth === 0 ? "unconstrained fit" : left == null || right == null ? "boundary-limited interval" : modes > 1 ? "multiple fit minima" : "ok", interval: [left, right], bias: fit.center - target, dof: scan.length - 3, reducedChi2: fit.chi2 / (scan.length - 3), residuals: scan.map(r => ({ f: r.f, residual: r.mean - fit.predict(r.f), se: r.se })) };
+  }
+  const wrapPhase = angle => ((angle % (2*Math.PI)) + 2*Math.PI) % (2*Math.PI);
+  function phaseResolution(frequencyHz, time, radiusMm, sigmaMm, count, floorRad = 0) {
+    if (!(radiusMm > 0 && time > 0 && sigmaMm > 0 && Number.isInteger(count) && count > 0 && floorRad >= 0)) return { defined: false };
+    const eventSigma = sigmaMm / radiusMm, centroidSigma = Math.hypot(eventSigma / Math.sqrt(count), floorRad);
+    return { defined: true, eventSigma, centroidSigma, frequencySigma: centroidSigma / (2 * Math.PI * time), resolvingPower: 2 * Math.PI * frequencyHz * time / (FWHM * eventSigma), smallAngle: eventSigma < 0.3 };
+  }
+  function eigLow(diag, off) {           /* lowest eigenvalue of a symmetric tridiagonal matrix */
+    const n = diag.length; let lo = Infinity, hi = -Infinity;
+    diag.forEach((d, i) => { const r = Math.abs(off[i - 1] || 0) + Math.abs(off[i] || 0); lo = Math.min(lo, d - r); hi = Math.max(hi, d + r); });
+    const below = x => { let c = 0, d = 1; for (let i = 0; i < n; i++) { d = diag[i] - x - (i ? off[i - 1] * off[i - 1] / d : 0); if (d === 0) d = -1e-300; if (d < 0) c++; } return c; };
+    for (let it = 0; it < 64; it++) { const m = (lo + hi) / 2; below(m) >= 1 ? (hi = m) : (lo = m); }
+    return (lo + hi) / 2;
+  }
+  const MA0 = q => eigLow([...Array(14)].map((_, r) => 4 * r * r), [...Array(13)].map((_, r) => r ? q : Math.SQRT2 * q));
+  const MB1 = q => eigLow([...Array(14)].map((_, r) => r ? (2 * r + 1) ** 2 : 1 - q), [...Array(13)].map(() => q));
+  const Q_EDGE = 0.908046, Q_TIP = 0.705996, A_TIP = 0.236994;
+  const mathieuStable = (a, q) => q > 0 && q < Q_EDGE && a < MB1(q) && a > MA0(q) && -a < MB1(q) && -a > MA0(q);
+
+
+  function mathieuParameters(ion,U,V,r0,frequencyMHz) { const k=C.e*ion.q/(ion.ionMassU*C.uKg*(r0/1000)**2*(2*Math.PI*frequencyMHz*1e6)**2);return {a:8*k*U,q:4*k*V}; }
+  const api = { C, FWHM, numeric, primitive, combine, constant, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters };
+  host.ZGPhysics = api; if (typeof module !== "undefined" && module.exports) module.exports = api;
+})(typeof globalThis !== "undefined" ? globalThis : window);

@@ -39,12 +39,14 @@
    "new" "もう一度" "score" "得点" "best" "最高" "right" "正解！" "wrong" "おしい。" "yours" "あなたの答え")) -}}
 {{- $t := index $L $k | default $en -}}
 {{- with hugo.Data.games_labels }}{{ $t = merge $t (index . "en") (index . $k | default dict) }}{{ end -}}
-<div class="zg-games" data-games data-src="{{ "data/nubase2020.json" | relURL }}" data-ame="{{ "data/ame2020.json" | relURL }}" data-labels="{{ $t | jsonify }}">
+<div class="zg-games" data-games data-catalogue="{{ "data/nuclear-states.json" | relURL }}" data-src="{{ "data/nubase2020.json" | relURL }}" data-ame="{{ "data/ame2020.json" | relURL }}" data-labels="{{ $t | jsonify }}">
   <section class="zg-card g-box" id="g-hl"><h2>⏳ {{ $t.hl }}</h2><p class="zg-muted">{{ $t.hl_n }}</p>
     <div class="g-pair"></div>
     <div class="zg-row"><button type="button" class="zg-btn" data-pick="a">◀ A</button><button type="button" class="zg-btn" data-pick="b">B ▶</button></div>
     <p class="g-msg" aria-live="polite"></p></section>
-  <section class="zg-card g-box" id="g-tof"><h2>🎯 {{ $t.tof }}</h2><p class="zg-muted">{{ $t.tof_n }}</p>
+  {{ partial "zg/measurement-workbench.html" (dict "kind" "tof" "id" "g-tof") }}
+<details class="g-hunt"><summary>{{ $t.tof }} — {{ $t.score }}</summary>
+  <section class="zg-card g-box" id="g-tof-hunt"><h2>🎯 {{ $t.tof }}</h2><p class="zg-muted">{{ $t.tof_n }}</p>
     <div class="g-opts-row">
       <label>{{ $t.ion }} <input type="text" name="ion" class="g-text g-short" value="133Cs" aria-label="{{ $t.ion }}"></label>
       <label>z <select name="zq"><option>1</option><option>2</option><option>3</option></select></label>
@@ -61,9 +63,10 @@
     <div class="zg-row"><button type="button" class="zg-btn" data-act="shot">{{ $t.shot }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="scan">{{ $t.scan }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="fit">{{ $t.fit }}</button><button type="button" class="zg-btn" data-act="guess">{{ $t.guess }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="new">{{ $t.new }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ {{ $t.png }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="csv">⤓ {{ $t.csv }}</button></div>
     <p class="g-msg" aria-live="polite"></p><p class="g-info zg-muted"></p>
     <details class="g-hints"><summary>💡 {{ $t.hints }}</summary><ul><li>{{ $t.h1 }}</li><li>{{ $t.h2 }}</li><li>{{ $t.h3 }}</li><li>{{ $t.h4 }}</li></ul></details></section>
+</details>
   <section class="zg-card g-box" id="g-pi"><h2>🌀 {{ $t.pi }}</h2><p class="zg-muted">{{ $t.pi_n }}</p>
     <div class="g-opts-row">
-      <span class="pi-single"><label>{{ $t.iso_pick }} <select name="iso"></select></label>
+      <span class="pi-single"><label>Search / 搜索 <input type="search" name="iso-search" placeholder="133Xe"></label><label class="g-chk"><input name="other-states" type="checkbox">Other levels / IAS / classification pending · 其他能级 / IAS / 分类未定</label><label>{{ $t.iso_pick }} <select name="iso"></select></label>
       <button type="button" class="zg-btn zg-btn-ghost" data-act="rand">🎲</button></span>
       <label class="g-chk"><input type="checkbox" name="multi"> {{ $t.pi_multi }}</label>
       <label>{{ $t.pi_mtab }} <select name="mtab"><option value="ame" selected>AME2020</option><option value="nubase">NUBASE2020</option></select></label>
@@ -72,6 +75,7 @@
       <label class="g-chk"><input type="checkbox" name="pix"> {{ $t.v_pix }}</label>
       <label class="g-chk"><input type="checkbox" name="ref" checked> {{ $t.pi_ref }}</label>
     </div>
+    <details class="g-hints"><summary>Detector and practice / 探测器与练习</summary><div class="g-opts-row"><label>Detector radius / 探测器半径 (mm) <input type="number" name="radius" min="0" max="40" step="0.1" value="11"></label><label>Angular floor / 角度系统误差 (mrad) <input type="number" name="floor" min="0" max="100" step="0.1" value="0"></label><label>Counts per centroid / 每斑点计数 <input type="number" name="centroid-count" min="1" max="1000000" value="100"></label><label>Seed / 随机种子 <input type="number" name="pi-seed" min="0" max="4294967295" value="20261007"></label><label><input type="checkbox" name="practice-filter"> Practice random cases: T½ ≥ 50 ms / 随机练习：半衰期 ≥ 50 ms</label></div></details>
     <div class="pi-man" hidden>
       <label class="pi-ions">{{ $t.pi_ions }} <input type="text" name="ions" class="g-text" value="84Sr, 84Rb, 84Kr" spellcheck="false"></label>
       <span class="pi-bad g-warn"></span>
@@ -85,52 +89,33 @@
     </div>
     <div class="g-rfq-grid"><canvas width="420" height="420"></canvas><canvas width="420" height="420"></canvas></div>
     <div class="pi-freq"></div>
+    <details class="g-hints"><summary>Accumulation-time comparison / 累积时间比较</summary>
+      <div class="g-opts-row"><label><input name="compare-times" type="checkbox">Compare selected times / 比较所选时间</label><label>t₂ (ms) <input name="compare-t2" type="number" min="0.01" max="10000" step="any" value="100"></label><label>t₃ (ms) <input name="compare-t3" type="number" min="0.01" max="10000" step="any" value="500"></label></div>
+      <div class="pi-times" hidden><canvas width="720" height="260" aria-label="Minimum wrapped pair separation versus accumulation time / 最小回绕相位差随累积时间变化"></canvas><div class="pi-comparison"></div></div>
+      <p class="zg-muted">Known simulation frequencies fix the turn count. Additional times expose phase wrapping; this view does not infer an experimental turn count. / 仿真已知频率确定完整圈数；多时间视图展示相位回绕，不推断实验中的未知整圈数。</p>
+    </details>
     <div class="g-sliders">
-      <label class="g-slider">t_acc <input type="range" name="tacc" min="1" max="2000" step="1" value="50"> <input type="number" class="g-num" data-for="tacc" step="any"><span class="g-unit">ms</span></label>
-      <label class="g-slider">{{ $t.pi_spot }} <input type="range" name="spot" min="1" max="30" step="0.5" value="6"> <input type="number" class="g-num" data-for="spot" step="any"><span class="g-unit">0.1 mm</span></label>
+      <label class="g-slider">t_acc <input type="range" name="tacc" min="0.01" max="10000" step="0.01" value="50"> <input type="number" class="g-num" data-for="tacc" step="any"><span class="g-unit">ms</span></label>
+      <label class="g-slider">{{ $t.pi_spot }} <input type="range" name="spot" min="1" max="100" step="0.5" value="6"> <input type="number" class="g-num" data-for="spot" step="any"><span class="g-unit">0.1 mm</span></label>
       <label class="g-slider">{{ $t.pi_ratio }} <input type="range" name="ratio" min="0" max="90" step="1" value="30"> <input type="number" class="g-num" data-for="ratio" step="any"><span class="g-unit">%</span></label>
       <label class="g-slider">{{ $t.pi_cfrac }} <input type="range" name="cfrac" min="0" max="50" step="1" value="10"> <input type="number" class="g-num" data-for="cfrac" step="any"><span class="g-unit">%</span></label>
       <label class="g-slider">U₀ <input type="range" name="u0" min="0.1" max="200" step="0.1" value="10"> <input type="number" class="g-num" data-for="u0" step="any"><span class="g-unit">V</span></label>
       <label class="g-slider">d <input type="range" name="dch" min="1" max="50" step="0.1" value="10"> <input type="number" class="g-num" data-for="dch" step="any"><span class="g-unit">mm</span></label>
     </div>
     <div class="zg-row"><button type="button" class="zg-btn" data-act="shot">{{ $t.shot }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="auto">{{ $t.pi_auto }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="clear">{{ $t.new }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ {{ $t.png }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png2">⤓ {{ $t.png }} (φ)</button><button type="button" class="zg-btn zg-btn-ghost" data-act="csv">⤓ {{ $t.csv }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="fcsv">⤓ ν {{ $t.csv }}</button></div>
-    <p class="g-msg" aria-live="polite"></p>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="json">Inputs + results / 输入与结果</button><p class="g-msg" aria-live="polite"></p>
     <details class="g-hints"><summary>💡 {{ $t.hints }}</summary><p>{{ $t.pi_h }}</p><p>{{ $t.pi_fh }}</p></details></section>
-  <section class="zg-card g-box" id="g-mr"><h2>🪞 {{ $t.mr }}</h2><p class="zg-muted">{{ $t.mr_n }}</p>
-    <div class="g-opts-row">
-      <label>{{ $t.pair }} <select name="pair"></select></label>
-      <button type="button" class="zg-btn zg-btn-ghost" data-act="rand">🎲 {{ $t.rand }}</button>
-      <label class="g-chk"><input type="checkbox" name="manual"> {{ $t.mr_manual }}</label>
-      <span class="mr-man" hidden><input type="text" name="n1" class="g-text g-short" value="94Ag" aria-label="1"> / <input type="text" name="n2" class="g-text g-short" value="94Pd" aria-label="2"> <span class="mr-bad g-warn"></span></span>
-    </div>
-    <div class="g-opts-row">
-      <label>{{ $t.ratio }} <select name="ratio"><option value="1" selected>1 : 1</option><option value="0.5">1 : 0.5</option><option value="0.2">1 : 0.2</option><option value="0.05">1 : 0.05</option><option value="0.01">1 : 0.01</option><option value="2">1 : 2</option><option value="5">1 : 5</option><option value="20">1 : 20</option></select></label>
-      <label>{{ $t.charge }} <select name="z"><option>1</option><option>2</option><option>3</option></select></label>
-      <label>{{ $t.counts }} <select name="counts"><option>100</option><option selected>400</option><option>2000</option><option>10000</option></select></label>
-      <label class="g-chk"><input type="checkbox" name="sum" checked> {{ $t.mr_sum }}</label>
-      <label class="g-chk"><input type="checkbox" name="logr"> log R</label>
-    </div>
-    <canvas width="720" height="280"></canvas>
-    <div class="g-sliders">
-      <label class="g-slider">{{ $t.laps }} <input type="range" name="laps" min="0" max="5000" step="1" value="0"> <input type="number" class="g-num" data-for="laps" step="any"><span class="g-unit"></span></label>
-      <label class="g-slider">{{ $t.dt0 }} <input type="range" name="dt0" min="0.5" max="1000" step="0.5" value="20"> <input type="number" class="g-num" data-for="dt0" step="any"><span class="g-unit">ns</span></label>
-      <label class="g-slider">{{ $t.dlap }} <input type="range" name="dlap" min="0" max="500" step="0.5" value="20"> <input type="number" class="g-num" data-for="dlap" step="any"><span class="g-unit">ps</span></label>
-      <label class="g-slider">{{ $t.tlap }} <input type="range" name="tlap" min="1" max="50" step="0.1" value="8"> <input type="number" class="g-num" data-for="tlap" step="any"><span class="g-unit">µs</span></label>
-      <label class="g-slider">{{ $t.t0 }} <input type="range" name="t0" min="1" max="200" step="0.5" value="10"> <input type="number" class="g-num" data-for="t0" step="any"><span class="g-unit">µs</span></label>
-    </div>
-    <canvas width="720" height="220"></canvas>
-    <div class="zg-row"><button type="button" class="zg-btn" data-act="auto">{{ $t.mr_auto }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="new">{{ $t.new }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ {{ $t.png }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png2">⤓ {{ $t.png }} (R)</button><button type="button" class="zg-btn zg-btn-ghost" data-act="csv">⤓ {{ $t.csv }}</button></div>
-    <p class="g-msg" aria-live="polite"></p>
-    <details class="g-hints"><summary>💡 {{ $t.hints }}</summary><p>{{ $t.mr_h }}</p></details></section>
+  {{ partial "zg/measurement-workbench.html" (dict "kind" "mr" "id" "g-mr") }}
   <section class="zg-card g-box" id="g-rfq"><h2>🧲 {{ $t.rfq }}</h2><p class="zg-muted">{{ $t.rfq_n }}</p>
     <div class="g-opts-row">
       <label>{{ $t.set }} <select name="set"><option value="near">{{ $t.set_near }}</option><option value="far">{{ $t.set_far }}</option><option value="one">{{ $t.set_one }}</option></select></label>
       <label class="g-chk"><input type="checkbox" name="custom"> {{ $t.rfq_custom }}</label>
       <input type="text" name="ions" class="g-text" value="100Sn, 100In, 100Cd" placeholder="100Sn, 99In, 133Cs+2" aria-label="{{ $t.rfq_custom }}">
       <label>{{ $t.target }} <select name="target"></select></label>
-      <span class="rfq-bad g-warn"></span>
+      <label>Seed / 随机种子 <input name="rfq-seed" type="number" min="0" max="4294967295" step="1" value="20261007"></label><span class="rfq-bad g-warn"></span>
     </div>
-    <div class="g-opts-row"><span class="rfq-leg"></span></div>
+    <p class="zg-muted">V is zero-to-peak RF voltage; U is DC voltage. Collisionless transverse model: finite-time transmission is illustrative. Axial transport, gas, space charge and fringe fields are omitted. / V 为零到峰值射频电压，U 为直流电压。无碰撞横向模型：有限时间透过率仅为示意；未包含轴向输运、气体、空间电荷与边缘场。 <a href="https://dlmf.nist.gov/28.2">Mathieu equation / 马修方程</a></p>
+    <div class="g-opts-row"><span class="rfq-leg"></span><button type="button" class="zg-btn zg-btn-ghost" data-act="json">Inputs + results / 输入与结果</button></div>
     <div class="g-rfq-grid"><canvas width="360" height="360"></canvas><canvas width="420" height="360"></canvas></div>
     <div class="g-sliders">
       <label class="g-slider">{{ $t.a }} <input type="range" name="A" min="1" max="300" step="1" value="100"> <input type="number" class="g-num" data-for="A" step="any"><span class="g-unit"></span></label>
@@ -151,4 +136,7 @@
     {{ partial "zg/trap-zoo.html" (dict "heading" false) }}</section>
 </div>
 <script defer src="{{ "js/zg-export.js" | relURL }}"></script>
+<script defer src="{{ "js/physics.js" | relURL }}"></script>
+<script defer src="{{ "js/workbenches.js" | relURL }}"></script>
 <script defer src="{{ "js/games.js" | relURL }}"></script>
+<script defer src="{{ "js/topic-navigation.js" | relURL }}"></script>

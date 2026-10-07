@@ -4,6 +4,8 @@ description: "Research projects, instruments and research software."
 showDate: false
 ---
 
+{{< learning-links >}}
+
 ## MASSPASS — Academy Fellowship (PI), 2023–2027
 Mass measurements of exotic *N* = *Z* nuclei up to ¹⁰⁰Sn and the vicinity for nuclear physics and nuclear astrophysics, at IGISOL and RIKEN. Research Council of Finland. [Project page](https://www.jyu.fi/en/projects/mass-measurements-of-exotic-nz-nuclei-up-to-100sn-and-the-vicinity-for-nuclear-physics-and-nuclear)
 

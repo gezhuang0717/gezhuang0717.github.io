@@ -217,6 +217,11 @@ article h1, .post-title, .profile_inner h1, main h1 {
 header nav a[rel="me"] { white-space: nowrap; }
 header nav > div:first-child { margin-inline-end: 1.2rem; }
 @media (min-width: 640px) and (max-width: 1279px) { header nav ul > li.group { margin-inline-end: 1.1rem !important; } }
+/* The full research navigation needs more room than the theme's 640 px breakpoint. */
+@media (max-width:1279px){header .zg-main-menu{display:none!important}header #menu-button{display:block!important}header .zg-nav-right{min-width:0}header .zg-controls{margin-inline-end:.65rem}}
+#menu-button:focus-visible{outline:3px solid var(--zg-blue);outline-offset:4px}
+@media(max-width:480px){header nav>div:first-child{min-width:0;flex:1;margin-inline-end:.5rem}header nav a[rel="me"]{white-space:normal;overflow-wrap:anywhere;line-height:1.25}header .zg-nav-right{flex-shrink:0}header .zg-controls{gap:.15rem;margin-inline-end:.3rem}}
+@media(min-width:1280px){header .zg-nav-right{max-width:calc(100% - 170px);flex-wrap:wrap;justify-content:flex-end;row-gap:.6rem}header .zg-main-menu{min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-end;row-gap:.6rem}}
 .zg-clock-saying{margin:.4rem 0 0;font-style:italic;font-size:.9rem;opacity:.9;border-top:1px dashed rgba(127,127,160,.35);padding-top:.4rem}
 /* Lab: 3D trap, chart of nuclides, body radioactivity */
 .zg-3d canvas,.zg-chart canvas{width:100%;height:auto;max-width:100%;border-radius:12px;background:radial-gradient(circle at 50% 40%,rgba(139,108,255,.08),transparent 70%);touch-action:none;cursor:grab}

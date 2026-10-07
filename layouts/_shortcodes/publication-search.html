@@ -1,0 +1,7 @@
+{{- $zh := hasPrefix .Site.Language.Lang "zh" -}}
+<div class="zg-publication-search" data-pub-search>
+<label>{{ if $zh }}检索标题、作者、DOI 或主题{{ else }}Search title, author, DOI or topic{{ end }}<input type="search" name="pub-query" autocomplete="off"></label>
+<label>{{ if $zh }}年份{{ else }}Year{{ end }}<select name="pub-year"><option value="">{{ if $zh }}所有年份{{ else }}All years{{ end }}</option>{{ range sort (uniq (collections.Apply hugo.Data.publications.papers "index" "." "year")) "value" "desc" }}<option>{{ . }}</option>{{ end }}</select></label>
+<label>{{ if $zh }}作者角色{{ else }}Author role{{ end }}<select name="pub-role"><option value="">{{ if $zh }}全部{{ else }}All{{ end }}</option><option value="first">{{ if $zh }}第一作者{{ else }}First author{{ end }}</option><option value="corresponding">{{ if $zh }}通讯作者{{ else }}Corresponding author{{ end }}</option><option value="coauthor">{{ if $zh }}合作作者{{ else }}Co-author{{ end }}</option></select></label>
+<p data-pub-count aria-live="polite"></p></div>
+<script defer src="{{ "js/publication-search.js" | relURL }}"></script>

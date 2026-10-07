@@ -11,6 +11,9 @@
   const root = document.querySelector("[data-nuclide-chart]");
   if (!root) return;
   const T = JSON.parse(root.dataset.labels || "{}");
+  const P=window.ZGPhysics; let catalog=null, selectedState=null;
+  const zh=document.documentElement.lang.startsWith("zh"); const unknown=zh?"不确定度未知":"uncertainty unavailable";
+  const escape=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const cv = root.querySelector("canvas.nc-canvas"), g = cv.getContext("2d");
   const card = root.querySelector(".nc-card"), legend = root.querySelector(".nc-legend"), ptab = root.querySelector(".nc-ptable");
   const sel = root.querySelector("[name=nc-colour]"), fsel = root.querySelector("[name=nc-filter]"), search = root.querySelector("[name=nc-search]");
@@ -30,16 +33,13 @@
   const sizeCanvas = (c, w, h) => { const k = DPR(); c._cw = w; c._ch = h; c.width = Math.round(w * k); c.height = Math.round(h * k); c.style.aspectRatio = `${w} / ${h}`; };
 
   /* ---------- physics with uncertainties (keV); est = any input from systematics (#) ---------- */
-  const get = (Z, N) => { const r = M.get(key(Z, N)); return r && r[3] != null ? { v: r[3], e: r[4] || 0, est: !!r[5] } : null; };
+  const get = (Z, N) => { const r = M.get(key(Z, N)); return r && r[3] != null ? P.primitive("AME2020:"+key(Z,N),r[3],r[4],!!r[5],!!r[13]) : null; };
   let MEn = { v: 8071.3181, e: 0.0004, est: false }, MEH = { v: 7288.971064, e: 0.000013, est: false }, MEa = { v: 2424.91587, e: 0.00015, est: false };
   /* combine a·x + b·y + … ; uncertainties in quadrature (AME correlations neglected) */
-  const comb = (...terms) => {
-    if (terms.some(([c, x]) => x == null)) return null;
-    return { v: terms.reduce((s, [c, x]) => s + c * x.v, 0), e: Math.sqrt(terms.reduce((s, [c, x]) => s + (c * x.e) ** 2, 0)), est: terms.some(([, x]) => x.est) };
-  };
-  const K = c => ({ v: c, e: 0, est: false });
+  const comb=P.combine;
+  const K=P.constant;
   const memo = new Map();
-  const getM = (s, Z, N) => { const v = MOD[s] && MOD[s].map.get(key(Z, N)); return v ? { v: v[0], e: 0, est: false } : null; };
+  const getM = (s, Z, N) => { const v = MOD[s] && MOD[s].map.get(key(Z, N)); return v ? P.primitive("model:"+s+":"+key(Z,N),v[0],null,false) : null; };
   const getter = s => s === "ame" ? get : (Z, N) => getM(s, Z, N);
   const derived = r => derivedZN(r[0], r[1], "ame");
   function derivedZN(Z, N, s = "ame") {
@@ -47,7 +47,7 @@
     const get = getter(s), A = Z + N, m = get(Z, N);
     const BE = comb([Z, MEH], [N, MEn], [-1, m]);
     const out = {
-      A, me: m, BE, BEA: BE && A > 0 ? { v: BE.v / A, e: BE.e / A, est: BE.est } : null,
+      A, me: m, BE, BEA: BE && A > 0 ? comb([1/A,BE]) : null,
       sn: comb([1, get(Z, N - 1)], [1, MEn], [-1, m]), s2n: comb([1, get(Z, N - 2)], [2, MEn], [-1, m]),
       sp: comb([1, get(Z - 1, N)], [1, MEH], [-1, m]), s2p: comb([1, get(Z - 2, N)], [2, MEH], [-1, m]),
       qbm: comb([1, m], [-1, get(Z + 1, N - 1)]), qec: comb([1, m], [-1, get(Z - 1, N + 1)]), qa: comb([1, m], [-1, get(Z - 2, N - 2)], [-1, MEa]),
@@ -70,7 +70,7 @@
       : !ze && !ne ? comb([1, B(Z, N)], [-1, B(Z, N - 1)], [-1, B(Z - 1, N)], [1, B(Z - 1, N - 1)])
       : ze ? comb([0.5, B(Z, N)], [-0.5, B(Z, N - 1)], [-0.5, B(Z - 2, N)], [0.5, B(Z - 2, N - 1)])
       : comb([0.5, B(Z, N)], [-0.5, B(Z, N - 2)], [-0.5, B(Z - 1, N)], [0.5, B(Z - 1, N - 2)]);
-    out.beta2 = s !== "ame" && MOD[s] && MOD[s].map.get(key(Z, N)) ? { v: MOD[s].map.get(key(Z, N))[1], e: 0, est: false } : null;   /* β2 × 1000 */
+    out.beta2 = s !== "ame" && MOD[s] && MOD[s].map.get(key(Z, N)) ? { v: MOD[s].map.get(key(Z, N))[1], e: null, est: false } : null;   /* β2 × 1000 */
     /* Wigner-energy indicator (as in the Mulberry code): W = δVpn(N) − ½[δVpn(N+2) + δVpn(N−2)]; peaks at N = Z.
        Lazy getter: neighbours only need their δVpn, so there is no recursion chain. */
     let wig;
@@ -82,7 +82,7 @@
     memo.set(k, out); return out;
   }
   /* ME(AME) − ME(model) for the chosen (or default FRDM) model */
-  const modelKey = () => src !== "ame" ? src : MOD.frdm1995 ? "frdm1995" : Object.keys(MOD)[0];
+  const modelKey = () => src !== "ame" ? src : MOD.frdm2012 ? "frdm2012" : MOD.frdm1995 ? "frdm1995" : Object.keys(MOD)[0];
   const dmod = r => { const mk = modelKey(), a = get(r[0], r[1]), b = mk && getM(mk, r[0], r[1]); return a && b ? { v: a.v - b.v, e: a.e, est: a.est } : null; };
   const decayClass = r => {
     const b = r[10] || "";
@@ -111,7 +111,7 @@
     qbm: { label: T.m_qb, v: r => mv(D(r).qbm), lo: 0, hi: 20, u: "MeV" },
     qa: { label: T.m_qa, v: r => mv(D(r).qa), lo: 0, hi: 10, u: "MeV" },
     dme: { label: T.m_dme, v: r => r[4] == null ? null : Math.log10(Math.max(r[4], 1e-4)), lo: -3, hi: 3, rng: ["0.001 keV", "1 MeV"] },
-    est: { label: T.m_est, f: r => r[5] ? "#f59e0b" : "#0ea5e9" },
+    est: { label: T.m_est, f: r => r[3] == null ? "#868e96" : r[5] ? "#f59e0b" : "#0ea5e9" },
     year: { label: T.m_year, v: r => r[9], lo: 1900, hi: 2020 },
     iso: { label: T.m_iso, f: r => ["#e5e7eb", "#a78bfa", "#7c3aed", "#4c1d95"][Math.min(3, r[11].length)] },
     eo: { label: T.m_eo, f: r => ["#0ea5e9", "#f59e0b", "#22c55e", "#ef4444"][(r[0] % 2) * 2 + (r[1] % 2)] },
@@ -129,7 +129,7 @@
     dmod: { label: T.m_dmod, need: true, v: r => mv(dmod(r)), lo: -3, hi: 3, u: "MeV", div: true },
   };
   const FILTERS = {
-    all: [T.fl_all, () => true], meas: [T.fl_meas, r => r[3] != null && !r[5]], extr: [T.fl_extr, r => !!r[5]],
+    all: [T.fl_all, () => true], missing: [zh?"质量缺失":"Missing mass",r=>r[3]==null], unknown_unc: [zh?"不确定度缺失":"Unknown mass uncertainty",r=>r[4]==null], known_unc: [zh?"不确定度已知":"Known mass uncertainty",r=>r[3]!=null&&r[4]!=null], state_hash: [zh?"外推激发能":"Extrapolated excitation energy",r=>catalog && (catalog.groups.get(r[2].toLowerCase()+(r[0]+r[1]))||[]).some(s=>s.excitation.value_extrapolated)], meas: [T.fl_meas, r => r[3] != null && !r[5]], extr: [T.fl_extr, r => !!r[5]],
     d1: ["δm < 1 keV", r => r[4] != null && !r[5] && r[4] < 1], d10: ["δm < 10 keV", r => r[4] != null && !r[5] && r[4] < 10], d100: ["δm < 100 keV", r => r[4] != null && !r[5] && r[4] < 100],
     stable: [T.fl_stable, r => r[6] === 99], hl: [T.fl_hl, r => r[6] > -90 && r[6] !== 99], iso: [T.fl_iso, r => r[11].length > 0],
     magic: [T.fl_magic, r => MAGIC.includes(r[0]) || MAGIC.includes(r[1])], nz: ["N = Z", r => r[0] === r[1]],
@@ -249,7 +249,15 @@
       root.querySelector(".nc-mref").innerHTML = s === "ame" ? "" : `${T.modnote} <a href="${MOD[s].url}" target="_blank" rel="noopener">${MOD[s].ref}</a>`;
       drawLegend(); draw(); plotChain(); if (pin) showCard(pin);
     };
-    s === "ame" ? go() : loadModels().then(go);
+    if (s === "ame") go();
+    else {
+      if (msel) msel.disabled = true;
+      loadModels().then(go).catch(() => {
+        root.querySelector(".nc-mref").textContent = "Model data unavailable / 模型数据不可用";
+        if (msel) msel.value = src;
+        modelsLoading = null;
+      }).finally(() => { if (msel) msel.disabled = false; });
+    }
   }
 
   const W = () => cv._cw, H = () => cv._ch;
@@ -275,11 +283,13 @@
   }
   const fmtTick = v => { const a = Math.abs(v); return a === 0 ? "0" : a >= 1e4 || a < 1e-3 ? v.toExponential(1) : String(+v.toPrecision(5)); };
   function fmtU(v, e) {           /* → [value string, uncertainty string] */
+    if (e == null) return [String(+v.toPrecision(10)), "?"];
     if (!(e > 0)) { const d = Math.abs(v) >= 100 ? 1 : 3; return [v.toFixed(d), "0"]; }
     const dec = Math.max(0, 1 - Math.floor(Math.log10(e)));
     return [v.toFixed(dec), e.toFixed(dec)];
   }
   const fv = (o, d = 3, f = 1000, u = " MeV") => { if (o == null) return "—"; const h = o.est ? "#" : "";
+    if (o.e == null) return `${(o.v/f).toFixed(d)}${h}${u} (${unknown})`;
     if (!(o.e > 0)) return `${(o.v / f).toFixed(d)}${h}${u}`;
     const [a, b] = fmtU(o.v / f, o.e / f); return `${a}${h} ± ${b}${h}${u}`; };
   const DM = { "B-": "β⁻", "B+": "β⁺", "EC": "EC", "A": "α", "IT": "IT", "SF": "SF", "p": "p", "2p": "2p", "n": "n", "2n": "2n", "B-n": "β⁻n", "B-2n": "β⁻2n", "B+p": "β⁺p", "e+": "e⁺", "2B-": "2β⁻", "2B+": "2β⁺", "IS": T.abund };
@@ -309,7 +319,7 @@
     card.innerHTML = `<button type="button" class="nc-close" aria-label="close">×</button>
       <div class="nc-head"><span class="nc-sym">${sup(A)}${r[2]}</span><span>${el ? el[2] : ""}<br><small>Z = ${r[0]} · N = ${r[1]} · A = ${A}</small></span></div>
       <table>${row(T.hl, r[7] === "stable" ? T.stable : r[7])}${row("Jπ", r[8] || "—")}${row(T.decay, decayText(r[10]))}
-      ${row(T.me, d.me ? (() => { const [a, b] = fmtU(d.me.v, d.me.e), h = d.me.est ? "#" : ""; return `${a}${h} ± ${b}${h} keV`; })() : "—")}
+      ${row(T.me, d.me ? (() => { const [a, b] = fmtU(d.me.v, d.me.e), h = d.me.est ? "#" : ""; return `${a}${h} ± ${b}${d.me.sigmaEst ? "#" : ""} keV`; })() : "—")}
       ${row("B/A", fv(d.BEA, 4))}${row("Sₙ", fv(d.sn))}${row("S₂ₙ", fv(d.s2n))}${row("Sₚ", fv(d.sp))}${row("S₂ₚ", fv(d.s2p))}
       ${row("Q(β⁻)", fv(d.qbm))}${row("Q(EC)", fv(d.qec))}${row("Q(α)", fv(d.qa))}${row("δ₂ₙ", fv(d.d2n))}
       ${row("Δₙ⁽³⁾ · Δₚ⁽³⁾", fv(d.d3n) + "<br>" + fv(d.d3p))}${row("δV<sub>pn</sub>", fv(d.vpn))}${row(T.wig, fv(d.wig))}
@@ -319,8 +329,33 @@
       <div class="nc-cbtn"><button type="button" class="zg-btn" data-ch="Z">${T.p_iso}</button><button type="button" class="zg-btn" data-ch="N">${T.p_isot}</button><button type="button" class="zg-btn" data-ch="A">${T.p_isob}</button></div>
       <ul class="nc-facts">${facts(r, d).map(x => "<li>" + x + "</li>").join("")}</ul>
       <p class="nc-src"># ${T.hashnote} · ${T.errnote}<br>AME2020 · NUBASE2020 (Chin. Phys. C 45, 030001–030003, 2021)</p>`;
+    showStates(r);
     card.querySelector(".nc-close").onclick = () => { pin = null; showCard(null); draw(); };
     card.querySelectorAll("[data-ch]").forEach(b => b.onclick = () => { pchain.value = b.dataset.ch; plotChain(r); pc.scrollIntoView({ behavior: "smooth", block: "center" }); });
+  }
+
+
+  function showStates(r) {
+    const group=catalog?.groups.get(r[2].toLowerCase()+(r[0]+r[1])); if(!group)return;
+    const panel=document.createElement("div");panel.className="nc-state-list";
+    panel.innerHTML=`<h4>${zh?"核态与数据来源":"States and provenance"}</h4><label>${zh?"搜索核态":"Search states"}<input type="search" class="nc-state-search"></label><label>${zh?"核态类型":"State class"}<select class="nc-state-kind"><option value="isomer">${zh?"基态与同核异能态":"Ground state + isomers"}</option><option value="all">${zh?"所有核态（含其他能级及 IAS）":"All states (including levels / IAS)"}</option><option value="unclassified">${zh?"分类未定":"Classification pending"}</option></select></label><div class="nc-state-buttons"></div><div class="nc-state-data" aria-live="polite"></div>`;
+    card.appendChild(panel);
+    const target=group.find(s=>s.id===selectedState);
+    if(target && !["ground","isomer"].includes(target.kind))panel.querySelector("select").value="all";
+    function detail(state) {
+      selectedState=state.id;panel.querySelectorAll("[data-state]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.state===state.id?"true":"false"));
+      const format=q=>`${escape(q.raw||"—")} ${q.raw_uncertainty?"± "+escape(q.raw_uncertainty):"("+unknown+")"}`;
+      const life=state.half_life;
+      panel.querySelector(".nc-state-data").innerHTML=`<p><b>${state.A}${escape(state.element)} [${state.label}]</b> · ${escape(state.kind)}${state.existence==="withdrawn"?" — withdrawn / 已撤销":""}</p><p>ME (NUBASE2020): ${format(state.mass_excess)} keV<br>Eₓ: ${format(state.excitation)} keV<br>T½: ${format(life)} ${escape(life.unit)}<br>Jπ: ${escape(state.spin_parity)}</p><p>${state.ordering_uncertain?"* ordering uncertain / 基态与异能态次序未定. ":""}${state.ordering_inverted?"& ordering differs from ENSDF / 次序与 ENSDF 相反. ":""}${escape(state.classification_basis)}.</p><p>${zh?"模型质量仅对应基态。# 分别属于其相邻数值或不确定度。":"Model masses apply to the ground state only. Each # belongs to its adjacent value or uncertainty."}</p>`;
+      const a=document.createElement("a");a.href=location.pathname+"?nuclide="+state.A+state.element+"&state="+state.source_state_index;a.textContent=zh?"此核态链接":"Link to this state";panel.querySelector(".nc-state-data").appendChild(a);
+    }
+    function populate() {
+      const q=panel.querySelector("input").value.toLowerCase(), kind=panel.querySelector("select").value;
+      const visible=group.filter(s=>(kind==="all"||s.kind==="ground"||s.kind===kind)&&`${s.label} ${s.kind} ${s.excitation.raw} ${s.spin_parity}`.toLowerCase().includes(q));
+      const box=panel.querySelector(".nc-state-buttons");box.innerHTML=visible.map(st=>`<button type="button" data-state="${st.id}" aria-pressed="${selectedState===st.id}">${escape(st.label)} · ${escape(st.kind)}${st.source_state_index?" · "+escape(st.excitation.raw)+" ± "+escape(st.excitation.raw_uncertainty||"?")+" keV":""}</button>`).join("");
+      box.querySelectorAll("button").forEach(b=>b.onclick=()=>detail(catalog.states.get(b.dataset.state)));
+    }
+    panel.querySelector("input").oninput=populate;panel.querySelector("select").onchange=populate;populate();detail(target||group[0]);
   }
 
   /* ---------- chain plot with error bars ---------- */
@@ -347,7 +382,7 @@
     for (let c = Math.min(cfrom, cto); c <= Math.max(cfrom, cto) && c - Math.min(cfrom, cto) < 40; c++) {
       rows.filter(x => ch === "Z" ? x[0] === c : ch === "N" ? x[1] === c : x[0] + x[1] === c).forEach(x => {
         const v = q[1](derived(x), x), xv = ch === "Z" ? x[1] : x[0];
-        if (v && (xlo == null || xv >= xlo) && (xhi == null || xv <= xhi)) plotPts.push({ r: x, x: xv, y: v.v / 1000, e: v.e / 1000, est: v.est, g: c });
+        if (v && (xlo == null || xv >= xlo) && (xhi == null || xv <= xhi)) plotPts.push({ r: x, x: xv, y: v.v / 1000, e: v.e == null ? null : v.e / 1000, est: v.est, g: c });
       });
     }
     plotPts.sort((a, b) => a.g - b.g || a.x - b.x);
@@ -369,7 +404,7 @@
     if (c === pg) pg.setTransform(pc.width / pc._cw, 0, 0, pc.height / pc._ch, 0, 0);
     c.clearRect(0, 0, Wd, Hd); c.fillStyle = sc > 1 ? "#fff" : "transparent"; if (sc > 1) c.fillRect(0, 0, Wd, Hd);
     if (!plotPts.length && !modPts.length) { c.fillStyle = "#888"; c.font = `${13 * sc}px system-ui`; c.fillText(T.p_hint, 20 * sc, 30 * sc); return; }
-    const L = 62 * sc, R = 16 * sc, Tp = 18 * sc, B = 42 * sc, xs = plotPts.map(p => p.x).concat(modPts.map(p => p.x)), ys = plotPts.flatMap(p => [p.y - p.e, p.y + p.e]).concat(modPts.map(p => p.y));
+    const L = 62 * sc, R = 16 * sc, Tp = 18 * sc, B = 42 * sc, xs = plotPts.map(p => p.x).concat(modPts.map(p => p.x)), ys = plotPts.flatMap(p => [p.y - (p.e || 0), p.y + (p.e || 0)]).concat(modPts.map(p => p.y));
     let x0 = Math.min(...xs) - 1, x1 = Math.max(...xs) + 1, y0 = Math.min(...ys), y1 = Math.max(...ys); const pad = (y1 - y0) * 0.08 || 1; y0 -= pad; y1 += pad;
     const px = x => L + (x - x0) / (x1 - x0) * (Wd - L - R), py = y => Hd - B - (y - y0) / (y1 - y0) * (Hd - B - Tp);
     c.strokeStyle = "rgba(127,127,160,.45)"; c.lineWidth = sc; c.strokeRect(L, Tp, Wd - L - R, Hd - B - Tp);
@@ -437,7 +472,7 @@
   }
 
   /* ---------- exports ---------- */
-  const csvRow = r => { const d = derived(r), f = o => o ? [(o.v / 1000).toFixed(6), (o.e / 1000).toFixed(6), o.est ? "#" : ""] : ["", "", ""];
+  const csvRow = r => { const d = derived(r), f = o => o ? [String(o.v / 1000), o.e == null ? "" : String(o.e / 1000), o.est ? "#" : ""] : ["", "", ""];
     const m = src !== "ame" && MOD[src] ? MOD[src].map.get(key(r[0], r[1])) : null;
     return [r[0], r[1], r[0] + r[1], r[2], d.me ? d.me.v : "", d.me ? d.me.e : "", r[5] ? "#" : "", ...f(d.BEA), ...f(d.sn), ...f(d.s2n), ...f(d.sp), ...f(d.s2p), ...f(d.qbm), ...f(d.qec), ...f(d.qa), ...f(d.d3n), ...f(d.d3p), ...f(d.vpn), r[7], r[8], r[10], r[9] || "", r[11].length, ...(src !== "ame" ? [m ? m[0] : "", m ? m[1] / 1000 : ""] : [])]; };
   const csvHead = () => ["Z", "N", "A", "El", "ME_keV", "dME_keV", "ME_flag", ...["BE/A", "Sn", "S2n", "Sp", "S2p", "Qbeta-", "QEC", "Qalpha", "D3n", "D3p", "dVpn"].flatMap(k => [k + "_MeV", "d" + k + "_MeV", k + "_flag"]), "T1/2", "Jpi", "decay_modes", "discovery_year", "isomers", ...(src !== "ame" ? ["ME_keV_" + src, "beta2_" + src] : [])];
@@ -453,10 +488,10 @@
   root.querySelector("[data-nc=ppng]").onclick = () => X.png(sc => { const o = document.createElement("canvas"); o.width = pc._cw * sc; o.height = pc._ch * sc; drawPlot(o.getContext("2d"), o.width, o.height, sc); return o; }, "chain-" + pq.value, 6);
   root.querySelector("[data-nc=pcsv]").onclick = () => {
     if ((plotPts.groups || []).length > 1) return X.csv(["chain (" + pchain.value + ")", "Z", "N", "A", "El", PQ[pq.value][0] + " (" + (PQ[pq.value][2] || "-") + ")", "uncertainty", "flag"],
-      plotPts.map(p => [p.g, p.r[0], p.r[1], p.r[0] + p.r[1], p.r[2], p.y.toFixed(6), p.e.toFixed(6), p.est ? "#" : ""]), "chains-" + pq.value);
+      plotPts.map(p => [p.g, p.r[0], p.r[1], p.r[0] + p.r[1], p.r[2], String(p.y), p.e == null ? "" : String(p.e), p.est ? "#" : ""]), "chains-" + pq.value);
     const mm = new Map(modPts.map(p => [p.x, p.y])), xsAll = [...new Set(plotPts.map(p => p.x).concat(modPts.map(p => p.x)))].sort((a, b) => a - b), pm = new Map(plotPts.map(p => [p.x, p]));
     X.csv(["x (" + (pchain.value === "Z" ? "N" : "Z") + ")", "El", PQ[pq.value][0] + " AME2020 (" + (PQ[pq.value][2] || "-") + ")", "uncertainty", "flag", ...(modPts.length ? [modPts.name] : [])],
-      xsAll.map(x => { const p = pm.get(x); return [x, p ? p.r[2] : "", p ? p.y.toFixed(6) : "", p ? p.e.toFixed(6) : "", p && p.est ? "#" : "", ...(modPts.length ? [mm.has(x) ? mm.get(x).toFixed(6) : ""] : [])]; }), "chain-" + pq.value + (modPts.length ? "-" + modelKey() : ""));
+      xsAll.map(x => { const p = pm.get(x); return [x, p ? p.r[2] : "", p ? String(p.y) : "", p ? p.e == null ? "" : String(p.e) : "", p && p.est ? "#" : "", ...(modPts.length ? [mm.has(x) ? mm.get(x).toFixed(6) : ""] : [])]; }), "chain-" + pq.value + (modPts.length ? "-" + modelKey() : ""));
   };
 
   /* ---------- events ---------- */
@@ -485,26 +520,30 @@
   fsel.onchange = () => { filt = fsel.value; draw(); root.querySelector(".nc-fcount").textContent = `${rows.filter(pass).length} ${T.nuclides}`; };
   search.addEventListener("keydown", e => {
     if (e.key !== "Enter") return;
-    const q = search.value.trim().replace(/[\s\-]/g, ""), m1 = q.match(/^(\d+)([A-Za-z]{1,2})$/) || q.match(/^([A-Za-z]{1,2})(\d+)$/); if (!m1) return;
-    const A = +(isNaN(m1[1]) ? m1[2] : m1[1]), sym = (isNaN(m1[1]) ? m1[1] : m1[2]).toLowerCase(), r = rows.find(x => x[2].toLowerCase() === sym && x[0] + x[1] === A);
-    if (r) { pin = r; zoomTo(r); showCard(r); plotChain(r); } else { search.setCustomValidity(T.notfound); search.reportValidity(); setTimeout(() => search.setCustomValidity(""), 1500); }
+    try {
+      const ion=catalog.resolve(search.value), atom=ion.atoms[0];
+      if(ion.atoms.length!==1 || atom.count!==1) throw new Error(T.notfound);
+      const r=M.get(key(atom.state.Z,atom.state.N)); if(!r) throw new Error(T.notfound);
+      selectedState=atom.state.id; pin=r;zoomTo(r);showCard(r);plotChain(r);
+    } catch(error) { search.setCustomValidity(error.message);search.reportValidity();setTimeout(()=>search.setCustomValidity(""),1500); }
   });
   /* canvases follow the browser window: width of the card, height limited to ~78 % of the window */
   const resize = () => {
     const w = Math.round(cv.getBoundingClientRect().width), h = Math.round(Math.min(w * 0.62, innerHeight * 0.78, 1100));
     if (w && (Math.abs(w - cv._cw) > 2 || Math.abs(h - cv._ch) > 2 || cv.width !== Math.round(w * DPR()))) { sizeCanvas(cv, w, h); fit(); }
-    const pw = Math.round(pc.getBoundingClientRect().width), ph = Math.round(Math.min(pw * 0.5, innerHeight * 0.6, 700));
+    const pw = Math.round(pc.getBoundingClientRect().width), ph = Math.round(Math.max(260,Math.min(pw * 0.5, innerHeight * 0.6, 700)));
     if (pw && (Math.abs(pw - pc._cw) > 2 || Math.abs(ph - pc._ch) > 2 || pc.width !== Math.round(pw * DPR()))) { sizeCanvas(pc, pw, ph); drawPlot(); }
   };
   new ResizeObserver(resize).observe(cv); new ResizeObserver(resize).observe(pc); addEventListener("resize", resize);
 
-  fetch(root.dataset.src).then(r => r.json()).then(d => {
+  Promise.all([fetch(root.dataset.src).then(r=>{if(!r.ok)throw new Error("Nuclear data unavailable");return r.json();}),P.load(root.dataset.catalogue,root.dataset.ame)]).then(([d,c]) => {
+    catalog=c;
     rows = d.rows; EL = d.elements; rows.forEach(r => M.set(key(r[0], r[1]), r));
     MEn = get(0, 1) || MEn; MEH = get(1, 0) || MEH; MEa = get(2, 2) || MEa;
-    root.querySelector(".nc-count").textContent = `${rows.length} ${T.nuclides} · ${rows.reduce((a, r) => a + r[11].length, 0)} ${T.isomers}`;
+    root.querySelector(".nc-count").textContent = `${rows.length} ${T.nuclides} · ${rows.reduce((a,r)=>a+r[11].length,0)} ${zh?"目录中的同核异能态指认":"catalogued isomer assignments"}`;
     buildPT(); drawLegend(); fit(); fsel.onchange();
     const q = new URLSearchParams(location.search).get("nuclide");
-    if (q) { search.value = q; search.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" })); }
+    if (q) { const state=new URLSearchParams(location.search).get("state"); search.value = q+(state?`[${state}]`:""); search.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" })); }
     else { const sn = rows.find(r => r[0] === 50 && r[1] === 50); pchain.value = "Z"; plotChain(sn); }
   }).catch(() => { card.hidden = false; card.textContent = "Chart data could not load."; });
 })();

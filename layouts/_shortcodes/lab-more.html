@@ -27,7 +27,7 @@
 {{- $t := index $L $k | default (index $L "en") -}}
 <div class="zg-lab zg-lab-more" data-root="{{ strings.TrimSuffix "zg-root" ("zg-root" | relURL) }}">
 
-<section class="zg-card zg-3d" data-trap3d>
+<details><summary>3D motion illustration / 三维运动示意（归一化参数）</summary><p>Normalized trajectories and illustrative pulse/cooling effects; use the physical Penning workbench above for frequencies and synchronized projections. / 此处使用归一化轨迹及脉冲、冷却示意；物理频率与同步投影请使用上方工作台。</p><section class="zg-card zg-3d" data-trap3d>
   <h2>{{ $t.t3d }}</h2>
   <p class="zg-muted">{{ $t.n3d }} {{ $t.n3d2 }}</p>
   <canvas width="640" height="440" aria-label="{{ $t.t3d }}"></canvas>
@@ -60,7 +60,7 @@
   </div>
 </section>
 <script defer src="{{ "js/zg-export.js" | relURL }}"></script>
-<script defer src="{{ "js/trap3d.js" | relURL }}"></script>
+<script defer src="{{ "js/trap3d.js" | relURL }}"></script></details>
 
 
 

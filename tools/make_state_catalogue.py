@@ -15,8 +15,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 UNITS = dict(ys=1e-24, zs=1e-21, **{"as": 1e-18}, fs=1e-15, ps=1e-12,
              ns=1e-9, us=1e-6, ms=1e-3, s=1, m=60, h=3600, d=86400,
-             y=31557600, ky=31557600e3, My=31557600e6, Gy=31557600e9,
-             Ty=31557600e12, Py=31557600e15, Ey=31557600e18, Zy=31557600e21, Yy=31557600e24)
+             y=31556926.08, ky=31556926.08e3, My=31556926.08e6, Gy=31556926.08e9,
+             Ty=31556926.08e12, Py=31556926.08e15, Ey=31556926.08e18, Zy=31556926.08e21, Yy=31556926.08e24)
 
 def number(raw):
     t = raw.strip().replace("#", "")
@@ -106,7 +106,9 @@ def generate(source):
     return dict(schema_version=2, source=dict(name="NUBASE2020", doi="10.1088/1674-1137/abddae",
                  url="https://www-nds.iaea.org/amdc/ame2020/nubase_4.mas20.txt",
                  sha256=hashlib.sha256(source.read_bytes()).hexdigest(),
-                 uncertainty="published one-sigma where numeric; limits and symbolic fields retained"),
+                 uncertainty="published one-sigma where numeric; limits and symbolic fields retained",
+                 transformation="Fixed-width catalogue v2; stable Z-N-source-index identity; raw quantities, independent flags, source labels and ordering retained; classification follows source conventions with documented exceptions and unresolved records",
+                 half_life_year_seconds=31556926.08),
                 counts=dict(counts), states=states)
 
 def main():

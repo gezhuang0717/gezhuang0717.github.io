@@ -4,6 +4,8 @@ description: "研究项目、实验装置和科研软件。"
 showDate: false
 ---
 
+{{< learning-links >}}
+
 ## MASSPASS——芬兰科学院研究员项目（负责人），2023–2027
 在 IGISOL 和 RIKEN 测量直至 ¹⁰⁰Sn 的 *N* = *Z* 奇特核及其附近核素的质量，服务于原子核物理和核天体物理研究。芬兰研究理事会资助。[项目主页](https://www.jyu.fi/en/projects/mass-measurements-of-exotic-nz-nuclei-up-to-100sn-and-the-vicinity-for-nuclear-physics-and-nuclear)
 

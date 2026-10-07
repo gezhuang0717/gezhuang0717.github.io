@@ -110,6 +110,7 @@ jobs:
         run: |
           python tools/site.py check
           python -m pytest tests -q
+          node --test tests/physics.test.cjs
           python tools/site.py config
           python tools/site.py facilities-build
           python tools/site.py export-react

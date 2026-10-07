@@ -4,6 +4,8 @@ description: "Interactive toys from the world of ion traps: watch an ion orbit i
 showDate: false
 ---
 
+{{< learning-links >}}
+
 Small interactive tools from my everyday work with Penning traps and MR-TOF — half useful, half for fun. Everything runs in your browser.
 
 *Tip:* type **ion** anywhere on this site.

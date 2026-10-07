@@ -7,7 +7,7 @@
 {{- $ref = printf "%s (%v)" $ref $p.year -}}
 {{- $href := "" -}}
 {{- with $p.doi }}{{ $href = printf "https://doi.org/%s" . }}{{ else }}{{ with $p.url }}{{ $href = . }}{{ end }}{{ end -}}
-<li class="zg-paper">
+<li class="zg-paper" data-year="{{ $p.year }}" data-role="{{ $p.role }}" data-themes="{{ delimit ($p.themes | default slice) " " }}">
   <span class="zg-authors">{{ $p.authors | default "**Z. Ge** *et al.*" | markdownify }}</span>,
   <span class="zg-title">{{ $p.title | markdownify }}</span>,
   {{ if $href }}<a class="zg-ref" href="{{ $href }}" target="_blank" rel="noopener">{{ $ref | safeHTML }}</a>{{ else }}<span class="zg-ref">{{ $ref | safeHTML }}</span>{{ end -}}

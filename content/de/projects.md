@@ -4,6 +4,8 @@ description: "Forschungsprojekte, Instrumente und Forschungssoftware."
 showDate: false
 ---
 
+{{< learning-links >}}
+
 ## MASSPASS — Academy Research Fellowship (Leitung), 2023–2027
 Massenmessungen exotischer *N* = *Z*-Kerne bis ¹⁰⁰Sn an IGISOL und RIKEN für Kernphysik und nukleare Astrophysik. Forschungsrat Finnland. [Projektseite](https://www.jyu.fi/en/projects/mass-measurements-of-exotic-nz-nuclei-up-to-100sn-and-the-vicinity-for-nuclear-physics-and-nuclear)
 

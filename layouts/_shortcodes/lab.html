@@ -9,6 +9,8 @@
 */ -}}
 <div class="zg-lab">
 
+{{ partial "zg/measurement-workbench.html" (dict "kind" "penning" "id" "penning-motion") }}
+<details><summary>Normalized motion illustration / 归一化运动示意</summary>
 <section class="zg-card zg-lab-sim">
   <h2>{{ i18n "zg_lab_sim" | default "Ion motion in a Penning trap" }}</h2>
   <p class="zg-muted">{{ i18n "zg_lab_sim_note" | default "A charged particle in a strong magnetic field plus a weak electric quadrupole field moves on two circles at once — the fast modified-cyclotron motion (ν₊) riding on the slow magnetron motion (ν₋) — while oscillating along the field axis (ν_z). The sum ν₊ + ν₋ = ν_c gives the mass." }}</p>
@@ -31,6 +33,7 @@
   <p class="zg-muted zg-small">{{ i18n "zg_lab_convert_note" | default "The π pulse converts magnetron motion into cyclotron motion — the trick behind TOF-ICR, where the converted ions gain radial energy and arrive earlier at the detector." }}</p>
 </section>
 
+</details>
 <section class="zg-card">
   <h2>{{ i18n "zg_lab_nuc" | default "Cyclotron-frequency calculator" }}</h2>
   <div class="zg-form">
@@ -71,14 +74,16 @@
     <label>A ({{ i18n "zg_lab_optional" | default "optional" }}) <input type="number" id="zg-u-a" value="" step="1" min="1" placeholder="133"></label>
   </div>
   <table class="zg-table" id="zg-u-out"></table>
-  <p class="zg-muted zg-small">1 u = 931 494.102 42 keV/c² = 1.660 539 068 92 × 10⁻²⁷ kg (CODATA 2022). {{ i18n "zg_lab_me_note" | default "Mass excess = (m − A)·u." }}</p>
+  <p class="zg-muted zg-small">1 u = 931 494.102 42 keV/c² = 1.660 539 066 60 × 10⁻²⁷ kg (CODATA 2018 / AME2020). {{ i18n "zg_lab_me_note" | default "Mass excess = (m − A)·u." }}</p>
 </section>
 
 </div>
+<script defer src="{{ "js/physics.js" | relURL }}"></script>
+<script defer src="{{ "js/workbenches.js" | relURL }}"></script>
 <script src="{{ "js/zg-export.js" | relURL }}"></script>
 <script>
 (function () {
-  var U_KEV = 931494.10242, U_KG = 1.66053906892e-27, ME_U = 5.485799090441e-4, E = 1.602176634e-19;
+  var U_KEV = 931494.10242, U_KG = 1.66053906660e-27, ME_U = 5.48579909065e-4, E = 1.602176634e-19;
   var $ = function (id) { return document.getElementById(id); };
   var L = {{ dict
       "fc" (i18n "zg_lab_fc" | default "Cyclotron frequency")
@@ -178,7 +183,7 @@
     devices.forEach(function (d) {
       var ok = d[1] >= R, li = document.createElement("li");
       li.className = ok ? "ok" : "bad";
-      li.innerHTML = "<span>" + d[0] + "</span><span>~" + d[1].toExponential(0).replace("e+", "×10^") + "</span><span>" + (ok ? "✔ " + L.yes : "✘ " + L.no) + "</span>";
+      li.innerHTML = "<span>" + d[0] + "</span><span>~" + d[1].toExponential(0).replace("e+", "×10^") + "</span><span>" + (ok ? "✔ " + "nominal guide ≥ required R" : "nominal guide < required R") + "</span>";
       meter.appendChild(li);
     });
   }

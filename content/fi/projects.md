@@ -4,6 +4,8 @@ description: "Tutkimushankkeet, laitteet ja tutkimusohjelmistot."
 showDate: false
 ---
 
+{{< learning-links >}}
+
 ## MASSPASS — akatemiatutkijan hanke (johtaja), 2023–2027
 Eksoottisten *N* = *Z* -ytimien massamittaukset ¹⁰⁰Sn:ään asti IGISOLissa ja RIKENissä ydinfysiikan ja ydinastrofysiikan tarpeisiin. Suomen Akatemia. [Hankkeen sivu](https://www.jyu.fi/en/projects/mass-measurements-of-exotic-nz-nuclei-up-to-100sn-and-the-vicinity-for-nuclear-physics-and-nuclear)
 

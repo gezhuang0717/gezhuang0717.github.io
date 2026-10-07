@@ -4,6 +4,8 @@ description: "研究プロジェクト、装置、研究用ソフトウェア。
 showDate: false
 ---
 
+{{< learning-links >}}
+
 ## MASSPASS — アカデミー研究員プロジェクト（代表）、2023–2027
 原子核物理・原子核天体物理のための、IGISOL と RIKEN における ¹⁰⁰Sn までの *N* = *Z* エキゾチック核の質量測定。フィンランド研究評議会。[プロジェクトページ](https://www.jyu.fi/en/projects/mass-measurements-of-exotic-nz-nuclei-up-to-100sn-and-the-vicinity-for-nuclear-physics-and-nuclear)
 

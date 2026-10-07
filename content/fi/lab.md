@@ -4,6 +4,8 @@ description: "Interaktiivisia leluja ioniloukkujen maailmasta: katso ionin rataa
 showDate: false
 ---
 
+{{< learning-links >}}
+
 Pieniä interaktiivisia työkaluja arkityöstäni Penning-loukkujen ja MR-TOF:n parissa — puoliksi hyödyllisiä, puoliksi huvin vuoksi. Kaikki toimii selaimessasi.
 
 *Vinkki:* kirjoita **ion** missä tahansa tällä sivustolla.

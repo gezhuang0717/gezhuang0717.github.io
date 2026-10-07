@@ -4,6 +4,8 @@ description: "Pieniä fysiikkapelejä: puoliintumisajat, syklotroniresonanssit, 
 showDate: false
 ---
 
+{{< learning-links >}}
+
 Pelaa, kun suihku on poissa. Parhaat tulokset tallentuvat vain selaimeesi.
 
 {{< games >}}

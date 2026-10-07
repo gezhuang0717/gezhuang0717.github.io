@@ -4,7 +4,7 @@
 Rows: [Z, A, element, ME keV, σ keV, estimated(1/0)].  Source: W.J. Huang et al., Chin. Phys. C 45 (2021) 030002;
 M. Wang et al., Chin. Phys. C 45 (2021) 030003.  Used by the games (PI-ICR / frequencies) as the 'AME2020' option.
 """
-import json, pathlib
+import hashlib, json, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 rows = []
 for line in (ROOT / "tools/data/ame2020/mass_1.mas20.txt").read_text().splitlines()[36:]:
@@ -22,5 +22,5 @@ for line in (ROOT / "tools/data/ame2020/mass_1.mas20.txt").read_text().splitline
         continue
     rows.append([Z, A, el, me, er, int(est), int("#" in line[42:54])])
 out = ROOT / "static/data/ame2020.json"
-out.write_text(json.dumps({"source": "AME2020 mass_1.mas20 (Huang et al., Wang et al., Chin. Phys. C 45, 030002/030003, 2021)", "rows": rows}, separators=(",", ":")))
+out.write_text(json.dumps({"source": "AME2020 mass_1.mas20 (Huang et al., Wang et al., Chin. Phys. C 45, 030002/030003, 2021)", "metadata": {"name":"AME2020", "version":"mass_1.mas20", "url":"https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt", "sha256":hashlib.sha256((ROOT / "tools/data/ame2020/mass_1.mas20.txt").read_bytes()).hexdigest(), "transformation":"Fixed-width mass excess and uncertainty in keV; published precision retained; value and uncertainty extrapolation flags kept separately", "columns":["Z","A","element","mass_excess_keV","uncertainty_keV","value_extrapolated","uncertainty_extrapolated"]}, "rows": rows}, separators=(",", ":")))
 print(len(rows), "nuclides →", out, out.stat().st_size, "B")

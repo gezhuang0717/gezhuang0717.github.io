@@ -64,3 +64,5 @@
 .dr-item h3{margin:.15rem 0;font-size:1rem}
 @media (max-width:560px){.dc-day{min-height:2.5rem;padding:.15rem}.dc-day small{display:none}.dc-legend{margin-left:0}}
 .daily-filters select,.daily-filters input{max-width:100%}
+
+.atlas-filters,.daily-filters{min-width:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,155px),1fr))}.atlas-filters label,.daily-filters label{min-width:0;max-width:100%}.atlas-filters select,.daily-filters select,.daily-filters input{width:100%;max-width:100%;box-sizing:border-box}.daily-calendar,.daily-card,[data-daily-hub]{min-width:0;max-width:100%;overflow-wrap:anywhere}@media(max-width:700px){.atlas-filters,.daily-filters{grid-template-columns:minmax(0,1fr)!important}}
