@@ -68,7 +68,7 @@ function SharedView({tab,lang}:{tab:string;lang:Lang}){
     const mount=async()=>{if(tab==="facilities"){await script("/vendor/leaflet/leaflet.js");await script("/vendor/leaflet/markercluster.js");await script("/js/atlas.js");if(active)(window as unknown as {mountFacilityAtlas:(r:HTMLElement)=>void}).mountFacilityAtlas(root);}else{await script("/js/daily.js");if(active)(window as unknown as {mountDaily:(r:HTMLElement)=>void}).mountDaily(root);}};
     mount().catch(()=>{if(active)root.textContent=lang==="zh"?"页面资源加载失败，请重新加载。":"Page resources could not load. Reload to retry.";});return()=>{active=false;};
   },[tab,lang]);
-  return <div key={tab+lang} ref={ref} data-lang={lang} data-root="/" data-locale={prefix(lang)}/>;
+  return <div key={tab+lang} ref={ref} data-lang={lang} data-root="/" data-locale={prefix(lang)} data-resources={tab==="daily"?"true":undefined}/>;
 }
 export default function App(){
  const initialLang=new URLSearchParams(location.search).get("lang")||"en";

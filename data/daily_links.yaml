@@ -1,0 +1,128 @@
+# Canonical Daily resource panel; preserve all original source links.
+labels:
+  en:
+    t: More news, papers and jobs
+    j: Journals
+    f: Facilities & collaborations
+    c: Ion-trap & astrophysics community
+    w: Job boards
+    n: Feeds above are collected automatically every day; these sources are one click away.
+  zh:
+    t: 更多新闻、论文与职位
+    j: 期刊
+    f: 实验装置与合作组织
+    c: 离子阱与天体物理社区
+    w: 招聘网站
+    n: 上方条目每天自动收集；以下来源一键直达。
+  fi:
+    t: Lisää uutisia, julkaisuja ja työpaikkoja
+    j: Lehdet
+    f: Laitokset ja yhteistyöt
+    c: Ioniloukku- ja astrofysiikkayhteisö
+    w: Työpaikkapalvelut
+    n: Yllä olevat merkinnät kerätään automaattisesti päivittäin; nämä lähteet ovat yhden napsautuksen päässä.
+  de:
+    t: Mehr Nachrichten, Artikel und Stellen
+    j: Zeitschriften
+    f: Anlagen & Kollaborationen
+    c: Ionenfallen- & Astrophysik-Community
+    w: Stellenbörsen
+    n: Die Einträge oben werden täglich automatisch gesammelt; diese Quellen sind einen Klick entfernt.
+  ja:
+    t: その他のニュース・論文・求人
+    j: 学術誌
+    f: 施設と共同研究
+    c: イオントラップ・宇宙物理コミュニティ
+    w: 求人サイト
+    n: 上の項目は毎日自動で収集されます。以下の情報源へはワンクリックで移動できます。
+groups:
+- key: j
+  icon: 📚
+  items:
+  - name: Phys. Rev. Lett.
+    url: https://journals.aps.org/prl
+  - name: Phys. Rev. C
+    url: https://journals.aps.org/prc
+  - name: Eur. Phys. J. A
+    url: https://link.springer.com/journal/10050
+  - name: Nucl. Phys. A
+    url: https://www.sciencedirect.com/journal/nuclear-physics-a
+  - name: Phys. Lett. B
+    url: https://www.sciencedirect.com/journal/physics-letters-b
+  - name: 'NIM A (instruments: MR-TOF, traps, storage rings)'
+    url: https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a-accelerators-spectrometers-detectors-and-associated-equipment
+  - name: NIM B (beams, ion sources, catchers)
+    url: https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-b-beam-interactions-with-materials-and-atoms
+  - name: Int. J. Mass Spectrom.
+    url: https://www.sciencedirect.com/journal/international-journal-of-mass-spectrometry
+  - name: Hyperfine Interactions
+    url: https://link.springer.com/journal/10751
+  - name: J. Phys. G
+    url: https://iopscience.iop.org/journal/0954-3899
+  - name: Chinese Physics C
+    url: https://iopscience.iop.org/journal/1674-1137
+  - name: Astrophys. J.
+    url: https://iopscience.iop.org/journal/0004-637X
+  - name: Nature — nuclear physics
+    url: https://www.nature.com/subjects/nuclear-physics
+  - name: Nature — nuclear astrophysics
+    url: https://www.nature.com/subjects/nuclear-astrophysics
+  - name: Atoms (MDPI)
+    url: https://www.mdpi.com/journal/atoms
+- key: f
+  icon: 🏛
+  items:
+  - name: FRIB news
+    url: https://frib.msu.edu/news-center/news
+  - name: MSU Today
+    url: https://msutoday.msu.edu/
+  - name: RIKEN Nishina Center
+    url: https://www.nishina.riken.jp/news/index.html
+  - name: GSI / FAIR news
+    url: https://www.gsi.de/en/start/news
+  - name: CERN ISOLDE
+    url: https://isolde.cern/
+  - name: TRIUMF
+    url: https://www.triumf.ca/
+  - name: GANIL / SPIRAL2
+    url: https://www.ganil-spiral2.eu/
+  - name: IGISOL / JYFLTRAP
+    url: https://www.jyu.fi/en/research-groups/exotic-nuclei-and-beams-igisol
+  - name: Argonne ATLAS
+    url: https://www.anl.gov/atlas
+  - name: IMP Lanzhou / HIAF
+    url: https://english.imp.cas.cn/
+  - name: NuPECC
+    url: https://www.nupecc.org/
+- key: c
+  icon: ✨
+  items:
+  - name: Ion Traps Newsletter
+    url: https://iontraps.net/
+  - name: JINA-CEE
+    url: https://www.jinaweb.org/
+  - name: IReNA
+    url: https://irenaweb.org/
+  - name: ChETEC-INFRA
+    url: https://chetec-infra.eu/
+  - name: ECT* Trento
+    url: https://www.ectstar.eu/
+- key: w
+  icon: 💼
+  items:
+  - name: INSPIRE-HEP Jobs
+    url: https://inspirehep.net/jobs
+  - name: AcademicJobsOnline
+    url: https://academicjobsonline.org/ajo/jobs
+  - name: EURAXESS
+    url: https://euraxess.ec.europa.eu/jobs/search
+  - name: CERN careers
+    url: https://careers.cern/
+  - name: GSI / FAIR jobs
+    url: https://www.gsi.de/en/jobscareer
+  - name: FRIB careers
+    url: https://frib.msu.edu/careers
+  - name: RIKEN careers
+    url: https://www.riken.jp/en/careers/
+  - name: TRIUMF careers
+    url: https://www.triumf.ca/careers

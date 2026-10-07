@@ -778,7 +778,8 @@ def cmd_export_react(a):
     out.write_text(maintenance.serialized("x.json", payload), encoding="utf-8")
     associated = {fid for e in entries for fid in e.get("facility_ids", [])}
     daily = {"entries": entries, "facilities": [{"id": f["id"], "name": f["name"]} for f in fs if f.get("daily_aliases") or f["id"] in associated],
-             "health": maintenance.read(DATA / "daily/feed-health.json", {})}
+             "health": maintenance.read(DATA / "daily/feed-health.json", {}),
+             "resources": load_yaml(DATA / "daily_links.yaml")}
     maintenance.transaction({"static/data/daily.json": maintenance.serialized("x.json", daily)}, root=ROOT)
 
     print(f"Wrote {len(pubs)} papers, {len(talks)} talks, {len(entries)} daily entries → {out}")
