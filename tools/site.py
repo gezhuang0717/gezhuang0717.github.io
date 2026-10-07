@@ -411,7 +411,7 @@ def cmd_fetch(a):
 
 
 # ───────────────────────────── publications / talks ──────────────────────────
-PUB_ORDER = ["role", "position", "highlight", "year", "authors", "title", "journal", "volume", "pages",
+PUB_ORDER = ["role", "corresponding", "position", "highlight", "year", "authors", "title", "journal", "volume", "pages",
              "doi", "arxiv", "url", "note", "themes"]
 
 
@@ -420,6 +420,10 @@ def clean_pub(raw: dict) -> dict:
     p["role"] = str(p.get("role", "coauthor")).strip().lower()
     if p["role"] not in ROLES:
         raise ValueError(f"role must be one of {ROLES}")
+    if "corresponding" in p and not isinstance(p["corresponding"], bool):
+        raise ValueError("corresponding must be true or false")
+    if p["role"] == "first":
+        p["corresponding"] = True
     if not str(p.get("title", "")).strip():
         raise ValueError("title is required")
     try:
@@ -765,7 +769,10 @@ def cmd_export_react(a):
             local[page.stem]["html"] = mistune.html(text)
         pages[lang["code"]] = local
     fs = maintenance.facilities(ROOT)
-    payload = {"schema_version": 1, "generated": maintenance.utc(), "config": cfg,
+    publication_labels = {lang["code"]: {key: load_yaml(ROOT / "i18n" / (lang["code"] + ".yaml"))[key]
+                          for key in ("zg_first_author_tag", "zg_corresponding_author", "zg_coauthor_tag", "zg_pub_records")}
+                          for lang in cfg["languages"]}
+    payload = {"schema_version": 1, "generated": maintenance.utc(), "config": cfg, "publication_labels": publication_labels,
                "links": cfg.get("links", []), "papers": pubs, "talks": talks,
                "daily": entries, "pages": pages, "gallery": load_yaml(DATA / "gallery.yaml", {})}
     out.write_text(maintenance.serialized("x.json", payload), encoding="utf-8")

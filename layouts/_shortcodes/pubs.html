@@ -20,7 +20,8 @@
 {{- $list := slice -}}
 {{- range hugo.Data.publications.papers -}}
   {{- $ok := true -}}
-  {{- if and $role (ne .role $role) }}{{ $ok = false }}{{ end -}}
+  {{- $matchesRole := or (eq .role $role) (and (eq $role "corresponding") (or (eq .role "first") (.corresponding | default false))) -}}
+  {{- if and $role (not $matchesRole) }}{{ $ok = false }}{{ end -}}
   {{- if and $theme (not (in (.themes | default slice) $theme)) }}{{ $ok = false }}{{ end -}}
   {{- if and (eq $hl "only") (not .highlight) }}{{ $ok = false }}{{ end -}}
   {{- if and (eq $hl "exclude") .highlight }}{{ $ok = false }}{{ end -}}

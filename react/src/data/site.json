@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-10-07T18:05:10+00:00",
+  "generated": "2026-10-07T19:32:41+00:00",
   "config": {
     "live_theme": "congo",
     "base_url": "https://gezhuang0717.github.io/",
@@ -204,6 +204,38 @@
     },
     "rainbow": true
   },
+  "publication_labels": {
+    "en": {
+      "zg_first_author_tag": "First author",
+      "zg_corresponding_author": "Corresponding author",
+      "zg_coauthor_tag": "Co-author",
+      "zg_pub_records": "papers"
+    },
+    "zh": {
+      "zg_first_author_tag": "第一作者",
+      "zg_corresponding_author": "通讯作者",
+      "zg_coauthor_tag": "合作作者",
+      "zg_pub_records": "篇论文"
+    },
+    "fi": {
+      "zg_first_author_tag": "Ensimmäinen kirjoittaja",
+      "zg_corresponding_author": "Vastaava kirjoittaja",
+      "zg_coauthor_tag": "Yhteiskirjoittaja",
+      "zg_pub_records": "julkaisua"
+    },
+    "de": {
+      "zg_first_author_tag": "Erstautor",
+      "zg_corresponding_author": "Korrespondierender Autor",
+      "zg_coauthor_tag": "Mitautor",
+      "zg_pub_records": "Publikationen"
+    },
+    "ja": {
+      "zg_first_author_tag": "筆頭著者",
+      "zg_corresponding_author": "責任著者",
+      "zg_coauthor_tag": "共著者",
+      "zg_pub_records": "件の論文"
+    }
+  },
   "links": [
     {
       "icon": "email",
@@ -229,6 +261,7 @@
   "papers": [
     {
       "role": "first",
+      "corresponding": true,
       "year": 2026,
       "authors": "**Z. Ge** *et al.*",
       "title": "Precise determination of electron-capture Q value of ¹¹³Sn decay related to electron neutrino mass measurements",
@@ -246,6 +279,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2025,
       "authors": "**Z. Ge** *et al.*",
       "title": "High-precision direct decay energy measurements of the electron-capture decay of ⁹⁷Tc",
@@ -263,6 +297,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2024,
       "authors": "**Z. Ge**",
       "title": "Overview of high-performance timing and position-sensitive MCP detectors utilizing secondary electron emission for mass measurements of exotic nuclei at nuclear physics facilities",
@@ -279,6 +314,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2024,
       "authors": "**Z. Ge** *et al.*",
       "title": "High-precision measurements of the atomic mass and electron-capture decay Q value of ⁹⁵Tc",
@@ -295,6 +331,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2024,
       "authors": "**Z. Ge** *et al.*",
       "title": "High-precision measurement of the atomic mass of ⁸⁴Sr and implications to isotope shift studies",
@@ -311,6 +348,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2024,
       "authors": "**Z. Ge** *et al.*",
       "title": "Direct high-precision measurement of the mass difference of ⁷⁷As–⁷⁷Se related to neutrino mass determination",
@@ -327,6 +365,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2024,
       "authors": "**Z. Ge** *et al.*",
       "title": "High-precision mass measurements of neutron-deficient silver isotopes probe the robustness of the *N* = 50 shell closure",
@@ -343,6 +382,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2023,
       "authors": "**Z. Ge** *et al.*",
       "title": "β⁻ decay Q-value measurement of ¹³⁶Cs and its implications for neutrino studies",
@@ -359,6 +399,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2022,
       "authors": "**Z. Ge** *et al.*",
       "title": "Direct determination of the atomic mass difference of the pairs ⁷⁶As–⁷⁶Se and ¹⁵⁵Tb–¹⁵⁵Gd rules out ⁷⁶As and ¹⁵⁵Tb as possible candidates for electron (anti)neutrino mass measurements",
@@ -375,6 +416,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2022,
       "authors": "**Z. Ge** *et al.*",
       "title": "High-precision electron-capture Q value measurement of ¹¹¹In for electron-neutrino mass determination",
@@ -391,6 +433,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2021,
       "authors": "**Z. Ge** *et al.*",
       "title": "¹⁵⁹Dy electron-capture: a new candidate for neutrino mass determination",
@@ -407,6 +450,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2021,
       "authors": "**Z. Ge**",
       "title": "Development of a large-area timing and position-sensitive foil-MCP detector for mass measurements at the Rare-RI Ring in RIKEN",
@@ -420,6 +464,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2021,
       "authors": "**Z. Ge** *et al.*",
       "title": "Direct measurement of the mass difference of ⁷²As–⁷²Ge rules out ⁷²As as a promising β-decay candidate to determine the neutrino mass",
@@ -436,6 +481,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2021,
       "authors": "**Z. Ge** *et al.*",
       "title": "Development of mirror-type MCP detectors for mass measurements at the Rare-RI Ring",
@@ -451,6 +497,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2019,
       "authors": "**Z. Ge** *et al.*",
       "title": "Scheme of high-resolution identification and selection of secondary ions for mass measurements with the Rare-RI Ring",
@@ -466,6 +513,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2019,
       "authors": "**Z. Ge**, Q. Wang, M. Wang, T. Uesaka",
       "title": "Study of mass-measurement method for *N* = *Z* nuclei with isochronous mass spectrometry",
@@ -481,6 +529,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2018,
       "authors": "**Z. Ge** *et al.*",
       "title": "Timing performance of a mirror-type MCP detector for mass measurements at the Rare RI Ring",
@@ -496,6 +545,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2017,
       "authors": "**Z. Ge** *et al.*",
       "title": "Simulation and design of a large-area position-sensitive TOF MCP detector at the Rare RI Ring",
@@ -508,6 +558,7 @@
     },
     {
       "role": "first",
+      "corresponding": true,
       "year": 2016,
       "authors": "**Z. Ge** *et al.*",
       "title": "Online results for the injection ion optics of the Rare RI Ring",

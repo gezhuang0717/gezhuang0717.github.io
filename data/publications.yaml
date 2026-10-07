@@ -5,6 +5,7 @@
 #
 # Fields (only title + year + role are required):
 #   role:      first | corresponding | coauthor
+#   corresponding: true → also a corresponding author (independent of author position).
 #   position:  my place in the author list (1 = first). Papers with role first or
 #              corresponding, or position 2, form the "Main papers" list.
 #   year:      publication year (number)
@@ -25,6 +26,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 papers:
   - role: first
+    corresponding: true
     year: 2026
     authors: '**Z. Ge** *et al.*'
     title: Precise determination of electron-capture Q value of ¹¹³Sn decay related to electron neutrino mass measurements
@@ -38,6 +40,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2025
     authors: '**Z. Ge** *et al.*'
     title: High-precision direct decay energy measurements of the electron-capture decay of ⁹⁷Tc
@@ -51,6 +54,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2024
     authors: '**Z. Ge**'
     title: Overview of high-performance timing and position-sensitive MCP detectors utilizing secondary electron emission for mass measurements of exotic nuclei at nuclear physics facilities
@@ -63,6 +67,7 @@ papers:
       - detectors
     position: 1
   - role: first
+    corresponding: true
     year: 2024
     authors: '**Z. Ge** *et al.*'
     title: High-precision measurements of the atomic mass and electron-capture decay Q value of ⁹⁵Tc
@@ -75,6 +80,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2024
     authors: '**Z. Ge** *et al.*'
     title: High-precision measurement of the atomic mass of ⁸⁴Sr and implications to isotope shift studies
@@ -87,6 +93,7 @@ papers:
       - isotope-shift
     position: 1
   - role: first
+    corresponding: true
     year: 2024
     authors: '**Z. Ge** *et al.*'
     title: Direct high-precision measurement of the mass difference of ⁷⁷As–⁷⁷Se related to neutrino mass determination
@@ -99,6 +106,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2024
     authors: '**Z. Ge** *et al.*'
     title: High-precision mass measurements of neutron-deficient silver isotopes probe the robustness of the *N* = 50 shell closure
@@ -111,6 +119,7 @@ papers:
       - nz
     position: 1
   - role: first
+    corresponding: true
     year: 2023
     authors: '**Z. Ge** *et al.*'
     title: β⁻ decay Q-value measurement of ¹³⁶Cs and its implications for neutrino studies
@@ -123,6 +132,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2022
     authors: '**Z. Ge** *et al.*'
     title: Direct determination of the atomic mass difference of the pairs ⁷⁶As–⁷⁶Se and ¹⁵⁵Tb–¹⁵⁵Gd rules out ⁷⁶As and ¹⁵⁵Tb as possible candidates for electron (anti)neutrino mass measurements
@@ -135,6 +145,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2022
     authors: '**Z. Ge** *et al.*'
     title: High-precision electron-capture Q value measurement of ¹¹¹In for electron-neutrino mass determination
@@ -147,6 +158,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2021
     authors: '**Z. Ge** *et al.*'
     title: '¹⁵⁹Dy electron-capture: a new candidate for neutrino mass determination'
@@ -159,6 +171,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2021
     authors: '**Z. Ge**'
     title: Development of a large-area timing and position-sensitive foil-MCP detector for mass measurements at the Rare-RI Ring in RIKEN
@@ -168,6 +181,7 @@ papers:
       - detectors
     position: 1
   - role: first
+    corresponding: true
     year: 2021
     authors: '**Z. Ge** *et al.*'
     title: Direct measurement of the mass difference of ⁷²As–⁷²Ge rules out ⁷²As as a promising β-decay candidate to determine the neutrino mass
@@ -180,6 +194,7 @@ papers:
       - neutrino
     position: 1
   - role: first
+    corresponding: true
     year: 2021
     authors: '**Z. Ge** *et al.*'
     title: Development of mirror-type MCP detectors for mass measurements at the Rare-RI Ring
@@ -191,6 +206,7 @@ papers:
       - detectors
     position: 1
   - role: first
+    corresponding: true
     year: 2019
     authors: '**Z. Ge** *et al.*'
     title: Scheme of high-resolution identification and selection of secondary ions for mass measurements with the Rare-RI Ring
@@ -202,6 +218,7 @@ papers:
       - detectors
     position: 1
   - role: first
+    corresponding: true
     year: 2019
     authors: '**Z. Ge**, Q. Wang, M. Wang, T. Uesaka'
     title: Study of mass-measurement method for *N* = *Z* nuclei with isochronous mass spectrometry
@@ -213,6 +230,7 @@ papers:
       - nz
     position: 1
   - role: first
+    corresponding: true
     year: 2018
     authors: '**Z. Ge** *et al.*'
     title: Timing performance of a mirror-type MCP detector for mass measurements at the Rare RI Ring
@@ -224,6 +242,7 @@ papers:
       - detectors
     position: 1
   - role: first
+    corresponding: true
     year: 2017
     authors: '**Z. Ge** *et al.*'
     title: Simulation and design of a large-area position-sensitive TOF MCP detector at the Rare RI Ring
@@ -233,6 +252,7 @@ papers:
     url: https://www.nishina.riken.jp/researcher/APR/APR050/pdf/contents.pdf
     position: 1
   - role: first
+    corresponding: true
     year: 2016
     authors: '**Z. Ge** *et al.*'
     title: Online results for the injection ion optics of the Rare RI Ring
