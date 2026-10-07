@@ -92,6 +92,115 @@
       "verification_status": "feed-collected"
     },
     {
+      "date": "2026-10-07",
+      "type": "job",
+      "title": "Nuclear Fragmentation Measurements for Precision Cosmic-Ray Astrophysics — LPSC, Grenoble",
+      "summary": "Europe · deadline 2026-11-02 · PHD. PhD Position in Experimental Astroparticle Physics Nuclear Fragmentation Measurements for Precision Cosmic-Ray Astrophysics Modern space-borne experiments measure Galactic cosmic-ray fluxes with percent-level precision, yet their…",
+      "url": "https://inspirehep.net/jobs/3212337",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "deadline": "2026-11-02",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "Ultrashort laser pulses let new microscope map electron interactions across thin materials",
+      "summary": "A new type of advanced microscope (wide-field coherent multidimensional microscopy) has been developed. It uses a carefully designed sequence of ultrashort light pulses to study the behavior of high-tech materials, with potential practical applications in the study of…",
+      "url": "https://phys.org/news/2026-10-ultrashort-laser-pulses-microscope-electron.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "Acoustic experiments confirm topology can persist at gapless critical points",
+      "summary": "Two studies on critical topology have recently been published in the journal Nature. These studies were led by the teams of Prof. Baile Zhang at Nanyang Technological University, Singapore, and Prof. Jianhua Jiang at the University of Science and Technology of China,…",
+      "url": "https://phys.org/news/2026-10-acoustic-topology-persist-gapless-critical.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "First observation of quantum spins shifting a centimeter-scale object in the lab",
+      "summary": "Modern technological breakthroughs like lasers, MRI scanners, semiconductors and quantum computers rest on the study of quantum mechanics. However, the field has predominantly focused on (sub)atomic phenomena far removed from our human senses.",
+      "url": "https://phys.org/news/2026-10-quantum-shifting-centimeter-scale-lab.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "One quantum material, two superconducting states: Stretching helps explain conflicting experiments",
+      "summary": "Unconventional superconductors can host unusual electronic states, but understanding what drives their superconductivity becomes difficult when different forms of order coexist. The kagome metal CsV3Sb5 has become a particularly debated example.",
+      "url": "https://phys.org/news/2026-10-quantum-material-superconducting-states-conflicting.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "Levitating glass sphere becomes entangled with light at room temperature",
+      "summary": "Today, many physicists are actively exploring how light could be used to link objects through quantum entanglement. By fully harnessing the effect, they hope to unlock a wide array of applications, from secure communication networks spanning vast distances to sensitive new…",
+      "url": "https://phys.org/news/2026-10-levitating-glass-sphere-entangled-room.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "A look back at the 24th GANIL symposium",
+      "summary": "From 21 to 25 September 2026, the nuclear physics community gathered in Bussang, in the heart of the Vosges, for the 24th GANIL Symposium. Co-organised by the CEA in Saclay and GANIL, this scientific event aims to provide an overview of the research being carried out at GANIL…",
+      "url": "https://www.ganil-spiral2.eu/2026/10/06/a-look-back-at-the-24th-ganil-symposium/",
+      "source": "GANIL news",
+      "tags": [
+        "facility"
+      ],
+      "lang": "en",
+      "published": "2026-10-06",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected",
+      "facility_ids": [
+        "ganil-spiral2"
+      ]
+    },
+    {
       "date": "2026-10-06",
       "type": "news",
       "title": "Crystal spacing predicts magnetic states in complex alloys better than electron count",
@@ -3023,7 +3132,7 @@
     }
   ],
   "health": {
-    "checked_at": "2026-10-07T07:41:50+00:00",
+    "checked_at": "2026-10-07T21:31:16+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
@@ -3040,20 +3149,20 @@
       {
         "source": "INSPIRE-HEP Jobs — nuclear physics",
         "status": "PASS",
-        "matched": 10,
-        "new": 0
+        "matched": 11,
+        "new": 1
       },
       {
         "source": "APS Physics — news",
         "status": "PASS",
         "matched": 23,
-        "new": 1
+        "new": 0
       },
       {
         "source": "Phys.org — nuclear physics",
         "status": "PASS",
         "matched": 30,
-        "new": 4
+        "new": 5
       },
       {
         "source": "Physical Review Letters — Nuclear Physics",
@@ -3071,7 +3180,7 @@
         "source": "Physical Review C",
         "status": "PASS",
         "matched": 11,
-        "new": 1
+        "new": 0
       },
       {
         "source": "Nature Physics",
@@ -3088,7 +3197,7 @@
         "source": "GANIL news",
         "status": "PASS",
         "matched": 10,
-        "new": 0
+        "new": 1
       },
       {
         "source": "ECT* news & workshops",

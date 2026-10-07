@@ -2,7 +2,7 @@ en:
   search: Search
   other_states: Other levels / IAS / unresolved classification
   detector_practice: Detector and practice
-  detector_radius: Detector radius (mm)
+  detector_radius: Spot-to-centre radius (mm)
   angular_floor: Angular systematic floor (mrad)
   centroid_counts: Counts per centroid
   seed_label: Random seed
@@ -18,11 +18,32 @@ en:
     transverse model illustrates finite-time transmission. Axial transport, buffer
     gas, space charge and fringe fields are omitted.
   mathieu: Mathieu equation
+  small_angle: Small-angle approximation
+  large_angle: 'Large angular width: the small-angle resolution estimate is outside
+    its domain'
+  event_width: Event σφ
+  centroid_width: Centroid σφ
+  turns: Turns
+  relative_phase: Δφ relative to species 1
+  event_limit: 3 event σφ
+  missing_isomer: No matching calculable isomer
+  invalid_state: Select valid ion states; unavailable states cannot fall back to the
+    ground state.
+  invalid_physical: Invalid physical input
+  unconfined: Unconfined ideal-trap parameters
+  zero_radius: Phase resolution is undefined at zero detector radius
+  positive_population: Use a positive population
+  invalid_time: Invalid comparison time
+  separation_target: Separation target
+  separation_note: σ means one event’s angular standard deviation. The search checks
+    every ion pair on a 0.01 ms grid up to 5000 ms, including phase wrapping; it is
+    not a fitted confidence level.
+  separation_none: No accumulation time meets this target within 5000 ms.
 zh:
   search: 搜索
   other_states: 其他能级 / 同位旋模拟态 / 分类未定
   detector_practice: 探测器与练习
-  detector_radius: 探测器半径（mm）
+  detector_radius: 斑点到中心的半径（mm）
   angular_floor: 角度系统误差下限（mrad）
   centroid_counts: 每斑点计数
   seed_label: 随机种子
@@ -34,11 +55,28 @@ zh:
   inputs_results: 输入与结果
   rfq_convention: V 为零到峰值射频电压，U 为直流电压。此无碰撞横向模型仅示意有限时间透过率；不包含轴向输运、缓冲气体、空间电荷和边缘场。
   mathieu: 马修方程
+  small_angle: 小角度近似
+  large_angle: 角展宽过大：小角度分辨率估计超出适用范围
+  event_width: 事件 σφ
+  centroid_width: 质心 σφ
+  turns: 整圈
+  relative_phase: 相对第1种离子的 Δφ
+  event_limit: 3倍事件 σφ
+  missing_isomer: 无匹配的可计算同核异能态
+  invalid_state: 请选择有效核态；不可用核态不能自动替换为基态。
+  invalid_physical: 物理输入无效
+  unconfined: 理想阱参数不能囚禁离子
+  zero_radius: 探测器半径为零时相位分辨率未定义
+  positive_population: 至少一种离子占比需大于零
+  invalid_time: 比较时间无效
+  separation_target: 目标分离度
+  separation_note: σ 指单个探测事件的角度标准差。搜索在 0.01 ms 网格上检查所有离子对，最长 5000 ms，并考虑相位回绕；不是拟合置信水平。
+  separation_none: 5000 ms 内没有满足目标的累积时间。
 fi:
   search: Haku
   other_states: Muut tasot / IAS / luokitus avoin
   detector_practice: Ilmaisin ja harjoittelu
-  detector_radius: Ilmaisimen säde (mm)
+  detector_radius: Täplän etäisyys keskipisteestä (mm)
   angular_floor: Kulman systemaattinen alaraja (mrad)
   centroid_counts: Tapahtumia keskipistettä kohden
   seed_label: Satunnaissiemen
@@ -53,11 +91,30 @@ fi:
     Törmäyksetön poikittaismalli havainnollistaa läpäisyä rajallisessa ajassa. Aksiaalinen
     kuljetus, puskurikaasu, avaruusvaraus ja reunakentät puuttuvat.
   mathieu: Mathieun yhtälö
+  small_angle: Pienen kulman approksimaatio
+  large_angle: 'Suuri kulmaleveys: pienen kulman erotuskykyarvio ei ole sovellettavissa'
+  event_width: Tapahtuman σφ
+  centroid_width: Keskipisteen σφ
+  turns: Kierrokset
+  relative_phase: Δφ suhteessa ionilajiin 1
+  event_limit: 3 tapahtuman σφ
+  missing_isomer: Laskettavaa isomeeriä ei löytynyt
+  invalid_state: Valitse kelvolliset ionitilat; puuttuvaa tilaa ei korvata perustilalla.
+  invalid_physical: Virheellinen fysikaalinen syöte
+  unconfined: Ideaaliloukun parametrit eivät sido ionia
+  zero_radius: Vaiheen erotuskykyä ei ole määritelty ilmaisimen säteen ollessa nolla
+  positive_population: Käytä positiivista populaatiota
+  invalid_time: Virheellinen vertailuaika
+  separation_target: Erottumistavoite
+  separation_note: σ on yhden tapahtuman kulman keskihajonta. Haku tarkistaa kaikki
+    ioniparit 0,01 ms välein 5000 ms asti ja huomioi vaiheen kiertymisen; kyse ei
+    ole sovituksen luottamustasosta.
+  separation_none: Tavoitetta vastaavaa kertymäaikaa ei löytynyt 5000 ms asti.
 de:
   search: Suchen
   other_states: Andere Niveaus / IAS / ungeklärte Klasse
   detector_practice: Detektor und Übung
-  detector_radius: Detektorradius (mm)
+  detector_radius: Abstand des Flecks zum Zentrum (mm)
   angular_floor: Systematische Winkeluntergrenze (mrad)
   centroid_counts: Ereignisse pro Schwerpunkt
   seed_label: Zufallsstartwert
@@ -73,11 +130,32 @@ de:
     Das kollisionsfreie transversale Modell veranschaulicht die Transmission in endlicher
     Zeit. Axialer Transport, Puffergas, Raumladung und Randfelder fehlen.
   mathieu: Mathieu-Gleichung
+  small_angle: Kleinwinkelnäherung
+  large_angle: 'Große Winkelbreite: die Auflösungsabschätzung mit Kleinwinkelnäherung
+    ist nicht anwendbar'
+  event_width: Ereignis-σφ
+  centroid_width: Schwerpunkt-σφ
+  turns: Umläufe
+  relative_phase: Δφ relativ zu Ionensorte 1
+  event_limit: 3 Ereignis-σφ
+  missing_isomer: Kein berechenbares passendes Isomer
+  invalid_state: Gültige Ionenzustände wählen; fehlende Zustände werden nicht durch
+    den Grundzustand ersetzt.
+  invalid_physical: Ungültige physikalische Eingabe
+  unconfined: Die idealen Fallenparameter erlauben keinen Einschluss
+  zero_radius: Die Phasenauflösung ist bei Detektorradius null nicht definiert
+  positive_population: Eine positive Population verwenden
+  invalid_time: Ungültige Vergleichszeit
+  separation_target: Trennungsziel
+  separation_note: σ ist die Winkelstandardabweichung eines Ereignisses. Die Suche
+    prüft alle Ionenpaare auf einem 0,01-ms-Raster bis 5000 ms einschließlich Phasenumlauf;
+    dies ist kein Konfidenzniveau einer Anpassung.
+  separation_none: Bis 5000 ms erreicht keine Akkumulationszeit dieses Ziel.
 ja:
   search: 検索
   other_states: その他の準位・IAS・分類未確定
   detector_practice: 検出器と練習
-  detector_radius: 検出器半径（mm）
+  detector_radius: スポットと中心の距離（mm）
   angular_floor: 角度の系統誤差下限（mrad）
   centroid_counts: 各重心の計数
   seed_label: 乱数シード
@@ -89,3 +167,20 @@ ja:
   inputs_results: 入力と結果
   rfq_convention: V はゼロからピークまでのRF電圧振幅、U は直流電圧です。無衝突の横方向モデルで有限時間の透過を示します。軸方向輸送、緩衝ガス、空間電荷、端部電場は含みません。
   mathieu: マシュー方程式
+  small_angle: 小角近似
+  large_angle: 角幅が大きいため、小角近似による分解能評価の適用範囲外です
+  event_width: 事象 σφ
+  centroid_width: 重心 σφ
+  turns: 周回数
+  relative_phase: イオン種1に対する Δφ
+  event_limit: 事象 σφ の3倍
+  missing_isomer: 計算可能な異性体が見つかりません
+  invalid_state: 有効なイオン状態を選択してください。利用できない状態は基底状態に置き換えません。
+  invalid_physical: 物理入力が無効です
+  unconfined: 理想トラップの条件では閉じ込められません
+  zero_radius: 検出器半径がゼロのため位相分解能は定義されません
+  positive_population: 正の存在比を指定してください
+  invalid_time: 比較時間が無効です
+  separation_target: 目標分離度
+  separation_note: σ は1事象の角度標準偏差です。全イオン対を 0.01 ms 刻みで 5000 ms まで調べ、位相の一周回り込みを考慮します。フィットの信頼水準ではありません。
+  separation_none: 5000 ms 以内に目標を満たす蓄積時間はありません。

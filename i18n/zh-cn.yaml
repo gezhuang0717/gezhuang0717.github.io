@@ -67,3 +67,8 @@ zg_pub_query: "检索标题、作者、DOI 或主题"
 zg_pub_year: "年份"
 zg_pub_all_years: "所有年份"
 zg_pub_role: "作者角色"
+
+zg_all_authors:
+  other: 全部作者
+zg_author_source:
+  other: 作者名单来源

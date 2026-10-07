@@ -184,6 +184,28 @@
 
 
   function mathieuParameters(ion,U,V,r0,frequencyMHz) { const k=C.e*ion.q/(ion.ionMassU*C.uKg*(r0/1000)**2*(2*Math.PI*frequencyMHz*1e6)**2);return {a:8*k*U,q:4*k*V}; }
-  const api = { C, FWHM, numeric, primitive, combine, constant, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters };
+  // First simultaneous x/y stability region. Cutoffs are in m/z (u per elementary charge).
+  function rfqCutoffs(U,V,r0,frequencyMHz) {
+    if(![U,V,r0,frequencyMHz].every(Number.isFinite)||!(r0>0&&frequencyMHz>0&&V>=0))return {status:'invalid'};
+    if(V===0)return {status:'rf-off',slope:null,lowMassU:null,highMassU:null};
+    const bisect=(fn,lo,hi)=>{for(let i=0;i<55;i++){const m=(lo+hi)/2;if(fn(m)>0)lo=m;else hi=m;}return (lo+hi)/2;};
+    const edge=bisect(MB1,.8,1),tip=bisect(q=>MB1(q)+MA0(q),.6,.8);
+    const slope=2*Math.abs(U)/V,criticalSlope=MB1(tip)/tip;
+    if(slope>=criticalSlope)return {status:'no-window',slope,criticalSlope,lowMassU:null,highMassU:null};
+    let qLow=0;
+    if(slope>0) { let lo=0,hi=tip;for(let i=0;i<60;i++){const m=(lo+hi)/2;(-MA0(m)/m>slope)?hi=m:lo=m;}qLow=(lo+hi)/2; }
+    const qHigh=bisect(q=>MB1(q)-slope*q,tip,edge);
+    const massScale=4*C.e*V/(C.uKg*(r0/1000)**2*(2*Math.PI*frequencyMHz*1e6)**2);
+    return {status:Math.abs(U)===0?'rf-only':'window',slope,criticalSlope,qLow,qHigh,aLow:slope*qLow,aHigh:slope*qHigh,lowMassU:massScale/qHigh,highMassU:qLow===0?Infinity:massScale/qLow};
+  }
+  function shortestPhaseTime(frequencies,sigma,target,maxMs=5000,stepMs=.01) {
+    if(frequencies.length<2||!frequencies.every(Number.isFinite)||!(sigma>0&&target>0&&maxMs>0&&stepMs>0))return null;
+    const differences=[];for(let i=0;i<frequencies.length;i++)for(let j=i+1;j<frequencies.length;j++){const d=Math.abs(frequencies[i]-frequencies[j]);if(d===0)return null;differences.push(d);}
+    const angle=sigma*target;if(angle>Math.PI)return null;
+    const first=Math.max(1,Math.ceil(angle/(2*Math.PI*Math.min(...differences))*1000/stepMs-1e-9));
+    for(let k=first;k<=Math.floor(maxMs/stepMs);k++){const ms=k*stepMs;if(differences.every(d=>{const phase=wrapPhase(2*Math.PI*d*ms/1000);return Math.min(phase,2*Math.PI-phase)+1e-12>=angle;}))return ms;}
+    return null;
+  }
+  const api = { C, FWHM, numeric, primitive, combine, constant, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime };
   host.ZGPhysics = api; if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);

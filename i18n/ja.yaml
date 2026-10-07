@@ -67,3 +67,8 @@ zg_pub_query: "題名・著者・DOI・研究テーマで検索"
 zg_pub_year: "年"
 zg_pub_all_years: "すべての年"
 zg_pub_role: "著者の役割"
+
+zg_all_authors:
+  other: 全著者
+zg_author_source:
+  other: 著者一覧の出典

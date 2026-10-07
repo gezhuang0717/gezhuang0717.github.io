@@ -1,0 +1,74 @@
+en:
+  results: Operating line and mass cutoffs
+  line: Operating line
+  low: LMCO · low-mass cutoff
+  high: HMCO · high-mass cutoff
+  range: Ideal stable interval, boundaries excluded
+  none: No transmission window in the first stability region.
+  rfonly: No finite upper cutoff with zero DC; confinement weakens as m/z increases.
+  'off': 'RF is off: no simultaneous dynamic transverse confinement.'
+  limits: Ideal Mathieu cutoffs are not measured transmission efficiencies. V is zero-to-peak
+    RF amplitude; the RF peak-to-peak voltage is 2V. Cutoffs scale with charge; values
+    here are m/z in u/e.
+  csv: Inputs and results · CSV
+  json: Inputs and results · JSON
+  badseed: Invalid RFQ seed.
+zh:
+  results: 工作线与质量截止
+  line: 工作线
+  low: LMCO · 低质量截止
+  high: HMCO · 高质量截止
+  range: 理想稳定区间，不含边界
+  none: 第一稳定区内没有透过窗口。
+  rfonly: 直流为零时没有有限高质量截止；m/z 增大时约束减弱。
+  'off': 射频关闭：横向两方向均稳定的动态约束不存在。
+  limits: 理想马修截止不等于实测透过效率。V 是零到峰值射频幅度，峰峰值为 2V。截止质量随电荷变化；此处给出 m/z，单位 u/e。
+  csv: 输入与结果 · CSV
+  json: 输入与结果 · JSON
+  badseed: RFQ 随机种子无效。
+fi:
+  results: Toimintasuora ja massarajat
+  line: Toimintasuora
+  low: LMCO · pienin läpäisevä massa
+  high: HMCO · suurin läpäisevä massa
+  range: Ideaalinen vakaa väli, rajat eivät kuulu mukaan
+  none: Ensimmäisessä vakausalueessa ei ole läpäisyikkunaa.
+  rfonly: Ilman tasajännitettä ei ole äärellistä ylärajaa; sidonta heikkenee m/z:n
+    kasvaessa.
+  'off': 'RF on pois: ei molempien poikittaissuuntien dynaamista sidontaa.'
+  limits: Ideaaliset Mathieu-rajat eivät ole mitattuja läpäisyhyötysuhteita. V on
+    RF-huippuamplitudi ja huipusta huippuun jännite 2V. Rajat riippuvat varauksesta;
+    tässä m/z on yksikössä u/e.
+  csv: Syötteet ja tulokset · CSV
+  json: Syötteet ja tulokset · JSON
+  badseed: Virheellinen RFQ-siemen.
+de:
+  results: Betriebsgerade und Massengrenzen
+  line: Betriebsgerade
+  low: LMCO · untere Massengrenze
+  high: HMCO · obere Massengrenze
+  range: Ideales stabiles Intervall, ohne Randpunkte
+  none: Kein Durchlassfenster im ersten Stabilitätsbereich.
+  rfonly: Bei DC = 0 keine endliche obere Grenze; die Einschließung wird mit größerem
+    m/z schwächer.
+  'off': 'RF ist aus: keine gleichzeitige dynamische Einschließung in beiden Querrichtungen.'
+  limits: Ideale Mathieu-Grenzen sind keine gemessenen Durchlasseffizienzen. V ist
+    die RF-Spitzenamplitude, die Spitze-Spitze-Spannung beträgt 2V. Die Grenzen skalieren
+    mit der Ladung; m/z wird in u/e angegeben.
+  csv: Eingaben und Ergebnisse · CSV
+  json: Eingaben und Ergebnisse · JSON
+  badseed: Ungültiger RFQ-Zufallsstartwert.
+ja:
+  results: 動作直線と質量カットオフ
+  line: 動作直線
+  low: LMCO · 低質量カットオフ
+  high: HMCO · 高質量カットオフ
+  range: 理想安定範囲、境界点を除く
+  none: 第一安定領域に透過窓はありません。
+  rfonly: 直流ゼロでは有限の上限はなく、m/z の増加とともに閉じ込めは弱まります。
+  'off': RF がオフ：横方向の両軸を同時に動的に閉じ込められません。
+  limits: 理想 Mathieu 境界は測定された透過効率ではありません。V はゼロからピークまでの RF 振幅で、ピーク間電圧は 2V です。カットオフ質量は電荷に比例し、ここでは
+    m/z を u/e で示します。
+  csv: 入力と結果 · CSV
+  json: 入力と結果 · JSON
+  badseed: RFQ の乱数シードが無効です。

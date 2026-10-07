@@ -173,6 +173,7 @@
       $("number").value = settings.length;
       settings.forEach(([ion, state, w], i) => { $(`ion-${i}`).value = ion; $(`weight-${i}`).value = w; $(`charge-${i}`).value = 1; syncStates(i, false, state); }); update();
     }
+    controls.addEventListener("input", e => { if(kind === "mr" && e.target.type === "number" && e.target.name === "laps" && e.target.value !== "" && e.target.validity.valid) update(); });
     controls.addEventListener("change", e => {
       if (e.target.name === "preset") return preset(e.target.value);
       if (e.target.name === "number" && e.target.value === "3") { const s = kind === "mr" ? [["133Xe", 0, 60], ["133Xe", 1, 30], ["133Cs", 0, 10]] : [["133Cs", 0, 50], ["133Xe", 0, 30], ["133Ba", 0, 20]]; s.forEach(([ion, state, w], i) => { $(`ion-${i}`).value = ion; $(`weight-${i}`).value = w; syncStates(i, false, state); }); }

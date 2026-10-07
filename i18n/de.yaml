@@ -67,3 +67,8 @@ zg_pub_query: "Titel, Autor, DOI oder Thema suchen"
 zg_pub_year: "Jahr"
 zg_pub_all_years: "Alle Jahre"
 zg_pub_role: "Autorenrolle"
+
+zg_all_authors:
+  other: Alle Autoren
+zg_author_source:
+  other: Quelle der Autorenliste

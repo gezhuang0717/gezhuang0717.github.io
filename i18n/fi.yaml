@@ -67,3 +67,8 @@ zg_pub_query: "Hae otsikkoa, kirjoittajaa, DOI-tunnusta tai aihetta"
 zg_pub_year: "Vuosi"
 zg_pub_all_years: "Kaikki vuodet"
 zg_pub_role: "Kirjoittajan rooli"
+
+zg_all_authors:
+  other: Kaikki tekijät
+zg_author_source:
+  other: Tekijäluettelon lähde

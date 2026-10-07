@@ -279,7 +279,7 @@
       const p = pairOf(sel("n1").value, sel("n2").value); box.querySelector(".mr-bad").textContent = p ? "" : TL.rfq_bad;
       if (p) { P = p; draw(true); }
     }
-    box.addEventListener("input", e => { const n = e.target.name; if (n === "n1" || n === "n2") return manual(); if (n && n !== "pair") draw(n !== "laps"); });
+    box.addEventListener("input", e => { const n = e.target.name; if (n === "n1" || n === "n2") return manual(); if (n && n !== "pair") draw(true); });
     box.addEventListener("change", e => { const n = e.target.name; if (n === "pair") { P = pairs[+e.target.value]; draw(true); } if (n === "manual") manual(); });
     box.addEventListener("click", e => {
       const a = e.target.closest("[data-act]")?.dataset.act; if (!a) return;
@@ -309,9 +309,9 @@
   const MA0=P.mathieuA0, MB1=P.mathieuB1, mathieuStable=P.mathieuStable, Q_EDGE=.908046, Q_TIP=.705996, A_TIP=.236994;
   function rfqGame() {
     const box = $("#g-rfq"); if (!box) return;
-    const TL = T;
+    const TL = T, RT=JSON.parse(box.querySelector("[data-rfq-labels]").dataset.rfqLabels);
     const [cv, cvd] = box.querySelectorAll("canvas"), sel = n => box.querySelector(`[name=${n}]`), V = n => +sel(n).value;
-    const U_KG = 1.66053906660e-27, QE = 1.602176634e-19, ME_U = 5.48579909065e-4, rho = 1.145, Rc = 1 + rho;
+    const U_KG = P.C.uKg, QE = P.C.e, ME_U = 5.48579909065e-4, rho = 1.145, Rc = 1 + rho;
     const cols = ["#3e63dd", "#30a46c", "#e5484d", "#f5b800", "#8e4ec6", "#0894b3", "#d6409f", "#f76b15"];
     let random=P.rng(20261007); const gaussian=()=>P.gaussian(random);
     let species = [], ions = [], sparks = [], xi = 0, running = !matchMedia("(prefers-reduced-motion: reduce)").matches, target = 1;
@@ -321,7 +321,7 @@
     const BND = [...Array(181)].map((_, i) => { const q = Q_EDGE * i / 180; return [q, Math.max(0, Math.min(MB1(q), -MA0(q)))]; });
     function massOf(lbl) { try {const x=catalog.resolve(lbl);return {label:x.label,m:x.ionMassU,z:x.q,source:x.source,state_ids:x.atoms.map(a=>a.state.id)};} catch(e){return null;} }
     function reset() {
-      if(!sel("rfq-seed").checkValidity()){bad.textContent="Invalid RFQ seed / RFQ 随机种子无效";ions=[];running=false;return;}
+      if(!sel("rfq-seed").checkValidity()){bad.textContent=RT.badseed;ions=[];running=false;return;}
       random=P.rng(V("rfq-seed"));xi=0; const A0 = V("A");
       species = (sel("set").value === "near" ? [A0 - 2, A0, A0 + 2] : sel("set").value === "far" ? [Math.max(1, Math.round(A0 / 2)), A0, A0 * 2] : [A0])
         .map(A => ({ label: "A = " + A, m: A, z: 1 }));
@@ -384,7 +384,12 @@
         if (i === target) { g.strokeStyle = ink; g.lineWidth = 1.5; g.stroke(); } });
       g.fillStyle = ink; g.font = "11px system-ui"; g.textAlign = "left"; g.fillText(TL.rfq_stable, X(0.04), Y(0.02));
     }
+    let cutoffKey='',cutoff;
+    function currentCutoffs(){const key=['U','V','r0','f'].map(V).join('|');if(key!==cutoffKey){cutoffKey=key;cutoff=P.rfqCutoffs(V('U'),V('V'),V('r0'),V('f'));}return cutoff;}
     function report() {
+      const c=currentCutoffs(),fmt=x=>Number.isFinite(x)?x.toPrecision(8):'∞',out=box.querySelector('[data-rfq-cutoff-values]');
+      if(c.status==='window'||c.status==='rf-only')out.innerHTML=`<dt>${RT.line}</dt><dd>a = ${fmt(c.slope)} q = (2|U|/V) q</dd><dt>${RT.low}</dt><dd>${fmt(c.lowMassU)} u/e · (q, a) = (${fmt(c.qHigh)}, ${fmt(c.aHigh)})</dd><dt>${RT.high}</dt><dd>${Number.isFinite(c.highMassU)?`${fmt(c.highMassU)} u/e · (q, a) = (${fmt(c.qLow)}, ${fmt(c.aLow)})`:RT.rfonly}</dd><dt>${RT.range}</dt><dd>${fmt(c.lowMassU)} &lt; m/z &lt; ${fmt(c.highMassU)} u/e</dd>`;
+      else out.innerHTML=`<dd>${c.status==='rf-off'?RT.off:RT.none}</dd>`;
       box.querySelector(".rfq-out").innerHTML = species.map((sp, i) => { const n = sp.t + sp.l, [a, q] = aq(sp);
         return `<span style="color:${sp.c}">${sp.label} (m = ${sp.m.toFixed(sp.m % 1 ? 4 : 0)} u${sp.z > 1 ? ", z = " + sp.z : ""}): q = ${q.toFixed(4)}, a = ${a.toFixed(4)} → ${mathieuStable(a, q) ? "✔" : "✘"} ${n ? (100 * sp.t / n).toFixed(0) + " %" : "–"}</span>`; }).join("");
       const tg = species[target], tr = s => s.t / Math.max(1, s.t + s.l), T0 = tr(tg), others = species.filter((_, i) => i !== target), Tx = others.length ? Math.max(...others.map(tr)) : 0;
@@ -416,7 +421,16 @@
       if (a === "png") savePNG(cv, paint, "rfq-cross-section");
       if (a === "png2") savePNG(cvd, paintD, "rfq-stability-diagram");
       if (a === "video" && window.zgExport) { const b = e.target.closest("[data-act]"); zgExport.record(cv, 8, "rfq-ions", r => { b.disabled = r; b.classList.toggle("is-rec", r); }); }
-      if (a === "json") { const record={model:"ideal linear RFQ / Mathieu dynamics",source:catalog.metadata,seed:V("rfq-seed"),parameters:Object.fromEntries(["U","V","r0","f","emit","cycles"].map(n=>[n,V(n)])),units:{U:"V DC",V:"V zero-to-peak RF",r0:"mm",f:"MHz",emit:"percent r0",cycles:"RF cycles"},species,ions,xi,assumptions:["Collisionless transverse RK4 trajectories; circular rods radius=1.145 r0", "Finite-time illustrated transmission is not calibrated efficiency; axial transport, space charge, gas and fringe fields omitted", "Generic A presets use illustrative masses; custom ions use the shared evaluated state catalogue"]};window.zgExport?.save(new Blob([JSON.stringify(record,null,2)],{type:"application/json"}),"rfq-inputs-results.json"); }
+      if(a==='json'||a==='csv') {
+        const cuts=currentCutoffs(),parameters=Object.fromEntries(['U','V','r0','f','emit','cycles'].map(n=>[n,V(n)]));
+        const source={name:'AME2020 + NUBASE2020',url:'https://www-nds.iaea.org/amdc/ame2020/',doi:'10.1088/1674-1137/abddae'};
+        const results=species.map(sp=>{const [a,q]=aq(sp);return {label:sp.label,mass_u:sp.m,charge:sp.z,a,q,stable:mathieuStable(a,q),transmitted:sp.t,lost:sp.l,observed_fraction:sp.t+sp.l?sp.t/(sp.t+sp.l):null,source:sp.source||'illustrative integer mass'};});
+        const cleanCuts={...cuts,highMassU:Number.isFinite(cuts.highMassU)?cuts.highMassU:null,highMassUnbounded:cuts.highMassU===Infinity};
+        const record={model:'ideal linear RFQ / Mathieu dynamics',source,seed:V('rfq-seed'),parameters,units:{U:'V DC',V:'V zero-to-peak RF',r0:'mm',f:'MHz',emit:'percent r0',cycles:'RF cycles',lowMassU:'u/e',highMassU:'u/e'},cutoffs:cleanCuts,species:results,simulation_time_xi:xi,assumptions:[RT.limits,TL.rfq_convention]};
+        if(a==='json')window.zgExport?.save(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}),'rfq-inputs-results.json');
+        else {const rows=[];for(const [key,value]of Object.entries(parameters))rows.push(['input',key,value,record.units[key],'']);rows.push(['input','seed',record.seed,'integer','']);for(const [key,value]of Object.entries(cleanCuts))rows.push(['result',key,value,record.units[key]||'','']);for(const r of results)for(const [key,value]of Object.entries(r))rows.push(['species',key,value,key==='mass_u'?'u':'',r.label]);rows.push(['source','name',source.name,'',''],['source','url',source.url,'',''],['model','assumptions',record.assumptions.join(' '),'','']);window.zgExport?.csv(['section','quantity','value','unit','species'],rows,'rfq-inputs-results');}
+        return;
+      }
       resetStats();refresh(); last = 0;
     });
     const waitRows = () => rows.length ? reset() : setTimeout(waitRows, 200);
@@ -457,7 +471,7 @@
       if (matches.some(x=>x.id === prior)) sel("iso").value=prior;
       pick();
     }
-    function pick() { S = list.find(x=>x.id === sel("iso").value); hits = []; piRandom=P.rng(V("pi-seed"));phaseOffsets=[]; if (!S) { msg(box,"No matching calculable isomer / 无匹配的可计算同核异能态"); return; } draw(); }
+    function pick() { S = list.find(x=>x.id === sel("iso").value); hits = []; piRandom=P.rng(V("pi-seed"));phaseOffsets=[]; if (!S) { msg(box,TL.missing_isomer); return; } draw(); }
     function ion(text) { try { const x=catalog.resolve(text,{massSource:sel("mtab").value}); return {...x,src:x.source,ex:x.atoms.reduce((v,a)=>v+(a.state.excitation.value||0)*a.count,0)}; } catch (error) { return null; } }
     let piRandom = P.rng(20261007), phaseOffsets = [];
     function parse() {
@@ -470,7 +484,7 @@
     const isMulti = () => sel("multi").checked;
     /* species list → each with ion mass (u), charge, weight, colour */
     function species() {
-      if (isMulti() && (!multi.length || bad.length)) throw new Error("Select valid ion states; unavailable states cannot fall back to the ground state. / 请指定有效核态，不可自动替换为基态。");
+      if (isMulti() && (!multi.length || bad.length)) throw new Error(TL.invalid_state);
       if (isMulti()) return multi.map((x,i)=>({...x,col:COL[i]}));
       const options={massSource:sel("mtab").value}, st=catalog.states.get(S.id), r=V("ratio")/100;
       const ground=catalog.resolve(`${st.A}${st.element}`,options), excited=catalog.resolve(`${st.A}${st.element}[${st.source_state_index}]`,options);
@@ -480,7 +494,7 @@
     const ph = P.wrapPhase;
     const adist = (a, b) => { let d = Math.abs(a - b) % (2 * Math.PI); return Math.min(d, 2 * Math.PI - d); };
     function phys() {
-      if (["tacc","B","spot","ratio","cfrac","u0","dch","radius","floor","centroid-count","pi-seed"].some(n=>!sel(n).checkValidity())) throw new Error("Invalid physical input / 物理输入无效");
+      if (["tacc","B","spot","ratio","cfrac","u0","dch","radius","floor","centroid-count","pi-seed"].some(n=>!sel(n).checkValidity())) throw new Error(TL.invalid_physical);
       const t = V("tacc") / 1000, sp = species().map(s => { const f = freqs(s); return { ...s, ...f, phi: ph(2 * Math.PI * f.nc * t), n: Math.floor(f.nc * t) }; });
       const nu = sp[0].nc, resolution=P.phaseResolution(nu,t,V("radius"),V("spot")/10,V("centroid-count"),V("floor")/1000), sig=resolution.defined ? resolution.eventSigma : Infinity;
       let minsep = Infinity, pair = null;
@@ -489,21 +503,21 @@
     }
     /* hit types: 2 centre spot (no radial motion), 3 magnetron reference, 10+i species i */
     function shoot(n) {
-      const p=phys(); if(p.sp.some(s=>!s.stable)) throw new Error("Unconfined ideal-trap parameters / 理想阱参数不能囚禁离子"); if (!p.resolution.defined) { msg(box,"Phase undefined at zero radius / 半径为零时相位未定义"); return; }
-      const W=p.sp.reduce((a,s)=>a+s.w,0); if (!(W>0)) { msg(box,"Use a positive population / 至少一个占比需大于零"); return; }
-      const normal=()=>P.gaussian(piRandom), sigma=0.62*V("spot")/10/V("radius"), floor=V("floor")/1000;
+      const p=phys(); if(p.sp.some(s=>!s.stable)) throw new Error(TL.unconfined); if (!p.resolution.defined) { msg(box,TL.zero_radius); return; }
+      const W=p.sp.reduce((a,s)=>a+s.w,0); if (!(W>0)) { msg(box,TL.positive_population); return; }
+      const normal=()=>P.gaussian(piRandom), sigma=V("spot")/10/35, floor=V("floor")/1000;
       if(phaseOffsets.length!==p.sp.length) phaseOffsets=p.sp.map(()=>floor*normal()); const offsets=phaseOffsets;
       for(let k=0;k<n;k++) {
         const u=piRandom();
         if(u<V("cfrac")/100) { hits.push([.035*normal(),.035*normal(),2]); continue; }
-        if(sel("ref").checked && u<V("cfrac")/100+.15) { hits.push([sigma*normal(),.62+sigma*normal(),3]); continue; }
+        if(sel("ref").checked && u<V("cfrac")/100+.15) { hits.push([sigma*normal(),V("radius")/35+sigma*normal(),3]); continue; }
         let x=piRandom()*W,i=0;while(i<p.sp.length-1 && (x-=p.sp[i].w)>0)i++;
-        const angle=p.sp[i].phi+offsets[i];hits.push([.62*Math.cos(angle)+sigma*normal(),.62*Math.sin(angle)+sigma*normal(),10+i]);
+        const angle=p.sp[i].phi+offsets[i];hits.push([V("radius")/35*Math.cos(angle)+sigma*normal(),V("radius")/35*Math.sin(angle)+sigma*normal(),10+i]);
       }
     }
     const hitCol = (k, sp) => k === 2 ? "rgba(30,30,40,.55)" : k === 3 ? "rgba(127,127,160,.6)" : ((sp[k - 10] || {}).col || "#888") + "8c";
     function paint(g, W, H, ink) {      /* detector view */
-      const p = phys(), R = Math.min(W, H) / 2 - 18, cx = W / 2, cy = H / 2;
+      const p = phys(), spotRadius = V("radius")/35, R = Math.min(W, H) / 2 - 18, cx = W / 2, cy = H / 2;
       g.fillStyle = "rgba(127,127,160,.08)"; g.beginPath(); g.arc(cx, cy, R, 0, 6.283); g.fill(); g.strokeStyle = "rgba(127,127,160,.6)"; g.lineWidth = 1.2; g.stroke();
       g.setLineDash([3, 4]); g.beginPath(); g.moveTo(cx - R, cy); g.lineTo(cx + R, cy); g.moveTo(cx, cy - R); g.lineTo(cx, cy + R); g.stroke(); g.setLineDash([]);
       if (sel("pix").checked) {           /* 2D histogram (pixels) */
@@ -513,14 +527,14 @@
       } else hits.forEach(([x, y, k]) => { g.fillStyle = hitCol(k, p.sp); g.beginPath(); g.arc(cx + x * R, cy - y * R, 1.8, 0, 6.283); g.fill(); });
       g.strokeStyle = "rgba(30,30,40,.6)"; g.lineWidth = 1; g.beginPath(); g.arc(cx, cy, 6, 0, 6.283); g.stroke();    /* centre spot */
       g.fillStyle = ink; g.font = "11px system-ui"; g.textAlign = "left"; g.fillText(TL.pi_center, cx + 9, cy + 14);
-      g.fillStyle = "rgba(127,127,160,.9)"; g.beginPath(); g.arc(cx, cy - 0.62 * R, 5, 0, 6.283); g.fill();   /* magnetron reference spot */
-      g.font = "11px system-ui"; g.textAlign = "center"; g.fillStyle = ink; g.fillText(TL.pi_ref, cx, cy - 0.62 * R - 10);
-      const rr = Math.max(6, 0.62 * R * p.sig * 2);
-      p.sp.forEach((s, i) => { const x = cx + 0.62 * R * Math.cos(s.phi), y = cy - 0.62 * R * Math.sin(s.phi);
+      g.fillStyle = "rgba(127,127,160,.9)"; g.beginPath(); g.arc(cx, cy - spotRadius * R, 5, 0, 6.283); g.fill();   /* magnetron reference spot */
+      g.font = "11px system-ui"; g.textAlign = "center"; g.fillStyle = ink; g.fillText(TL.pi_ref, cx, cy - spotRadius * R - 10);
+      const rr = Math.max(6, spotRadius * R * p.sig * 2);
+      p.sp.forEach((s, i) => { const x = cx + spotRadius * R * Math.cos(s.phi), y = cy - spotRadius * R * Math.sin(s.phi);
         g.strokeStyle = s.col; g.lineWidth = 1.5; g.beginPath(); g.arc(x, y, rr, 0, 6.283); g.stroke();
-        const lx = cx + (0.62 * R + rr + 14) * Math.cos(s.phi), ly = cy - (0.62 * R + rr + 14) * Math.sin(s.phi) + 4 + (i % 2 ? 11 : 0) * (p.sp.length > 3 ? 1 : 0);
+        const lx = cx + (spotRadius * R + rr + 14) * Math.cos(s.phi), ly = cy - (spotRadius * R + rr + 14) * Math.sin(s.phi) + 4 + (i % 2 ? 11 : 0) * (p.sp.length > 3 ? 1 : 0);
         g.fillStyle = s.col; g.font = "bold 11px system-ui"; g.fillText(s.label, Math.max(g.measureText(s.label).width/2+3, Math.min(W-g.measureText(s.label).width/2-3, lx)), Math.max(12, Math.min(H - 4, ly))); });
-      g.textAlign = "left"; g.font = "11px system-ui"; g.fillStyle = ink; if(W<450){g.fillText(`t = ${V("tacc")} ms · B = ${p.B} T`,8,14);g.fillText(`νc = ${p.nu.toFixed(3)} Hz`,8,28);}else g.fillText(`t_acc = ${V("tacc")} ms · B = ${p.B} T · ν_c(${p.sp[0].label}) = ${p.nu.toFixed(3)} Hz · n = ${p.sp[0].n.toLocaleString()} turns`, 8, 14);
+      g.textAlign = "left"; g.font = "11px system-ui"; g.fillStyle = ink; if(W<450){g.fillText(`t = ${V("tacc")} ms · B = ${p.B} T`,8,14);g.fillText(`νc = ${p.nu.toFixed(3)} Hz`,8,28);}else g.fillText(`t_acc = ${V("tacc")} ms · B = ${p.B} T · ν_c(${p.sp[0].label}) = ${p.nu.toFixed(3)} Hz · n = ${p.sp[0].n.toLocaleString()} ${TL.turns}`, 8, 14);
     }
     function paintH(g, W, H, ink) {     /* angle histogram */
       const p = phys(), P = { l: 48, t: 10, r: W - 10, b: H - 36 }, nb = 120, h = new Array(nb).fill(0);
@@ -543,30 +557,30 @@
     function timeComparison(p) {
       const host=box.querySelector(".pi-times");host.hidden=!sel("compare-times").checked;
       if(host.hidden) return;
-      for(const n of ["compare-t2","compare-t3"]) if(!sel(n).checkValidity()) throw new Error("Invalid comparison time / 比较时间无效");
+      for(const n of ["compare-t2","compare-t3"]) if(!sel(n).checkValidity()) throw new Error(TL.invalid_time);
       const times=[p.t,V("compare-t2")/1000,V("compare-t3")/1000];
       const rows=times.map(t=>{const phases=p.sp.map(s=>ph(2*Math.PI*s.nc*t));return p.sp.map((s,i)=>`<tr><td>${(t*1000).toFixed(2)}</td><td>${s.label}</td><td>${Math.floor(s.nc*t)}</td><td>${(phases[i]*180/Math.PI).toFixed(3)}</td><td>${i ? (adist(phases[i],phases[0])*180/Math.PI).toFixed(3) : "—"}</td></tr>`).join("");}).join("");
-      host.querySelector(".pi-comparison").innerHTML=`<table class="zg-table"><thead><tr><th>t (ms)</th><th>${TL.ion}</th><th>Turns / 整圈</th><th>φ (°)</th><th>Δφ to 1 / 对第1种 (°)</th></tr></thead><tbody>${rows}</tbody></table>`;
+      host.querySelector(".pi-comparison").innerHTML=`<table class="zg-table"><thead><tr><th>t (ms)</th><th>${TL.ion}</th><th>${TL.turns}</th><th>φ (°)</th><th>${TL.relative_phase} (°)</th></tr></thead><tbody>${rows}</tbody></table>`;
       const [g,W,H]=crisp(host.querySelector("canvas")),ink=inkOf(),max=Math.max(...times)*1000,limit=Math.min(180,3*p.sig*180/Math.PI),bounds={l:48,t:20,r:W-12,b:H-36};
       const [X,Y]=axes(g,bounds,[0,max],[0,180],"t_acc (ms)","min Δφ (°)",ink,4);
       g.strokeStyle="#8e4ec6";g.lineWidth=1.8;g.beginPath();
       for(let k=0;k<=500;k++){const ms=max*k/500,phases=p.sp.map(s=>ph(2*Math.PI*s.nc*ms/1000));let d=180;
         for(let i=0;i<phases.length;i++)for(let j=i+1;j<phases.length;j++)d=Math.min(d,adist(phases[i],phases[j])*180/Math.PI);
         k?g.lineTo(X(ms),Y(d)):g.moveTo(X(ms),Y(d));}g.stroke();
-      g.strokeStyle="#dc505b";g.setLineDash([4,3]);g.beginPath();g.moveTo(X(0),Y(limit));g.lineTo(X(max),Y(limit));g.stroke();g.setLineDash([]);g.fillStyle=ink;g.font="11px system-ui";g.fillText("3 event σφ / 3倍事件角宽",bounds.l+6,bounds.t+12);
+      g.strokeStyle="#dc505b";g.setLineDash([4,3]);g.beginPath();g.moveTo(X(0),Y(limit));g.lineTo(X(max),Y(limit));g.stroke();g.setLineDash([]);g.fillStyle=ink;g.font="11px system-ui";g.fillText(TL.event_limit,bounds.l+6,bounds.t+12);
       times.forEach(t=>{g.strokeStyle="rgba(127,127,160,.5)";g.beginPath();g.moveTo(X(t*1000),bounds.t);g.lineTo(X(t*1000),bounds.b);g.stroke();});
     }
     addEventListener("resize",()=>{if(!box.hidden)draw();});
     const mq = s => (s.M - s.q * MEU) / s.q;
     function draw() {
       let p; try { if (!S && !isMulti()) return; p=phys(); } catch(e) { msg(box,e.message); [cv,cvh].forEach(c=>{const [g,W,H]=crisp(c);g.clearRect(0,0,W,H)}); box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
-      if (!p.resolution.defined) { msg(box,"Phase resolution undefined at zero detector radius / 探测器半径为零时相位分辨率未定义"); [cv,cvh].forEach(c=>{ const [g,W,H]=crisp(c); g.clearRect(0,0,W,H); }); box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
-      if (p.sp.some(s=>!s.stable)) { msg(box,"Unconfined ideal-trap parameters / 理想阱参数不能囚禁离子");[cv,cvh].forEach(c=>{const [g,W,H]=crisp(c);g.clearRect(0,0,W,H);});box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
+      if (!p.resolution.defined) { msg(box,TL.zero_radius); [cv,cvh].forEach(c=>{ const [g,W,H]=crisp(c); g.clearRect(0,0,W,H); }); box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
+      if (p.sp.some(s=>!s.stable)) { msg(box,TL.unconfined);[cv,cvh].forEach(c=>{const [g,W,H]=crisp(c);g.clearRect(0,0,W,H);});box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
       { const [g, W, H] = crisp(cv); paint(g, W, H, inkOf()); }
       { const [g, W, H] = crisp(cvh); paintH(g, W, H, inkOf()); }
       table(p); try {timeComparison(p);}catch(e){box.querySelector(".pi-times").hidden=true;msg(box,e.message);return;}
-      const ok = p.sep >= 3;
-      const info=`Event σφ = ${(p.resolution.eventSigma*180/Math.PI).toFixed(3)}°; centroid σφ = ${(p.resolution.centroidSigma*180/Math.PI).toFixed(3)}°; σν = ${p.resolution.frequencySigma.toPrecision(4)} Hz. ${p.resolution.smallAngle ? "Small-angle approximation / 小角度近似" : "Large angular width: small-angle resolution estimate outside domain / 大角度展宽：小角度分辨率估计超出适用范围"}`;
+      const ok = p.sep >= V("separation-sigma");
+      const info=`${TL.event_width} = ${(p.resolution.eventSigma*180/Math.PI).toFixed(3)}°; ${TL.centroid_width} = ${(p.resolution.centroidSigma*180/Math.PI).toFixed(3)}°; σν = ${p.resolution.frequencySigma.toPrecision(4)} Hz. ${p.resolution.smallAngle ? TL.small_angle : TL.large_angle}`;
       box.querySelector(".pi-freq").insertAdjacentHTML("beforeend",`<p>${info}</p>`);
       if (isMulti()) {
         const [i, j] = p.pair || [0, 0], a = p.sp[i], b = p.sp[j];
@@ -593,9 +607,10 @@
       if (a === "clear") { hits = []; piRandom=P.rng(V("pi-seed"));phaseOffsets=[]; draw(); }
       if (a === "rand") { const pool=list.filter(x=>!sel("practice-filter").checked || (catalog.states.get(x.id).half_life.seconds>=.05)); if(pool.length){ sel("iso-search").value="";filterList(pool[Math.floor(Math.random()*pool.length)].id); } }
       if (a === "preset") { sel("ions").value = e.target.closest("[data-ions]").dataset.ions; parse(); }
-      if (a === "auto") { /* shortest t_acc with every pair of spots ≥ 3σ_φ apart (angles wrap every 2π) */
-        const el = sel("tacc"); let best = null; for (let ms = 1; ms <= 5000; ms++) { el.value = ms; if (phys().sep >= 3) { best = ms; break; } }
-        el.max = Math.max(+el.max, best || 5000); el.value = best || el.value; el.dispatchEvent(new Event("input", { bubbles: true })); shoot(V("nshot")); draw(); }
+      if (a === "auto") {
+        const p=phys(),best=P.shortestPhaseTime(p.sp.map(s=>s.nc),p.sig,V("separation-sigma"));
+        if(best==null){msg(box,TL.separation_none);return;}
+        const el=sel("tacc");el.value=best;el.dispatchEvent(new Event("input",{bubbles:true}));shoot(V("nshot"));draw(); }
       if (a === "png") { savePNG(cv, paint, "pi-icr-detector"); }
       if (a === "png2") savePNG(cvh, paintH, "pi-icr-angle");
       if (a === "csv" && window.zgExport) { const sp = phys().sp; window.zgExport.csv(["x_rel", "y_rel", "angle_deg", "state"], hits.map(([x, y, k]) => [x.toFixed(4), y.toFixed(4), k === 2 ? "" : ((Math.atan2(y, x) * 180 / Math.PI + 360) % 360).toFixed(2), k === 2 ? "centre" : k === 3 ? "magnetron-reference" : (sp[k - 10] || {}).txt || "?"]), "pi-icr-hits"); }
@@ -603,7 +618,7 @@
       } catch(e) { msg(box,e.message); }
     });
     sel("iso-search").addEventListener("input",()=>filterList());
-    box.addEventListener("click",e=>{if(e.target.closest("[data-act=json]")){try {const data={model:"PI-ICR ideal phase",source:catalog.metadata,constants:P.C,parameters:{B:V("B"),U0:V("u0"),d_mm:V("dch"),tacc_ms:V("tacc"),radius_mm:V("radius"),event_sigma_mm:V("spot")/10,angular_floor_mrad:V("floor"),counts:V("centroid-count"),seed:V("pi-seed")},units:{B:"T",U0:"V",d_mm:"mm",tacc_ms:"ms",radius_mm:"mm",event_sigma_mm:"mm",angular_floor_mrad:"mrad",hits:"normalized Cartesian coordinates"},comparison:{enabled:sel("compare-times").checked,times_ms:[V("tacc"),V("compare-t2"),V("compare-t3")]},assumptions:["Ideal Penning frequencies; known frequencies set the complete turn count", "Independent detector events; angular floor is shared per species and dataset", "Atomic mass minus q electron masses; ionization and molecular binding energies omitted"],species:species(),hits};const link=document.createElement("a"),url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));link.href=url;link.download="pi-icr-inputs-results.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){msg(box,e.message);}}});
+    box.addEventListener("click",e=>{if(e.target.closest("[data-act=json]")){try {const data={model:"PI-ICR ideal phase",source:catalog.metadata,constants:P.C,parameters:{B:V("B"),U0:V("u0"),d_mm:V("dch"),tacc_ms:V("tacc"),radius_mm:V("radius"),detector_view_radius_mm:35,event_sigma_mm:V("spot")/10,angular_floor_mrad:V("floor"),counts:V("centroid-count"),separation_sigma:V("separation-sigma"),seed:V("pi-seed")},units:{B:"T",U0:"V",d_mm:"mm",tacc_ms:"ms",radius_mm:"mm",event_sigma_mm:"mm",angular_floor_mrad:"mrad",hits:"normalized Cartesian coordinates"},comparison:{enabled:sel("compare-times").checked,times_ms:[V("tacc"),V("compare-t2"),V("compare-t3")]},assumptions:["Ideal Penning frequencies; known frequencies set the complete turn count", "Independent detector events; angular floor is shared per species and dataset", "Atomic mass minus q electron masses; ionization and molecular binding energies omitted"],species:species(),hits};const link=document.createElement("a"),url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));link.href=url;link.download="pi-icr-inputs-results.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){msg(box,e.message);}}});
     const init = () => rows.length ? build() : setTimeout(init, 200); init();
   }
 
@@ -634,8 +649,10 @@
   /* number boxes next to sliders: typing a value moves the slider (and widens its range if needed) */
   root.querySelectorAll(".g-num[data-for]").forEach(n => {
     const box = n.closest(".g-box"), r = box && box.querySelector(`input[type=range][name="${n.dataset.for}"]`); if (!r) return;
-    const show = () => { n.value = r.step!=="1" ? (+r.value).toFixed(2) : String(Math.round(+r.value)); };
+    let editing = false;
+    const show = () => { if (editing) return; n.value = r.step!=="1" ? (+r.value).toFixed(2) : String(Math.round(+r.value)); };
     r.addEventListener("input", show); show();
+    n.addEventListener("input", () => { const v = Number(n.value); if(n.value === "" || !Number.isFinite(v) || !n.validity.valid || v < +r.min || v > +r.max) return; editing=true; r.value=v; r.dispatchEvent(new Event("input", {bubbles:true})); editing=false; });
     n.addEventListener("change", () => { const v = +n.value; if (!isFinite(n.value === "" ? NaN : v)) return show();
       if (v > +r.max || v < +r.min) { n.setCustomValidity(`Use ${r.min}–${r.max}`);n.reportValidity();return; } n.setCustomValidity("");r.value = v; r.dispatchEvent(new Event("input", { bubbles: true })); });
   });
