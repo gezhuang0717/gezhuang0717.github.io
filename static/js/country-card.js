@@ -15,7 +15,7 @@
         heading.hidden=!p;storyNext.disabled=!p||country.places.length<2;
         if(p){root.dataset.place=p.id;heading.textContent=p.names[lang];heading.lang=p.name_languages[lang];story.textContent=p.story?.[lang]||data.kind_labels[p.kind][lang]+'. '+format(T.coordinates,{lat:p.lat.toFixed(4),lon:p.lon.toFixed(4)});joke.textContent=T.joke+': '+format(data.captions[p.caption][lang],{place:p.names[lang]});add(T.reading,p.reading||p.source);}
         else{delete root.dataset.place;story.textContent=T.no_story;joke.textContent='';}
-        add(T.wiki,'https://'+lang+'.wikipedia.org/w/index.php?title=Special%3ASearch&search='+encodeURIComponent(p?p.names[lang]:country.names[lang])+'&go=Go');
+        add(T.wiki,'https://'+lang+'.wikipedia.org/w/index.php?title=Special%3ASearch&search='+encodeURIComponent(country.names[lang])+'&go=Go');
         const query=p?p.lat+','+p.lon:country.names[lang];add(T.maps,'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(query)+'&hl='+lang);if(lang==='zh')add(T.baidu,'https://map.baidu.com/search/'+encodeURIComponent(p?p.names.zh:country.names.zh));
         root.querySelector('.zg-country-count').textContent=format(T.collection,{count:new Intl.NumberFormat(lang).format(data.distinct_places)});
       }

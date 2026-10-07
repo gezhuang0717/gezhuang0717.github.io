@@ -66,6 +66,16 @@ en:
   reference_label: Reference
   unwrapped_angle: Signed, unwrapped angle
   wrapped_angle: Residual angle in [−180°, 180°)
+  pi_h: 'Relative to the common origin, νc = (φ + 2πn)/(2πt), with phase φ in radians
+    and complete turns n. The simulator knows n; experiments must determine it separately.
+    For rest-energy increase E at fixed charge: |Δνc|/νc = E/(mion c² + E). At small
+    angles σφ ≈ σx,y/r; r is editable, initially 10.00 mm. R = 2πνc t/(2.355 σφ) is
+    a FWHM resolution guide, not mass uncertainty. Longer times can make wrapped spots
+    overlap again.'
+  pi_fh: 'The ideal trap has fast radial motion ν₊, slow magnetron motion ν₋ and axial
+    oscillation νz. Here Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmion), νz = √(qU₀/(mion
+    d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Confinement requires νc² > 2νz². Ideal
+    identities: ν₊ + ν₋ = νc and ν₊² + ν₋² + νz² = νc². First order: ν₋ ≈ U₀/(4πBd²).'
 zh:
   search: 搜索
   other_states: 其他能级 / 同位旋模拟态 / 分类未定
@@ -118,6 +128,12 @@ zh:
   reference_label: 参考离子
   unwrapped_angle: 未回绕的有符号角度
   wrapped_angle: '[−180°,180°) 内的残余角'
+  pi_h: 相对共同角度原点，νc = (φ + 2πn)/(2πt)，φ 用弧度，n 为完整圈数。仿真已知 n，真实测量需另行确定。在相同电荷下，静止能量增加
+    E 时，|Δνc|/νc = E/(m离子c² + E)。小角度下 σφ ≈ σx,y/r；r 可调，初始为 10.00 mm。R = 2πνc t/(2.355
+    σφ) 表示半高全宽分辨本领，不等同于质量不确定度。积累时间更长时，回绕的斑点可能再次重叠。
+  pi_fh: 理想阱包含快速径向运动 ν₊、慢速磁控运动 ν₋ 和轴向振荡 νz。这里 Φ = U₀(z² − r²/2)/(2d²)，νc = qB/(2πm离子)，νz
+    = √(qU₀/(m离子d²))/(2π)，ν± = [νc ± √(νc² − 2νz²)]/2。稳定囚禁需要 νc² > 2νz²。理想关系：ν₊ +
+    ν₋ = νc，ν₊² + ν₋² + νz² = νc²。一阶近似：ν₋ ≈ U₀/(4πBd²)。
 fi:
   search: Haku
   other_states: Muut tasot / IAS / luokitus avoin
@@ -182,6 +198,16 @@ fi:
   reference_label: Referenssi
   unwrapped_angle: Etumerkillinen kulma ilman kiertoa
   wrapped_angle: Jäännöskulma välillä [−180°,180°)
+  pi_h: Yhteisestä origosta νc = (φ + 2πn)/(2πt), missä φ on radiaaneina ja n täydet
+    kierrokset. Simulaatio tuntee n:n; mittaus määrittää sen erikseen. Samalla varauksella
+    lepoenergian lisäys E antaa |Δνc|/νc = E/(mioni c² + E). Pienillä kulmilla σφ
+    ≈ σx,y/r; säädettävä r on aluksi 10,00 mm. R = 2πνc t/(2,355 σφ) on FWHM-erotuskyvyn
+    ohjearvo, ei massan epävarmuus. Pidempi aika voi saada kiertävät täplät taas päällekkäin.
+  pi_fh: 'Ideaaliloukun liikkeet: nopea radiaalinen ν₊, hidas magnetroniliike ν₋ ja
+    aksiaalinen värähtely νz. Tässä Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmioni), νz
+    = √(qU₀/(mioni d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Vakaus edellyttää νc² >
+    2νz². Ideaalisuhteet: ν₊ + ν₋ = νc ja ν₊² + ν₋² + νz² = νc². Ensimmäinen approksimaatio:
+    ν₋ ≈ U₀/(4πBd²).'
 de:
   search: Suchen
   other_states: Andere Niveaus / IAS / ungeklärte Klasse
@@ -251,6 +277,17 @@ de:
   reference_label: Referenz
   unwrapped_angle: Vorzeichenbehafteter, ungekürzter Winkel
   wrapped_angle: Restwinkel in [−180°,180°)
+  pi_h: 'Vom gemeinsamen Ursprung gilt νc = (φ + 2πn)/(2πt), mit φ in Radiant und
+    n vollständigen Umläufen. Die Simulation kennt n; Experimente bestimmen n getrennt.
+    Bei gleicher Ladung ergibt zusätzliche Ruheenergie E: |Δνc|/νc = E/(mIon c² +
+    E). Für kleine Winkel gilt σφ ≈ σx,y/r; r ist einstellbar, anfangs 10,00 mm. R
+    = 2πνc t/(2,355 σφ) ist ein FWHM-Auflösungsrichtwert, keine Massenunsicherheit.
+    Längere Zeiten können die umlaufenden Flecken erneut überlagern.'
+  pi_fh: 'Ideale Bewegungen: schnelle radiale Bewegung ν₊, langsame Magnetronbewegung
+    ν₋, axiale Schwingung νz. Hier Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmIon), νz =
+    √(qU₀/(mIon d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Einschluss erfordert νc² >
+    2νz². Ideale Identitäten: ν₊ + ν₋ = νc, ν₊² + ν₋² + νz² = νc². Erste Ordnung:
+    ν₋ ≈ U₀/(4πBd²).'
 ja:
   search: 検索
   other_states: その他の準位・IAS・分類未確定
@@ -304,3 +341,9 @@ ja:
   reference_label: 基準
   unwrapped_angle: 折り返さない符号付き角度
   wrapped_angle: '[−180°,180°) の残余角'
+  pi_h: 共通原点から測ると νc = (φ + 2πn)/(2πt)。φ はラジアン、n は完了周回数です。仮想実験は n を知っていますが、実測では別途決定します。同じ電荷で静止エネルギーが
+    E 増加すると |Δνc|/νc = E/(mイオンc² + E)。小角度では σφ ≈ σx,y/r。調整できる r の初期値は 10.00 mm。R =
+    2πνc t/(2.355 σφ) は半値全幅の分解能指標で、質量不確かさではありません。時間を延ばすと折り返すスポットが再び重なる場合があります。
+  pi_fh: 理想的な運動は速い半径方向運動 ν₊、遅いマグネトロン運動 ν₋、軸方向振動 νz です。Φ = U₀(z² − r²/2)/(2d²)、νc =
+    qB/(2πmイオン)、νz = √(qU₀/(mイオンd²))/(2π)、ν± = [νc ± √(νc² − 2νz²)]/2。閉じ込めには νc² >
+    2νz² が必要。理想的な関係は ν₊ + ν₋ = νc、ν₊² + ν₋² + νz² = νc²。一階近似は ν₋ ≈ U₀/(4πBd²)。
