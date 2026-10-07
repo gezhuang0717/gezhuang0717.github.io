@@ -15,7 +15,8 @@ import json, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 D = ROOT / "tools/data"
 MODELS = {
-    "frdm1995": {"name": "FRDM (1995)", "ref": "P. Möller, J.R. Nix, W.D. Myers, W.J. Swiatecki, At. Data Nucl. Data Tables 59, 185 (1995)", "url": "https://doi.org/10.1006/adnd.1995.1002"},
+    "frdm1995": {"name": "FRDM1992 (published 1995)", "ref": "P. Möller, J.R. Nix, W.D. Myers, W.J. Swiatecki, At. Data Nucl. Data Tables 59, 185 (1995)", "url": "https://doi.org/10.1006/adnd.1995.1002"},
+    "frdm2012": {"name": "FRDM2012 (published 2016)", "ref": "P. Möller, A.J. Sierk, T. Ichikawa, H. Sagawa, At. Data Nucl. Data Tables 109–110, 1–204 (2016)", "url": "https://doi.org/10.1016/j.adt.2015.10.002"},
     "hfb17": {"name": "HFB-17 (Skyrme)", "ref": "S. Goriely, N. Chamel, J.M. Pearson, Phys. Rev. Lett. 102, 152503 (2009)", "url": "https://doi.org/10.1103/PhysRevLett.102.152503"},
     "hfbd1m": {"name": "HFB-D1M (Gogny)", "ref": "S. Goriely, S. Hilaire, M. Girod, S. Péru, Phys. Rev. Lett. 102, 242501 (2009)", "url": "https://doi.org/10.1103/PhysRevLett.102.242501"},
 }
@@ -27,7 +28,7 @@ def read_model(path):
             continue
         Z, A, me, b2 = line.split()[:4]
         Z, A = int(Z), int(A)
-        rows.append([Z, A - Z, round(float(me) * 1000), round(float(b2) * 1000)])   # keV, beta2 × 1000
+        rows.append([Z, A - Z, float(me) * 1000, float(b2) * 1000])   # keV, beta2 × 1000; retain source precision
     return rows
 
 def read_path(path, sep=None):
@@ -44,7 +45,9 @@ out = {"models": {}, "paths": {}}
 for key, meta in MODELS.items():
     f = D / "massmodels" / f"{key}.txt"
     if f.exists():
-        out["models"][key] = {**meta, "rows": read_model(f)}
+        provenance = D / "massmodels" / f"{key}-source.json"
+        out["models"][key] = {**meta, "rows": read_model(f), "uncertainty": None,
+                              "source": json.loads(provenance.read_text()) if provenance.exists() else {"lineage": "legacy TALYS1.95 normalized extraction; see citation"}}
 out["paths"]["r"] = {"name": "r-process path (ETFSI masses)", "ref": "digitised from ApJ 815, 82 (2015), Fig. 2", "url": "https://doi.org/10.1088/0004-637X/815/2/82",
                      "pts": read_path(D / "paths/r-process-etfsi.csv")}
 out["paths"]["rp"] = {"name": "rp-process path (approximate)", "ref": "approximate path, Mulberry data set", "url": "", "pts": read_path(D / "paths/rp-process.txt")}

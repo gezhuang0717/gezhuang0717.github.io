@@ -20,7 +20,7 @@ for line in (ROOT / "tools/data/ame2020/mass_1.mas20.txt").read_text().splitline
         me, er = float(me.replace("#", "")), float(er.replace("#", ""))
     except ValueError:
         continue
-    rows.append([Z, A, el, round(me, 4), round(er, 4), int(est)])
+    rows.append([Z, A, el, me, er, int(est), int("#" in line[42:54])])
 out = ROOT / "static/data/ame2020.json"
 out.write_text(json.dumps({"source": "AME2020 mass_1.mas20 (Huang et al., Wang et al., Chin. Phys. C 45, 030002/030003, 2021)", "rows": rows}, separators=(",", ":")))
 print(len(rows), "nuclides →", out, out.stat().st_size, "B")

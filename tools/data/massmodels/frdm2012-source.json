@@ -1,0 +1,12 @@
+{
+  "url": "https://arxiv.org/pdf/1508.06294",
+  "doi": "10.1016/j.adt.2015.10.002",
+  "sha256": "99ce7ece6830b0904f68d9a6342b9e66d0ebf0d235c2eb6c4de78716768c10e4",
+  "rows": 9318,
+  "extraction": "pypdf and pdfplumber: every exported mass/beta2/identity identical",
+  "mass_precision_keV": 10,
+  "beta2_precision": 0.001,
+  "uncertainty": null,
+  "columns": "Z,N,A,epsilon2/3/4/6,beta2/3/4/6,Es+p,Emic,Ebind,Mth,Mexp,sigmaexp,EFLmic,MFLth; export Mth,beta2",
+  "reuse": "attributed numerical facts from the published table; paper not redistributed"
+}
