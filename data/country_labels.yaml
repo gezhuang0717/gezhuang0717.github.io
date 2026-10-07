@@ -1,0 +1,65 @@
+en:
+  title: Country / region of the day
+  location: 'Location: {location}.'
+  intro: Explore its geography, culture and history.
+  joke: Travel joke
+  wiki: Wikipedia
+  maps: Google Maps
+  baidu: Baidu Maps
+  another: Another one
+  loading: Opening the atlas…
+  error: The country card could not load. Reload to try again.
+  source: 'Geography: UN M49'
+  collection: '{count} country–joke combinations'
+zh:
+  title: 每日国家 / 地区
+  location: 位置：{location}。
+  intro: 探索这里的地理、文化与历史。
+  joke: 旅行小笑话
+  wiki: 维基百科
+  maps: 谷歌地图
+  baidu: 百度地图
+  another: 换一个
+  loading: 正在打开地图册……
+  error: 国家卡片加载失败，请刷新重试。
+  source: 地理分类：联合国 M49
+  collection: '{count} 个国家地区与笑话组合'
+fi:
+  title: Päivän maa / alue
+  location: 'Sijainti: {location}.'
+  intro: Tutustu maantieteeseen, kulttuuriin ja historiaan.
+  joke: Matkavitsi
+  wiki: Wikipedia
+  maps: Google Maps
+  baidu: Baidu Maps
+  another: Toinen
+  loading: Avataan kartastoa…
+  error: Maakortin lataus epäonnistui. Lataa sivu uudelleen.
+  source: 'Maantiede: YK:n M49'
+  collection: '{count} maa–vitsiyhdistelmää'
+de:
+  title: Land / Region des Tages
+  location: 'Lage: {location}.'
+  intro: Entdecke Geografie, Kultur und Geschichte.
+  joke: Reisewitz
+  wiki: Wikipedia
+  maps: Google Maps
+  baidu: Baidu Maps
+  another: Noch eines
+  loading: Atlas wird geöffnet…
+  error: Die Länderkarte konnte nicht geladen werden. Lade die Seite neu.
+  source: 'Geografie: UN M49'
+  collection: '{count} Länder–Witz-Kombinationen'
+ja:
+  title: 今日の国・地域
+  location: 位置：{location}。
+  intro: 地理、文化、歴史を調べてみましょう。
+  joke: 旅の小話
+  wiki: ウィキペディア
+  maps: Google マップ
+  baidu: 百度マップ
+  another: 別の例
+  loading: 地図帳を開いています…
+  error: 国のカードを読み込めませんでした。ページを再読み込みしてください。
+  source: 地理分類：国連 M49
+  collection: '{count} 通りの国・地域と小話の組み合わせ'

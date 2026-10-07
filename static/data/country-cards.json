@@ -1,0 +1,9491 @@
+{
+  "schema_version": 1,
+  "source": {
+    "title": "United Nations Statistics Division — M49 countries or areas",
+    "url": "https://unstats.un.org/unsd/methodology/m49/overview/",
+    "retrieved": "2026-10-07",
+    "scope": "248 M49 countries or areas, including territories; not a list of 248 sovereign states",
+    "names": "ICU/CLDR through Node Intl.DisplayNames; UN original name retained",
+    "location": "UN geographic hierarchy; Antarctica has no regional hierarchy in the source"
+  },
+  "combination_count": 1984,
+  "countries": [
+    {
+      "iso2": "DZ",
+      "iso3": "DZA",
+      "m49": "012",
+      "name": "Algeria",
+      "region": "002",
+      "subregion": "015",
+      "names": {
+        "en": "Algeria",
+        "zh": "阿尔及利亚",
+        "fi": "Algeria",
+        "de": "Algerien",
+        "ja": "アルジェリア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Northern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "北非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Pohjois-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Nordafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "北アフリカ"
+        ]
+      },
+      "flag": "🇩🇿"
+    },
+    {
+      "iso2": "EG",
+      "iso3": "EGY",
+      "m49": "818",
+      "name": "Egypt",
+      "region": "002",
+      "subregion": "015",
+      "names": {
+        "en": "Egypt",
+        "zh": "埃及",
+        "fi": "Egypti",
+        "de": "Ägypten",
+        "ja": "エジプト"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Northern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "北非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Pohjois-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Nordafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "北アフリカ"
+        ]
+      },
+      "flag": "🇪🇬"
+    },
+    {
+      "iso2": "LY",
+      "iso3": "LBY",
+      "m49": "434",
+      "name": "Libya",
+      "region": "002",
+      "subregion": "015",
+      "names": {
+        "en": "Libya",
+        "zh": "利比亚",
+        "fi": "Libya",
+        "de": "Libyen",
+        "ja": "リビア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Northern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "北非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Pohjois-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Nordafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "北アフリカ"
+        ]
+      },
+      "flag": "🇱🇾"
+    },
+    {
+      "iso2": "MA",
+      "iso3": "MAR",
+      "m49": "504",
+      "name": "Morocco",
+      "region": "002",
+      "subregion": "015",
+      "names": {
+        "en": "Morocco",
+        "zh": "摩洛哥",
+        "fi": "Marokko",
+        "de": "Marokko",
+        "ja": "モロッコ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Northern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "北非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Pohjois-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Nordafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "北アフリカ"
+        ]
+      },
+      "flag": "🇲🇦"
+    },
+    {
+      "iso2": "SD",
+      "iso3": "SDN",
+      "m49": "729",
+      "name": "Sudan",
+      "region": "002",
+      "subregion": "015",
+      "names": {
+        "en": "Sudan",
+        "zh": "苏丹",
+        "fi": "Sudan",
+        "de": "Sudan",
+        "ja": "スーダン"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Northern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "北非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Pohjois-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Nordafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "北アフリカ"
+        ]
+      },
+      "flag": "🇸🇩"
+    },
+    {
+      "iso2": "TN",
+      "iso3": "TUN",
+      "m49": "788",
+      "name": "Tunisia",
+      "region": "002",
+      "subregion": "015",
+      "names": {
+        "en": "Tunisia",
+        "zh": "突尼斯",
+        "fi": "Tunisia",
+        "de": "Tunesien",
+        "ja": "チュニジア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Northern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "北非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Pohjois-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Nordafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "北アフリカ"
+        ]
+      },
+      "flag": "🇹🇳"
+    },
+    {
+      "iso2": "EH",
+      "iso3": "ESH",
+      "m49": "732",
+      "name": "Western Sahara",
+      "region": "002",
+      "subregion": "015",
+      "names": {
+        "en": "Western Sahara",
+        "zh": "西撒哈拉",
+        "fi": "Länsi-Sahara",
+        "de": "Westsahara",
+        "ja": "西サハラ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Northern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "北非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Pohjois-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Nordafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "北アフリカ"
+        ]
+      },
+      "flag": "🇪🇭"
+    },
+    {
+      "iso2": "IO",
+      "iso3": "IOT",
+      "m49": "086",
+      "name": "British Indian Ocean Territory",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "British Indian Ocean Territory",
+        "zh": "英属印度洋领地",
+        "fi": "Brittiläinen Intian valtameren alue",
+        "de": "Britisches Territorium im Indischen Ozean",
+        "ja": "英領インド洋地域"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇮🇴"
+    },
+    {
+      "iso2": "BI",
+      "iso3": "BDI",
+      "m49": "108",
+      "name": "Burundi",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Burundi",
+        "zh": "布隆迪",
+        "fi": "Burundi",
+        "de": "Burundi",
+        "ja": "ブルンジ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇧🇮"
+    },
+    {
+      "iso2": "KM",
+      "iso3": "COM",
+      "m49": "174",
+      "name": "Comoros",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Comoros",
+        "zh": "科摩罗",
+        "fi": "Komorit",
+        "de": "Komoren",
+        "ja": "コモロ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇰🇲"
+    },
+    {
+      "iso2": "DJ",
+      "iso3": "DJI",
+      "m49": "262",
+      "name": "Djibouti",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Djibouti",
+        "zh": "吉布提",
+        "fi": "Djibouti",
+        "de": "Dschibuti",
+        "ja": "ジブチ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇩🇯"
+    },
+    {
+      "iso2": "ER",
+      "iso3": "ERI",
+      "m49": "232",
+      "name": "Eritrea",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Eritrea",
+        "zh": "厄立特里亚",
+        "fi": "Eritrea",
+        "de": "Eritrea",
+        "ja": "エリトリア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇪🇷"
+    },
+    {
+      "iso2": "ET",
+      "iso3": "ETH",
+      "m49": "231",
+      "name": "Ethiopia",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Ethiopia",
+        "zh": "埃塞俄比亚",
+        "fi": "Etiopia",
+        "de": "Äthiopien",
+        "ja": "エチオピア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇪🇹"
+    },
+    {
+      "iso2": "TF",
+      "iso3": "ATF",
+      "m49": "260",
+      "name": "French Southern Territories",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "French Southern Territories",
+        "zh": "法属南部领地",
+        "fi": "Ranskan eteläiset ja antarktiset alueet",
+        "de": "Französische Süd- und Antarktisgebiete",
+        "ja": "仏領極南諸島"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇹🇫"
+    },
+    {
+      "iso2": "KE",
+      "iso3": "KEN",
+      "m49": "404",
+      "name": "Kenya",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Kenya",
+        "zh": "肯尼亚",
+        "fi": "Kenia",
+        "de": "Kenia",
+        "ja": "ケニア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇰🇪"
+    },
+    {
+      "iso2": "MG",
+      "iso3": "MDG",
+      "m49": "450",
+      "name": "Madagascar",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Madagascar",
+        "zh": "马达加斯加",
+        "fi": "Madagaskar",
+        "de": "Madagaskar",
+        "ja": "マダガスカル"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇲🇬"
+    },
+    {
+      "iso2": "MW",
+      "iso3": "MWI",
+      "m49": "454",
+      "name": "Malawi",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Malawi",
+        "zh": "马拉维",
+        "fi": "Malawi",
+        "de": "Malawi",
+        "ja": "マラウイ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇲🇼"
+    },
+    {
+      "iso2": "MU",
+      "iso3": "MUS",
+      "m49": "480",
+      "name": "Mauritius",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Mauritius",
+        "zh": "毛里求斯",
+        "fi": "Mauritius",
+        "de": "Mauritius",
+        "ja": "モーリシャス"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇲🇺"
+    },
+    {
+      "iso2": "YT",
+      "iso3": "MYT",
+      "m49": "175",
+      "name": "Mayotte",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Mayotte",
+        "zh": "马约特",
+        "fi": "Mayotte",
+        "de": "Mayotte",
+        "ja": "マヨット"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇾🇹"
+    },
+    {
+      "iso2": "MZ",
+      "iso3": "MOZ",
+      "m49": "508",
+      "name": "Mozambique",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Mozambique",
+        "zh": "莫桑比克",
+        "fi": "Mosambik",
+        "de": "Mosambik",
+        "ja": "モザンビーク"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇲🇿"
+    },
+    {
+      "iso2": "RE",
+      "iso3": "REU",
+      "m49": "638",
+      "name": "Réunion",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Réunion",
+        "zh": "留尼汪",
+        "fi": "Réunion",
+        "de": "Réunion",
+        "ja": "レユニオン"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇷🇪"
+    },
+    {
+      "iso2": "RW",
+      "iso3": "RWA",
+      "m49": "646",
+      "name": "Rwanda",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Rwanda",
+        "zh": "卢旺达",
+        "fi": "Ruanda",
+        "de": "Ruanda",
+        "ja": "ルワンダ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇷🇼"
+    },
+    {
+      "iso2": "SC",
+      "iso3": "SYC",
+      "m49": "690",
+      "name": "Seychelles",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Seychelles",
+        "zh": "塞舌尔",
+        "fi": "Seychellit",
+        "de": "Seychellen",
+        "ja": "セーシェル"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇸🇨"
+    },
+    {
+      "iso2": "SO",
+      "iso3": "SOM",
+      "m49": "706",
+      "name": "Somalia",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Somalia",
+        "zh": "索马里",
+        "fi": "Somalia",
+        "de": "Somalia",
+        "ja": "ソマリア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇸🇴"
+    },
+    {
+      "iso2": "SS",
+      "iso3": "SSD",
+      "m49": "728",
+      "name": "South Sudan",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "South Sudan",
+        "zh": "南苏丹",
+        "fi": "Etelä-Sudan",
+        "de": "Südsudan",
+        "ja": "南スーダン"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇸🇸"
+    },
+    {
+      "iso2": "UG",
+      "iso3": "UGA",
+      "m49": "800",
+      "name": "Uganda",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Uganda",
+        "zh": "乌干达",
+        "fi": "Uganda",
+        "de": "Uganda",
+        "ja": "ウガンダ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇺🇬"
+    },
+    {
+      "iso2": "TZ",
+      "iso3": "TZA",
+      "m49": "834",
+      "name": "United Republic of Tanzania",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Tanzania",
+        "zh": "坦桑尼亚",
+        "fi": "Tansania",
+        "de": "Tansania",
+        "ja": "タンザニア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇹🇿"
+    },
+    {
+      "iso2": "ZM",
+      "iso3": "ZMB",
+      "m49": "894",
+      "name": "Zambia",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Zambia",
+        "zh": "赞比亚",
+        "fi": "Sambia",
+        "de": "Sambia",
+        "ja": "ザンビア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇿🇲"
+    },
+    {
+      "iso2": "ZW",
+      "iso3": "ZWE",
+      "m49": "716",
+      "name": "Zimbabwe",
+      "region": "002",
+      "subregion": "014",
+      "names": {
+        "en": "Zimbabwe",
+        "zh": "津巴布韦",
+        "fi": "Zimbabwe",
+        "de": "Simbabwe",
+        "ja": "ジンバブエ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Eastern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "东非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Itä-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Ostafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "東アフリカ"
+        ]
+      },
+      "flag": "🇿🇼"
+    },
+    {
+      "iso2": "AO",
+      "iso3": "AGO",
+      "m49": "024",
+      "name": "Angola",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Angola",
+        "zh": "安哥拉",
+        "fi": "Angola",
+        "de": "Angola",
+        "ja": "アンゴラ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇦🇴"
+    },
+    {
+      "iso2": "CM",
+      "iso3": "CMR",
+      "m49": "120",
+      "name": "Cameroon",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Cameroon",
+        "zh": "喀麦隆",
+        "fi": "Kamerun",
+        "de": "Kamerun",
+        "ja": "カメルーン"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇨🇲"
+    },
+    {
+      "iso2": "CF",
+      "iso3": "CAF",
+      "m49": "140",
+      "name": "Central African Republic",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Central African Republic",
+        "zh": "中非共和国",
+        "fi": "Keski-Afrikan tasavalta",
+        "de": "Zentralafrikanische Republik",
+        "ja": "中央アフリカ共和国"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇨🇫"
+    },
+    {
+      "iso2": "TD",
+      "iso3": "TCD",
+      "m49": "148",
+      "name": "Chad",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Chad",
+        "zh": "乍得",
+        "fi": "Tšad",
+        "de": "Tschad",
+        "ja": "チャド"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇹🇩"
+    },
+    {
+      "iso2": "CG",
+      "iso3": "COG",
+      "m49": "178",
+      "name": "Congo",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Congo - Brazzaville",
+        "zh": "刚果（布）",
+        "fi": "Kongon tasavalta",
+        "de": "Kongo-Brazzaville",
+        "ja": "コンゴ共和国(ブラザビル)"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇨🇬"
+    },
+    {
+      "iso2": "CD",
+      "iso3": "COD",
+      "m49": "180",
+      "name": "Democratic Republic of the Congo",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Congo - Kinshasa",
+        "zh": "刚果（金）",
+        "fi": "Kongon demokraattinen tasavalta",
+        "de": "Kongo-Kinshasa",
+        "ja": "コンゴ民主共和国(キンシャサ)"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇨🇩"
+    },
+    {
+      "iso2": "GQ",
+      "iso3": "GNQ",
+      "m49": "226",
+      "name": "Equatorial Guinea",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Equatorial Guinea",
+        "zh": "赤道几内亚",
+        "fi": "Päiväntasaajan Guinea",
+        "de": "Äquatorialguinea",
+        "ja": "赤道ギニア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇬🇶"
+    },
+    {
+      "iso2": "GA",
+      "iso3": "GAB",
+      "m49": "266",
+      "name": "Gabon",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "Gabon",
+        "zh": "加蓬",
+        "fi": "Gabon",
+        "de": "Gabun",
+        "ja": "ガボン"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇬🇦"
+    },
+    {
+      "iso2": "ST",
+      "iso3": "STP",
+      "m49": "678",
+      "name": "Sao Tome and Principe",
+      "region": "002",
+      "subregion": "017",
+      "names": {
+        "en": "São Tomé & Príncipe",
+        "zh": "圣多美和普林西比",
+        "fi": "São Tomé ja Príncipe",
+        "de": "São Tomé und Príncipe",
+        "ja": "サントメ・プリンシペ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Middle Africa"
+        ],
+        "zh": [
+          "非洲",
+          "中非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Keski-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Zentralafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "中部アフリカ"
+        ]
+      },
+      "flag": "🇸🇹"
+    },
+    {
+      "iso2": "BW",
+      "iso3": "BWA",
+      "m49": "072",
+      "name": "Botswana",
+      "region": "002",
+      "subregion": "018",
+      "names": {
+        "en": "Botswana",
+        "zh": "博茨瓦纳",
+        "fi": "Botswana",
+        "de": "Botsuana",
+        "ja": "ボツワナ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Southern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "南部非洲"
+        ],
+        "fi": [
+          "Afrikka",
+          "eteläinen Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Südliches Afrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "南部アフリカ"
+        ]
+      },
+      "flag": "🇧🇼"
+    },
+    {
+      "iso2": "SZ",
+      "iso3": "SWZ",
+      "m49": "748",
+      "name": "Eswatini",
+      "region": "002",
+      "subregion": "018",
+      "names": {
+        "en": "Eswatini",
+        "zh": "斯威士兰",
+        "fi": "Eswatini",
+        "de": "Eswatini",
+        "ja": "エスワティニ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Southern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "南部非洲"
+        ],
+        "fi": [
+          "Afrikka",
+          "eteläinen Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Südliches Afrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "南部アフリカ"
+        ]
+      },
+      "flag": "🇸🇿"
+    },
+    {
+      "iso2": "LS",
+      "iso3": "LSO",
+      "m49": "426",
+      "name": "Lesotho",
+      "region": "002",
+      "subregion": "018",
+      "names": {
+        "en": "Lesotho",
+        "zh": "莱索托",
+        "fi": "Lesotho",
+        "de": "Lesotho",
+        "ja": "レソト"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Southern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "南部非洲"
+        ],
+        "fi": [
+          "Afrikka",
+          "eteläinen Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Südliches Afrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "南部アフリカ"
+        ]
+      },
+      "flag": "🇱🇸"
+    },
+    {
+      "iso2": "NA",
+      "iso3": "NAM",
+      "m49": "516",
+      "name": "Namibia",
+      "region": "002",
+      "subregion": "018",
+      "names": {
+        "en": "Namibia",
+        "zh": "纳米比亚",
+        "fi": "Namibia",
+        "de": "Namibia",
+        "ja": "ナミビア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Southern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "南部非洲"
+        ],
+        "fi": [
+          "Afrikka",
+          "eteläinen Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Südliches Afrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "南部アフリカ"
+        ]
+      },
+      "flag": "🇳🇦"
+    },
+    {
+      "iso2": "ZA",
+      "iso3": "ZAF",
+      "m49": "710",
+      "name": "South Africa",
+      "region": "002",
+      "subregion": "018",
+      "names": {
+        "en": "South Africa",
+        "zh": "南非",
+        "fi": "Etelä-Afrikka",
+        "de": "Südafrika",
+        "ja": "南アフリカ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Southern Africa"
+        ],
+        "zh": [
+          "非洲",
+          "南部非洲"
+        ],
+        "fi": [
+          "Afrikka",
+          "eteläinen Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Südliches Afrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "南部アフリカ"
+        ]
+      },
+      "flag": "🇿🇦"
+    },
+    {
+      "iso2": "BJ",
+      "iso3": "BEN",
+      "m49": "204",
+      "name": "Benin",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Benin",
+        "zh": "贝宁",
+        "fi": "Benin",
+        "de": "Benin",
+        "ja": "ベナン"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇧🇯"
+    },
+    {
+      "iso2": "BF",
+      "iso3": "BFA",
+      "m49": "854",
+      "name": "Burkina Faso",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Burkina Faso",
+        "zh": "布基纳法索",
+        "fi": "Burkina Faso",
+        "de": "Burkina Faso",
+        "ja": "ブルキナファソ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇧🇫"
+    },
+    {
+      "iso2": "CV",
+      "iso3": "CPV",
+      "m49": "132",
+      "name": "Cabo Verde",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Cape Verde",
+        "zh": "佛得角",
+        "fi": "Kap Verde",
+        "de": "Cabo Verde",
+        "ja": "カーボベルデ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇨🇻"
+    },
+    {
+      "iso2": "CI",
+      "iso3": "CIV",
+      "m49": "384",
+      "name": "Côte d’Ivoire",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Côte d’Ivoire",
+        "zh": "科特迪瓦",
+        "fi": "Norsunluurannikko",
+        "de": "Côte d’Ivoire",
+        "ja": "コートジボワール"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇨🇮"
+    },
+    {
+      "iso2": "GM",
+      "iso3": "GMB",
+      "m49": "270",
+      "name": "Gambia",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Gambia",
+        "zh": "冈比亚",
+        "fi": "Gambia",
+        "de": "Gambia",
+        "ja": "ガンビア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇬🇲"
+    },
+    {
+      "iso2": "GH",
+      "iso3": "GHA",
+      "m49": "288",
+      "name": "Ghana",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Ghana",
+        "zh": "加纳",
+        "fi": "Ghana",
+        "de": "Ghana",
+        "ja": "ガーナ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇬🇭"
+    },
+    {
+      "iso2": "GN",
+      "iso3": "GIN",
+      "m49": "324",
+      "name": "Guinea",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Guinea",
+        "zh": "几内亚",
+        "fi": "Guinea",
+        "de": "Guinea",
+        "ja": "ギニア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇬🇳"
+    },
+    {
+      "iso2": "GW",
+      "iso3": "GNB",
+      "m49": "624",
+      "name": "Guinea-Bissau",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Guinea-Bissau",
+        "zh": "几内亚比绍",
+        "fi": "Guinea-Bissau",
+        "de": "Guinea-Bissau",
+        "ja": "ギニアビサウ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇬🇼"
+    },
+    {
+      "iso2": "LR",
+      "iso3": "LBR",
+      "m49": "430",
+      "name": "Liberia",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Liberia",
+        "zh": "利比里亚",
+        "fi": "Liberia",
+        "de": "Liberia",
+        "ja": "リベリア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇱🇷"
+    },
+    {
+      "iso2": "ML",
+      "iso3": "MLI",
+      "m49": "466",
+      "name": "Mali",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Mali",
+        "zh": "马里",
+        "fi": "Mali",
+        "de": "Mali",
+        "ja": "マリ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇲🇱"
+    },
+    {
+      "iso2": "MR",
+      "iso3": "MRT",
+      "m49": "478",
+      "name": "Mauritania",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Mauritania",
+        "zh": "毛里塔尼亚",
+        "fi": "Mauritania",
+        "de": "Mauretanien",
+        "ja": "モーリタニア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇲🇷"
+    },
+    {
+      "iso2": "NE",
+      "iso3": "NER",
+      "m49": "562",
+      "name": "Niger",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Niger",
+        "zh": "尼日尔",
+        "fi": "Niger",
+        "de": "Niger",
+        "ja": "ニジェール"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇳🇪"
+    },
+    {
+      "iso2": "NG",
+      "iso3": "NGA",
+      "m49": "566",
+      "name": "Nigeria",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Nigeria",
+        "zh": "尼日利亚",
+        "fi": "Nigeria",
+        "de": "Nigeria",
+        "ja": "ナイジェリア"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇳🇬"
+    },
+    {
+      "iso2": "SH",
+      "iso3": "SHN",
+      "m49": "654",
+      "name": "Saint Helena",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "St. Helena",
+        "zh": "圣赫勒拿",
+        "fi": "Saint Helena",
+        "de": "St. Helena",
+        "ja": "セントヘレナ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇸🇭"
+    },
+    {
+      "iso2": "SN",
+      "iso3": "SEN",
+      "m49": "686",
+      "name": "Senegal",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Senegal",
+        "zh": "塞内加尔",
+        "fi": "Senegal",
+        "de": "Senegal",
+        "ja": "セネガル"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇸🇳"
+    },
+    {
+      "iso2": "SL",
+      "iso3": "SLE",
+      "m49": "694",
+      "name": "Sierra Leone",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Sierra Leone",
+        "zh": "塞拉利昂",
+        "fi": "Sierra Leone",
+        "de": "Sierra Leone",
+        "ja": "シエラレオネ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇸🇱"
+    },
+    {
+      "iso2": "TG",
+      "iso3": "TGO",
+      "m49": "768",
+      "name": "Togo",
+      "region": "002",
+      "subregion": "011",
+      "names": {
+        "en": "Togo",
+        "zh": "多哥",
+        "fi": "Togo",
+        "de": "Togo",
+        "ja": "トーゴ"
+      },
+      "location": {
+        "en": [
+          "Africa",
+          "Western Africa"
+        ],
+        "zh": [
+          "非洲",
+          "西非"
+        ],
+        "fi": [
+          "Afrikka",
+          "Länsi-Afrikka"
+        ],
+        "de": [
+          "Afrika",
+          "Westafrika"
+        ],
+        "ja": [
+          "アフリカ",
+          "西アフリカ"
+        ]
+      },
+      "flag": "🇹🇬"
+    },
+    {
+      "iso2": "AI",
+      "iso3": "AIA",
+      "m49": "660",
+      "name": "Anguilla",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Anguilla",
+        "zh": "安圭拉",
+        "fi": "Anguilla",
+        "de": "Anguilla",
+        "ja": "アンギラ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇦🇮"
+    },
+    {
+      "iso2": "AG",
+      "iso3": "ATG",
+      "m49": "028",
+      "name": "Antigua and Barbuda",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Antigua & Barbuda",
+        "zh": "安提瓜和巴布达",
+        "fi": "Antigua ja Barbuda",
+        "de": "Antigua und Barbuda",
+        "ja": "アンティグア・バーブーダ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇦🇬"
+    },
+    {
+      "iso2": "AW",
+      "iso3": "ABW",
+      "m49": "533",
+      "name": "Aruba",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Aruba",
+        "zh": "阿鲁巴",
+        "fi": "Aruba",
+        "de": "Aruba",
+        "ja": "アルバ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇦🇼"
+    },
+    {
+      "iso2": "BS",
+      "iso3": "BHS",
+      "m49": "044",
+      "name": "Bahamas",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Bahamas",
+        "zh": "巴哈马",
+        "fi": "Bahama",
+        "de": "Bahamas",
+        "ja": "バハマ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇧🇸"
+    },
+    {
+      "iso2": "BB",
+      "iso3": "BRB",
+      "m49": "052",
+      "name": "Barbados",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Barbados",
+        "zh": "巴巴多斯",
+        "fi": "Barbados",
+        "de": "Barbados",
+        "ja": "バルバドス"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇧🇧"
+    },
+    {
+      "iso2": "BQ",
+      "iso3": "BES",
+      "m49": "535",
+      "name": "Bonaire, Sint Eustatius and Saba",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Caribbean Netherlands",
+        "zh": "荷属加勒比区",
+        "fi": "Karibian Alankomaat",
+        "de": "Karibische Niederlande",
+        "ja": "オランダ領カリブ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇧🇶"
+    },
+    {
+      "iso2": "VG",
+      "iso3": "VGB",
+      "m49": "092",
+      "name": "British Virgin Islands",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "British Virgin Islands",
+        "zh": "英属维尔京群岛",
+        "fi": "Brittiläiset Neitsytsaaret",
+        "de": "Britische Jungferninseln",
+        "ja": "英領ヴァージン諸島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇻🇬"
+    },
+    {
+      "iso2": "KY",
+      "iso3": "CYM",
+      "m49": "136",
+      "name": "Cayman Islands",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Cayman Islands",
+        "zh": "开曼群岛",
+        "fi": "Caymansaaret",
+        "de": "Kaimaninseln",
+        "ja": "ケイマン諸島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇰🇾"
+    },
+    {
+      "iso2": "CU",
+      "iso3": "CUB",
+      "m49": "192",
+      "name": "Cuba",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Cuba",
+        "zh": "古巴",
+        "fi": "Kuuba",
+        "de": "Kuba",
+        "ja": "キューバ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇨🇺"
+    },
+    {
+      "iso2": "CW",
+      "iso3": "CUW",
+      "m49": "531",
+      "name": "Curaçao",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Curaçao",
+        "zh": "库拉索",
+        "fi": "Curaçao",
+        "de": "Curaçao",
+        "ja": "キュラソー"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇨🇼"
+    },
+    {
+      "iso2": "DM",
+      "iso3": "DMA",
+      "m49": "212",
+      "name": "Dominica",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Dominica",
+        "zh": "多米尼克",
+        "fi": "Dominica",
+        "de": "Dominica",
+        "ja": "ドミニカ国"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇩🇲"
+    },
+    {
+      "iso2": "DO",
+      "iso3": "DOM",
+      "m49": "214",
+      "name": "Dominican Republic",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Dominican Republic",
+        "zh": "多米尼加共和国",
+        "fi": "Dominikaaninen tasavalta",
+        "de": "Dominikanische Republik",
+        "ja": "ドミニカ共和国"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇩🇴"
+    },
+    {
+      "iso2": "GD",
+      "iso3": "GRD",
+      "m49": "308",
+      "name": "Grenada",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Grenada",
+        "zh": "格林纳达",
+        "fi": "Grenada",
+        "de": "Grenada",
+        "ja": "グレナダ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇬🇩"
+    },
+    {
+      "iso2": "GP",
+      "iso3": "GLP",
+      "m49": "312",
+      "name": "Guadeloupe",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Guadeloupe",
+        "zh": "瓜德罗普",
+        "fi": "Guadeloupe",
+        "de": "Guadeloupe",
+        "ja": "グアドループ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇬🇵"
+    },
+    {
+      "iso2": "HT",
+      "iso3": "HTI",
+      "m49": "332",
+      "name": "Haiti",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Haiti",
+        "zh": "海地",
+        "fi": "Haiti",
+        "de": "Haiti",
+        "ja": "ハイチ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇭🇹"
+    },
+    {
+      "iso2": "JM",
+      "iso3": "JAM",
+      "m49": "388",
+      "name": "Jamaica",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Jamaica",
+        "zh": "牙买加",
+        "fi": "Jamaika",
+        "de": "Jamaika",
+        "ja": "ジャマイカ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇯🇲"
+    },
+    {
+      "iso2": "MQ",
+      "iso3": "MTQ",
+      "m49": "474",
+      "name": "Martinique",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Martinique",
+        "zh": "马提尼克",
+        "fi": "Martinique",
+        "de": "Martinique",
+        "ja": "マルティニーク"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇲🇶"
+    },
+    {
+      "iso2": "MS",
+      "iso3": "MSR",
+      "m49": "500",
+      "name": "Montserrat",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Montserrat",
+        "zh": "蒙特塞拉特",
+        "fi": "Montserrat",
+        "de": "Montserrat",
+        "ja": "モントセラト"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇲🇸"
+    },
+    {
+      "iso2": "PR",
+      "iso3": "PRI",
+      "m49": "630",
+      "name": "Puerto Rico",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Puerto Rico",
+        "zh": "波多黎各",
+        "fi": "Puerto Rico",
+        "de": "Puerto Rico",
+        "ja": "プエルトリコ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇵🇷"
+    },
+    {
+      "iso2": "BL",
+      "iso3": "BLM",
+      "m49": "652",
+      "name": "Saint Barthélemy",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "St. Barthélemy",
+        "zh": "圣巴泰勒米",
+        "fi": "Saint-Barthélemy",
+        "de": "St. Barthélemy",
+        "ja": "サン・バルテルミー"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇧🇱"
+    },
+    {
+      "iso2": "KN",
+      "iso3": "KNA",
+      "m49": "659",
+      "name": "Saint Kitts and Nevis",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "St. Kitts & Nevis",
+        "zh": "圣基茨和尼维斯",
+        "fi": "Saint Kitts ja Nevis",
+        "de": "St. Kitts und Nevis",
+        "ja": "セントクリストファー・ネーヴィス"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇰🇳"
+    },
+    {
+      "iso2": "LC",
+      "iso3": "LCA",
+      "m49": "662",
+      "name": "Saint Lucia",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "St. Lucia",
+        "zh": "圣卢西亚",
+        "fi": "Saint Lucia",
+        "de": "St. Lucia",
+        "ja": "セントルシア"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇱🇨"
+    },
+    {
+      "iso2": "MF",
+      "iso3": "MAF",
+      "m49": "663",
+      "name": "Saint Martin (French Part)",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "St. Martin",
+        "zh": "法属圣马丁",
+        "fi": "Saint-Martin",
+        "de": "St. Martin",
+        "ja": "サン・マルタン"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇲🇫"
+    },
+    {
+      "iso2": "VC",
+      "iso3": "VCT",
+      "m49": "670",
+      "name": "Saint Vincent and the Grenadines",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "St. Vincent & Grenadines",
+        "zh": "圣文森特和格林纳丁斯",
+        "fi": "Saint Vincent ja Grenadiinit",
+        "de": "St. Vincent und die Grenadinen",
+        "ja": "セントビンセント及びグレナディーン諸島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇻🇨"
+    },
+    {
+      "iso2": "SX",
+      "iso3": "SXM",
+      "m49": "534",
+      "name": "Sint Maarten (Dutch part)",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Sint Maarten",
+        "zh": "荷属圣马丁",
+        "fi": "Sint Maarten",
+        "de": "Sint Maarten",
+        "ja": "シント・マールテン"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇸🇽"
+    },
+    {
+      "iso2": "TT",
+      "iso3": "TTO",
+      "m49": "780",
+      "name": "Trinidad and Tobago",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Trinidad & Tobago",
+        "zh": "特立尼达和多巴哥",
+        "fi": "Trinidad ja Tobago",
+        "de": "Trinidad und Tobago",
+        "ja": "トリニダード・トバゴ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇹🇹"
+    },
+    {
+      "iso2": "TC",
+      "iso3": "TCA",
+      "m49": "796",
+      "name": "Turks and Caicos Islands",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "Turks & Caicos Islands",
+        "zh": "特克斯和凯科斯群岛",
+        "fi": "Turks- ja Caicossaaret",
+        "de": "Turks- und Caicosinseln",
+        "ja": "タークス・カイコス諸島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇹🇨"
+    },
+    {
+      "iso2": "VI",
+      "iso3": "VIR",
+      "m49": "850",
+      "name": "United States Virgin Islands",
+      "region": "019",
+      "subregion": "029",
+      "names": {
+        "en": "U.S. Virgin Islands",
+        "zh": "美属维尔京群岛",
+        "fi": "Yhdysvaltain Neitsytsaaret",
+        "de": "Amerikanische Jungferninseln",
+        "ja": "米領ヴァージン諸島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Caribbean"
+        ],
+        "zh": [
+          "美洲",
+          "加勒比地区"
+        ],
+        "fi": [
+          "Amerikka",
+          "Karibia"
+        ],
+        "de": [
+          "Amerika",
+          "Karibik"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "カリブ"
+        ]
+      },
+      "flag": "🇻🇮"
+    },
+    {
+      "iso2": "BZ",
+      "iso3": "BLZ",
+      "m49": "084",
+      "name": "Belize",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "Belize",
+        "zh": "伯利兹",
+        "fi": "Belize",
+        "de": "Belize",
+        "ja": "ベリーズ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇧🇿"
+    },
+    {
+      "iso2": "CR",
+      "iso3": "CRI",
+      "m49": "188",
+      "name": "Costa Rica",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "Costa Rica",
+        "zh": "哥斯达黎加",
+        "fi": "Costa Rica",
+        "de": "Costa Rica",
+        "ja": "コスタリカ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇨🇷"
+    },
+    {
+      "iso2": "SV",
+      "iso3": "SLV",
+      "m49": "222",
+      "name": "El Salvador",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "El Salvador",
+        "zh": "萨尔瓦多",
+        "fi": "El Salvador",
+        "de": "El Salvador",
+        "ja": "エルサルバドル"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇸🇻"
+    },
+    {
+      "iso2": "GT",
+      "iso3": "GTM",
+      "m49": "320",
+      "name": "Guatemala",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "Guatemala",
+        "zh": "危地马拉",
+        "fi": "Guatemala",
+        "de": "Guatemala",
+        "ja": "グアテマラ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇬🇹"
+    },
+    {
+      "iso2": "HN",
+      "iso3": "HND",
+      "m49": "340",
+      "name": "Honduras",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "Honduras",
+        "zh": "洪都拉斯",
+        "fi": "Honduras",
+        "de": "Honduras",
+        "ja": "ホンジュラス"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇭🇳"
+    },
+    {
+      "iso2": "MX",
+      "iso3": "MEX",
+      "m49": "484",
+      "name": "Mexico",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "Mexico",
+        "zh": "墨西哥",
+        "fi": "Meksiko",
+        "de": "Mexiko",
+        "ja": "メキシコ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇲🇽"
+    },
+    {
+      "iso2": "NI",
+      "iso3": "NIC",
+      "m49": "558",
+      "name": "Nicaragua",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "Nicaragua",
+        "zh": "尼加拉瓜",
+        "fi": "Nicaragua",
+        "de": "Nicaragua",
+        "ja": "ニカラグア"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇳🇮"
+    },
+    {
+      "iso2": "PA",
+      "iso3": "PAN",
+      "m49": "591",
+      "name": "Panama",
+      "region": "019",
+      "subregion": "013",
+      "names": {
+        "en": "Panama",
+        "zh": "巴拿马",
+        "fi": "Panama",
+        "de": "Panama",
+        "ja": "パナマ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Central America"
+        ],
+        "zh": [
+          "美洲",
+          "中美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Väli-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Mittelamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "中央アメリカ"
+        ]
+      },
+      "flag": "🇵🇦"
+    },
+    {
+      "iso2": "AR",
+      "iso3": "ARG",
+      "m49": "032",
+      "name": "Argentina",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Argentina",
+        "zh": "阿根廷",
+        "fi": "Argentiina",
+        "de": "Argentinien",
+        "ja": "アルゼンチン"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇦🇷"
+    },
+    {
+      "iso2": "BO",
+      "iso3": "BOL",
+      "m49": "068",
+      "name": "Bolivia (Plurinational State of)",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Bolivia",
+        "zh": "玻利维亚",
+        "fi": "Bolivia",
+        "de": "Bolivien",
+        "ja": "ボリビア"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇧🇴"
+    },
+    {
+      "iso2": "BV",
+      "iso3": "BVT",
+      "m49": "074",
+      "name": "Bouvet Island",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Bouvet Island",
+        "zh": "布韦岛",
+        "fi": "Bouvet’nsaari",
+        "de": "Bouvetinsel",
+        "ja": "ブーベ島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇧🇻"
+    },
+    {
+      "iso2": "BR",
+      "iso3": "BRA",
+      "m49": "076",
+      "name": "Brazil",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Brazil",
+        "zh": "巴西",
+        "fi": "Brasilia",
+        "de": "Brasilien",
+        "ja": "ブラジル"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇧🇷"
+    },
+    {
+      "iso2": "CL",
+      "iso3": "CHL",
+      "m49": "152",
+      "name": "Chile",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Chile",
+        "zh": "智利",
+        "fi": "Chile",
+        "de": "Chile",
+        "ja": "チリ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇨🇱"
+    },
+    {
+      "iso2": "CO",
+      "iso3": "COL",
+      "m49": "170",
+      "name": "Colombia",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Colombia",
+        "zh": "哥伦比亚",
+        "fi": "Kolumbia",
+        "de": "Kolumbien",
+        "ja": "コロンビア"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇨🇴"
+    },
+    {
+      "iso2": "EC",
+      "iso3": "ECU",
+      "m49": "218",
+      "name": "Ecuador",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Ecuador",
+        "zh": "厄瓜多尔",
+        "fi": "Ecuador",
+        "de": "Ecuador",
+        "ja": "エクアドル"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇪🇨"
+    },
+    {
+      "iso2": "FK",
+      "iso3": "FLK",
+      "m49": "238",
+      "name": "Falkland Islands (Malvinas)",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Falkland Islands",
+        "zh": "福克兰群岛",
+        "fi": "Falklandinsaaret",
+        "de": "Falklandinseln",
+        "ja": "フォークランド諸島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇫🇰"
+    },
+    {
+      "iso2": "GF",
+      "iso3": "GUF",
+      "m49": "254",
+      "name": "French Guiana",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "French Guiana",
+        "zh": "法属圭亚那",
+        "fi": "Ranskan Guayana",
+        "de": "Französisch-Guayana",
+        "ja": "仏領ギアナ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇬🇫"
+    },
+    {
+      "iso2": "GY",
+      "iso3": "GUY",
+      "m49": "328",
+      "name": "Guyana",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Guyana",
+        "zh": "圭亚那",
+        "fi": "Guyana",
+        "de": "Guyana",
+        "ja": "ガイアナ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇬🇾"
+    },
+    {
+      "iso2": "PY",
+      "iso3": "PRY",
+      "m49": "600",
+      "name": "Paraguay",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Paraguay",
+        "zh": "巴拉圭",
+        "fi": "Paraguay",
+        "de": "Paraguay",
+        "ja": "パラグアイ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇵🇾"
+    },
+    {
+      "iso2": "PE",
+      "iso3": "PER",
+      "m49": "604",
+      "name": "Peru",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Peru",
+        "zh": "秘鲁",
+        "fi": "Peru",
+        "de": "Peru",
+        "ja": "ペルー"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇵🇪"
+    },
+    {
+      "iso2": "GS",
+      "iso3": "SGS",
+      "m49": "239",
+      "name": "South Georgia and the South Sandwich Islands",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "South Georgia & South Sandwich Islands",
+        "zh": "南乔治亚和南桑威奇群岛",
+        "fi": "Etelä-Georgia ja Eteläiset Sandwichinsaaret",
+        "de": "Südgeorgien und die Südlichen Sandwichinseln",
+        "ja": "サウスジョージア・サウスサンドウィッチ諸島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇬🇸"
+    },
+    {
+      "iso2": "SR",
+      "iso3": "SUR",
+      "m49": "740",
+      "name": "Suriname",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Suriname",
+        "zh": "苏里南",
+        "fi": "Suriname",
+        "de": "Suriname",
+        "ja": "スリナム"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇸🇷"
+    },
+    {
+      "iso2": "UY",
+      "iso3": "URY",
+      "m49": "858",
+      "name": "Uruguay",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Uruguay",
+        "zh": "乌拉圭",
+        "fi": "Uruguay",
+        "de": "Uruguay",
+        "ja": "ウルグアイ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇺🇾"
+    },
+    {
+      "iso2": "VE",
+      "iso3": "VEN",
+      "m49": "862",
+      "name": "Venezuela (Bolivarian Republic of)",
+      "region": "019",
+      "subregion": "005",
+      "names": {
+        "en": "Venezuela",
+        "zh": "委内瑞拉",
+        "fi": "Venezuela",
+        "de": "Venezuela",
+        "ja": "ベネズエラ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "South America"
+        ],
+        "zh": [
+          "美洲",
+          "南美洲"
+        ],
+        "fi": [
+          "Amerikka",
+          "Etelä-Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Südamerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "南アメリカ"
+        ]
+      },
+      "flag": "🇻🇪"
+    },
+    {
+      "iso2": "BM",
+      "iso3": "BMU",
+      "m49": "060",
+      "name": "Bermuda",
+      "region": "019",
+      "subregion": "021",
+      "names": {
+        "en": "Bermuda",
+        "zh": "百慕大",
+        "fi": "Bermuda",
+        "de": "Bermuda",
+        "ja": "バミューダ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Northern America"
+        ],
+        "zh": [
+          "美洲",
+          "美洲北部"
+        ],
+        "fi": [
+          "Amerikka",
+          "pohjoinen Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Nördliches Amerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "北アメリカ"
+        ]
+      },
+      "flag": "🇧🇲"
+    },
+    {
+      "iso2": "CA",
+      "iso3": "CAN",
+      "m49": "124",
+      "name": "Canada",
+      "region": "019",
+      "subregion": "021",
+      "names": {
+        "en": "Canada",
+        "zh": "加拿大",
+        "fi": "Kanada",
+        "de": "Kanada",
+        "ja": "カナダ"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Northern America"
+        ],
+        "zh": [
+          "美洲",
+          "美洲北部"
+        ],
+        "fi": [
+          "Amerikka",
+          "pohjoinen Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Nördliches Amerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "北アメリカ"
+        ]
+      },
+      "flag": "🇨🇦"
+    },
+    {
+      "iso2": "GL",
+      "iso3": "GRL",
+      "m49": "304",
+      "name": "Greenland",
+      "region": "019",
+      "subregion": "021",
+      "names": {
+        "en": "Greenland",
+        "zh": "格陵兰",
+        "fi": "Grönlanti",
+        "de": "Grönland",
+        "ja": "グリーンランド"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Northern America"
+        ],
+        "zh": [
+          "美洲",
+          "美洲北部"
+        ],
+        "fi": [
+          "Amerikka",
+          "pohjoinen Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Nördliches Amerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "北アメリカ"
+        ]
+      },
+      "flag": "🇬🇱"
+    },
+    {
+      "iso2": "PM",
+      "iso3": "SPM",
+      "m49": "666",
+      "name": "Saint Pierre and Miquelon",
+      "region": "019",
+      "subregion": "021",
+      "names": {
+        "en": "St. Pierre & Miquelon",
+        "zh": "圣皮埃尔和密克隆群岛",
+        "fi": "Saint-Pierre ja Miquelon",
+        "de": "St. Pierre und Miquelon",
+        "ja": "サンピエール島・ミクロン島"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Northern America"
+        ],
+        "zh": [
+          "美洲",
+          "美洲北部"
+        ],
+        "fi": [
+          "Amerikka",
+          "pohjoinen Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Nördliches Amerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "北アメリカ"
+        ]
+      },
+      "flag": "🇵🇲"
+    },
+    {
+      "iso2": "US",
+      "iso3": "USA",
+      "m49": "840",
+      "name": "United States of America",
+      "region": "019",
+      "subregion": "021",
+      "names": {
+        "en": "United States",
+        "zh": "美国",
+        "fi": "Yhdysvallat",
+        "de": "Vereinigte Staaten",
+        "ja": "アメリカ合衆国"
+      },
+      "location": {
+        "en": [
+          "Americas",
+          "Northern America"
+        ],
+        "zh": [
+          "美洲",
+          "美洲北部"
+        ],
+        "fi": [
+          "Amerikka",
+          "pohjoinen Amerikka"
+        ],
+        "de": [
+          "Amerika",
+          "Nördliches Amerika"
+        ],
+        "ja": [
+          "アメリカ大陸",
+          "北アメリカ"
+        ]
+      },
+      "flag": "🇺🇸"
+    },
+    {
+      "iso2": "AQ",
+      "iso3": "ATA",
+      "m49": "010",
+      "name": "Antarctica",
+      "region": "",
+      "subregion": "",
+      "names": {
+        "en": "Antarctica",
+        "zh": "南极洲",
+        "fi": "Antarktis",
+        "de": "Antarktis",
+        "ja": "南極"
+      },
+      "location": {
+        "en": [
+          "Antarctica"
+        ],
+        "zh": [
+          "南极洲"
+        ],
+        "fi": [
+          "Antarktis"
+        ],
+        "de": [
+          "Antarktis"
+        ],
+        "ja": [
+          "南極"
+        ]
+      },
+      "flag": "🇦🇶"
+    },
+    {
+      "iso2": "KZ",
+      "iso3": "KAZ",
+      "m49": "398",
+      "name": "Kazakhstan",
+      "region": "142",
+      "subregion": "143",
+      "names": {
+        "en": "Kazakhstan",
+        "zh": "哈萨克斯坦",
+        "fi": "Kazakstan",
+        "de": "Kasachstan",
+        "ja": "カザフスタン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Central Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "中亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Keski-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Zentralasien"
+        ],
+        "ja": [
+          "アジア",
+          "中央アジア"
+        ]
+      },
+      "flag": "🇰🇿"
+    },
+    {
+      "iso2": "KG",
+      "iso3": "KGZ",
+      "m49": "417",
+      "name": "Kyrgyzstan",
+      "region": "142",
+      "subregion": "143",
+      "names": {
+        "en": "Kyrgyzstan",
+        "zh": "吉尔吉斯斯坦",
+        "fi": "Kirgisia",
+        "de": "Kirgisistan",
+        "ja": "キルギス"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Central Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "中亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Keski-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Zentralasien"
+        ],
+        "ja": [
+          "アジア",
+          "中央アジア"
+        ]
+      },
+      "flag": "🇰🇬"
+    },
+    {
+      "iso2": "TJ",
+      "iso3": "TJK",
+      "m49": "762",
+      "name": "Tajikistan",
+      "region": "142",
+      "subregion": "143",
+      "names": {
+        "en": "Tajikistan",
+        "zh": "塔吉克斯坦",
+        "fi": "Tadžikistan",
+        "de": "Tadschikistan",
+        "ja": "タジキスタン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Central Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "中亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Keski-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Zentralasien"
+        ],
+        "ja": [
+          "アジア",
+          "中央アジア"
+        ]
+      },
+      "flag": "🇹🇯"
+    },
+    {
+      "iso2": "TM",
+      "iso3": "TKM",
+      "m49": "795",
+      "name": "Turkmenistan",
+      "region": "142",
+      "subregion": "143",
+      "names": {
+        "en": "Turkmenistan",
+        "zh": "土库曼斯坦",
+        "fi": "Turkmenistan",
+        "de": "Turkmenistan",
+        "ja": "トルクメニスタン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Central Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "中亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Keski-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Zentralasien"
+        ],
+        "ja": [
+          "アジア",
+          "中央アジア"
+        ]
+      },
+      "flag": "🇹🇲"
+    },
+    {
+      "iso2": "UZ",
+      "iso3": "UZB",
+      "m49": "860",
+      "name": "Uzbekistan",
+      "region": "142",
+      "subregion": "143",
+      "names": {
+        "en": "Uzbekistan",
+        "zh": "乌兹别克斯坦",
+        "fi": "Uzbekistan",
+        "de": "Usbekistan",
+        "ja": "ウズベキスタン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Central Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "中亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Keski-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Zentralasien"
+        ],
+        "ja": [
+          "アジア",
+          "中央アジア"
+        ]
+      },
+      "flag": "🇺🇿"
+    },
+    {
+      "iso2": "CN",
+      "iso3": "CHN",
+      "m49": "156",
+      "name": "China",
+      "region": "142",
+      "subregion": "030",
+      "names": {
+        "en": "China",
+        "zh": "中国",
+        "fi": "Kiina",
+        "de": "China",
+        "ja": "中国"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Eastern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Itä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Ostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東アジア"
+        ]
+      },
+      "flag": "🇨🇳"
+    },
+    {
+      "iso2": "HK",
+      "iso3": "HKG",
+      "m49": "344",
+      "name": "China, Hong Kong Special Administrative Region",
+      "region": "142",
+      "subregion": "030",
+      "names": {
+        "en": "Hong Kong SAR China",
+        "zh": "中国香港特别行政区",
+        "fi": "Hongkong – Kiinan erityishallintoalue",
+        "de": "Sonderverwaltungsregion Hongkong",
+        "ja": "中華人民共和国香港特別行政区"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Eastern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Itä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Ostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東アジア"
+        ]
+      },
+      "flag": "🇭🇰"
+    },
+    {
+      "iso2": "MO",
+      "iso3": "MAC",
+      "m49": "446",
+      "name": "China, Macao Special Administrative Region",
+      "region": "142",
+      "subregion": "030",
+      "names": {
+        "en": "Macao SAR China",
+        "zh": "中国澳门特别行政区",
+        "fi": "Macao – Kiinan erityishallintoalue",
+        "de": "Sonderverwaltungsregion Macau",
+        "ja": "中華人民共和国マカオ特別行政区"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Eastern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Itä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Ostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東アジア"
+        ]
+      },
+      "flag": "🇲🇴"
+    },
+    {
+      "iso2": "KP",
+      "iso3": "PRK",
+      "m49": "408",
+      "name": "Democratic People's Republic of Korea",
+      "region": "142",
+      "subregion": "030",
+      "names": {
+        "en": "North Korea",
+        "zh": "朝鲜",
+        "fi": "Pohjois-Korea",
+        "de": "Nordkorea",
+        "ja": "北朝鮮"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Eastern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Itä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Ostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東アジア"
+        ]
+      },
+      "flag": "🇰🇵"
+    },
+    {
+      "iso2": "JP",
+      "iso3": "JPN",
+      "m49": "392",
+      "name": "Japan",
+      "region": "142",
+      "subregion": "030",
+      "names": {
+        "en": "Japan",
+        "zh": "日本",
+        "fi": "Japani",
+        "de": "Japan",
+        "ja": "日本"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Eastern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Itä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Ostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東アジア"
+        ]
+      },
+      "flag": "🇯🇵"
+    },
+    {
+      "iso2": "MN",
+      "iso3": "MNG",
+      "m49": "496",
+      "name": "Mongolia",
+      "region": "142",
+      "subregion": "030",
+      "names": {
+        "en": "Mongolia",
+        "zh": "蒙古",
+        "fi": "Mongolia",
+        "de": "Mongolei",
+        "ja": "モンゴル"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Eastern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Itä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Ostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東アジア"
+        ]
+      },
+      "flag": "🇲🇳"
+    },
+    {
+      "iso2": "KR",
+      "iso3": "KOR",
+      "m49": "410",
+      "name": "Republic of Korea",
+      "region": "142",
+      "subregion": "030",
+      "names": {
+        "en": "South Korea",
+        "zh": "韩国",
+        "fi": "Etelä-Korea",
+        "de": "Südkorea",
+        "ja": "韓国"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Eastern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Itä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Ostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東アジア"
+        ]
+      },
+      "flag": "🇰🇷"
+    },
+    {
+      "iso2": "BN",
+      "iso3": "BRN",
+      "m49": "096",
+      "name": "Brunei Darussalam",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Brunei",
+        "zh": "文莱",
+        "fi": "Brunei",
+        "de": "Brunei Darussalam",
+        "ja": "ブルネイ"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇧🇳"
+    },
+    {
+      "iso2": "KH",
+      "iso3": "KHM",
+      "m49": "116",
+      "name": "Cambodia",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Cambodia",
+        "zh": "柬埔寨",
+        "fi": "Kambodža",
+        "de": "Kambodscha",
+        "ja": "カンボジア"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇰🇭"
+    },
+    {
+      "iso2": "ID",
+      "iso3": "IDN",
+      "m49": "360",
+      "name": "Indonesia",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Indonesia",
+        "zh": "印度尼西亚",
+        "fi": "Indonesia",
+        "de": "Indonesien",
+        "ja": "インドネシア"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇮🇩"
+    },
+    {
+      "iso2": "LA",
+      "iso3": "LAO",
+      "m49": "418",
+      "name": "Lao People's Democratic Republic",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Laos",
+        "zh": "老挝",
+        "fi": "Laos",
+        "de": "Laos",
+        "ja": "ラオス"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇱🇦"
+    },
+    {
+      "iso2": "MY",
+      "iso3": "MYS",
+      "m49": "458",
+      "name": "Malaysia",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Malaysia",
+        "zh": "马来西亚",
+        "fi": "Malesia",
+        "de": "Malaysia",
+        "ja": "マレーシア"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇲🇾"
+    },
+    {
+      "iso2": "MM",
+      "iso3": "MMR",
+      "m49": "104",
+      "name": "Myanmar",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Myanmar (Burma)",
+        "zh": "缅甸",
+        "fi": "Myanmar (Burma)",
+        "de": "Myanmar",
+        "ja": "ミャンマー (ビルマ)"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇲🇲"
+    },
+    {
+      "iso2": "PH",
+      "iso3": "PHL",
+      "m49": "608",
+      "name": "Philippines",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Philippines",
+        "zh": "菲律宾",
+        "fi": "Filippiinit",
+        "de": "Philippinen",
+        "ja": "フィリピン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇵🇭"
+    },
+    {
+      "iso2": "SG",
+      "iso3": "SGP",
+      "m49": "702",
+      "name": "Singapore",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Singapore",
+        "zh": "新加坡",
+        "fi": "Singapore",
+        "de": "Singapur",
+        "ja": "シンガポール"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇸🇬"
+    },
+    {
+      "iso2": "TH",
+      "iso3": "THA",
+      "m49": "764",
+      "name": "Thailand",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Thailand",
+        "zh": "泰国",
+        "fi": "Thaimaa",
+        "de": "Thailand",
+        "ja": "タイ"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇹🇭"
+    },
+    {
+      "iso2": "TL",
+      "iso3": "TLS",
+      "m49": "626",
+      "name": "Timor-Leste",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Timor-Leste",
+        "zh": "东帝汶",
+        "fi": "Itä-Timor",
+        "de": "Timor-Leste",
+        "ja": "東ティモール"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇹🇱"
+    },
+    {
+      "iso2": "VN",
+      "iso3": "VNM",
+      "m49": "704",
+      "name": "Viet Nam",
+      "region": "142",
+      "subregion": "035",
+      "names": {
+        "en": "Vietnam",
+        "zh": "越南",
+        "fi": "Vietnam",
+        "de": "Vietnam",
+        "ja": "ベトナム"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southeast Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "东南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Kaakkois-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südostasien"
+        ],
+        "ja": [
+          "アジア",
+          "東南アジア"
+        ]
+      },
+      "flag": "🇻🇳"
+    },
+    {
+      "iso2": "AF",
+      "iso3": "AFG",
+      "m49": "004",
+      "name": "Afghanistan",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Afghanistan",
+        "zh": "阿富汗",
+        "fi": "Afganistan",
+        "de": "Afghanistan",
+        "ja": "アフガニスタン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇦🇫"
+    },
+    {
+      "iso2": "BD",
+      "iso3": "BGD",
+      "m49": "050",
+      "name": "Bangladesh",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Bangladesh",
+        "zh": "孟加拉国",
+        "fi": "Bangladesh",
+        "de": "Bangladesch",
+        "ja": "バングラデシュ"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇧🇩"
+    },
+    {
+      "iso2": "BT",
+      "iso3": "BTN",
+      "m49": "064",
+      "name": "Bhutan",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Bhutan",
+        "zh": "不丹",
+        "fi": "Bhutan",
+        "de": "Bhutan",
+        "ja": "ブータン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇧🇹"
+    },
+    {
+      "iso2": "IN",
+      "iso3": "IND",
+      "m49": "356",
+      "name": "India",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "India",
+        "zh": "印度",
+        "fi": "Intia",
+        "de": "Indien",
+        "ja": "インド"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇮🇳"
+    },
+    {
+      "iso2": "IR",
+      "iso3": "IRN",
+      "m49": "364",
+      "name": "Iran (Islamic Republic of)",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Iran",
+        "zh": "伊朗",
+        "fi": "Iran",
+        "de": "Iran",
+        "ja": "イラン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇮🇷"
+    },
+    {
+      "iso2": "MV",
+      "iso3": "MDV",
+      "m49": "462",
+      "name": "Maldives",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Maldives",
+        "zh": "马尔代夫",
+        "fi": "Malediivit",
+        "de": "Malediven",
+        "ja": "モルディブ"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇲🇻"
+    },
+    {
+      "iso2": "NP",
+      "iso3": "NPL",
+      "m49": "524",
+      "name": "Nepal",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Nepal",
+        "zh": "尼泊尔",
+        "fi": "Nepal",
+        "de": "Nepal",
+        "ja": "ネパール"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇳🇵"
+    },
+    {
+      "iso2": "PK",
+      "iso3": "PAK",
+      "m49": "586",
+      "name": "Pakistan",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Pakistan",
+        "zh": "巴基斯坦",
+        "fi": "Pakistan",
+        "de": "Pakistan",
+        "ja": "パキスタン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇵🇰"
+    },
+    {
+      "iso2": "LK",
+      "iso3": "LKA",
+      "m49": "144",
+      "name": "Sri Lanka",
+      "region": "142",
+      "subregion": "034",
+      "names": {
+        "en": "Sri Lanka",
+        "zh": "斯里兰卡",
+        "fi": "Sri Lanka",
+        "de": "Sri Lanka",
+        "ja": "スリランカ"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Southern Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "南亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Etelä-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Südasien"
+        ],
+        "ja": [
+          "アジア",
+          "南アジア"
+        ]
+      },
+      "flag": "🇱🇰"
+    },
+    {
+      "iso2": "AM",
+      "iso3": "ARM",
+      "m49": "051",
+      "name": "Armenia",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Armenia",
+        "zh": "亚美尼亚",
+        "fi": "Armenia",
+        "de": "Armenien",
+        "ja": "アルメニア"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇦🇲"
+    },
+    {
+      "iso2": "AZ",
+      "iso3": "AZE",
+      "m49": "031",
+      "name": "Azerbaijan",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Azerbaijan",
+        "zh": "阿塞拜疆",
+        "fi": "Azerbaidžan",
+        "de": "Aserbaidschan",
+        "ja": "アゼルバイジャン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇦🇿"
+    },
+    {
+      "iso2": "BH",
+      "iso3": "BHR",
+      "m49": "048",
+      "name": "Bahrain",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Bahrain",
+        "zh": "巴林",
+        "fi": "Bahrain",
+        "de": "Bahrain",
+        "ja": "バーレーン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇧🇭"
+    },
+    {
+      "iso2": "CY",
+      "iso3": "CYP",
+      "m49": "196",
+      "name": "Cyprus",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Cyprus",
+        "zh": "塞浦路斯",
+        "fi": "Kypros",
+        "de": "Zypern",
+        "ja": "キプロス"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇨🇾"
+    },
+    {
+      "iso2": "GE",
+      "iso3": "GEO",
+      "m49": "268",
+      "name": "Georgia",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Georgia",
+        "zh": "格鲁吉亚",
+        "fi": "Georgia",
+        "de": "Georgien",
+        "ja": "ジョージア"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇬🇪"
+    },
+    {
+      "iso2": "IQ",
+      "iso3": "IRQ",
+      "m49": "368",
+      "name": "Iraq",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Iraq",
+        "zh": "伊拉克",
+        "fi": "Irak",
+        "de": "Irak",
+        "ja": "イラク"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇮🇶"
+    },
+    {
+      "iso2": "IL",
+      "iso3": "ISR",
+      "m49": "376",
+      "name": "Israel",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Israel",
+        "zh": "以色列",
+        "fi": "Israel",
+        "de": "Israel",
+        "ja": "イスラエル"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇮🇱"
+    },
+    {
+      "iso2": "JO",
+      "iso3": "JOR",
+      "m49": "400",
+      "name": "Jordan",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Jordan",
+        "zh": "约旦",
+        "fi": "Jordania",
+        "de": "Jordanien",
+        "ja": "ヨルダン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇯🇴"
+    },
+    {
+      "iso2": "KW",
+      "iso3": "KWT",
+      "m49": "414",
+      "name": "Kuwait",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Kuwait",
+        "zh": "科威特",
+        "fi": "Kuwait",
+        "de": "Kuwait",
+        "ja": "クウェート"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇰🇼"
+    },
+    {
+      "iso2": "LB",
+      "iso3": "LBN",
+      "m49": "422",
+      "name": "Lebanon",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Lebanon",
+        "zh": "黎巴嫩",
+        "fi": "Libanon",
+        "de": "Libanon",
+        "ja": "レバノン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇱🇧"
+    },
+    {
+      "iso2": "OM",
+      "iso3": "OMN",
+      "m49": "512",
+      "name": "Oman",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Oman",
+        "zh": "阿曼",
+        "fi": "Oman",
+        "de": "Oman",
+        "ja": "オマーン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇴🇲"
+    },
+    {
+      "iso2": "QA",
+      "iso3": "QAT",
+      "m49": "634",
+      "name": "Qatar",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Qatar",
+        "zh": "卡塔尔",
+        "fi": "Qatar",
+        "de": "Katar",
+        "ja": "カタール"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇶🇦"
+    },
+    {
+      "iso2": "SA",
+      "iso3": "SAU",
+      "m49": "682",
+      "name": "Saudi Arabia",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Saudi Arabia",
+        "zh": "沙特阿拉伯",
+        "fi": "Saudi-Arabia",
+        "de": "Saudi-Arabien",
+        "ja": "サウジアラビア"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇸🇦"
+    },
+    {
+      "iso2": "PS",
+      "iso3": "PSE",
+      "m49": "275",
+      "name": "State of Palestine",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Palestinian Territories",
+        "zh": "巴勒斯坦领土",
+        "fi": "Palestiinalaisalue",
+        "de": "Palästinensische Autonomiegebiete",
+        "ja": "パレスチナ自治区"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇵🇸"
+    },
+    {
+      "iso2": "SY",
+      "iso3": "SYR",
+      "m49": "760",
+      "name": "Syrian Arab Republic",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Syria",
+        "zh": "叙利亚",
+        "fi": "Syyria",
+        "de": "Syrien",
+        "ja": "シリア"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇸🇾"
+    },
+    {
+      "iso2": "TR",
+      "iso3": "TUR",
+      "m49": "792",
+      "name": "Türkiye",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Türkiye",
+        "zh": "土耳其",
+        "fi": "Turkki",
+        "de": "Türkei",
+        "ja": "トルコ"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇹🇷"
+    },
+    {
+      "iso2": "AE",
+      "iso3": "ARE",
+      "m49": "784",
+      "name": "United Arab Emirates",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "United Arab Emirates",
+        "zh": "阿拉伯联合酋长国",
+        "fi": "Arabiemiirikunnat",
+        "de": "Vereinigte Arabische Emirate",
+        "ja": "アラブ首長国連邦"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇦🇪"
+    },
+    {
+      "iso2": "YE",
+      "iso3": "YEM",
+      "m49": "887",
+      "name": "Yemen",
+      "region": "142",
+      "subregion": "145",
+      "names": {
+        "en": "Yemen",
+        "zh": "也门",
+        "fi": "Jemen",
+        "de": "Jemen",
+        "ja": "イエメン"
+      },
+      "location": {
+        "en": [
+          "Asia",
+          "Western Asia"
+        ],
+        "zh": [
+          "亚洲",
+          "西亚"
+        ],
+        "fi": [
+          "Aasia",
+          "Länsi-Aasia"
+        ],
+        "de": [
+          "Asien",
+          "Westasien"
+        ],
+        "ja": [
+          "アジア",
+          "西アジア"
+        ]
+      },
+      "flag": "🇾🇪"
+    },
+    {
+      "iso2": "BY",
+      "iso3": "BLR",
+      "m49": "112",
+      "name": "Belarus",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Belarus",
+        "zh": "白俄罗斯",
+        "fi": "Valko-Venäjä",
+        "de": "Belarus",
+        "ja": "ベラルーシ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇧🇾"
+    },
+    {
+      "iso2": "BG",
+      "iso3": "BGR",
+      "m49": "100",
+      "name": "Bulgaria",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Bulgaria",
+        "zh": "保加利亚",
+        "fi": "Bulgaria",
+        "de": "Bulgarien",
+        "ja": "ブルガリア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇧🇬"
+    },
+    {
+      "iso2": "CZ",
+      "iso3": "CZE",
+      "m49": "203",
+      "name": "Czechia",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Czechia",
+        "zh": "捷克",
+        "fi": "Tšekki",
+        "de": "Tschechien",
+        "ja": "チェコ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇨🇿"
+    },
+    {
+      "iso2": "HU",
+      "iso3": "HUN",
+      "m49": "348",
+      "name": "Hungary",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Hungary",
+        "zh": "匈牙利",
+        "fi": "Unkari",
+        "de": "Ungarn",
+        "ja": "ハンガリー"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇭🇺"
+    },
+    {
+      "iso2": "PL",
+      "iso3": "POL",
+      "m49": "616",
+      "name": "Poland",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Poland",
+        "zh": "波兰",
+        "fi": "Puola",
+        "de": "Polen",
+        "ja": "ポーランド"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇵🇱"
+    },
+    {
+      "iso2": "MD",
+      "iso3": "MDA",
+      "m49": "498",
+      "name": "Republic of Moldova",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Moldova",
+        "zh": "摩尔多瓦",
+        "fi": "Moldova",
+        "de": "Republik Moldau",
+        "ja": "モルドバ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇲🇩"
+    },
+    {
+      "iso2": "RO",
+      "iso3": "ROU",
+      "m49": "642",
+      "name": "Romania",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Romania",
+        "zh": "罗马尼亚",
+        "fi": "Romania",
+        "de": "Rumänien",
+        "ja": "ルーマニア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇷🇴"
+    },
+    {
+      "iso2": "RU",
+      "iso3": "RUS",
+      "m49": "643",
+      "name": "Russian Federation",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Russia",
+        "zh": "俄罗斯",
+        "fi": "Venäjä",
+        "de": "Russland",
+        "ja": "ロシア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇷🇺"
+    },
+    {
+      "iso2": "SK",
+      "iso3": "SVK",
+      "m49": "703",
+      "name": "Slovakia",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Slovakia",
+        "zh": "斯洛伐克",
+        "fi": "Slovakia",
+        "de": "Slowakei",
+        "ja": "スロバキア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇸🇰"
+    },
+    {
+      "iso2": "UA",
+      "iso3": "UKR",
+      "m49": "804",
+      "name": "Ukraine",
+      "region": "150",
+      "subregion": "151",
+      "names": {
+        "en": "Ukraine",
+        "zh": "乌克兰",
+        "fi": "Ukraina",
+        "de": "Ukraine",
+        "ja": "ウクライナ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Eastern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "东欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Itä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Osteuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "東ヨーロッパ"
+        ]
+      },
+      "flag": "🇺🇦"
+    },
+    {
+      "iso2": "AX",
+      "iso3": "ALA",
+      "m49": "248",
+      "name": "Åland Islands",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Åland Islands",
+        "zh": "奥兰群岛",
+        "fi": "Ahvenanmaa",
+        "de": "Ålandinseln",
+        "ja": "オーランド諸島"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇦🇽"
+    },
+    {
+      "iso2": "DK",
+      "iso3": "DNK",
+      "m49": "208",
+      "name": "Denmark",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Denmark",
+        "zh": "丹麦",
+        "fi": "Tanska",
+        "de": "Dänemark",
+        "ja": "デンマーク"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇩🇰"
+    },
+    {
+      "iso2": "EE",
+      "iso3": "EST",
+      "m49": "233",
+      "name": "Estonia",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Estonia",
+        "zh": "爱沙尼亚",
+        "fi": "Viro",
+        "de": "Estland",
+        "ja": "エストニア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇪🇪"
+    },
+    {
+      "iso2": "FO",
+      "iso3": "FRO",
+      "m49": "234",
+      "name": "Faroe Islands",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Faroe Islands",
+        "zh": "法罗群岛",
+        "fi": "Färsaaret",
+        "de": "Färöer",
+        "ja": "フェロー諸島"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇫🇴"
+    },
+    {
+      "iso2": "FI",
+      "iso3": "FIN",
+      "m49": "246",
+      "name": "Finland",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Finland",
+        "zh": "芬兰",
+        "fi": "Suomi",
+        "de": "Finnland",
+        "ja": "フィンランド"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇫🇮"
+    },
+    {
+      "iso2": "GG",
+      "iso3": "GGY",
+      "m49": "831",
+      "name": "Guernsey",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Guernsey",
+        "zh": "根西岛",
+        "fi": "Guernsey",
+        "de": "Guernsey",
+        "ja": "ガーンジー"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇬🇬"
+    },
+    {
+      "iso2": "IS",
+      "iso3": "ISL",
+      "m49": "352",
+      "name": "Iceland",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Iceland",
+        "zh": "冰岛",
+        "fi": "Islanti",
+        "de": "Island",
+        "ja": "アイスランド"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇮🇸"
+    },
+    {
+      "iso2": "IE",
+      "iso3": "IRL",
+      "m49": "372",
+      "name": "Ireland",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Ireland",
+        "zh": "爱尔兰",
+        "fi": "Irlanti",
+        "de": "Irland",
+        "ja": "アイルランド"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇮🇪"
+    },
+    {
+      "iso2": "IM",
+      "iso3": "IMN",
+      "m49": "833",
+      "name": "Isle of Man",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Isle of Man",
+        "zh": "马恩岛",
+        "fi": "Mansaari",
+        "de": "Isle of Man",
+        "ja": "マン島"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇮🇲"
+    },
+    {
+      "iso2": "JE",
+      "iso3": "JEY",
+      "m49": "832",
+      "name": "Jersey",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Jersey",
+        "zh": "泽西岛",
+        "fi": "Jersey",
+        "de": "Jersey",
+        "ja": "ジャージー"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇯🇪"
+    },
+    {
+      "iso2": "LV",
+      "iso3": "LVA",
+      "m49": "428",
+      "name": "Latvia",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Latvia",
+        "zh": "拉脱维亚",
+        "fi": "Latvia",
+        "de": "Lettland",
+        "ja": "ラトビア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇱🇻"
+    },
+    {
+      "iso2": "LT",
+      "iso3": "LTU",
+      "m49": "440",
+      "name": "Lithuania",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Lithuania",
+        "zh": "立陶宛",
+        "fi": "Liettua",
+        "de": "Litauen",
+        "ja": "リトアニア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇱🇹"
+    },
+    {
+      "iso2": "NO",
+      "iso3": "NOR",
+      "m49": "578",
+      "name": "Norway",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Norway",
+        "zh": "挪威",
+        "fi": "Norja",
+        "de": "Norwegen",
+        "ja": "ノルウェー"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇳🇴"
+    },
+    {
+      "iso2": "SJ",
+      "iso3": "SJM",
+      "m49": "744",
+      "name": "Svalbard and Jan Mayen Islands",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Svalbard & Jan Mayen",
+        "zh": "斯瓦尔巴和扬马延",
+        "fi": "Huippuvuoret ja Jan Mayen",
+        "de": "Spitzbergen und Jan Mayen",
+        "ja": "スバールバル諸島・ヤンマイエン島"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇸🇯"
+    },
+    {
+      "iso2": "SE",
+      "iso3": "SWE",
+      "m49": "752",
+      "name": "Sweden",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "Sweden",
+        "zh": "瑞典",
+        "fi": "Ruotsi",
+        "de": "Schweden",
+        "ja": "スウェーデン"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇸🇪"
+    },
+    {
+      "iso2": "GB",
+      "iso3": "GBR",
+      "m49": "826",
+      "name": "United Kingdom of Great Britain and Northern Ireland",
+      "region": "150",
+      "subregion": "154",
+      "names": {
+        "en": "United Kingdom",
+        "zh": "英国",
+        "fi": "Iso-Britannia",
+        "de": "Vereinigtes Königreich",
+        "ja": "イギリス"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Northern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "北欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Pohjois-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Nordeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "北ヨーロッパ"
+        ]
+      },
+      "flag": "🇬🇧"
+    },
+    {
+      "iso2": "AL",
+      "iso3": "ALB",
+      "m49": "008",
+      "name": "Albania",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Albania",
+        "zh": "阿尔巴尼亚",
+        "fi": "Albania",
+        "de": "Albanien",
+        "ja": "アルバニア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇦🇱"
+    },
+    {
+      "iso2": "AD",
+      "iso3": "AND",
+      "m49": "020",
+      "name": "Andorra",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Andorra",
+        "zh": "安道尔",
+        "fi": "Andorra",
+        "de": "Andorra",
+        "ja": "アンドラ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇦🇩"
+    },
+    {
+      "iso2": "BA",
+      "iso3": "BIH",
+      "m49": "070",
+      "name": "Bosnia and Herzegovina",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Bosnia & Herzegovina",
+        "zh": "波斯尼亚和黑塞哥维那",
+        "fi": "Bosnia ja Hertsegovina",
+        "de": "Bosnien und Herzegowina",
+        "ja": "ボスニア・ヘルツェゴビナ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇧🇦"
+    },
+    {
+      "iso2": "HR",
+      "iso3": "HRV",
+      "m49": "191",
+      "name": "Croatia",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Croatia",
+        "zh": "克罗地亚",
+        "fi": "Kroatia",
+        "de": "Kroatien",
+        "ja": "クロアチア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇭🇷"
+    },
+    {
+      "iso2": "GI",
+      "iso3": "GIB",
+      "m49": "292",
+      "name": "Gibraltar",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Gibraltar",
+        "zh": "直布罗陀",
+        "fi": "Gibraltar",
+        "de": "Gibraltar",
+        "ja": "ジブラルタル"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇬🇮"
+    },
+    {
+      "iso2": "GR",
+      "iso3": "GRC",
+      "m49": "300",
+      "name": "Greece",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Greece",
+        "zh": "希腊",
+        "fi": "Kreikka",
+        "de": "Griechenland",
+        "ja": "ギリシャ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇬🇷"
+    },
+    {
+      "iso2": "VA",
+      "iso3": "VAT",
+      "m49": "336",
+      "name": "Holy See",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Vatican City",
+        "zh": "梵蒂冈",
+        "fi": "Vatikaani",
+        "de": "Vatikanstadt",
+        "ja": "バチカン市国"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇻🇦"
+    },
+    {
+      "iso2": "IT",
+      "iso3": "ITA",
+      "m49": "380",
+      "name": "Italy",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Italy",
+        "zh": "意大利",
+        "fi": "Italia",
+        "de": "Italien",
+        "ja": "イタリア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇮🇹"
+    },
+    {
+      "iso2": "MT",
+      "iso3": "MLT",
+      "m49": "470",
+      "name": "Malta",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Malta",
+        "zh": "马耳他",
+        "fi": "Malta",
+        "de": "Malta",
+        "ja": "マルタ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇲🇹"
+    },
+    {
+      "iso2": "ME",
+      "iso3": "MNE",
+      "m49": "499",
+      "name": "Montenegro",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Montenegro",
+        "zh": "黑山",
+        "fi": "Montenegro",
+        "de": "Montenegro",
+        "ja": "モンテネグロ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇲🇪"
+    },
+    {
+      "iso2": "MK",
+      "iso3": "MKD",
+      "m49": "807",
+      "name": "North Macedonia",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "North Macedonia",
+        "zh": "北马其顿",
+        "fi": "Pohjois-Makedonia",
+        "de": "Nordmazedonien",
+        "ja": "北マケドニア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇲🇰"
+    },
+    {
+      "iso2": "PT",
+      "iso3": "PRT",
+      "m49": "620",
+      "name": "Portugal",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Portugal",
+        "zh": "葡萄牙",
+        "fi": "Portugali",
+        "de": "Portugal",
+        "ja": "ポルトガル"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇵🇹"
+    },
+    {
+      "iso2": "SM",
+      "iso3": "SMR",
+      "m49": "674",
+      "name": "San Marino",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "San Marino",
+        "zh": "圣马力诺",
+        "fi": "San Marino",
+        "de": "San Marino",
+        "ja": "サンマリノ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇸🇲"
+    },
+    {
+      "iso2": "RS",
+      "iso3": "SRB",
+      "m49": "688",
+      "name": "Serbia",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Serbia",
+        "zh": "塞尔维亚",
+        "fi": "Serbia",
+        "de": "Serbien",
+        "ja": "セルビア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇷🇸"
+    },
+    {
+      "iso2": "SI",
+      "iso3": "SVN",
+      "m49": "705",
+      "name": "Slovenia",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Slovenia",
+        "zh": "斯洛文尼亚",
+        "fi": "Slovenia",
+        "de": "Slowenien",
+        "ja": "スロベニア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇸🇮"
+    },
+    {
+      "iso2": "ES",
+      "iso3": "ESP",
+      "m49": "724",
+      "name": "Spain",
+      "region": "150",
+      "subregion": "039",
+      "names": {
+        "en": "Spain",
+        "zh": "西班牙",
+        "fi": "Espanja",
+        "de": "Spanien",
+        "ja": "スペイン"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Southern Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "南欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Etelä-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Südeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "南ヨーロッパ"
+        ]
+      },
+      "flag": "🇪🇸"
+    },
+    {
+      "iso2": "AT",
+      "iso3": "AUT",
+      "m49": "040",
+      "name": "Austria",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Austria",
+        "zh": "奥地利",
+        "fi": "Itävalta",
+        "de": "Österreich",
+        "ja": "オーストリア"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇦🇹"
+    },
+    {
+      "iso2": "BE",
+      "iso3": "BEL",
+      "m49": "056",
+      "name": "Belgium",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Belgium",
+        "zh": "比利时",
+        "fi": "Belgia",
+        "de": "Belgien",
+        "ja": "ベルギー"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇧🇪"
+    },
+    {
+      "iso2": "FR",
+      "iso3": "FRA",
+      "m49": "250",
+      "name": "France",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "France",
+        "zh": "法国",
+        "fi": "Ranska",
+        "de": "Frankreich",
+        "ja": "フランス"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇫🇷"
+    },
+    {
+      "iso2": "DE",
+      "iso3": "DEU",
+      "m49": "276",
+      "name": "Germany",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Germany",
+        "zh": "德国",
+        "fi": "Saksa",
+        "de": "Deutschland",
+        "ja": "ドイツ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇩🇪"
+    },
+    {
+      "iso2": "LI",
+      "iso3": "LIE",
+      "m49": "438",
+      "name": "Liechtenstein",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Liechtenstein",
+        "zh": "列支敦士登",
+        "fi": "Liechtenstein",
+        "de": "Liechtenstein",
+        "ja": "リヒテンシュタイン"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇱🇮"
+    },
+    {
+      "iso2": "LU",
+      "iso3": "LUX",
+      "m49": "442",
+      "name": "Luxembourg",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Luxembourg",
+        "zh": "卢森堡",
+        "fi": "Luxemburg",
+        "de": "Luxemburg",
+        "ja": "ルクセンブルク"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇱🇺"
+    },
+    {
+      "iso2": "MC",
+      "iso3": "MCO",
+      "m49": "492",
+      "name": "Monaco",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Monaco",
+        "zh": "摩纳哥",
+        "fi": "Monaco",
+        "de": "Monaco",
+        "ja": "モナコ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇲🇨"
+    },
+    {
+      "iso2": "NL",
+      "iso3": "NLD",
+      "m49": "528",
+      "name": "Netherlands (Kingdom of the)",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Netherlands",
+        "zh": "荷兰",
+        "fi": "Alankomaat",
+        "de": "Niederlande",
+        "ja": "オランダ"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇳🇱"
+    },
+    {
+      "iso2": "CH",
+      "iso3": "CHE",
+      "m49": "756",
+      "name": "Switzerland",
+      "region": "150",
+      "subregion": "155",
+      "names": {
+        "en": "Switzerland",
+        "zh": "瑞士",
+        "fi": "Sveitsi",
+        "de": "Schweiz",
+        "ja": "スイス"
+      },
+      "location": {
+        "en": [
+          "Europe",
+          "Western Europe"
+        ],
+        "zh": [
+          "欧洲",
+          "西欧"
+        ],
+        "fi": [
+          "Eurooppa",
+          "Länsi-Eurooppa"
+        ],
+        "de": [
+          "Europa",
+          "Westeuropa"
+        ],
+        "ja": [
+          "ヨーロッパ",
+          "西ヨーロッパ"
+        ]
+      },
+      "flag": "🇨🇭"
+    },
+    {
+      "iso2": "AU",
+      "iso3": "AUS",
+      "m49": "036",
+      "name": "Australia",
+      "region": "009",
+      "subregion": "053",
+      "names": {
+        "en": "Australia",
+        "zh": "澳大利亚",
+        "fi": "Australia",
+        "de": "Australien",
+        "ja": "オーストラリア"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Australasia"
+        ],
+        "zh": [
+          "大洋洲",
+          "澳大拉西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Australaasia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Australasien"
+        ],
+        "ja": [
+          "オセアニア",
+          "オーストララシア"
+        ]
+      },
+      "flag": "🇦🇺"
+    },
+    {
+      "iso2": "CX",
+      "iso3": "CXR",
+      "m49": "162",
+      "name": "Christmas Island",
+      "region": "009",
+      "subregion": "053",
+      "names": {
+        "en": "Christmas Island",
+        "zh": "圣诞岛",
+        "fi": "Joulusaari",
+        "de": "Weihnachtsinsel",
+        "ja": "クリスマス島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Australasia"
+        ],
+        "zh": [
+          "大洋洲",
+          "澳大拉西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Australaasia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Australasien"
+        ],
+        "ja": [
+          "オセアニア",
+          "オーストララシア"
+        ]
+      },
+      "flag": "🇨🇽"
+    },
+    {
+      "iso2": "CC",
+      "iso3": "CCK",
+      "m49": "166",
+      "name": "Cocos (Keeling) Islands",
+      "region": "009",
+      "subregion": "053",
+      "names": {
+        "en": "Cocos (Keeling) Islands",
+        "zh": "科科斯（基林）群岛",
+        "fi": "Kookossaaret (Keelingsaaret)",
+        "de": "Kokosinseln",
+        "ja": "ココス(キーリング)諸島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Australasia"
+        ],
+        "zh": [
+          "大洋洲",
+          "澳大拉西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Australaasia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Australasien"
+        ],
+        "ja": [
+          "オセアニア",
+          "オーストララシア"
+        ]
+      },
+      "flag": "🇨🇨"
+    },
+    {
+      "iso2": "HM",
+      "iso3": "HMD",
+      "m49": "334",
+      "name": "Heard Island and McDonald Islands",
+      "region": "009",
+      "subregion": "053",
+      "names": {
+        "en": "Heard & McDonald Islands",
+        "zh": "赫德岛和麦克唐纳群岛",
+        "fi": "Heard ja McDonaldinsaaret",
+        "de": "Heard und McDonaldinseln",
+        "ja": "ハード島・マクドナルド諸島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Australasia"
+        ],
+        "zh": [
+          "大洋洲",
+          "澳大拉西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Australaasia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Australasien"
+        ],
+        "ja": [
+          "オセアニア",
+          "オーストララシア"
+        ]
+      },
+      "flag": "🇭🇲"
+    },
+    {
+      "iso2": "NZ",
+      "iso3": "NZL",
+      "m49": "554",
+      "name": "New Zealand",
+      "region": "009",
+      "subregion": "053",
+      "names": {
+        "en": "New Zealand",
+        "zh": "新西兰",
+        "fi": "Uusi-Seelanti",
+        "de": "Neuseeland",
+        "ja": "ニュージーランド"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Australasia"
+        ],
+        "zh": [
+          "大洋洲",
+          "澳大拉西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Australaasia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Australasien"
+        ],
+        "ja": [
+          "オセアニア",
+          "オーストララシア"
+        ]
+      },
+      "flag": "🇳🇿"
+    },
+    {
+      "iso2": "NF",
+      "iso3": "NFK",
+      "m49": "574",
+      "name": "Norfolk Island",
+      "region": "009",
+      "subregion": "053",
+      "names": {
+        "en": "Norfolk Island",
+        "zh": "诺福克岛",
+        "fi": "Norfolkinsaari",
+        "de": "Norfolkinsel",
+        "ja": "ノーフォーク島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Australasia"
+        ],
+        "zh": [
+          "大洋洲",
+          "澳大拉西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Australaasia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Australasien"
+        ],
+        "ja": [
+          "オセアニア",
+          "オーストララシア"
+        ]
+      },
+      "flag": "🇳🇫"
+    },
+    {
+      "iso2": "FJ",
+      "iso3": "FJI",
+      "m49": "242",
+      "name": "Fiji",
+      "region": "009",
+      "subregion": "054",
+      "names": {
+        "en": "Fiji",
+        "zh": "斐济",
+        "fi": "Fidži",
+        "de": "Fidschi",
+        "ja": "フィジー"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Melanesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "美拉尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Melanesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Melanesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "メラネシア"
+        ]
+      },
+      "flag": "🇫🇯"
+    },
+    {
+      "iso2": "NC",
+      "iso3": "NCL",
+      "m49": "540",
+      "name": "New Caledonia",
+      "region": "009",
+      "subregion": "054",
+      "names": {
+        "en": "New Caledonia",
+        "zh": "新喀里多尼亚",
+        "fi": "Uusi-Kaledonia",
+        "de": "Neukaledonien",
+        "ja": "ニューカレドニア"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Melanesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "美拉尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Melanesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Melanesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "メラネシア"
+        ]
+      },
+      "flag": "🇳🇨"
+    },
+    {
+      "iso2": "PG",
+      "iso3": "PNG",
+      "m49": "598",
+      "name": "Papua New Guinea",
+      "region": "009",
+      "subregion": "054",
+      "names": {
+        "en": "Papua New Guinea",
+        "zh": "巴布亚新几内亚",
+        "fi": "Papua-Uusi-Guinea",
+        "de": "Papua-Neuguinea",
+        "ja": "パプアニューギニア"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Melanesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "美拉尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Melanesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Melanesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "メラネシア"
+        ]
+      },
+      "flag": "🇵🇬"
+    },
+    {
+      "iso2": "SB",
+      "iso3": "SLB",
+      "m49": "090",
+      "name": "Solomon Islands",
+      "region": "009",
+      "subregion": "054",
+      "names": {
+        "en": "Solomon Islands",
+        "zh": "所罗门群岛",
+        "fi": "Salomonsaaret",
+        "de": "Salomonen",
+        "ja": "ソロモン諸島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Melanesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "美拉尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Melanesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Melanesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "メラネシア"
+        ]
+      },
+      "flag": "🇸🇧"
+    },
+    {
+      "iso2": "VU",
+      "iso3": "VUT",
+      "m49": "548",
+      "name": "Vanuatu",
+      "region": "009",
+      "subregion": "054",
+      "names": {
+        "en": "Vanuatu",
+        "zh": "瓦努阿图",
+        "fi": "Vanuatu",
+        "de": "Vanuatu",
+        "ja": "バヌアツ"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Melanesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "美拉尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Melanesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Melanesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "メラネシア"
+        ]
+      },
+      "flag": "🇻🇺"
+    },
+    {
+      "iso2": "GU",
+      "iso3": "GUM",
+      "m49": "316",
+      "name": "Guam",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "Guam",
+        "zh": "关岛",
+        "fi": "Guam",
+        "de": "Guam",
+        "ja": "グアム"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇬🇺"
+    },
+    {
+      "iso2": "KI",
+      "iso3": "KIR",
+      "m49": "296",
+      "name": "Kiribati",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "Kiribati",
+        "zh": "基里巴斯",
+        "fi": "Kiribati",
+        "de": "Kiribati",
+        "ja": "キリバス"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇰🇮"
+    },
+    {
+      "iso2": "MH",
+      "iso3": "MHL",
+      "m49": "584",
+      "name": "Marshall Islands",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "Marshall Islands",
+        "zh": "马绍尔群岛",
+        "fi": "Marshallinsaaret",
+        "de": "Marshallinseln",
+        "ja": "マーシャル諸島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇲🇭"
+    },
+    {
+      "iso2": "FM",
+      "iso3": "FSM",
+      "m49": "583",
+      "name": "Micronesia (Federated States of)",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "Micronesia",
+        "zh": "密克罗尼西亚",
+        "fi": "Mikronesia",
+        "de": "Mikronesien",
+        "ja": "ミクロネシア連邦"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇫🇲"
+    },
+    {
+      "iso2": "NR",
+      "iso3": "NRU",
+      "m49": "520",
+      "name": "Naoero",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "Nauru",
+        "zh": "瑙鲁",
+        "fi": "Nauru",
+        "de": "Nauru",
+        "ja": "ナウル"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇳🇷"
+    },
+    {
+      "iso2": "MP",
+      "iso3": "MNP",
+      "m49": "580",
+      "name": "Northern Mariana Islands",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "Northern Mariana Islands",
+        "zh": "北马里亚纳群岛",
+        "fi": "Pohjois-Mariaanit",
+        "de": "Nördliche Marianen",
+        "ja": "北マリアナ諸島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇲🇵"
+    },
+    {
+      "iso2": "PW",
+      "iso3": "PLW",
+      "m49": "585",
+      "name": "Palau",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "Palau",
+        "zh": "帕劳",
+        "fi": "Palau",
+        "de": "Palau",
+        "ja": "パラオ"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇵🇼"
+    },
+    {
+      "iso2": "UM",
+      "iso3": "UMI",
+      "m49": "581",
+      "name": "United States Minor Outlying Islands",
+      "region": "009",
+      "subregion": "057",
+      "names": {
+        "en": "U.S. Outlying Islands",
+        "zh": "美国本土外小岛屿",
+        "fi": "Yhdysvaltain erillissaaret",
+        "de": "Amerikanische Überseeinseln",
+        "ja": "合衆国領有小離島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Micronesian Region"
+        ],
+        "zh": [
+          "大洋洲",
+          "密克罗尼西亚地区"
+        ],
+        "fi": [
+          "Oseania",
+          "Mikronesian alue"
+        ],
+        "de": [
+          "Ozeanien",
+          "Mikronesisches Inselgebiet"
+        ],
+        "ja": [
+          "オセアニア",
+          "ミクロネシア"
+        ]
+      },
+      "flag": "🇺🇲"
+    },
+    {
+      "iso2": "AS",
+      "iso3": "ASM",
+      "m49": "016",
+      "name": "American Samoa",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "American Samoa",
+        "zh": "美属萨摩亚",
+        "fi": "Amerikan Samoa",
+        "de": "Amerikanisch-Samoa",
+        "ja": "米領サモア"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇦🇸"
+    },
+    {
+      "iso2": "CK",
+      "iso3": "COK",
+      "m49": "184",
+      "name": "Cook Islands",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Cook Islands",
+        "zh": "库克群岛",
+        "fi": "Cookinsaaret",
+        "de": "Cookinseln",
+        "ja": "クック諸島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇨🇰"
+    },
+    {
+      "iso2": "PF",
+      "iso3": "PYF",
+      "m49": "258",
+      "name": "French Polynesia",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "French Polynesia",
+        "zh": "法属波利尼西亚",
+        "fi": "Ranskan Polynesia",
+        "de": "Französisch-Polynesien",
+        "ja": "仏領ポリネシア"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇵🇫"
+    },
+    {
+      "iso2": "NU",
+      "iso3": "NIU",
+      "m49": "570",
+      "name": "Niue",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Niue",
+        "zh": "纽埃",
+        "fi": "Niue",
+        "de": "Niue",
+        "ja": "ニウエ"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇳🇺"
+    },
+    {
+      "iso2": "PN",
+      "iso3": "PCN",
+      "m49": "612",
+      "name": "Pitcairn",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Pitcairn Islands",
+        "zh": "皮特凯恩群岛",
+        "fi": "Pitcairn",
+        "de": "Pitcairninseln",
+        "ja": "ピトケアン諸島"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇵🇳"
+    },
+    {
+      "iso2": "WS",
+      "iso3": "WSM",
+      "m49": "882",
+      "name": "Samoa",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Samoa",
+        "zh": "萨摩亚",
+        "fi": "Samoa",
+        "de": "Samoa",
+        "ja": "サモア"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇼🇸"
+    },
+    {
+      "iso2": "TK",
+      "iso3": "TKL",
+      "m49": "772",
+      "name": "Tokelau",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Tokelau",
+        "zh": "托克劳",
+        "fi": "Tokelau",
+        "de": "Tokelau",
+        "ja": "トケラウ"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇹🇰"
+    },
+    {
+      "iso2": "TO",
+      "iso3": "TON",
+      "m49": "776",
+      "name": "Tonga",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Tonga",
+        "zh": "汤加",
+        "fi": "Tonga",
+        "de": "Tonga",
+        "ja": "トンガ"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇹🇴"
+    },
+    {
+      "iso2": "TV",
+      "iso3": "TUV",
+      "m49": "798",
+      "name": "Tuvalu",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Tuvalu",
+        "zh": "图瓦卢",
+        "fi": "Tuvalu",
+        "de": "Tuvalu",
+        "ja": "ツバル"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇹🇻"
+    },
+    {
+      "iso2": "WF",
+      "iso3": "WLF",
+      "m49": "876",
+      "name": "Wallis and Futuna Islands",
+      "region": "009",
+      "subregion": "061",
+      "names": {
+        "en": "Wallis & Futuna",
+        "zh": "瓦利斯和富图纳",
+        "fi": "Wallis ja Futuna",
+        "de": "Wallis und Futuna",
+        "ja": "ウォリス・フツナ"
+      },
+      "location": {
+        "en": [
+          "Oceania",
+          "Polynesia"
+        ],
+        "zh": [
+          "大洋洲",
+          "玻利尼西亚"
+        ],
+        "fi": [
+          "Oseania",
+          "Polynesia"
+        ],
+        "de": [
+          "Ozeanien",
+          "Polynesien"
+        ],
+        "ja": [
+          "オセアニア",
+          "ポリネシア"
+        ]
+      },
+      "flag": "🇼🇫"
+    }
+  ],
+  "jokes": [
+    {
+      "en": "I packed a map for {country}. My suitcase asked whether it could travel light, too.",
+      "zh": "我为去{country}准备了一张地图。行李箱问：我也能轻装上阵吗？",
+      "fi": "Pakkasin kartan kohteesta {country}. Matkalaukkuni kysyi, voisiko sekin matkustaa kevyesti.",
+      "de": "Für {country} packte ich eine Karte ein. Mein Koffer fragte, ob er auch mit leichtem Gepäck reisen dürfte.",
+      "ja": "{country}への旅に地図を用意しました。スーツケースが「私も身軽に旅行していい？」と聞きました。"
+    },
+    {
+      "en": "The map said {country} was far away. The browser said: just one click.",
+      "zh": "地图说{country}很远，浏览器说：只差一次点击。",
+      "fi": "Kartta sanoi kohteen {country} olevan kaukana. Selain sanoi: vain yksi napsautus.",
+      "de": "Die Karte sagte: {country} ist weit weg. Der Browser sagte: nur einen Klick.",
+      "ja": "地図は「{country}は遠い」と言いました。ブラウザーは「クリックひとつだよ」と答えました。"
+    },
+    {
+      "en": "My compass and I planned a trip to {country}. It insisted on making a point.",
+      "zh": "我和指南针计划去{country}旅行。它坚持要先明确方向。",
+      "fi": "Suunnittelimme kompassini kanssa matkaa: {country}. Se halusi ensin osoittaa suuntaa.",
+      "de": "Mein Kompass und ich planten eine Reise: {country}. Er bestand darauf, die Richtung vorzugeben.",
+      "ja": "コンパスと{country}への旅行を計画しました。コンパスは「まず方向をはっきりさせよう」と言いました。"
+    },
+    {
+      "en": "I went looking for {country} in an atlas. Now I have more destinations than holidays.",
+      "zh": "我在地图册里寻找{country}。现在，想去的地方比假期还多。",
+      "fi": "Etsin kartastosta kohdetta {country}. Nyt matkakohteita on enemmän kuin lomapäiviä.",
+      "de": "Ich suchte {country} im Atlas. Jetzt habe ich mehr Reiseziele als Urlaubstage.",
+      "ja": "地図帳で{country}を探しました。今では休みの日より行きたい場所のほうが多くなりました。"
+    },
+    {
+      "en": "Packing for {country}: passport, charger, curiosity. Curiosity refused to fit in the suitcase.",
+      "zh": "去{country}的行李清单：护照、充电器、好奇心。好奇心太大，装不进行李箱。",
+      "fi": "Pakkauslista kohteeseen {country}: passi, laturi, uteliaisuus. Uteliaisuus ei mahtunut laukkuun.",
+      "de": "Packliste für {country}: Pass, Ladegerät, Neugier. Die Neugier passte nicht in den Koffer.",
+      "ja": "{country}への持ち物は、パスポート、充電器、好奇心。好奇心だけはスーツケースに入りませんでした。"
+    },
+    {
+      "en": "I took a globe to find {country}. It turned into a round trip.",
+      "zh": "我转动地球仪寻找{country}。这趟旅行，果然绕了一圈。",
+      "fi": "Pyöritin maapalloa löytääkseni kohteen {country}. Siitä tuli kiertomatka.",
+      "de": "Ich drehte den Globus, um {country} zu finden. Daraus wurde eine Rundreise.",
+      "ja": "{country}を探して地球儀を回しました。まさに世界を一周する旅になりました。"
+    },
+    {
+      "en": "My itinerary for {country} had one blank page. I called it room for adventure.",
+      "zh": "去{country}的行程表有一页空白。我称它为：给冒险留点空间。",
+      "fi": "Matkasuunnitelmassani kohteeseen {country} oli tyhjä sivu. Nimesin sen seikkailuvaraksi.",
+      "de": "Mein Reiseplan für {country} hatte eine leere Seite. Ich nannte sie Platz für Abenteuer.",
+      "ja": "{country}の旅行計画には白紙のページがありました。「冒険のための余白」と名付けました。"
+    },
+    {
+      "en": "I bookmarked {country} instead of buying a ticket. My wallet called it an excellent first step.",
+      "zh": "我先收藏了{country}的网页，还没买机票。钱包说：这是个很好的第一步。",
+      "fi": "Tallensin kohteen {country} kirjanmerkiksi ennen lipun ostoa. Lompakkoni piti sitä hyvänä alkuna.",
+      "de": "Ich speicherte {country} als Lesezeichen, bevor ich ein Ticket kaufte. Mein Geldbeutel fand das einen guten Anfang.",
+      "ja": "航空券を買う前に{country}のページをブックマークしました。財布は「いい第一歩だね」と言いました。"
+    }
+  ]
+}

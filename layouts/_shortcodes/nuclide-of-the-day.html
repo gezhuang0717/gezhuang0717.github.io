@@ -35,7 +35,8 @@
     <div class="zg-clock-time" id="zg-clock-time">--:--</div>
     <p class="zg-clock-date" id="zg-clock-date"></p>
     <p class="zg-clock-note" id="zg-clock-note"></p>
-    <p class="zg-clock-saying" id="zg-clock-saying"></p>
+    <p class="zg-clock-saying" id="zg-clock-saying" aria-live="polite"></p>
+    <button type="button" class="zg-btn" id="zg-clock-next">{{ i18n "zg_another" }} ↻</button>
   </section>
   <section class="zg-card zg-word">
     <div class="zg-card-label">💬 {{ i18n "zg_word" | default (index (dict "en" "Word of the day" "zh" "每日一词" "fi" "Päivän sana" "de" "Wort des Tages" "ja" "今日のことば") $base | default "Word of the day") }}</div>
@@ -44,11 +45,23 @@
     <p class="zg-word-s" id="zg-word-s"></p>
     <button type="button" class="zg-btn" id="zg-word-next">{{ i18n "zg_another" | default "Another one" }} ↻</button>
   </section>
+  {{- $ct := index hugo.Data.country_labels $base -}}
+  <section class="zg-card zg-country" data-country-card data-country-src="{{ "data/country-cards.json" | relURL }}" data-country-lang="{{ $base }}" data-country-labels="{{ $ct | jsonify }}">
+    <div class="zg-card-label">🌍 {{ $ct.title }}</div>
+    <div class="zg-country-heading"><span class="zg-country-flag" aria-hidden="true"></span><strong class="zg-country-name"></strong></div>
+    <div class="zg-country-content" aria-live="polite"><p class="zg-country-location">{{ $ct.loading }}</p><p>{{ $ct.intro }}</p><p class="zg-country-joke"></p></div>
+    <div class="zg-country-links"></div>
+    <button type="button" class="zg-btn" data-country-next disabled>{{ $ct.another }} ↻</button>
+    <p class="zg-country-source"><a href="https://unstats.un.org/unsd/methodology/m49/overview/" target="_blank" rel="noopener">{{ $ct.source }}</a><br><span class="zg-country-count"></span></p>
+  </section>
 </div>
+<script defer src="{{ "js/country-card.js" | relURL }}"></script>
 <script>
 (function () {
   var items = {{ $items | jsonify | safeJS }}, lang = {{ .Page.Language.Locale | default $lang }};
-  var day = Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5), i = day % items.length;
+  var hp = new Intl.DateTimeFormat("en", {timeZone:"Europe/Helsinki",year:"numeric",month:"numeric",day:"numeric"}).formatToParts(new Date());
+  var hd = function(type){return +hp.find(function(p){return p.type===type;}).value;};
+  var day = Math.floor(Date.UTC(hd("year"),hd("month")-1,hd("day"))/864e5), i = day % items.length, clockOffset=0;
   var sym = document.getElementById("zg-nod-sym"), fact = document.getElementById("zg-nod-fact");
   function show() { sym.textContent = items[i].s; fact.textContent = items[i].f; }
   document.getElementById("zg-nod-next").addEventListener("click", function () { i = (i + 1) % items.length; show(); });
@@ -64,7 +77,7 @@
       var h = +parts.find(function (p) { return p.type === "hour"; }).value, wd = parts.find(function (p) { return p.type === "weekday"; }).value;
       var cat = (wd === "Sat" || wd === "Sun") ? "weekend" : (h >= 8 && h < 17) ? "work" : (h >= 17 && h < 23) ? "evening" : "night", lst = status[cat];
       var dn = Math.floor(now.getTime() / 864e5);   /* a different line every day */
-      n.textContent = lst && lst.length ? lst[dn % lst.length] : notes[cat];
+      n.textContent = lst && lst.length ? lst[(dn+clockOffset) % lst.length] : notes[cat];
     } catch (e) { t.textContent = now.toUTCString().slice(17, 22) + " UTC"; }
   }
   var words = {{ $words | jsonify | safeJS }}, status = {{ $status | jsonify | safeJS }};
@@ -79,8 +92,10 @@
   if (says.length && sEl) {
     var ymd = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()).split("-");
     var doy = Math.round((Date.UTC(+ymd[0], +ymd[1] - 1, +ymd[2]) - Date.UTC(+ymd[0], 0, 1)) / 864e5);
-    var sv = says[doy % says.length]; sEl.textContent = (flags[sv.c] || "") + " " + sv.t;
+    var showSaying=function(){var sv = says[(doy+clockOffset) % says.length]; sEl.textContent = (flags[sv.c] || "") + " " + sv.t;};
+    showSaying();
   }
+  document.getElementById("zg-clock-next").addEventListener("click",function(){clockOffset++;if(typeof showSaying==="function")showSaying();tick();});
   tick(); setInterval(tick, 30000);
 })();
 </script>

@@ -15,3 +15,8 @@
 
 /* Local tabs preserve the original outer width and rainbow cards. */
 .zg-local-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0 .6rem}.zg-tool{scroll-margin-top:5rem}.zg-tool [data-local-panel][hidden]{display:none!important}.zg-local-tabs button{font-size:.95rem}.g-box .zg-btn,.g-box label,.g-box .g-msg,.g-box .g-info{font-size:1rem}.g-box .g-hints{font-size:.95rem;line-height:1.6}.g-box input,.g-box select{font-size:1rem}.zg-tool .zg-card{margin-bottom:1rem}.zg-tool .zg-btn:focus-visible{outline:3px solid var(--zg-blue);outline-offset:3px}
+
+/* Fourth home card uses the existing rainbow card design. */
+.zg-cards{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}.zg-country-heading{display:flex;gap:.7rem;align-items:center;margin:.8rem 0}.zg-country-flag{font-size:2.6rem;line-height:1.1}.zg-country-name{font-size:1.6rem;line-height:1.2}.zg-country-content{font-size:.95rem;line-height:1.55}.zg-country-joke{padding:.65rem;border-radius:.6rem;background:linear-gradient(135deg,rgba(71,200,255,.08),rgba(139,108,255,.09))}.zg-country-links{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.zg-country-links a{border:1px solid var(--zg-line);border-radius:.6rem;padding:.2rem .5rem;font-size:.85rem}.zg-country-source{font-size:.75rem;color:var(--zg-muted);margin:.75rem 0 0}.zg-clock #zg-clock-next{margin-top:.65rem}
+
+.wb{container-type:inline-size}@container(max-width:700px){.wb-layout{grid-template-columns:minmax(0,1fr)}}
