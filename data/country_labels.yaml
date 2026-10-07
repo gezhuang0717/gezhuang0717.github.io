@@ -2,64 +2,105 @@ en:
   title: Country / region of the day
   location: 'Location: {location}.'
   intro: Explore its geography, culture and history.
-  joke: Travel joke
+  joke: Kind travel humour
   wiki: Wikipedia
   maps: Google Maps
   baidu: Baidu Maps
-  another: Another one
+  another: Another country
   loading: Opening the atlas…
   error: The country card could not load. Reload to try again.
   source: 'Geography: UN M49'
-  collection: '{count} country–joke combinations'
+  collection: '{count} distinct places with reading links and varied travel captions'
+  select: Choose a country / region
+  story_next: Another story
+  place: Place to explore
+  coordinates: Latitude {lat}° · longitude {lon}°
+  no_story: Explore the country’s geography through the links below; a place story
+    is not yet available for this selection.
+  reading: Read about this place
+  metadata_note: Topics use open geographic records; captions are playful, not historical
+    quotations.
 zh:
   title: 每日国家 / 地区
   location: 位置：{location}。
   intro: 探索这里的地理、文化与历史。
-  joke: 旅行小笑话
+  joke: 友善旅行小幽默
   wiki: 维基百科
   maps: 谷歌地图
   baidu: 百度地图
-  another: 换一个
+  another: 换个国家
   loading: 正在打开地图册……
   error: 国家卡片加载失败，请刷新重试。
   source: 地理分类：联合国 M49
-  collection: '{count} 个国家地区与笑话组合'
+  collection: '{count} 个不同地点，附阅读链接及多样旅行随想'
+  select: 选择国家 / 地区
+  story_next: 换个故事
+  place: 值得探索的地方
+  coordinates: 纬度 {lat}° · 经度 {lon}°
+  no_story: 可通过下方链接了解这里的地理；当前选择尚无专题地点故事。
+  reading: 阅读这个地方的故事
+  metadata_note: 地点基于开放地理记录；随想是轻松创作，不是历史引文。
 fi:
   title: Päivän maa / alue
   location: 'Sijainti: {location}.'
   intro: Tutustu maantieteeseen, kulttuuriin ja historiaan.
-  joke: Matkavitsi
+  joke: Ystävällinen matkahuomio
   wiki: Wikipedia
   maps: Google Maps
   baidu: Baidu Maps
-  another: Toinen
+  another: Toinen maa
   loading: Avataan kartastoa…
   error: Maakortin lataus epäonnistui. Lataa sivu uudelleen.
   source: 'Maantiede: YK:n M49'
-  collection: '{count} maa–vitsiyhdistelmää'
+  collection: '{count} eri paikkaa, lukulinkit ja vaihtelevat matkahuomiot'
+  select: Valitse maa / alue
+  story_next: Toinen tarina
+  place: Tutustumiskohde
+  coordinates: Leveysaste {lat}° · pituusaste {lon}°
+  no_story: Tutustu maan maantieteeseen alla olevista linkeistä; valinnalle ei vielä
+    ole paikkatarinaa.
+  reading: Lue tästä paikasta
+  metadata_note: Kohteet perustuvat avoimiin paikkatietoihin; leikkisät huomiot eivät
+    ole historiallisia lainauksia.
 de:
   title: Land / Region des Tages
   location: 'Lage: {location}.'
   intro: Entdecke Geografie, Kultur und Geschichte.
-  joke: Reisewitz
+  joke: Freundlicher Reisehumor
   wiki: Wikipedia
   maps: Google Maps
   baidu: Baidu Maps
-  another: Noch eines
+  another: Anderes Land
   loading: Atlas wird geöffnet…
   error: Die Länderkarte konnte nicht geladen werden. Lade die Seite neu.
   source: 'Geografie: UN M49'
-  collection: '{count} Länder–Witz-Kombinationen'
+  collection: '{count} verschiedene Orte mit Leselinks und abwechslungsreichen Reisegedanken'
+  select: Land / Region auswählen
+  story_next: Andere Geschichte
+  place: Ort zum Entdecken
+  coordinates: Breitengrad {lat}° · Längengrad {lon}°
+  no_story: Die Links unten führen zur Geografie des Landes; für diese Auswahl liegt
+    noch keine Ortsgeschichte vor.
+  reading: Über diesen Ort lesen
+  metadata_note: Orte basieren auf offenen Geodaten; die spielerischen Gedanken sind
+    keine historischen Zitate.
 ja:
   title: 今日の国・地域
   location: 位置：{location}。
   intro: 地理、文化、歴史を調べてみましょう。
-  joke: 旅の小話
+  joke: やさしい旅のユーモア
   wiki: ウィキペディア
   maps: Google マップ
   baidu: 百度マップ
-  another: 別の例
+  another: 別の国
   loading: 地図帳を開いています…
   error: 国のカードを読み込めませんでした。ページを再読み込みしてください。
   source: 地理分類：国連 M49
-  collection: '{count} 通りの国・地域と小話の組み合わせ'
+  collection: '{count} か所の異なる場所と読書リンク、多彩な旅の随想'
+  select: 国・地域を選ぶ
+  story_next: 別の話
+  place: 訪ねてみたい場所
+  coordinates: 緯度 {lat}° · 経度 {lon}°
+  no_story: 下のリンクから地理を調べられます。この選択の場所の物語はまだ用意されていません。
+  reading: この場所について読む
+  metadata_note: 場所は公開地理情報に基づきます。随想は創作であり、歴史的な引用ではありません。

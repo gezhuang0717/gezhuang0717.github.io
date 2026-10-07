@@ -21,13 +21,14 @@
 {{- end -}}
 {{- range hugo.Data.nuclides.nuclides -}}
   {{- $fact := or (index .fact $lang) (index .fact $base) .fact.en -}}
-  {{- $items = $items | append (dict "s" .sym "f" $fact) -}}
+  {{- $items = $items | append (dict "s" .sym "f" $fact "extra" (index (.extra | default dict) $base | default "") "source" (.source | default "https://www-nds.iaea.org/amdc/ame2020/")) -}}
 {{- end -}}
 <div class="zg-cards">
   <section class="zg-card zg-nod" aria-live="polite">
     <div class="zg-card-label">⚛ {{ i18n "zg_nod" | default "Nuclide of the day" }}</div>
     <div class="zg-nod-sym" id="zg-nod-sym"></div>
     <p class="zg-nod-fact" id="zg-nod-fact"></p>
+    <p class="zg-nod-extra" id="zg-nod-extra"></p><a id="zg-nod-source" target="_blank" rel="noopener">AME / NUBASE</a>
     <button type="button" class="zg-btn" id="zg-nod-next">{{ i18n "zg_another" | default "Another one" }} ↻</button>
   </section>
   <section class="zg-card zg-clock">
@@ -48,11 +49,12 @@
   {{- $ct := index hugo.Data.country_labels $base -}}
   <section class="zg-card zg-country" data-country-card data-country-src="{{ "data/country-cards.json" | relURL }}" data-country-lang="{{ $base }}" data-country-labels="{{ $ct | jsonify }}">
     <div class="zg-card-label">🌍 {{ $ct.title }}</div>
+    <label class="zg-country-select">{{ $ct.select }} <select data-country-select disabled></select></label>
     <div class="zg-country-heading"><span class="zg-country-flag" aria-hidden="true"></span><strong class="zg-country-name"></strong></div>
-    <div class="zg-country-content" aria-live="polite"><p class="zg-country-location">{{ $ct.loading }}</p><p>{{ $ct.intro }}</p><p class="zg-country-joke"></p></div>
+    <div class="zg-country-content" aria-live="polite"><p class="zg-country-location">{{ $ct.loading }}</p><h3 class="zg-country-place"></h3><p class="zg-country-story"></p><p class="zg-country-joke"></p></div>
     <div class="zg-country-links"></div>
-    <button type="button" class="zg-btn" data-country-next disabled>{{ $ct.another }} ↻</button>
-    <p class="zg-country-source"><a href="https://unstats.un.org/unsd/methodology/m49/overview/" target="_blank" rel="noopener">{{ $ct.source }}</a><br><span class="zg-country-count"></span></p>
+    <div class="zg-row"><button type="button" class="zg-btn" data-story-next disabled>{{ $ct.story_next }} ↻</button><button type="button" class="zg-btn zg-btn-ghost" data-country-next disabled>{{ $ct.another }} ↻</button></div>
+    <p class="zg-country-source"><a href="https://unstats.un.org/unsd/methodology/m49/overview/" target="_blank" rel="noopener">{{ $ct.source }}</a><br><span class="zg-country-count"></span></p><details><summary>{{ $ct.reading }}</summary><p>{{ $ct.metadata_note }}</p><a href="https://www.wikidata.org/">Wikidata</a></details>
   </section>
 </div>
 <script defer src="{{ "js/country-card.js" | relURL }}"></script>
@@ -63,7 +65,7 @@
   var hd = function(type){return +hp.find(function(p){return p.type===type;}).value;};
   var day = Math.floor(Date.UTC(hd("year"),hd("month")-1,hd("day"))/864e5), i = day % items.length, clockOffset=0;
   var sym = document.getElementById("zg-nod-sym"), fact = document.getElementById("zg-nod-fact");
-  function show() { sym.textContent = items[i].s; fact.textContent = items[i].f; }
+  function show() { sym.textContent = items[i].s; fact.textContent = items[i].f; document.getElementById("zg-nod-extra").textContent=items[i].extra;document.getElementById("zg-nod-source").href=items[i].source; }
   document.getElementById("zg-nod-next").addEventListener("click", function () { i = (i + 1) % items.length; show(); });
   show();
   var tz = "Europe/Helsinki", t = document.getElementById("zg-clock-time"), d = document.getElementById("zg-clock-date"), n = document.getElementById("zg-clock-note");
@@ -76,7 +78,7 @@
       var parts = new Intl.DateTimeFormat("en-GB", { timeZone: tz, hour: "numeric", hour12: false, weekday: "short" }).formatToParts(now);
       var h = +parts.find(function (p) { return p.type === "hour"; }).value, wd = parts.find(function (p) { return p.type === "weekday"; }).value;
       var cat = (wd === "Sat" || wd === "Sun") ? "weekend" : (h >= 8 && h < 17) ? "work" : (h >= 17 && h < 23) ? "evening" : "night", lst = status[cat];
-      var dn = Math.floor(now.getTime() / 864e5);   /* a different line every day */
+      var dn = day;   /* a different line every day */
       n.textContent = lst && lst.length ? lst[(dn+clockOffset) % lst.length] : notes[cat];
     } catch (e) { t.textContent = now.toUTCString().slice(17, 22) + " UTC"; }
   }
@@ -84,14 +86,14 @@
   (function () {      /* word of the day: same for everybody on a given day (Helsinki date); ↻ shows another */
     if (!words.length) return;
     var ymd = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Helsinki", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()).split("-");
-    var k = Math.round(Date.UTC(+ymd[0], +ymd[1] - 1, +ymd[2]) / 864e5) % words.length;
+    var k = day % words.length;
     function show() { var w = words[k % words.length]; document.getElementById("zg-word-w").textContent = w.w; document.getElementById("zg-word-o").textContent = w.o; document.getElementById("zg-word-s").textContent = w.s; }
     show(); var b = document.getElementById("zg-word-next"); if (b) b.onclick = function () { k = (k + 1 + Math.floor(Math.random() * (words.length - 1))) % words.length; show(); };
   })();
   var says = {{ $says | jsonify | safeJS }}, flags = { fi: "🇫🇮", cn: "🇨🇳", de: "🇩🇪", jp: "🇯🇵", uk: "🇬🇧" }, sEl = document.getElementById("zg-clock-saying");
   if (says.length && sEl) {
     var ymd = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()).split("-");
-    var doy = Math.round((Date.UTC(+ymd[0], +ymd[1] - 1, +ymd[2]) - Date.UTC(+ymd[0], 0, 1)) / 864e5);
+    var doy = day - Math.floor(Date.UTC(hd("year"), 0, 1) / 864e5);
     var showSaying=function(){var sv = says[(doy+clockOffset) % says.length]; sEl.textContent = (flags[sv.c] || "") + " " + sv.t;};
     showSaying();
   }
