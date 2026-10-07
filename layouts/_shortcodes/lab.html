@@ -9,8 +9,7 @@
 */ -}}
 <div class="zg-lab">
 
-{{ partial "zg/measurement-workbench.html" (dict "kind" "penning" "id" "penning-motion") }}
-<details><summary>Normalized motion illustration / 归一化运动示意</summary>
+<section id="penning-tools" data-local-tabs class="zg-tool">{{ partial "zg/local-tabs.html" (dict "id" "penning") }}<div data-local-panel="classic">
 <section class="zg-card zg-lab-sim">
   <h2>{{ i18n "zg_lab_sim" | default "Ion motion in a Penning trap" }}</h2>
   <p class="zg-muted">{{ i18n "zg_lab_sim_note" | default "A charged particle in a strong magnetic field plus a weak electric quadrupole field moves on two circles at once — the fast modified-cyclotron motion (ν₊) riding on the slow magnetron motion (ν₋) — while oscillating along the field axis (ν_z). The sum ν₊ + ν₋ = ν_c gives the mass." }}</p>
@@ -33,7 +32,8 @@
   <p class="zg-muted zg-small">{{ i18n "zg_lab_convert_note" | default "The π pulse converts magnetron motion into cyclotron motion — the trick behind TOF-ICR, where the converted ions gain radial energy and arrive earlier at the detector." }}</p>
 </section>
 
-</details>
+{{ partial "zg/legacy-penning3d.html" . }}
+</div><div data-local-panel="advanced">{{ partial "zg/measurement-workbench.html" (dict "kind" "penning" "id" "penning-motion") }}</div></section>
 <section class="zg-card">
   <h2>{{ i18n "zg_lab_nuc" | default "Cyclotron-frequency calculator" }}</h2>
   <div class="zg-form">
@@ -80,6 +80,7 @@
 </div>
 <script defer src="{{ "js/physics.js" | relURL }}"></script>
 <script defer src="{{ "js/workbenches.js" | relURL }}"></script>
+<script defer src="{{ "js/topic-navigation.js" | relURL }}"></script>
 <script src="{{ "js/zg-export.js" | relURL }}"></script>
 <script>
 (function () {

@@ -25,30 +25,40 @@
    "tbody" "あなたも放射性" "nbody" "体内にはカリウム40と炭素14が含まれています。体重を入れると、毎秒いくつ崩壊しているかが分かります。" "mass" "体重（kg）" "k40" "⁴⁰K の毎秒崩壊数" "c14" "¹⁴C の毎秒崩壊数" "total" "合計" "banana" "≈ バナナ本数" "day" "1日あたりの崩壊数" "bnote" "推定値：体重1 kgあたりカリウム 2 g、炭素 230 g；⁴⁰K ≈ 31 Bq/g K、¹⁴C ≈ 0.23 Bq/g C、バナナ1本 ≈ 15 Bq。まったく正常で無害です。")
 -}}
 {{- $t := index $L $k | default (index $L "en") -}}
-<div class="zg-lab zg-lab-more" data-root="{{ strings.TrimSuffix "zg-root" ("zg-root" | relURL) }}">
-
-<section class="zg-card zg-body">
-  <h2>☢ {{ $t.tbody }}</h2>
-  <p class="zg-muted">{{ $t.nbody }}</p>
-  <div class="zg-form"><label>{{ $t.mass }} <input type="number" id="zg-b-m" value="70" min="1" max="300" step="1"></label></div>
-  <table class="zg-table" id="zg-b-out"></table>
-  <p class="zg-muted zg-small">{{ $t.bnote }}</p>
+<section class="zg-card zg-3d" data-trap3d>
+  <h2>{{ $t.t3d }}</h2>
+  <p class="zg-muted">{{ $t.n3d }} {{ $t.n3d2 }}</p>
+  <canvas width="640" height="440" aria-label="{{ $t.t3d }}"></canvas>
+  <div class="zg-sim-controls">
+    <label>{{ $t.ratio }} <input type="range" name="ratio" min="2" max="200" value="21"><output></output></label>
+    <label>{{ $t.speed }} <input type="range" name="speed" min="1" max="50" value="4"><output></output></label>
+    <label>{{ $t.rp }} <input type="range" name="rp" min="0" max="100" value="25"><output></output></label>
+    <label>{{ $t.rm }} <input type="range" name="rm" min="0" max="100" value="65"><output></output></label>
+    <label>{{ $t.az }} <input type="range" name="az" min="0" max="100" value="45"><output></output></label>
+    <label>{{ $t.trail }} <input type="range" name="trail" min="100" max="20000" step="100" value="1400"><output></output></label>
+    <label>{{ $t.ions }} <input type="range" name="ions" min="1" max="60" value="1"><output></output></label>
+    <label>{{ $t.spread }} <input type="range" name="spread" min="0" max="50" value="4"><output></output></label>
+  </div>
+  <div class="zg-row zg-checks">
+    <label><input type="checkbox" name="auto" checked> {{ $t.auto }}</label>
+    <label><input type="checkbox" name="cool"> {{ $t.cool }}</label>
+    <label><input type="checkbox" name="electrodes" checked> {{ $t.electrodes }}</label>
+    <label><input type="checkbox" name="field"> {{ $t.field }}</label>
+    <label><input type="checkbox" name="detector"> {{ $t.detector }}</label>
+  </div>
+  <div class="zg-row">
+    <button type="button" class="zg-btn" data-act="pulse">{{ $t.pulse }}</button>
+    <button type="button" class="zg-btn" data-act="dipole">{{ $t.dipole }}</button>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="top">{{ $t.top }}</button>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="side">{{ $t.side }}</button>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="iso">{{ $t.iso }}</button>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="reset">{{ $t.reset }}</button>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ PNG</button>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="video">⏺ Video</button>
+  </div>
 </section>
+<script defer src="{{ "js/zg-export.js" | relURL }}"></script>
+<script defer src="{{ "js/trap3d.js" | relURL }}"></script>
 
-</div>
-<script>
-(function () {
-  var T = {{ $t | jsonify | safeJS }}, $ = function (id) { return document.getElementById(id); };
-  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var css = getComputedStyle(document.documentElement), ink = (css.getPropertyValue("--zg-ink") || "").trim() || "#1d2433";
 
-  /* ── 7. you are radioactive ─────────────────────────────────────────── */
-  function body() {
-    var kg = Math.max(0, +$("zg-b-m").value || 0), k = kg * 2 * 31, c = kg * 230 * 0.23, tot = k + c;
-    var f = function (x) { return Math.round(x).toLocaleString(); };
-    $("zg-b-out").innerHTML = [[T.k40, f(k) + " Bq"], [T.c14, f(c) + " Bq"], [T.total, "<b>" + f(tot) + " Bq</b>"], [T.day, (tot * 86400).toExponential(2)], [T.banana, f(tot / 15) + " 🍌"]]
-      .map(function (r) { return "<tr><th>" + r[0] + "</th><td>" + r[1] + "</td></tr>"; }).join("");
-  }
-  if ($("zg-b-m")) { $("zg-b-m").addEventListener("input", body); body(); }
-})();
-</script>
+

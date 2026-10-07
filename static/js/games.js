@@ -55,13 +55,13 @@
   /* frame with grid, ticks and labels; returns data→pixel maps */
   function axes(g, P, xr, yr, xl, yl, ink, ny = 5) {
     const X = v => P.l + (v - xr[0]) / (xr[1] - xr[0]) * (P.r - P.l), Y = v => P.b - (v - yr[0]) / (yr[1] - yr[0]) * (P.b - P.t);
-    g.save(); g.lineWidth = 1; g.font = "11px system-ui,sans-serif"; g.fillStyle = ink;
+    g.save(); g.lineWidth = 1; g.font = "13px system-ui,sans-serif"; g.fillStyle = ink;
     g.strokeStyle = "rgba(127,127,160,.18)"; g.textAlign = "center"; g.textBaseline = "top";
     ticks(xr[0], xr[1],P.r-P.l<300?3:6).forEach(v => { const x = X(v); g.beginPath(); g.moveTo(x, P.t); g.lineTo(x, P.b); g.stroke(); g.fillText(fmtN(v), x, P.b + 4); });
     g.textAlign = "right"; g.textBaseline = "middle";
     ticks(yr[0], yr[1], ny).forEach(v => { const y = Y(v); g.beginPath(); g.moveTo(P.l, y); g.lineTo(P.r, y); g.stroke(); g.fillText(fmtN(v), P.l - 5, y); });
     g.strokeStyle = "rgba(127,127,160,.75)"; g.strokeRect(P.l, P.t, P.r - P.l, P.b - P.t);
-    g.font = "600 12px system-ui,sans-serif"; g.textAlign = "center"; g.textBaseline = "alphabetic";
+    g.font = "600 14px system-ui,sans-serif"; g.textAlign = "center"; g.textBaseline = "alphabetic";
     g.fillText(xl, (P.l + P.r) / 2, P.b + 32);
     g.translate(13, (P.t + P.b) / 2); g.rotate(-Math.PI / 2); g.fillText(yl, 0, 0);
     g.restore();
@@ -156,7 +156,7 @@
       if (!print) { const x = X(+sl.value); g.strokeStyle = "rgba(247,107,21,.85)"; g.setLineDash([3, 3]); g.beginPath(); g.moveTo(x, P.t); g.lineTo(x, P.b); g.stroke(); g.setLineDash([]); }
       if (reveal) { const x = X(nuTrue - NU_REF); g.strokeStyle = "#e5484d"; g.lineWidth = 1; g.beginPath(); g.moveTo(x, P.t); g.lineTo(x, P.b); g.stroke(); }
       g.restore();
-      g.fillStyle = ink; g.font = "11px system-ui,sans-serif"; g.textAlign = "right";
+      g.fillStyle = ink; g.font = "13px system-ui,sans-serif"; g.textAlign = "right";
       g.fillText(`${ION} · B = ${B} T · ν_c ≈ ${NU_REF.toFixed(1)} Hz · T_rf = ${Trf * 1000} ms (${scheme === "rect" ? "rectangular" : "Ramsey 10–80–10 %"}) · ${ions.length} ions / ${shots} shots`, P.r - 4, P.t + 13);
     }
     const draw = () => { const [g, W, H] = crisp(cv); paint(g, W, H, inkOf(), false); };
@@ -195,6 +195,109 @@
     ["view", "theory"].forEach(n => sel(n).addEventListener("change", draw));
     addEventListener("resize", draw);
     reset();
+  }
+
+  function mrtofGame() {
+    const box = $("#g-mr-classic"), [cv, cv2] = box.querySelectorAll("canvas"), sel = n => box.querySelector(`[name=${n}]`);
+    const Physics = window.ZGPhysics, TL = T, UKEV = 931494.10242;
+    /* default pairs by name; Δm is computed from NUBASE2020/AME2020 once the data are loaded */
+    const names = [["100Sn", "100In"], ["133Cs", "133Xe"], ["84Rb", "84Kr"], ["56Ni", "56Co"], ["129Sb", "129Sn"], ["101Sn", "101In"], ["94Ag", "94Pd"], ["68Se", "68As"]];
+    let pairs = [], P = null, hist = null;
+    const V = n => +sel(n).value;
+    function nuc(lbl) {
+      try { const ion=catalog.resolve(lbl,{q:1}); return {label:ion.label,A:ion.A,M:ion.M,value:ion.value,e:ion.e,est:ion.est}; }
+      catch (_) { return null; }
+    }
+    function pairOf(a,b) {
+      const x=nuc(a),y=nuc(b); if(!x||!y)return null;
+      const delta=Physics.combine([UKEV,y.value],[-UKEV,x.value]);
+      return {a:x,b:y,m:x.M,dm:delta.v,e:delta.e,est:delta.est};
+    }
+    function model(N=V("laps")) {
+      const z=V("z"), dt0=V("dt0"),dl=V("dlap")/1000;
+      const ma=P.a.M-z*Physics.C.electronU,mb=P.b.M-z*Physics.C.electronU,s=Math.sqrt(ma/z/100);
+      const t=(V("t0")+N*V("tlap"))*s*1000;
+      const dT=(V("t0")+N*V("tlap"))*(Math.sqrt(mb/z/100)-s)*1000;
+      const fw=Math.hypot(dt0,N*dl),R=t/(2*fw),need=P.dm===0?Infinity:(ma+mb)/2*UKEV/Math.abs(P.dm);
+      return {N,t,dT,fw,R,need,dt0,dl,s};
+    }
+    function sample(m) {            /* counts per bin with Poisson-like sampling; ratio sets the 2nd peak */
+      const n1 = V("counts"), n2 = Math.round(n1 * V("ratio")), lo = Math.min(0, m.dT), hi = Math.max(0, m.dT);
+      const span = Math.max(4 * m.fw, (hi - lo) * 1.8 + 3 * m.fw), nb = 200, h = new Array(nb).fill(0), x0 = (lo + hi) / 2 - span / 2, sg = m.fw / 2.3548;
+      for (let i = 0; i < n1; i++) { const b = Math.floor((sg * gauss() - x0) / span * nb); if (b >= 0 && b < nb) h[b]++; }
+      for (let i = 0; i < n2; i++) { const b = Math.floor((m.dT + sg * gauss() - x0) / span * nb); if (b >= 0 && b < nb) h[b]++; }
+      return { h, x0, span, nb };
+    }
+    function paint(g, W, H, ink) {
+      if (!P) return; const m = model(); hist = hist || sample(m);
+      const { h, x0, span, nb } = hist, mx = Math.max(5, ...h) * 1.18, Pp = { l: 56, t: 12, r: W - 12, b: H - 42 };
+      const [X, Y] = axes(g, Pp, [x0, x0 + span], [0, mx], "TOF − t₁ (ns)", TL.counts, ink, 4);
+      const bw = (Pp.r - Pp.l) / nb, sg = m.fw / 2.3548, n1 = V("counts");
+      h.forEach((v, i) => { if (!v) return; const x = X(x0 + i * span / nb), c = x0 + (i + 0.5) * span / nb;
+        g.fillStyle = Math.abs(c) < Math.abs(c - m.dT) ? "rgba(62,99,221,.75)" : "rgba(229,72,77,.75)"; g.fillRect(x, Y(v), Math.max(1, bw - 0.4), Pp.b - Y(v)); });
+      const area = n1 * span / nb / (sg * Math.sqrt(2 * Math.PI));
+      [[0, "#3e63dd", 1], [m.dT, "#e5484d", V("ratio")]].forEach(([mu, col, r]) => { g.strokeStyle = col; g.lineWidth = 1.6; g.beginPath();
+        for (let i = 0; i <= 400; i++) { const x = x0 + span * i / 400, y = Y(r * area * Math.exp(-0.5 * ((x - mu) / sg) ** 2)); i ? g.lineTo(X(x), y) : g.moveTo(X(x), y); } g.stroke(); });
+      if (sel("sum").checked) { g.strokeStyle = "#8e4ec6"; g.setLineDash([4, 3]); g.beginPath();
+        for (let i = 0; i <= 400; i++) { const x = x0 + span * i / 400, y = Y(area * (Math.exp(-0.5 * (x / sg) ** 2) + V("ratio") * Math.exp(-0.5 * ((x - m.dT) / sg) ** 2))); i ? g.lineTo(X(x), y) : g.moveTo(X(x), y); } g.stroke(); g.setLineDash([]); }
+      g.fillStyle = ink; g.font = "600 14px system-ui,sans-serif"; g.textAlign = "center";
+      g.fillText(P.a.label, X(0), Pp.t + 14); g.fillText(P.b.label, X(m.dT), Pp.t + 28);
+      const y = Pp.t + 40; g.strokeStyle = ink; g.lineWidth = 1; g.beginPath(); g.moveTo(X(0), y); g.lineTo(X(m.dT), y); g.stroke();
+      g.font = "13px system-ui,sans-serif"; g.fillText(`Δt = ${m.dT.toFixed(m.dT < 10 ? 2 : 1)} ns · FWHM = ${m.fw.toFixed(m.fw < 10 ? 2 : 1)} ns`, (X(0) + X(m.dT)) / 2, y - 4);
+    }
+    function paint2(g, W, H, ink) {           /* resolving power vs laps (log scale option) */
+      if (!P) return; const m = model(), Nmax = +sel("laps").max, Pp = { l: 64, t: 10, r: W - 12, b: H - 40 }, logy = sel("logr").checked;
+      const Rof = N => (V("t0") + N * V("tlap")) * m.s * 1000 / (2 * Math.hypot(m.dt0, N * m.dl));
+      let top = 0; for (let N = 0; N <= Nmax; N += Math.max(1, Nmax / 400)) top = Math.max(top, Rof(N)); top = Math.max(top, Number.isFinite(m.need)?m.need:0) * 1.2;
+      const tr = v => logy ? Math.log10(Math.max(1, v)) : v;
+      const [X, Y] = axes(g, Pp, [0, Nmax], [logy ? 2 : 0, tr(top)], TL.laps, logy ? "log₁₀ R" : "R = t / (2·FWHM)", ink, 4);
+      if (Number.isFinite(m.need)) { g.strokeStyle = "#e5484d"; g.setLineDash([5, 4]); g.beginPath(); g.moveTo(Pp.l, Y(tr(m.need))); g.lineTo(Pp.r, Y(tr(m.need))); g.stroke(); g.setLineDash([]);
+      g.fillStyle = "#e5484d"; g.font = "13px system-ui,sans-serif"; g.textAlign = "left"; g.fillText(`${TL.need}: m/Δm = ${Math.round(m.need).toLocaleString()}`, Pp.l + 6, Y(tr(m.need)) - 4); }
+      g.strokeStyle = "#8e4ec6"; g.lineWidth = 2; g.beginPath(); for (let i = 0; i <= 300; i++) { const N = Nmax * i / 300, y = Y(tr(Rof(N))); i ? g.lineTo(X(N), y) : g.moveTo(X(N), y); } g.stroke();
+      g.fillStyle = "#f76b15"; g.beginPath(); g.arc(X(m.N), Y(tr(m.R)), 5, 0, 6.283); g.fill();
+    }
+    function draw(resample) {
+      if (!P) return; if (resample) hist = null;
+      const m = model();
+      { const [g, W, H] = crisp(cv); paint(g, W, H, inkOf()); }
+      { const [g, W, H] = crisp(cv2); paint2(g, W, H, inkOf()); }
+      const ok = Math.abs(m.dT) >= m.fw, h = P.est ? "#" : "";
+      msg(box, `${P.a.label} – ${P.b.label}: M(${P.b.label}) − M(${P.a.label}) = ${(P.e==null?fmtN(P.dm)+h+" ± ?":fmtU(P.dm,P.e,h))} keV (AME2020 + NUBASE2020 Eₓ) · m/q = ${(P.m / V("z")).toFixed(4)} u · t = ${(m.t / 1000).toFixed(3)} µs · Δt = ${m.dT.toFixed(2)} ns · FWHM = ${m.fw.toFixed(2)} ns · R ≈ ${Math.round(m.R).toLocaleString()} (${TL.need} ${Math.round(m.need).toLocaleString()}) · ${ok ? "✔ " + TL.separated : "… " + TL.overlap}` +
+        (m.dl > 0 ? ` · ${TL.mr_sat}: N ≈ ${Math.round(m.dt0 / m.dl).toLocaleString()}` : ""));
+    }
+    function fillPairs() {
+      sel("pair").innerHTML = pairs.map((p, i) => `<option value="${i}">${p.a.label} / ${p.b.label} (Δm = ${Math.abs(p.dm).toFixed(0)} keV)</option>`).join("");
+    }
+    function randomPair() { /* two neighbouring isobars from NUBASE2020 that live ≥ 10 ms */
+      const ok = rows.filter(r => r[6] >= -2 && r[5] === 0), by = new Map(); ok.forEach(r => by.set(r[0] + "," + (r[0] + r[1]), r));
+      for (let k = 0; k < 500; k++) { const a = rnd(ok), b = by.get((a[0] + 1) + "," + (a[0] + a[1])); if (!b) continue;
+        const A = a[0] + a[1], p = pairOf(A + a[2], A + b[2]); if (!p || Math.abs(p.dm) < 30) continue;
+        pairs.push(p); fillPairs(); sel("pair").value = pairs.length - 1; P = p; draw(true); return; }
+    }
+    function manual() {
+      const on = sel("manual").checked; box.querySelector(".mr-man").hidden = !on; if (!on) { P = pairs[+sel("pair").value] || pairs[0]; draw(true); return; }
+      const p = pairOf(sel("n1").value, sel("n2").value); box.querySelector(".mr-bad").textContent = p ? "" : TL.rfq_bad;
+      if (p) { P = p; draw(true); }
+    }
+    box.addEventListener("input", e => { const n = e.target.name; if (n === "n1" || n === "n2") return manual(); if (n && n !== "pair") draw(n !== "laps"); });
+    box.addEventListener("change", e => { const n = e.target.name; if (n === "pair") { P = pairs[+e.target.value]; draw(true); } if (n === "manual") manual(); });
+    box.addEventListener("click", e => {
+      const a = e.target.closest("[data-act]")?.dataset.act; if (!a) return;
+      if (a === "rand" && rows.length) randomPair();
+      if (a === "new") { sel("laps").value = 0; sel("laps").dispatchEvent(new Event("input", { bubbles: true })); }
+      if (a === "auto") { /* smallest number of laps that separates the pair */
+        let N=0;const mx=+sel("laps").max;
+        for(;N<=mx;N++){const m=model(N);if(Math.abs(m.dT)>=m.fw)break;}
+        sel("laps").value = Math.min(N, mx); sel("laps").dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      if (a === "png") savePNG(cv, paint, "mrtof-spectrum");
+      if (a === "png2") savePNG(cv2, paint2, "mrtof-resolving-power");
+      if (a === "csv" && window.zgExport && hist) window.zgExport.csv(["tof_minus_t1_ns", "counts"], hist.h.map((v, i) => [(hist.x0 + (i + 0.5) * hist.span / hist.nb).toFixed(4), v]), "mrtof-spectrum");
+    });
+    addEventListener("resize", () => draw(false));
+    const init = () => { if (!rows.length) return setTimeout(init, 200);
+      pairs = names.map(([a, b]) => pairOf(a, b)).filter(Boolean); fillPairs(); P = pairs[0]; draw(true); };
+    init();
   }
 
   /* ── 3b. Keep the ions: linear Paul trap / RFQ mass filter ──────────────
@@ -527,7 +630,7 @@
     next();
   }
 
-  Promise.all([fetch(root.dataset.src).then(r => {if(!r.ok)throw new Error("Nuclear data unavailable");return r.json();}), P.load(root.dataset.catalogue,root.dataset.ame)]).then(([d,c])=>{rows=d.rows;catalog=c;hlGame();quiz(d.elements);tofGame();rfqGame();piicrGame();}).catch(e=>{root.insertAdjacentHTML("afterbegin",`<p role="alert">${e.message}</p>`);});
+  Promise.all([fetch(root.dataset.src).then(r => {if(!r.ok)throw new Error("Nuclear data unavailable");return r.json();}), P.load(root.dataset.catalogue,root.dataset.ame)]).then(([d,c])=>{rows=d.rows;catalog=c;hlGame();quiz(d.elements);tofGame();mrtofGame();rfqGame();piicrGame();}).catch(e=>{root.insertAdjacentHTML("afterbegin",`<p role="alert">${e.message}</p>`);});
   /* number boxes next to sliders: typing a value moves the slider (and widens its range if needed) */
   root.querySelectorAll(".g-num[data-for]").forEach(n => {
     const box = n.closest(".g-box"), r = box && box.querySelector(`input[type=range][name="${n.dataset.for}"]`); if (!r) return;

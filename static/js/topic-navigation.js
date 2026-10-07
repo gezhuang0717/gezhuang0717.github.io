@@ -1,12 +1,15 @@
 (() => {
   "use strict";
-  const games = document.querySelector("[data-games]"); if (!games) return;
-  const sections = [...games.children].filter(e => e.tagName === "SECTION" && e.id), nav = document.createElement("nav");
-  nav.className = "zg-topic-nav"; nav.setAttribute("aria-label", document.documentElement.lang.startsWith("zh") ? "物理工具" : "Physics tasks");
-  const short = document.documentElement.lang.startsWith("zh") ? {"g-hl":"半衰期","g-tof":"TOF-ICR","g-pi":"PI-ICR","g-mr":"MR-TOF","g-rfq":"RFQ","g-quiz":"问答"} : { "g-hl": "Half-life", "g-tof": "TOF-ICR", "g-pi": "PI-ICR", "g-mr": "MR-TOF", "g-rfq": "RFQ", "g-quiz": "Quiz" };
-  sections.forEach(section => { const link = document.createElement("a"); link.href = "#" + section.id; link.textContent = short[section.id] || section.querySelector("h2").textContent; nav.appendChild(link); });
-  games.prepend(nav);
-  const select = (id, scroll = false) => { if (!sections.some(s => s.id === id)) id = "g-tof"; sections.forEach(s => s.hidden = s.id !== id); [...nav.children].forEach(a => a.setAttribute("aria-current", a.hash === "#" + id ? "true" : "false")); const hunt = games.querySelector(".g-hunt"); if (hunt) hunt.hidden = id !== "g-tof"; if (scroll) document.getElementById(id).scrollIntoView({ block: "start" }); dispatchEvent(new Event("resize")); };
-  nav.addEventListener("click", e => { const link = e.target.closest("a"); if (!link) return; e.preventDefault(); history.replaceState(null, "", link.hash); select(link.hash.slice(1)); });
-  addEventListener("hashchange", () => select(location.hash.slice(1), true)); select(location.hash.slice(1));
+  // These are page shortcuts. Every original tool remains on the page.
+  const games=document.querySelector("[data-games]");
+  if(games){
+    const titles={en:{"g-hl":"Half-life","g-quiz":"Quiz"},zh:{"g-hl":"半衰期","g-quiz":"问答"},fi:{"g-hl":"Puoliintumisaika","g-quiz":"Tietovisa"},de:{"g-hl":"Halbwertszeit","g-quiz":"Quiz"},ja:{"g-hl":"半減期","g-quiz":"クイズ"}};
+    const lang=document.documentElement.lang.split("-")[0],nav=document.createElement("nav");nav.className="zg-topic-nav";
+    [...games.children].filter(e=>e.tagName==="SECTION"&&e.id).forEach(section=>{const link=document.createElement("a");link.href="#"+section.id;link.textContent=titles[lang]?.[section.id]||section.id.replace("g-","").toUpperCase().replace("TOF","TOF-ICR").replace("PI","PI-ICR").replace("MR","MR-TOF");nav.append(link);});games.prepend(nav);
+  }
+  document.querySelectorAll("[data-local-tabs]").forEach(root=>{
+    const buttons=[...root.querySelectorAll(":scope > .zg-local-tabs [data-local-tab]")],panels=[...root.querySelectorAll(":scope > [data-local-panel]")];
+    const select=name=>{buttons.forEach(b=>{const on=b.dataset.localTab===name;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1;b.classList.toggle("zg-btn-ghost",!on);});panels.forEach(p=>p.hidden=p.dataset.localPanel!==name);dispatchEvent(new Event("resize"));};
+    buttons.forEach((b,i)=>{const p=panels.find(p=>p.dataset.localPanel===b.dataset.localTab);p.id=b.id+"-panel";p.setAttribute("role","tabpanel");p.setAttribute("aria-labelledby",b.id);b.setAttribute("aria-controls",p.id);b.addEventListener("click",()=>select(b.dataset.localTab));b.addEventListener("keydown",e=>{let n;if(e.key==="ArrowRight")n=(i+1)%buttons.length;if(e.key==="ArrowLeft")n=(i+buttons.length-1)%buttons.length;if(e.key==="Home")n=0;if(e.key==="End")n=buttons.length-1;if(n!=null){e.preventDefault();select(buttons[n].dataset.localTab);buttons[n].focus();}});});select("classic");
+  });
 })();

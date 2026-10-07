@@ -1,0 +1,20 @@
+en:
+  classic: Original game / demo
+  advanced: Advanced simulation
+  tools: Physics tools
+zh:
+  classic: 原版游戏 / 演示
+  advanced: 高级仿真
+  tools: 物理工具
+fi:
+  classic: Alkuperäinen peli / esitys
+  advanced: Edistynyt simulaatio
+  tools: Fysiikan työkalut
+de:
+  classic: Originalspiel / Demo
+  advanced: Erweiterte Simulation
+  tools: Physikwerkzeuge
+ja:
+  classic: 従来のゲーム・デモ
+  advanced: 詳細シミュレーション
+  tools: 物理ツール

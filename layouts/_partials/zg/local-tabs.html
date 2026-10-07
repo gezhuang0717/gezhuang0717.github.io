@@ -1,0 +1,6 @@
+{{- $k := cond (hasPrefix site.Language.Lang "zh") "zh" site.Language.Lang -}}
+{{- $t := index hugo.Data.tool_navigation $k -}}
+<div class="zg-local-tabs" role="tablist" aria-label="{{ $t.tools }}">
+<button class="zg-btn" type="button" role="tab" id="{{ .id }}-classic-tab" data-local-tab="classic" aria-selected="true">{{ $t.classic }}</button>
+<button class="zg-btn zg-btn-ghost" type="button" role="tab" id="{{ .id }}-advanced-tab" data-local-tab="advanced" aria-selected="false">{{ $t.advanced }}</button>
+</div>

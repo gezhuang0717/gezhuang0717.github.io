@@ -1,0 +1,91 @@
+en:
+  search: Search
+  other_states: Other levels / IAS / unresolved classification
+  detector_practice: Detector and practice
+  detector_radius: Detector radius (mm)
+  angular_floor: Angular systematic floor (mrad)
+  centroid_counts: Counts per centroid
+  seed_label: Random seed
+  practice_filter: 'Random practice only: T½ ≥ 50 ms'
+  compare_title: Accumulation-time comparison
+  compare_times: Compare selected times
+  wrapped_sep: Minimum wrapped pair separation versus accumulation time
+  compare_note: Known simulation frequencies determine the full turn count. Additional
+    times reveal phase wrapping; this view does not determine an unknown experimental
+    turn count.
+  inputs_results: Inputs and results
+  rfq_convention: V is the zero-to-peak RF voltage; U is the DC voltage. This collisionless
+    transverse model illustrates finite-time transmission. Axial transport, buffer
+    gas, space charge and fringe fields are omitted.
+  mathieu: Mathieu equation
+zh:
+  search: 搜索
+  other_states: 其他能级 / 同位旋模拟态 / 分类未定
+  detector_practice: 探测器与练习
+  detector_radius: 探测器半径（mm）
+  angular_floor: 角度系统误差下限（mrad）
+  centroid_counts: 每斑点计数
+  seed_label: 随机种子
+  practice_filter: 仅随机练习：T½ ≥ 50 ms
+  compare_title: 累积时间比较
+  compare_times: 比较所选时间
+  wrapped_sep: 最小回绕相位差随累积时间变化
+  compare_note: 仿真中的已知频率确定完整圈数。多时间视图展示相位回绕，不推断实验中的未知整圈数。
+  inputs_results: 输入与结果
+  rfq_convention: V 为零到峰值射频电压，U 为直流电压。此无碰撞横向模型仅示意有限时间透过率；不包含轴向输运、缓冲气体、空间电荷和边缘场。
+  mathieu: 马修方程
+fi:
+  search: Haku
+  other_states: Muut tasot / IAS / luokitus avoin
+  detector_practice: Ilmaisin ja harjoittelu
+  detector_radius: Ilmaisimen säde (mm)
+  angular_floor: Kulman systemaattinen alaraja (mrad)
+  centroid_counts: Tapahtumia keskipistettä kohden
+  seed_label: Satunnaissiemen
+  practice_filter: 'Vain satunnaisharjoittelu: T½ ≥ 50 ms'
+  compare_title: Kertymäaikojen vertailu
+  compare_times: Vertaa valittuja aikoja
+  wrapped_sep: Pienin kiedottu vaihe-ero kertymäajan funktiona
+  compare_note: Tunnetut simulaatiotaajuudet määräävät täydet kierrokset. Lisäajat
+    näyttävät vaiheen kiertymisen; näkymä ei ratkaise kokeen tuntematonta kierroslukua.
+  inputs_results: Syötteet ja tulokset
+  rfq_convention: V on RF-jännitteen nollasta huippuun mitattu amplitudi; U on tasajännite.
+    Törmäyksetön poikittaismalli havainnollistaa läpäisyä rajallisessa ajassa. Aksiaalinen
+    kuljetus, puskurikaasu, avaruusvaraus ja reunakentät puuttuvat.
+  mathieu: Mathieun yhtälö
+de:
+  search: Suchen
+  other_states: Andere Niveaus / IAS / ungeklärte Klasse
+  detector_practice: Detektor und Übung
+  detector_radius: Detektorradius (mm)
+  angular_floor: Systematische Winkeluntergrenze (mrad)
+  centroid_counts: Ereignisse pro Schwerpunkt
+  seed_label: Zufallsstartwert
+  practice_filter: 'Nur Zufallsübungen: T½ ≥ 50 ms'
+  compare_title: Vergleich der Akkumulationszeiten
+  compare_times: Ausgewählte Zeiten vergleichen
+  wrapped_sep: Kleinster gewickelter Phasenabstand gegen Akkumulationszeit
+  compare_note: Bekannte Simulationsfrequenzen bestimmen die vollen Umläufe. Weitere
+    Zeiten zeigen die Phasenwicklung; die Ansicht ermittelt keine unbekannte experimentelle
+    Umlaufzahl.
+  inputs_results: Eingaben und Ergebnisse
+  rfq_convention: V ist die HF-Spitzenspannung gegenüber null; U ist die Gleichspannung.
+    Das kollisionsfreie transversale Modell veranschaulicht die Transmission in endlicher
+    Zeit. Axialer Transport, Puffergas, Raumladung und Randfelder fehlen.
+  mathieu: Mathieu-Gleichung
+ja:
+  search: 検索
+  other_states: その他の準位・IAS・分類未確定
+  detector_practice: 検出器と練習
+  detector_radius: 検出器半径（mm）
+  angular_floor: 角度の系統誤差下限（mrad）
+  centroid_counts: 各重心の計数
+  seed_label: 乱数シード
+  practice_filter: ランダム練習のみ：T½ ≥ 50 ms
+  compare_title: 蓄積時間の比較
+  compare_times: 選んだ時間を比較
+  wrapped_sep: 蓄積時間に対する折り返し後の最小位相差
+  compare_note: 既知のシミュレーション周波数で周回数が決まります。複数の時間で位相の折り返しを示しますが、実験の未知の周回数は推定しません。
+  inputs_results: 入力と結果
+  rfq_convention: V はゼロからピークまでのRF電圧振幅、U は直流電圧です。無衝突の横方向モデルで有限時間の透過を示します。軸方向輸送、緩衝ガス、空間電荷、端部電場は含みません。
+  mathieu: マシュー方程式
