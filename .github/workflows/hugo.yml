@@ -110,7 +110,7 @@ jobs:
         run: |
           python tools/site.py check
           python -m pytest tests -q
-          node --test tests/physics.test.cjs
+          node --test tests/*.test.cjs
           python tools/site.py config
           python tools/site.py facilities-build
           python tools/site.py export-react
@@ -135,8 +135,8 @@ jobs:
           path: public
   deploy:
     needs: validate
-    # Publish only from the user-site repository (<owner>/<owner>.github.io); copies just validate
-    if: always() && github.repository == format('{0}/{0}.github.io', github.repository_owner) && github.ref == 'refs/heads/main' && needs.validate.result == 'success' && github.event_name != 'pull_request'
+    # Publish the original user site or the owner-selected IGISOL project; other copies only validate.
+    if: always() && (github.repository == format('{0}/{0}.github.io', github.repository_owner) || github.repository == 'gezhuang0717/igisol.github.io') && github.ref == 'refs/heads/main' && needs.validate.result == 'success' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write
