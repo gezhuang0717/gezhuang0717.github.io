@@ -106,6 +106,11 @@ jobs:
       - run: corepack enable
       - name: Audited original lockfile subgraph
         run: corepack pnpm --dir tools/react-toolchain install --frozen-lockfile
+      - name: Resolve Pages base URL
+        run: |
+          owner=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]'); repo="${GITHUB_REPOSITORY#*/}"
+          base="https://${owner}.github.io/"; [ "$(echo "$repo" | tr '[:upper:]' '[:lower:]')" = "${owner}.github.io" ] || base="${base}${repo}/"
+          echo "SITE_BASE_URL=$base" >> "$GITHUB_ENV"
       - name: Data and recovery tests
         run: |
           python tools/site.py check
@@ -115,12 +120,11 @@ jobs:
           python tools/site.py facilities-build
           python tools/site.py export-react
       - name: Publication gate (privacy, geo, links, inspect public/)
-        run: python tools/publish.py check
+        run: python tools/publish.py check --base-url "$SITE_BASE_URL"
       - name: All themes and React
         run: |
           # Base URL follows the repository: user site (<owner>.github.io) or project site (<owner>.github.io/<repo>/)
-          owner=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]'); repo="${GITHUB_REPOSITORY#*/}"
-          base="https://${owner}.github.io/"; [ "$(echo "$repo" | tr '[:upper:]' '[:lower:]')" = "${owner}.github.io" ] || base="${base}${repo}/"
+          base="$SITE_BASE_URL"
           echo "Base URL: $base"
           for theme in congo blowfish papermod; do
             hugo --minify --configDir "sites/$theme" --themesDir themes --destination "builds/$theme" --baseURL "$base"
