@@ -22,12 +22,22 @@
       save(new Blob([text], { type: "text/csv;charset=utf-8" }), `${name}-${stamp()}.csv`);
     },
     record(canvas, seconds, name, onState) {
-      if (!canvas.captureStream || !window.MediaRecorder) { alert("Video recording is not supported in this browser."); return; }
+      if (!canvas.captureStream || !window.MediaRecorder) { const lang=(document.documentElement.lang||'en').split('-')[0];alert(({en:'Video recording is not supported in this browser.',zh:'此浏览器不支持视频录制。',fi:'Selain ei tue videon tallennusta.',de:'Dieser Browser unterstützt keine Videoaufnahme.',ja:'このブラウザーは動画の録画に対応していません。'})[lang]||'Video recording is not supported in this browser.');onState&&onState(false);return; }
       const types = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4"];
       const type = types.find(t => MediaRecorder.isTypeSupported(t)) || "";
-      const rec = new MediaRecorder(canvas.captureStream(60), { mimeType: type, videoBitsPerSecond: 25e6 }), parts = [];
+      const stream=canvas.captureStream(60);
+      const rec = new MediaRecorder(stream, { mimeType: type, videoBitsPerSecond: 25e6 }), parts = [];
       rec.ondataavailable = e => e.data.size && parts.push(e.data);
-      rec.onstop = () => { save(new Blob(parts, { type: type || "video/webm" }), `${name}-${stamp()}.${type.includes("mp4") ? "mp4" : "webm"}`); onState && onState(false); };
+      rec.onstop = () => {
+        const container=canvas.closest('[data-trap3d],[data-trap2d],[data-workbench]');
+        if(!container){save(new Blob(parts,{type:type||'video/webm'}),`${name}-${stamp()}.${type.includes('mp4')?'mp4':'webm'}`);stream.getTracks().forEach(t=>t.stop());onState&&onState(false);return;}
+        const previous=container.querySelector('[data-recording-result]');
+        if(previous){URL.revokeObjectURL(previous.dataset.url);previous.remove();}
+        const url=URL.createObjectURL(new Blob(parts,{type:type||'video/webm'})), box=document.createElement('div'),video=document.createElement('video'),link=document.createElement('a');
+        const lang=(document.documentElement.lang||'en').split('-')[0],label=({en:'Save recorded video',zh:'保存录制视频',fi:'Tallenna kuvattu video',de:'Aufgenommenes Video speichern',ja:'録画した動画を保存'})[lang]||'Save recorded video';
+        box.dataset.recordingResult='';box.dataset.url=url;video.src=url;video.controls=true;video.style.width='100%';video.style.maxHeight='360px';link.href=url;link.download=`${name}-${stamp()}.${type.includes('mp4')?'mp4':'webm'}`;link.textContent=label;link.className='zg-btn zg-btn-ghost';box.append(video,link);container.append(box);
+        stream.getTracks().forEach(t=>t.stop());onState && onState(false);
+      };
       rec.start(); onState && onState(true);
       setTimeout(() => rec.state !== "inactive" && rec.stop(), seconds * 1000);
       return rec;

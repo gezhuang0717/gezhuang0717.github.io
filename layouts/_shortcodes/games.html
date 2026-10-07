@@ -75,7 +75,7 @@
       <label class="g-chk"><input type="checkbox" name="pix"> {{ $t.v_pix }}</label>
       <label class="g-chk"><input type="checkbox" name="ref" checked> {{ $t.pi_ref }}</label>
     </div>
-    <details class="g-hints"><summary>{{ $t.detector_practice }}</summary><div class="g-opts-row"><label>{{ $t.detector_radius }} <input type="number" name="radius" min="0" max="40" step="0.1" value="11"></label><label>{{ $t.angular_floor }} <input type="number" name="floor" min="0" max="100" step="0.1" value="0"></label><label>{{ $t.centroid_counts }} <input type="number" name="centroid-count" min="1" max="1000000" value="100"></label><label>{{ $t.seed_label }} <input type="number" name="pi-seed" min="0" max="4294967295" value="20261007"></label><label><input type="checkbox" name="practice-filter"> {{ $t.practice_filter }}</label></div></details>
+    <details class="g-hints"><summary>{{ $t.detector_practice }}</summary><div class="g-opts-row"><label>{{ $t.detector_radius }} <input type="number" name="radius" min="0" max="40" step="0.01" value="11"></label><label>{{ $t.angular_floor }} <input type="number" name="floor" min="0" max="100" step="0.01" value="0"></label><label>{{ $t.centroid_counts }} <input type="number" name="centroid-count" min="1" max="1000000" value="100"></label><label>{{ $t.seed_label }} <input type="number" name="pi-seed" min="0" max="4294967295" value="20261007"></label><label><input type="checkbox" name="practice-filter"> {{ $t.practice_filter }}</label></div></details>
     <div class="pi-man" hidden>
       <label class="pi-ions">{{ $t.pi_ions }} <input type="text" name="ions" class="g-text" value="84Sr, 84Rb, 84Kr" spellcheck="false"></label>
       <span class="pi-bad g-warn"></span>
@@ -90,17 +90,17 @@
     <div class="g-rfq-grid"><canvas width="420" height="420"></canvas><canvas width="420" height="420"></canvas></div>
     <div class="pi-freq"></div>
     <details class="g-hints"><summary>{{ $t.compare_title }}</summary>
-      <div class="g-opts-row"><label><input name="compare-times" type="checkbox">{{ $t.compare_times }}</label><label>t₂ (ms) <input name="compare-t2" type="number" min="0.01" max="10000" step="any" value="100"></label><label>t₃ (ms) <input name="compare-t3" type="number" min="0.01" max="10000" step="any" value="500"></label></div>
+      <div class="g-opts-row"><label><input name="compare-times" type="checkbox">{{ $t.compare_times }}</label><label>t₂ (ms) <input name="compare-t2" type="number" min="0.01" max="10000" step="0.01" value="100"></label><label>t₃ (ms) <input name="compare-t3" type="number" min="0.01" max="10000" step="0.01" value="500"></label></div>
       <div class="pi-times" hidden><canvas width="720" height="260" aria-label="{{ $t.wrapped_sep }}"></canvas><div class="pi-comparison"></div></div>
       <p class="zg-muted">{{ $t.compare_note }}</p>
     </details>
     <div class="g-sliders">
-      <label class="g-slider">t_acc <input type="range" name="tacc" min="0.01" max="10000" step="0.01" value="50"> <input type="number" class="g-num" data-for="tacc" step="any"><span class="g-unit">ms</span></label>
-      <label class="g-slider">{{ $t.pi_spot }} <input type="range" name="spot" min="1" max="100" step="0.5" value="6"> <input type="number" class="g-num" data-for="spot" step="any"><span class="g-unit">0.1 mm</span></label>
-      <label class="g-slider">{{ $t.pi_ratio }} <input type="range" name="ratio" min="0" max="90" step="1" value="30"> <input type="number" class="g-num" data-for="ratio" step="any"><span class="g-unit">%</span></label>
-      <label class="g-slider">{{ $t.pi_cfrac }} <input type="range" name="cfrac" min="0" max="50" step="1" value="10"> <input type="number" class="g-num" data-for="cfrac" step="any"><span class="g-unit">%</span></label>
-      <label class="g-slider">U₀ <input type="range" name="u0" min="0.1" max="200" step="0.1" value="10"> <input type="number" class="g-num" data-for="u0" step="any"><span class="g-unit">V</span></label>
-      <label class="g-slider">d <input type="range" name="dch" min="1" max="50" step="0.1" value="10"> <input type="number" class="g-num" data-for="dch" step="any"><span class="g-unit">mm</span></label>
+      <label class="g-slider">t_acc <input type="range" name="tacc" min="0.01" max="10000" step="0.01" value="50"> <input type="number" class="g-num" data-for="tacc" step="0.01"><span class="g-unit">ms</span></label>
+      <label class="g-slider">{{ $t.pi_spot }} <input type="range" name="spot" min="1" max="100" step="0.01" value="6"> <input type="number" class="g-num" data-for="spot" step="0.01"><span class="g-unit">0.1 mm</span></label>
+      <label class="g-slider">{{ $t.pi_ratio }} <input type="range" name="ratio" min="0" max="90" step="0.01" value="30"> <input type="number" class="g-num" data-for="ratio" step="0.01"><span class="g-unit">%</span></label>
+      <label class="g-slider">{{ $t.pi_cfrac }} <input type="range" name="cfrac" min="0" max="50" step="0.01" value="10"> <input type="number" class="g-num" data-for="cfrac" step="0.01"><span class="g-unit">%</span></label>
+      <label class="g-slider">U₀ <input type="range" name="u0" min="0.1" max="200" step="0.01" value="100.00"> <input type="number" class="g-num" data-for="u0" step="0.01"><span class="g-unit">V</span></label>
+      <label class="g-slider">d <input type="range" name="dch" min="1" max="50" step="0.01" value="26.05"> <input type="number" class="g-num" data-for="dch" step="0.01"><span class="g-unit">mm</span></label>
     </div>
     <div class="zg-row"><button type="button" class="zg-btn" data-act="shot">{{ $t.shot }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="auto">{{ $t.pi_auto }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="clear">{{ $t.new }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ {{ $t.png }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png2">⤓ {{ $t.png }} (φ)</button><button type="button" class="zg-btn zg-btn-ghost" data-act="csv">⤓ {{ $t.csv }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="fcsv">⤓ ν {{ $t.csv }}</button></div>
     <button type="button" class="zg-btn zg-btn-ghost" data-act="json">{{ $t.inputs_results }}</button><p class="g-msg" aria-live="polite"></p>
@@ -122,10 +122,10 @@
     <canvas width="720" height="280"></canvas>
     <div class="g-sliders">
       <label class="g-slider">{{ $t.laps }} <input type="range" name="laps" min="0" max="5000" step="1" value="0"> <input type="number" class="g-num" data-for="laps" step="any"><span class="g-unit"></span></label>
-      <label class="g-slider">{{ $t.dt0 }} <input type="range" name="dt0" min="0.5" max="1000" step="0.5" value="20"> <input type="number" class="g-num" data-for="dt0" step="any"><span class="g-unit">ns</span></label>
-      <label class="g-slider">{{ $t.dlap }} <input type="range" name="dlap" min="0" max="500" step="0.5" value="20"> <input type="number" class="g-num" data-for="dlap" step="any"><span class="g-unit">ps</span></label>
-      <label class="g-slider">{{ $t.tlap }} <input type="range" name="tlap" min="1" max="50" step="0.1" value="8"> <input type="number" class="g-num" data-for="tlap" step="any"><span class="g-unit">µs</span></label>
-      <label class="g-slider">{{ $t.t0 }} <input type="range" name="t0" min="1" max="200" step="0.5" value="10"> <input type="number" class="g-num" data-for="t0" step="any"><span class="g-unit">µs</span></label>
+      <label class="g-slider">{{ $t.dt0 }} <input type="range" name="dt0" min="0.5" max="1000" step="0.01" value="20"> <input type="number" class="g-num" data-for="dt0" step="0.01"><span class="g-unit">ns</span></label>
+      <label class="g-slider">{{ $t.dlap }} <input type="range" name="dlap" min="0" max="500" step="0.01" value="20"> <input type="number" class="g-num" data-for="dlap" step="0.01"><span class="g-unit">ps</span></label>
+      <label class="g-slider">{{ $t.tlap }} <input type="range" name="tlap" min="1" max="50" step="0.01" value="8"> <input type="number" class="g-num" data-for="tlap" step="0.01"><span class="g-unit">µs</span></label>
+      <label class="g-slider">{{ $t.t0 }} <input type="range" name="t0" min="1" max="200" step="0.01" value="10"> <input type="number" class="g-num" data-for="t0" step="0.01"><span class="g-unit">µs</span></label>
     </div>
     <canvas width="720" height="220"></canvas>
     <div class="zg-row"><button type="button" class="zg-btn" data-act="auto">{{ $t.mr_auto }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="new">{{ $t.new }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ {{ $t.png }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png2">⤓ {{ $t.png }} (R)</button><button type="button" class="zg-btn zg-btn-ghost" data-act="csv">⤓ {{ $t.csv }}</button></div>
@@ -144,14 +144,14 @@
     <div class="g-opts-row"><span class="rfq-leg"></span><button type="button" class="zg-btn zg-btn-ghost" data-act="json">{{ $t.inputs_results }}</button></div>
     <div class="g-rfq-grid"><canvas width="360" height="360"></canvas><canvas width="420" height="360"></canvas></div>
     <div class="g-sliders">
-      <label class="g-slider">{{ $t.a }} <input type="range" name="A" min="1" max="300" step="1" value="100"> <input type="number" class="g-num" data-for="A" step="any"><span class="g-unit"></span></label>
-      <label class="g-slider">{{ $t.v }} <input type="range" name="V" min="0" max="3000" step="0.01" value="83"> <input type="number" class="g-num" data-for="V" step="any"><span class="g-unit">V</span></label>
-      <label class="g-slider">{{ $t.u }} <input type="range" name="U" min="0" max="500" step="0.001" value="0"> <input type="number" class="g-num" data-for="U" step="any"><span class="g-unit">V</span></label>
-      <label class="g-slider">r₀ <input type="range" name="r0" min="1" max="20" step="0.1" value="4.5"> <input type="number" class="g-num" data-for="r0" step="any"><span class="g-unit">mm</span></label>
-      <label class="g-slider">Ω/2π <input type="range" name="f" min="0.1" max="10" step="0.01" value="1"> <input type="number" class="g-num" data-for="f" step="any"><span class="g-unit">MHz</span></label>
-      <label class="g-slider">{{ $t.emit }} <input type="range" name="emit" min="1" max="60" step="1" value="12"> <input type="number" class="g-num" data-for="emit" step="any"><span class="g-unit">% r₀</span></label>
+      <label class="g-slider">{{ $t.a }} <input type="range" name="A" min="1" max="300" step="0.01" value="100"> <input type="number" class="g-num" data-for="A" step="0.01"><span class="g-unit"></span></label>
+      <label class="g-slider">{{ $t.v }} <input type="range" name="V" min="0" max="3000" step="0.01" value="83"> <input type="number" class="g-num" data-for="V" step="0.01"><span class="g-unit">V</span></label>
+      <label class="g-slider">{{ $t.u }} <input type="range" name="U" min="0" max="500" step="0.01" value="0"> <input type="number" class="g-num" data-for="U" step="0.01"><span class="g-unit">V</span></label>
+      <label class="g-slider">r₀ <input type="range" name="r0" min="1" max="20" step="0.01" value="10.00"> <input type="number" class="g-num" data-for="r0" step="0.01"><span class="g-unit">mm</span></label>
+      <label class="g-slider">Ω/2π <input type="range" name="f" min="0.1" max="10" step="0.01" value="1"> <input type="number" class="g-num" data-for="f" step="0.01"><span class="g-unit">MHz</span></label>
+      <label class="g-slider">{{ $t.emit }} <input type="range" name="emit" min="1" max="60" step="0.01" value="12"> <input type="number" class="g-num" data-for="emit" step="0.01"><span class="g-unit">% r₀</span></label>
       <label class="g-slider">{{ $t.cycles }} <input type="range" name="cycles" min="10" max="500" step="1" value="60"> <input type="number" class="g-num" data-for="cycles" step="any"><span class="g-unit">RF</span></label>
-      <label class="g-slider">{{ $t.speed }} <input type="range" name="speed" min="1" max="20" step="1" value="4"> <input type="number" class="g-num" data-for="speed" step="any"><span class="g-unit">×</span></label>
+      <label class="g-slider">{{ $t.speed }} <input type="range" name="speed" min="1" max="20" step="0.01" value="4"> <input type="number" class="g-num" data-for="speed" step="0.01"><span class="g-unit">×</span></label>
     </div>
     <div class="zg-row"><button type="button" class="zg-btn zg-btn-ghost" data-act="cool">{{ $t.cool }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="tip">{{ $t.tip }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="edge">q = 0.90</button><button type="button" class="zg-btn zg-btn-ghost" data-act="pause">⏯ {{ $t.pause }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ {{ $t.png }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png2">⤓ {{ $t.png }} (a–q)</button><button type="button" class="zg-btn zg-btn-ghost" data-act="video">⏺ {{ $t.video }}</button></div>
     <div class="rfq-out"></div><p class="g-msg" aria-live="polite"></p>

@@ -1,0 +1,6 @@
+{{- $k := cond (hasPrefix site.Language.Lang "zh") "zh" site.Language.Lang -}}{{- $t := index hugo.Data.trap_labels $k -}}
+<div data-motion-controls>
+<div class="zg-form"><label>{{ $t.process }}<select data-process><option value="current">{{ $t.current }}</option><option value="pulse">{{ $t.pulse }}</option><option value="kick">{{ $t.kick }}</option><option value="gas">{{ $t.gas }}</option><option value="sideband">{{ $t.sideband }}</option></select></label><label>{{ $t.seconds }}<select data-seconds>{{ range slice 3 6 10 15 }}<option value="{{ . }}"{{ if eq . 6 }} selected{{ end }}>{{ . }}</option>{{ end }}</select></label><label>{{ $t.phase }}<input data-dipole-phase type="number" min="-360" max="360" value="0" step="0.01" list="trap-phase-presets"></label><label>{{ $t.gamma }}<input data-gamma type="number" value="0.08" min="0" max="0.2" step="0.01"></label></div>
+<div class="zg-row"><label><input data-sideband type="checkbox"> {{ $t.couple }}</label><button type="button" class="zg-btn zg-btn-ghost" data-motion-action="pause" aria-pressed="false">{{ $t.pause }}</button><button type="button" class="zg-btn zg-btn-ghost" data-motion-action="reset">{{ $t.reset }}</button></div>
+<p class="zg-muted zg-small">{{ $t.note }}</p><p class="zg-muted zg-small">{{ $t.recordnote }}</p>
+</div>

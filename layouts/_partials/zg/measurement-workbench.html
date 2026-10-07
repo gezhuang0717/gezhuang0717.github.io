@@ -1,7 +1,7 @@
 {{- $kind := .kind -}}
 {{- $lang := site.Language.Lang -}}
 {{- $k := cond (hasPrefix $lang "zh") "zh" $lang -}}
-{{- $t := merge (index hugo.Data.workbench_labels "en") (index hugo.Data.workbench_labels $k | default dict) -}}
+{{- $t := merge (index hugo.Data.trap_labels $k) (index hugo.Data.workbench_labels "en") (index hugo.Data.workbench_labels $k | default dict) -}}
 <section class="zg-card wb" id="{{ .id }}" data-workbench="{{ $kind }}" data-catalogue="{{ "data/nuclear-states.json" | relURL }}" data-ame="{{ "data/ame2020.json" | relURL }}" data-labels="{{ $t | jsonify }}">
   <h2>{{ index $t (printf "%s_title" $kind) }}</h2>
   <p class="wb-intro">{{ index $t (printf "%s_intro" $kind) }}</p>

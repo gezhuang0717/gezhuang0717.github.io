@@ -1,0 +1,138 @@
+en:
+  record: Record selected process
+  process: Recording process
+  current: Current motion
+  pulse: π pulse (reversible ν₋ ↔ ν₊)
+  kick: Dipole kick
+  gas: Buffer gas alone
+  sideband: Buffer gas + quadrupole coupling
+  seconds: Video duration (s)
+  phase: Dipole phase (°)
+  gamma: Viscous drag γ (per model time)
+  couple: Continuous resonant coupling
+  pause: Pause / resume
+  reset: Reset motion
+  note: 'Teaching model: radii use one common arbitrary scale; time and drive strengths
+    are normalized. A resonant π pulse swaps both mode amplitudes. Dipole excitation
+    adds a phase-dependent amplitude. Weak viscous drag shrinks cyclotron and axial
+    motion but expands the negative-energy magnetron radius; resonant quadrupole coupling
+    allows centering. Gas collisions, diffusion, space charge and extraction are omitted.
+    Playback seconds are not experimental pulse times.'
+  recordnote: 'Choose a process, then Record: it resets the motion and starts that
+    process at the beginning of the video. Gas + coupling uses continuous sideband
+    excitation. Radius controls show the reference ion; cloud ions can differ.'
+  top: Top view of ion motion
+  side: Axial view of ion motion
+  originx: Trap centre x (mm)
+  originy: Trap centre y (mm)
+  originz: Trap centre z (mm)
+  originhint: Centre coordinates translate the ideal trap and plotted motion together;
+    they do not simulate electrode misalignment. ν₊ and ν₋ follow B, U₀ and d and
+    cannot be varied independently.
+zh:
+  record: 录制所选过程
+  process: 录制过程
+  current: 当前运动
+  pulse: π 脉冲（可逆 ν₋ ↔ ν₊）
+  kick: 偶极激发
+  gas: 仅缓冲气体
+  sideband: 缓冲气体 + 四极耦合
+  seconds: 视频时长（秒）
+  phase: 偶极相位（°）
+  gamma: 黏滞阻尼 γ（每模型时间）
+  couple: 连续共振耦合
+  pause: 暂停 / 继续
+  reset: 重置运动
+  note: 教学模型：所有半径采用相同任意尺度，时间与驱动强度均已归一化。共振 π 脉冲交换两个模式的振幅；偶极激发按相位叠加振幅。弱黏滞阻尼使回旋与轴向运动衰减，但使负能量磁控运动半径增大；共振四极耦合可实现定心。未模拟气体碰撞、扩散、空间电荷与引出。播放秒数不是实验脉冲时间。
+  recordnote: 选择过程后点击录制：运动将重置，并从视频开始处启动该过程。气体与耦合组合采用连续边带激发。半径控件显示参考离子，离子云中其他离子可能不同。
+  top: 离子运动俯视图
+  side: 离子运动轴向视图
+  originx: 阱中心 x（mm）
+  originy: 阱中心 y（mm）
+  originz: 阱中心 z（mm）
+  originhint: 中心坐标同时平移理想阱与绘制的运动，不代表电极错位。ν₊、ν₋ 由 B、U₀、d 决定，不能独立调节。
+fi:
+  record: Tallenna valittu prosessi
+  process: Tallennettava prosessi
+  current: Nykyinen liike
+  pulse: π-pulssi (palautuva ν₋ ↔ ν₊)
+  kick: Dipoliviritys
+  gas: Vain puskurikaasu
+  sideband: Puskurikaasu + kvadrupolikytkentä
+  seconds: Videon kesto (s)
+  phase: Dipolin vaihe (°)
+  gamma: Viskoosi vaimennus γ (malliajan yksikköä kohti)
+  couple: Jatkuva resonanssikytkentä
+  pause: Tauko / jatka
+  reset: Palauta liike
+  note: 'Opetusmalli: säteillä on sama mielivaltainen mittakaava; aika ja ajovoimakkuudet
+    on normitettu. Resonanssin π-pulssi vaihtaa moodien amplitudit. Dipoliviritys
+    lisää vaiheesta riippuvan amplitudin. Heikko viskoosi vaimennus pienentää syklotroni-
+    ja aksiaaliliikettä mutta kasvattaa negatiivisen energian magnetronisädettä; resonanssin
+    kvadrupolikytkentä mahdollistaa keskittämisen. Kaasutörmäykset, diffuusio, avaruusvaraus
+    ja ulosveto puuttuvat. Toiston sekunnit eivät ole kokeellisia pulssiaikoja.'
+  recordnote: 'Valitse prosessi ja tallenna: liike palautetaan ja prosessi alkaa videon
+    alussa. Kaasu ja kytkentä käyttävät jatkuvaa sivukaistaviritystä. Säätimet näyttävät
+    referenssi-ionin säteet; muut ionit voivat erota.'
+  top: Ioniliike ylhäältä
+  side: Ioniliike akselin suunnassa
+  originx: Loukun keskus x (mm)
+  originy: Loukun keskus y (mm)
+  originz: Loukun keskus z (mm)
+  originhint: Keskus siirtää ideaaliloukkua ja sen liikettä yhdessä, eikä mallinna
+    elektrodien kohdistusvirhettä. ν₊ ja ν₋ määräytyvät arvoista B, U₀ ja d, eikä
+    niitä voi muuttaa riippumattomasti.
+de:
+  record: Gewählten Prozess aufnehmen
+  process: Aufnahmeprozess
+  current: Aktuelle Bewegung
+  pulse: π-Puls (umkehrbar ν₋ ↔ ν₊)
+  kick: Dipolanregung
+  gas: Nur Puffergas
+  sideband: Puffergas + Quadrupolkopplung
+  seconds: Videodauer (s)
+  phase: Dipolphase (°)
+  gamma: Viskose Dämpfung γ (pro Modellzeit)
+  couple: Kontinuierliche Resonanzkopplung
+  pause: Pause / fortsetzen
+  reset: Bewegung zurücksetzen
+  note: 'Lehrmodell: Radien haben denselben beliebigen Maßstab; Zeit und Anregungsstärken
+    sind normiert. Ein resonanter π-Puls vertauscht beide Modenamplituden. Dipolanregung
+    addiert eine phasenabhängige Amplitude. Schwache viskose Dämpfung verkleinert
+    Zyklotron- und Axialbewegung, vergrößert jedoch den Magnetronradius mit negativer
+    Energie; resonante Quadrupolkopplung ermöglicht Zentrierung. Gasstöße, Diffusion,
+    Raumladung und Extraktion fehlen. Wiedergabesekunden sind keine experimentellen
+    Pulszeiten.'
+  recordnote: 'Prozess wählen und aufnehmen: Die Bewegung wird zurückgesetzt und der
+    Prozess beginnt mit dem Video. Gas mit Kopplung nutzt kontinuierliche Seitenbandanregung.
+    Radien zeigen das Referenzion; andere Ionen können abweichen.'
+  top: Ionbewegung von oben
+  side: Axialansicht der Ionbewegung
+  originx: Fallenzentrum x (mm)
+  originy: Fallenzentrum y (mm)
+  originz: Fallenzentrum z (mm)
+  originhint: Das Zentrum verschiebt ideale Falle und Bewegung gemeinsam; es simuliert
+    keine Elektrodenfehlstellung. ν₊ und ν₋ folgen B, U₀ und d und sind nicht unabhängig
+    einstellbar.
+ja:
+  record: 選択した過程を録画
+  process: 録画する過程
+  current: 現在の運動
+  pulse: π パルス（可逆 ν₋ ↔ ν₊）
+  kick: 双極励起
+  gas: バッファーガスのみ
+  sideband: バッファーガス + 四重極結合
+  seconds: 動画の長さ（秒）
+  phase: 双極位相（°）
+  gamma: 粘性減衰 γ（モデル時間あたり）
+  couple: 連続共鳴結合
+  pause: 一時停止 / 再開
+  reset: 運動をリセット
+  note: 教育モデル：半径は共通の任意尺度を使い、時間と駆動強度は規格化されています。共鳴 π パルスは両モードの振幅を交換します。双極励起は位相に応じた振幅を加えます。弱い粘性減衰はサイクロトロン運動と軸方向運動を減衰させますが、負のエネルギーを持つマグネトロン半径を増加させます。共鳴四重極結合により中心へ集められます。ガス衝突、拡散、空間電荷、引き出しは含みません。再生時間の秒数は実験のパルス時間ではありません。
+  recordnote: 過程を選んで録画すると、運動がリセットされ、動画の開始時に過程が始まります。ガスと結合は連続側帯励起を使います。半径の値は基準イオンを示し、他のイオンとは異なる場合があります。
+  top: イオン運動の上面図
+  side: イオン運動の軸方向図
+  originx: トラップ中心 x（mm）
+  originy: トラップ中心 y（mm）
+  originz: トラップ中心 z（mm）
+  originhint: 中心座標は理想トラップと運動を一緒に平行移動し、電極のずれを模擬しません。ν₊ と ν₋ は B、U₀、d から決まり、独立には変更できません。

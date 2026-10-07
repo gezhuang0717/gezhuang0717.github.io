@@ -634,7 +634,7 @@
   /* number boxes next to sliders: typing a value moves the slider (and widens its range if needed) */
   root.querySelectorAll(".g-num[data-for]").forEach(n => {
     const box = n.closest(".g-box"), r = box && box.querySelector(`input[type=range][name="${n.dataset.for}"]`); if (!r) return;
-    const show = () => { n.value = r.value; };
+    const show = () => { n.value = r.step!=="1" ? (+r.value).toFixed(2) : String(Math.round(+r.value)); };
     r.addEventListener("input", show); show();
     n.addEventListener("change", () => { const v = +n.value; if (!isFinite(n.value === "" ? NaN : v)) return show();
       if (v > +r.max || v < +r.min) { n.setCustomValidity(`Use ${r.min}–${r.max}`);n.reportValidity();return; } n.setCustomValidity("");r.value = v; r.dispatchEvent(new Event("input", { bubbles: true })); });

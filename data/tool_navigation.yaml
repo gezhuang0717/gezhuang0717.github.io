@@ -2,19 +2,39 @@ en:
   classic: Original game / demo
   advanced: Advanced simulation
   tools: Physics tools
+  guide: Nominal resolving-power guide
+  guide_yes: nominal guide ≥ required R
+  guide_no: nominal guide < required R
+  guide_unknown: unknown nominal guide
 zh:
   classic: 原版游戏 / 演示
   advanced: 高级仿真
   tools: 物理工具
+  guide: 标称分辨本领指南
+  guide_yes: 标称指南 ≥ 所需 R
+  guide_no: 标称指南 < 所需 R
+  guide_unknown: 标称指南未知
 fi:
   classic: Alkuperäinen peli / esitys
   advanced: Edistynyt simulaatio
   tools: Fysiikan työkalut
+  guide: Nimellinen erotuskykyohje
+  guide_yes: nimellinen ohje ≥ vaadittu R
+  guide_no: nimellinen ohje < vaadittu R
+  guide_unknown: nimellinen ohje tuntematon
 de:
   classic: Originalspiel / Demo
   advanced: Erweiterte Simulation
   tools: Physikwerkzeuge
+  guide: Nominaler Auflösungsrichtwert
+  guide_yes: nominaler Richtwert ≥ erforderliches R
+  guide_no: nominaler Richtwert < erforderliches R
+  guide_unknown: nominaler Richtwert unbekannt
 ja:
   classic: 従来のゲーム・デモ
   advanced: 詳細シミュレーション
   tools: 物理ツール
+  guide: 公称分解能の目安
+  guide_yes: 公称目安 ≥ 必要な R
+  guide_no: 公称目安 < 必要な R
+  guide_unknown: 公称目安は不明
