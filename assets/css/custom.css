@@ -354,3 +354,8 @@ main section > article.mt-6::before{content:"";position:absolute;left:0;top:12px
 .pi-dot{display:inline-block;width:.65rem;height:.65rem;border-radius:50%;margin-right:.35rem;vertical-align:-.05rem}.pi-inv{font-size:.78rem;margin:.2rem 0}
 
 .rfq-cutoffs{margin:1rem 0;padding:1rem;border:1px solid var(--zg-line);border-radius:.8rem;font-size:1rem}.rfq-cutoffs dl{display:grid;grid-template-columns:minmax(8rem,1fr) minmax(0,2fr);gap:.45rem 1rem}.rfq-cutoffs dt{font-weight:600}.rfq-cutoffs dd{margin:0;overflow-wrap:anywhere}.zg-reader-equation{overflow:auto;margin:1.3rem 0;padding:.7rem;font-size:1.2rem}.zg-reader-figure img{width:100%;height:auto}.zg-country-content{overflow-wrap:anywhere}@media(max-width:540px){.rfq-cutoffs dl{display:block}.rfq-cutoffs dd{margin:.2rem 0 .8rem}}
+
+.zg-country-select{display:block;margin:.6rem 0}.zg-country-select select{display:block;width:100%;max-width:100%;font:inherit;padding:.35rem}.zg-country-place{font-size:1.1rem!important;line-height:1.4;margin:.8rem 0 .4rem!important}.zg-country .zg-row{flex-wrap:wrap;gap:.4rem}.zg-country-links{display:flex;flex-wrap:wrap;gap:.8rem}.zg-country p{line-height:1.65}.zg-cards{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:640px){.zg-cards{grid-template-columns:minmax(0,1fr)}}
+
+/* Wide scientific tables scroll locally without widening the page. */
+.pi-comparison{overflow-x:auto}.pi-tab{font-size:.9rem}.pi-energy-hint{overflow-wrap:anywhere}

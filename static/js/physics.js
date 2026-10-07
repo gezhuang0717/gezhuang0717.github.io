@@ -206,6 +206,14 @@
     for(let k=first;k<=Math.floor(maxMs/stepMs);k++){const ms=k*stepMs;if(differences.every(d=>{const phase=wrapPhase(2*Math.PI*d*ms/1000);return Math.min(phase,2*Math.PI-phase)+1e-12>=angle;}))return ms;}
     return null;
   }
-  const api = { C, FWHM, numeric, primitive, combine, constant, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime };
+  // Rest-energy increase at fixed charge and field, relative to the input ion.
+  function phaseEnergyStep(ion,B,time,energyKeV=1) {
+    if(!(ion.ionMassU>0&&time>=0&&energyKeV>=0))throw new Error('Invalid mass-energy phase comparison');
+    const massStepU=energyKeV/C.uKeV,nu=frequency(ion,B);
+    const deltaHz=-nu*massStepU/(ion.ionMassU+massStepU);
+    const turns=deltaHz*time,angleDeg=turns===0?0:360*turns;
+    return {energyKeV,massStepU,deltaHz,turns,angleDeg,residualDeg:(wrapPhase(2*Math.PI*turns+Math.PI)-Math.PI)*180/Math.PI};
+  }
+  const api = { C, FWHM, numeric, primitive, combine, constant, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseEnergyStep };
   host.ZGPhysics = api; if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);

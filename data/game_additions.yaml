@@ -39,6 +39,33 @@ en:
     every ion pair on a 0.01 ms grid up to 5000 ms, including phase wrapping; it is
     not a fitted confidence level.
   separation_none: No accumulation time meets this target within 5000 ms.
+  phase_origin: Magnetron phase origin (°)
+  custom_angle: Custom angle
+  centre_lines: Connect centre to spots
+  phase_note: Counterclockwise angles. Changing the common origin rotates all spots;
+    relative species separations stay the same. The detector drawing has a fixed 35
+    mm view radius.
+  total_turns: Total νc turns
+  complete_turns: Complete νc turns
+  delta_turns: Δ turns from first species
+  residual_phase: Residual Δφ from first species (°)
+  t180: First 180° separation time (ms)
+  t180_target: Compare with first species
+  apply180: Apply 180° time
+  turn_note: The first species is the reference. Total turns = νc t; Δ turns = (νc
+    − νc,ref)t. Residual angles are wrapped to [−180°, 180°). The first opposite-position
+    time is 1/(2|Δνc|); equal frequencies never separate. This time is pair-specific,
+    and applying it rounds to the 0.01 ms control grid. All turn counts here use known
+    simulation frequencies.
+  energy_hint_title: What angle corresponds to 1 keV?
+  energy_hint_note: 'This is +1 keV of rest energy (mass), not kinetic energy: δm
+    = 1 keV/c² = 0.00000107354410 u. With the same charge and B, δνc = −νc δm/(mion
+    + δm) and δφ = 360° δνc t. Negative means lagging the reference in this counterclockwise
+    convention. The result depends on the first ion and the current accumulation time;
+    it is a hypothetical increment, not a measured isomer energy.'
+  reference_label: Reference
+  unwrapped_angle: Signed, unwrapped angle
+  wrapped_angle: Residual angle in [−180°, 180°)
 zh:
   search: 搜索
   other_states: 其他能级 / 同位旋模拟态 / 分类未定
@@ -72,6 +99,25 @@ zh:
   separation_target: 目标分离度
   separation_note: σ 指单个探测事件的角度标准差。搜索在 0.01 ms 网格上检查所有离子对，最长 5000 ms，并考虑相位回绕；不是拟合置信水平。
   separation_none: 5000 ms 内没有满足目标的累积时间。
+  phase_origin: 磁控管相位原点（°）
+  custom_angle: 自定义角度
+  centre_lines: 连接中心与斑点
+  phase_note: 角度按逆时针增加。改变公共原点会转动全部斑点，但不改变各离子间的相对分离。探测器图示的固定视野半径为 35 mm。
+  total_turns: νc 总圈数
+  complete_turns: νc 完整圈数
+  delta_turns: 相对第一种离子的圈数差
+  residual_phase: 相对第一种离子的残余 Δφ（°）
+  t180: 首次相差 180° 的时间（ms）
+  t180_target: 与第一种离子比较
+  apply180: 应用 180° 时间
+  turn_note: 第一种离子为参考。总圈数 = νc t；圈数差 = (νc − νc,参考)t。残余角度回绕到 [−180°,180°)。首次到达相反位置的时间为
+    1/(2|Δνc|)；频率相同则不会分离。这是指定离子对的时间，应用时按 0.01 ms 控件网格取整。圈数使用仿真中的已知频率。
+  energy_hint_title: 1 keV 对应多大角度？
+  energy_hint_note: 这里是静止能量（质量）增加 1 keV，不是动能：δm = 1 keV/c² = 0.00000107354410 u。在相同电荷与
+    B 下，δνc = −νc δm/(m离子 + δm)，δφ = 360° δνc t。在逆时针角度约定下，负值表示落后于参考离子。结果依赖第一种离子与当前积累时间；这是假设的能量增量，不是某个同核异能态的测量值。
+  reference_label: 参考离子
+  unwrapped_angle: 未回绕的有符号角度
+  wrapped_angle: '[−180°,180°) 内的残余角'
 fi:
   search: Haku
   other_states: Muut tasot / IAS / luokitus avoin
@@ -110,6 +156,32 @@ fi:
     ioniparit 0,01 ms välein 5000 ms asti ja huomioi vaiheen kiertymisen; kyse ei
     ole sovituksen luottamustasosta.
   separation_none: Tavoitetta vastaavaa kertymäaikaa ei löytynyt 5000 ms asti.
+  phase_origin: Magnetronivaiheen nollakohta (°)
+  custom_angle: Oma kulma
+  centre_lines: Yhdistä keskipiste täpliin
+  phase_note: Kulmat kasvavat vastapäivään. Yhteinen nollakohta kiertää kaikkia täpliä
+    muuttamatta ionilajien suhteellisia eroja. Ilmaisinnäkymän säde on kiinteä 35
+    mm.
+  total_turns: νc-kierroksia yhteensä
+  complete_turns: Täydet νc-kierrokset
+  delta_turns: Kierrosero ensimmäiseen ionilajiin
+  residual_phase: Jäännös-Δφ ensimmäiseen ionilajiin (°)
+  t180: Ensimmäinen 180° erotusaika (ms)
+  t180_target: Vertaa ensimmäiseen ionilajiin
+  apply180: Käytä 180° aikaa
+  turn_note: Ensimmäinen ionilaji on referenssi. Kierrokset = νc t; ero = (νc − νc,ref)t.
+    Jäännöskulma kiedotaan välille [−180°,180°). Ensimmäinen vastakkainen asema saavutetaan
+    ajassa 1/(2|Δνc|); samat taajuudet eivät erotu. Aika koskee yhtä paria ja pyöristetään
+    0,01 ms säätöväliin. Kierrosluvut perustuvat tunnettuihin simulaatiotaajuuksiin.
+  energy_hint_title: Mitä kulmaa 1 keV vastaa?
+  energy_hint_note: 'Tämä on 1 keV:n lisäys lepoenergiaan eli massaan, ei liike-energiaan:
+    δm = 1 keV/c² = 0,00000107354410 u. Samalla varauksella ja B:llä δνc = −νc δm/(mioni
+    + δm) ja δφ = 360° δνc t. Negatiivinen kulma tarkoittaa referenssin jäljessä olevaa
+    vaihetta vastapäiväisessä käytännössä. Tulos riippuu ensimmäisestä ionista ja
+    nykyisestä kertymäajasta. Kyseessä on oletettu lisäys, ei mitattu isomeerienergia.'
+  reference_label: Referenssi
+  unwrapped_angle: Etumerkillinen kulma ilman kiertoa
+  wrapped_angle: Jäännöskulma välillä [−180°,180°)
 de:
   search: Suchen
   other_states: Andere Niveaus / IAS / ungeklärte Klasse
@@ -151,6 +223,34 @@ de:
     prüft alle Ionenpaare auf einem 0,01-ms-Raster bis 5000 ms einschließlich Phasenumlauf;
     dies ist kein Konfidenzniveau einer Anpassung.
   separation_none: Bis 5000 ms erreicht keine Akkumulationszeit dieses Ziel.
+  phase_origin: Magnetron-Phasenursprung (°)
+  custom_angle: Eigener Winkel
+  centre_lines: Zentrum mit Flecken verbinden
+  phase_note: Winkel nehmen gegen den Uhrzeigersinn zu. Der gemeinsame Ursprung dreht
+    alle Flecken, ohne ihre relativen Abstände zu ändern. Der Detektor-Ausschnitt
+    hat einen festen Radius von 35 mm.
+  total_turns: Gesamte νc-Umläufe
+  complete_turns: Vollständige νc-Umläufe
+  delta_turns: Umlaufdifferenz zur ersten Ionensorte
+  residual_phase: Rest-Δφ zur ersten Ionensorte (°)
+  t180: Erste 180°-Trennzeit (ms)
+  t180_target: Mit erster Ionensorte vergleichen
+  apply180: 180°-Zeit anwenden
+  turn_note: Die erste Ionensorte ist Referenz. Umläufe = νc t; Differenz = (νc −
+    νc,ref)t. Restwinkel liegen in [−180°,180°). Die erste gegenüberliegende Position
+    wird nach 1/(2|Δνc|) erreicht; gleiche Frequenzen trennen sich nicht. Die Zeit
+    gilt für ein Paar und wird auf 0,01 ms gerundet. Umlaufzahlen nutzen bekannte
+    Simulationsfrequenzen.
+  energy_hint_title: Welchem Winkel entspricht 1 keV?
+  energy_hint_note: 'Gemeint ist eine Zunahme der Ruheenergie (Masse) um 1 keV, keine
+    kinetische Energie: δm = 1 keV/c² = 0,00000107354410 u. Bei gleicher Ladung und
+    gleichem B gilt δνc = −νc δm/(mIon + δm), δφ = 360° δνc t. Negative Werte bedeuten
+    im Gegenuhrzeigersinn einen Rückstand gegenüber der Referenz. Das Ergebnis hängt
+    vom ersten Ion und der aktuellen Akkumulationszeit ab. Dies ist eine angenommene
+    Erhöhung, keine gemessene Isomerenergie.'
+  reference_label: Referenz
+  unwrapped_angle: Vorzeichenbehafteter, ungekürzter Winkel
+  wrapped_angle: Restwinkel in [−180°,180°)
 ja:
   search: 検索
   other_states: その他の準位・IAS・分類未確定
@@ -184,3 +284,23 @@ ja:
   separation_target: 目標分離度
   separation_note: σ は1事象の角度標準偏差です。全イオン対を 0.01 ms 刻みで 5000 ms まで調べ、位相の一周回り込みを考慮します。フィットの信頼水準ではありません。
   separation_none: 5000 ms 以内に目標を満たす蓄積時間はありません。
+  phase_origin: マグネトロン位相の原点（°）
+  custom_angle: 角度を指定
+  centre_lines: 中心とスポットを結ぶ
+  phase_note: 角度は反時計回りに増えます。共通の原点を変えると全スポットが回転し、イオン種間の相対分離は変わりません。検出器図の表示半径は固定の 35
+    mm です。
+  total_turns: νc の総周回数
+  complete_turns: νc の完了周回数
+  delta_turns: 第1イオン種との差（周回）
+  residual_phase: 第1イオン種に対する残余 Δφ（°）
+  t180: 最初に 180° 分離する時間（ms）
+  t180_target: 第1イオン種と比較
+  apply180: 180° の時間を適用
+  turn_note: 第1イオン種が基準です。総周回数 = νc t、差 = (νc − νc,基準)t。残余角は [−180°,180°) に折り返します。最初に反対位置となる時間は
+    1/(2|Δνc|) で、同じ周波数では分離しません。これは一対の時間で、適用時は 0.01 ms 刻みに丸めます。周回数は既知のシミュレーション周波数から計算します。
+  energy_hint_title: 1 keV はどの角度に対応しますか？
+  energy_hint_note: これは静止エネルギー（質量）が 1 keV 増加した場合で、運動エネルギーではありません。δm = 1 keV/c² = 0.00000107354410
+    u。同じ電荷と B では δνc = −νc δm/(mイオン + δm)、δφ = 360° δνc t です。反時計回りの角度規約で負の値は基準より遅れることを示します。結果は第1イオンと現在の蓄積時間に依存します。仮定した増分であり、測定した異性体エネルギーではありません。
+  reference_label: 基準
+  unwrapped_angle: 折り返さない符号付き角度
+  wrapped_angle: '[−180°,180°) の残余角'
