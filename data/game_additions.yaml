@@ -42,9 +42,10 @@ en:
   phase_origin: Magnetron phase origin (°)
   custom_angle: Custom angle
   centre_lines: Connect centre to spots
-  phase_note: Counterclockwise angles. Changing the common origin rotates all spots;
-    relative species separations stay the same. The detector drawing has a fixed 35
-    mm view radius.
+  phase_note: Counterclockwise angles. The common origin rotates all spots without
+    changing relative separations. The detector drawing radius is 21.00 mm; it expands
+    to 32.00 mm when the spot radius exceeds 20.00 mm. This drawing does not model
+    detector acceptance losses.
   total_turns: Total νc turns
   complete_turns: Complete νc turns
   delta_turns: Δ turns from first species
@@ -76,6 +77,10 @@ en:
     oscillation νz. Here Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmion), νz = √(qU₀/(mion
     d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Confinement requires νc² > 2νz². Ideal
     identities: ν₊ + ν₋ = νc and ν₊² + ν₋² + νz² = νc². First order: ν₋ ≈ U₀/(4πBd²).'
+  custom_field: Custom B (T)
+  zero_field: A zero magnetic field has no cyclotron confinement in this model. Choose
+    B greater than zero.
+  detector_size: Detector radius
 zh:
   search: 搜索
   other_states: 其他能级 / 同位旋模拟态 / 分类未定
@@ -112,7 +117,8 @@ zh:
   phase_origin: 磁控管相位原点（°）
   custom_angle: 自定义角度
   centre_lines: 连接中心与斑点
-  phase_note: 角度按逆时针增加。改变公共原点会转动全部斑点，但不改变各离子间的相对分离。探测器图示的固定视野半径为 35 mm。
+  phase_note: 角度按逆时针计。共同原点旋转所有斑点，不改变相对分离。探测器绘图半径为 21.00 mm；斑点半径超过 20.00 mm 时，自动扩大到
+    32.00 mm。本图未模拟探测器接收损失。
   total_turns: νc 总圈数
   complete_turns: νc 完整圈数
   delta_turns: 相对第一种离子的圈数差
@@ -134,6 +140,9 @@ zh:
   pi_fh: 理想阱包含快速径向运动 ν₊、慢速磁控运动 ν₋ 和轴向振荡 νz。这里 Φ = U₀(z² − r²/2)/(2d²)，νc = qB/(2πm离子)，νz
     = √(qU₀/(m离子d²))/(2π)，ν± = [νc ± √(νc² − 2νz²)]/2。稳定囚禁需要 νc² > 2νz²。理想关系：ν₊ +
     ν₋ = νc，ν₊² + ν₋² + νz² = νc²。一阶近似：ν₋ ≈ U₀/(4πBd²)。
+  custom_field: 自定义 B（T）
+  zero_field: 此模型中零磁场无法提供回旋囚禁，请选择大于零的 B。
+  detector_size: 探测器半径
 fi:
   search: Haku
   other_states: Muut tasot / IAS / luokitus avoin
@@ -175,9 +184,9 @@ fi:
   phase_origin: Magnetronivaiheen nollakohta (°)
   custom_angle: Oma kulma
   centre_lines: Yhdistä keskipiste täpliin
-  phase_note: Kulmat kasvavat vastapäivään. Yhteinen nollakohta kiertää kaikkia täpliä
-    muuttamatta ionilajien suhteellisia eroja. Ilmaisinnäkymän säde on kiinteä 35
-    mm.
+  phase_note: Kulmat ovat vastapäivään. Yhteinen origo kiertää täplät muuttamatta
+    suhteellisia eroja. Detektorin piirrossäde on 21,00 mm ja kasvaa 32,00 mm:iin,
+    kun täpläsäde ylittää 20,00 mm. Piirros ei mallinna detektorin hyväksyntähäviöitä.
   total_turns: νc-kierroksia yhteensä
   complete_turns: Täydet νc-kierrokset
   delta_turns: Kierrosero ensimmäiseen ionilajiin
@@ -208,6 +217,10 @@ fi:
     = √(qU₀/(mioni d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Vakaus edellyttää νc² >
     2νz². Ideaalisuhteet: ν₊ + ν₋ = νc ja ν₊² + ν₋² + νz² = νc². Ensimmäinen approksimaatio:
     ν₋ ≈ U₀/(4πBd²).'
+  custom_field: Oma B (T)
+  zero_field: Nollamagneettikenttä ei anna syklotronikonfinementtia tässä mallissa.
+    Valitse B yli nollan.
+  detector_size: Detektorin säde
 de:
   search: Suchen
   other_states: Andere Niveaus / IAS / ungeklärte Klasse
@@ -252,9 +265,10 @@ de:
   phase_origin: Magnetron-Phasenursprung (°)
   custom_angle: Eigener Winkel
   centre_lines: Zentrum mit Flecken verbinden
-  phase_note: Winkel nehmen gegen den Uhrzeigersinn zu. Der gemeinsame Ursprung dreht
-    alle Flecken, ohne ihre relativen Abstände zu ändern. Der Detektor-Ausschnitt
-    hat einen festen Radius von 35 mm.
+  phase_note: Winkel gegen den Uhrzeigersinn. Der gemeinsame Ursprung dreht alle Flecken
+    ohne ihre relativen Abstände zu ändern. Der Zeichnungsradius beträgt 21,00 mm
+    und wächst auf 32,00 mm, wenn der Fleckenradius 20,00 mm überschreitet. Akzeptanzverluste
+    des Detektors werden nicht modelliert.
   total_turns: Gesamte νc-Umläufe
   complete_turns: Vollständige νc-Umläufe
   delta_turns: Umlaufdifferenz zur ersten Ionensorte
@@ -288,6 +302,10 @@ de:
     √(qU₀/(mIon d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Einschluss erfordert νc² >
     2νz². Ideale Identitäten: ν₊ + ν₋ = νc, ν₊² + ν₋² + νz² = νc². Erste Ordnung:
     ν₋ ≈ U₀/(4πBd²).'
+  custom_field: Eigenes B (T)
+  zero_field: Ohne Magnetfeld gibt es in diesem Modell keinen Zyklotroneinschluss.
+    Wählen Sie B größer als null.
+  detector_size: Detektorradius
 ja:
   search: 検索
   other_states: その他の準位・IAS・分類未確定
@@ -324,8 +342,8 @@ ja:
   phase_origin: マグネトロン位相の原点（°）
   custom_angle: 角度を指定
   centre_lines: 中心とスポットを結ぶ
-  phase_note: 角度は反時計回りに増えます。共通の原点を変えると全スポットが回転し、イオン種間の相対分離は変わりません。検出器図の表示半径は固定の 35
-    mm です。
+  phase_note: 角度は反時計回りです。共通の原点は全スポットを回転させ、相対分離は保ちます。検出器の描画半径は 21.00 mm で、スポット半径が 20.00
+    mm を超えると 32.00 mm に拡大します。検出器の受け入れ損失はモデル化しません。
   total_turns: νc の総周回数
   complete_turns: νc の完了周回数
   delta_turns: 第1イオン種との差（周回）
@@ -347,3 +365,6 @@ ja:
   pi_fh: 理想的な運動は速い半径方向運動 ν₊、遅いマグネトロン運動 ν₋、軸方向振動 νz です。Φ = U₀(z² − r²/2)/(2d²)、νc =
     qB/(2πmイオン)、νz = √(qU₀/(mイオンd²))/(2π)、ν± = [νc ± √(νc² − 2νz²)]/2。閉じ込めには νc² >
     2νz² が必要。理想的な関係は ν₊ + ν₋ = νc、ν₊² + ν₋² + νz² = νc²。一階近似は ν₋ ≈ U₀/(4πBd²)。
+  custom_field: B の指定値（T）
+  zero_field: このモデルではゼロ磁場でサイクロトロン閉じ込めはできません。B をゼロより大きくしてください。
+  detector_size: 検出器半径

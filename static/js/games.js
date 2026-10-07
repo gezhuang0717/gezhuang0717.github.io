@@ -494,8 +494,10 @@
     const ph = P.wrapPhase;
     const adist = (a, b) => { let d = Math.abs(a - b) % (2 * Math.PI); return Math.min(d, 2 * Math.PI - d); };
     let plottedOrigin = 90;
+    const detectorRadius = () => V("radius") > 20 ? 32 : 21;
     function phys() {
       if (["tacc","B","spot","ratio","cfrac","u0","dch","radius","floor","centroid-count","pi-seed","phase-offset"].some(n=>!sel(n).checkValidity())) throw new Error(TL.invalid_physical);
+      if(V("B")===0)throw new Error(TL.zero_field);
       const t = V("tacc") / 1000, sp = species().map(s => { const f = freqs(s); return { ...s, ...f, phi: ph(2 * Math.PI * f.nc * t + V("phase-offset")*Math.PI/180), n: Math.floor(f.nc * t) }; });
       const nu = sp[0].nc, resolution=P.phaseResolution(nu,t,V("radius"),V("spot")/10,V("centroid-count"),V("floor")/1000), sig=resolution.defined ? resolution.eventSigma : Infinity;
       let minsep = Infinity, pair = null;
@@ -506,19 +508,19 @@
     function shoot(n) {
       const p=phys(); if(p.sp.some(s=>!s.stable)) throw new Error(TL.unconfined); if (!p.resolution.defined) { msg(box,TL.zero_radius); return; }
       const W=p.sp.reduce((a,s)=>a+s.w,0); if (!(W>0)) { msg(box,TL.positive_population); return; }
-      const normal=()=>P.gaussian(piRandom), sigma=V("spot")/10/35, floor=V("floor")/1000;
+      const normal=()=>P.gaussian(piRandom), sigma=V("spot")/10/detectorRadius(), floor=V("floor")/1000;
       if(phaseOffsets.length!==p.sp.length) phaseOffsets=p.sp.map(()=>floor*normal()); const offsets=phaseOffsets;
       for(let k=0;k<n;k++) {
         const u=piRandom();
-        if(u<V("cfrac")/100) { hits.push([.035*normal(),.035*normal(),2]); continue; }
-        if(sel("ref").checked && u<V("cfrac")/100+.15) { hits.push([V("radius")/35*Math.cos(V("phase-offset")*Math.PI/180)+sigma*normal(),V("radius")/35*Math.sin(V("phase-offset")*Math.PI/180)+sigma*normal(),3]); continue; }
+        if(u<V("cfrac")/100) { hits.push([1.225/detectorRadius()*normal(),1.225/detectorRadius()*normal(),2]); continue; }
+        if(sel("ref").checked && u<V("cfrac")/100+.15) { hits.push([V("radius")/detectorRadius()*Math.cos(V("phase-offset")*Math.PI/180)+sigma*normal(),V("radius")/detectorRadius()*Math.sin(V("phase-offset")*Math.PI/180)+sigma*normal(),3]); continue; }
         let x=piRandom()*W,i=0;while(i<p.sp.length-1 && (x-=p.sp[i].w)>0)i++;
-        const angle=p.sp[i].phi+offsets[i];hits.push([V("radius")/35*Math.cos(angle)+sigma*normal(),V("radius")/35*Math.sin(angle)+sigma*normal(),10+i]);
+        const angle=p.sp[i].phi+offsets[i];hits.push([V("radius")/detectorRadius()*Math.cos(angle)+sigma*normal(),V("radius")/detectorRadius()*Math.sin(angle)+sigma*normal(),10+i]);
       }
     }
     const hitCol = (k, sp) => k === 2 ? "rgba(30,30,40,.55)" : k === 3 ? "rgba(127,127,160,.6)" : ((sp[k - 10] || {}).col || "#888") + "8c";
     function paint(g, W, H, ink) {      /* detector view */
-      const p = phys(), spotRadius = V("radius")/35, R = Math.min(W, H) / 2 - 18, cx = W / 2, cy = H / 2;
+      const p = phys(), spotRadius = V("radius")/detectorRadius(), R = Math.min(W, H) / 2 - 18, cx = W / 2, cy = H / 2;
       g.fillStyle = "rgba(127,127,160,.08)"; g.beginPath(); g.arc(cx, cy, R, 0, 6.283); g.fill(); g.strokeStyle = "rgba(127,127,160,.6)"; g.lineWidth = 1.2; g.stroke();
       g.setLineDash([3, 4]); g.beginPath(); g.moveTo(cx - R, cy); g.lineTo(cx + R, cy); g.moveTo(cx, cy - R); g.lineTo(cx, cy + R); g.stroke(); g.setLineDash([]);
       if (sel("pix").checked) {           /* 2D histogram (pixels) */
@@ -580,12 +582,12 @@
     addEventListener("resize",()=>{if(!box.hidden)draw();});
     const mq = s => (s.M - s.q * MEU) / s.q;
     function draw() {
-      let p; try { if (!S && !isMulti()) return; p=phys(); } catch(e) { msg(box,e.message); [cv,cvh].forEach(c=>{const [g,W,H]=crisp(c);g.clearRect(0,0,W,H)}); box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
-      if (!p.resolution.defined) { msg(box,TL.zero_radius); [cv,cvh].forEach(c=>{ const [g,W,H]=crisp(c); g.clearRect(0,0,W,H); }); box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
-      if (p.sp.some(s=>!s.stable)) { msg(box,TL.unconfined);[cv,cvh].forEach(c=>{const [g,W,H]=crisp(c);g.clearRect(0,0,W,H);});box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;return; }
+      let p; try { if (!S && !isMulti()) return; p=phys(); } catch(e) { msg(box,e.message); [cv,cvh].forEach(c=>{const [g,W,H]=crisp(c);g.clearRect(0,0,W,H)}); box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;sel("t180").value="";box.querySelector("[data-act=apply180]").disabled=true;box.querySelector(".pi-energy-hint").textContent="";return; }
+      if (!p.resolution.defined) { msg(box,TL.zero_radius); [cv,cvh].forEach(c=>{ const [g,W,H]=crisp(c); g.clearRect(0,0,W,H); }); box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;sel("t180").value="";box.querySelector("[data-act=apply180]").disabled=true;box.querySelector(".pi-energy-hint").textContent="";return; }
+      if (p.sp.some(s=>!s.stable)) { msg(box,TL.unconfined);[cv,cvh].forEach(c=>{const [g,W,H]=crisp(c);g.clearRect(0,0,W,H);});box.querySelector(".pi-freq").textContent="";box.querySelector(".pi-times").hidden=true;sel("t180").value="";box.querySelector("[data-act=apply180]").disabled=true;box.querySelector(".pi-energy-hint").textContent="";return; }
       { const [g, W, H] = crisp(cv); paint(g, W, H, inkOf()); }
       { const [g, W, H] = crisp(cvh); paintH(g, W, H, inkOf()); }
-      table(p); try {timeComparison(p);}catch(e){box.querySelector(".pi-times").hidden=true;msg(box,e.message);return;}
+      table(p); box.querySelector(".pi-freq").insertAdjacentHTML("beforeend",`<p>${TL.detector_size}: ${detectorRadius().toFixed(2)} mm</p>`); try {timeComparison(p);}catch(e){box.querySelector(".pi-times").hidden=true;msg(box,e.message);return;}
       const ok = p.sep >= V("separation-sigma");
       const info=`${TL.event_width} = ${(p.resolution.eventSigma*180/Math.PI).toFixed(3)}°; ${TL.centroid_width} = ${(p.resolution.centroidSigma*180/Math.PI).toFixed(3)}°; σν = ${p.resolution.frequencySigma.toPrecision(4)} Hz. ${p.resolution.smallAngle ? TL.small_angle : TL.large_angle}`;
       box.querySelector(".pi-freq").insertAdjacentHTML("beforeend",`<p>${info}</p>`);
@@ -604,6 +606,8 @@
     let tId = 0;
     box.addEventListener("input", e => { if (e.target.name === "ions") { clearTimeout(tId); tId = setTimeout(parse, 350); } });
     box.addEventListener("change", e => { const n = e.target.name;
+      if(n === "B-preset"){if(e.target.value!=="custom"){sel("B").value=Number(e.target.value).toFixed(2);sel("B").dispatchEvent(new Event("input",{bubbles:true}));}return;}
+      if(n === "B"){sel("B-preset").value=Number.isInteger(V("B"))?String(V("B")):"custom";}
       if(n === "phase-preset"){if(e.target.value!=="custom"){sel("phase-offset").value=Number(e.target.value).toFixed(2);sel("phase-offset").dispatchEvent(new Event("input",{bubbles:true}));}return;}
       if(n === "phase-offset"){sel("phase-preset").value=V("phase-offset")%45===0?String(V("phase-offset")):"custom";}
       if (n === "other-states") build(); if (n === "iso") pick(); if (n === "iso-search") filterList(); if (n === "pix" || n === "ref") draw();
@@ -623,12 +627,12 @@
         const el=sel("tacc");el.value=best;el.dispatchEvent(new Event("input",{bubbles:true}));shoot(V("nshot"));draw(); }
       if (a === "png") { savePNG(cv, paint, "pi-icr-detector"); }
       if (a === "png2") savePNG(cvh, paintH, "pi-icr-angle");
-      if (a === "csv" && window.zgExport) { const sp = phys().sp; window.zgExport.csv(["x_rel", "y_rel", "angle_deg", "state"], hits.map(([x, y, k]) => [x, y, k === 2 ? "" : ((Math.atan2(y, x) * 180 / Math.PI + 360) % 360), k === 2 ? "centre" : k === 3 ? "magnetron-reference" : (sp[k - 10] || {}).txt || "?"]), "pi-icr-hits"); }
-      if (a === "fcsv" && window.zgExport) { const p=phys(),ref=p.sp[0];window.zgExport.csv(["ion","q","m_ion_u","mass_sigma_keV","nu_c_Hz","nu_plus_Hz","nu_minus_Hz","nu_z_Hz","phi_c_deg","mass_table","B_T","U0_V","d_mm","t_acc_ms","total_turns","complete_turns","delta_turns_from_first","residual_delta_deg","first_180_time_ms","phase_origin_deg","seed"],p.sp.map(s=>[s.txt,s.q,s.M-s.q*MEU,s.e??"",s.nc,s.np,s.nm,s.nz,s.phi*180/Math.PI,s.src||"NUBASE2020",p.B,V("u0"),V("dch"),V("tacc"),s.nc*p.t,Math.floor(s.nc*p.t),(s.nc-ref.nc)*p.t,deltaDegrees((s.nc-ref.nc)*p.t),s===ref?"":s.nc===ref.nc?"unavailable":500/Math.abs(s.nc-ref.nc),V("phase-offset"),V("pi-seed")]),"pi-icr-frequencies"); }
+      if (a === "csv" && window.zgExport) { const sp = phys().sp; window.zgExport.csv(["x_rel", "y_rel", "x_mm", "y_mm", "detector_radius_mm", "angle_deg", "state"], hits.map(([x, y, k]) => [x, y, x*detectorRadius(), y*detectorRadius(), detectorRadius(), k === 2 ? "" : ((Math.atan2(y, x) * 180 / Math.PI + 360) % 360), k === 2 ? "centre" : k === 3 ? "magnetron-reference" : (sp[k - 10] || {}).txt || "?"]), "pi-icr-hits"); }
+      if (a === "fcsv" && window.zgExport) { const p=phys(),ref=p.sp[0];window.zgExport.csv(["ion","q","m_ion_u","mass_sigma_keV","nu_c_Hz","nu_plus_Hz","nu_minus_Hz","nu_z_Hz","phi_c_deg","mass_table","B_T","U0_V","d_mm","t_acc_ms","total_turns","complete_turns","delta_turns_from_first","residual_delta_deg","first_180_time_ms","phase_origin_deg","seed","spot_radius_mm","detector_radius_mm"],p.sp.map(s=>[s.txt,s.q,s.M-s.q*MEU,s.e??"",s.nc,s.np,s.nm,s.nz,s.phi*180/Math.PI,s.src||"NUBASE2020",p.B,V("u0"),V("dch"),V("tacc"),s.nc*p.t,Math.floor(s.nc*p.t),(s.nc-ref.nc)*p.t,deltaDegrees((s.nc-ref.nc)*p.t),s===ref?"":s.nc===ref.nc?"unavailable":500/Math.abs(s.nc-ref.nc),V("phase-offset"),V("pi-seed"),V("radius"),detectorRadius()]),"pi-icr-frequencies"); }
       } catch(e) { msg(box,e.message); }
     });
     sel("iso-search").addEventListener("input",()=>filterList());
-    box.addEventListener("click",e=>{if(e.target.closest("[data-act=json]")){try {const p=phys(),ref=p.sp[0];const data={model:"PI-ICR ideal phase",source:{names:["AME2020","NUBASE2020"],url:"https://www-nds.iaea.org/amdc/"},constants:P.C,parameters:{B:V("B"),U0:V("u0"),d_mm:V("dch"),tacc_ms:V("tacc"),radius_mm:V("radius"),detector_view_radius_mm:35,event_sigma_mm:V("spot")/10,angular_floor_mrad:V("floor"),counts:V("centroid-count"),separation_sigma:V("separation-sigma"),phase_origin_deg:V("phase-offset"),centre_lines:sel("centre-lines").checked,seed:V("pi-seed")},units:{B:"T",U0:"V",d_mm:"mm",tacc_ms:"ms",radius_mm:"mm",event_sigma_mm:"mm",angular_floor_mrad:"mrad",hits:"normalized Cartesian coordinates"},comparison:{enabled:sel("compare-times").checked,times_ms:[V("tacc"),V("compare-t2"),V("compare-t3")]},assumptions:["Ideal Penning frequencies; known frequencies set the complete turn count", "Independent detector events; angular floor is shared per species and dataset", "Atomic mass minus q electron masses; ionization and molecular binding energies omitted"],species:species(),results:p.sp.map(s=>({ion:s.label,nu_c_Hz:s.nc,total_turns:s.nc*p.t,complete_turns:Math.floor(s.nc*p.t),delta_turns:(s.nc-ref.nc)*p.t,residual_delta_deg:deltaDegrees((s.nc-ref.nc)*p.t),first_180_time_ms:s===ref||s.nc===ref.nc?null:500/Math.abs(s.nc-ref.nc)})),one_keV:P.phaseEnergyStep({...ref,ionMassU:ref.M-ref.q*MEU},p.B,p.t),hits};const link=document.createElement("a"),url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));link.href=url;link.download="pi-icr-inputs-results.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){msg(box,e.message);}}});
+    box.addEventListener("click",e=>{if(e.target.closest("[data-act=json]")){try {const p=phys(),ref=p.sp[0];const data={model:"PI-ICR ideal phase",source:{names:["AME2020","NUBASE2020"],url:"https://www-nds.iaea.org/amdc/"},constants:P.C,parameters:{B:V("B"),U0:V("u0"),d_mm:V("dch"),tacc_ms:V("tacc"),radius_mm:V("radius"),detector_view_radius_mm:detectorRadius(),event_sigma_mm:V("spot")/10,angular_floor_mrad:V("floor"),counts:V("centroid-count"),separation_sigma:V("separation-sigma"),phase_origin_deg:V("phase-offset"),centre_lines:sel("centre-lines").checked,seed:V("pi-seed")},units:{B:"T",U0:"V",d_mm:"mm",tacc_ms:"ms",radius_mm:"mm",detector_view_radius_mm:"mm",event_sigma_mm:"mm",angular_floor_mrad:"mrad",hits:"normalized Cartesian coordinates"},comparison:{enabled:sel("compare-times").checked,times_ms:[V("tacc"),V("compare-t2"),V("compare-t3")]},assumptions:["Ideal Penning frequencies; known frequencies set the complete turn count", "Independent detector events; angular floor is shared per species and dataset", "Drawing radius is 21 mm up to a 20 mm spot radius and 32 mm above; detector acceptance losses are not simulated", "Atomic mass minus q electron masses; ionization and molecular binding energies omitted"],species:species(),results:p.sp.map(s=>({ion:s.label,nu_c_Hz:s.nc,total_turns:s.nc*p.t,complete_turns:Math.floor(s.nc*p.t),delta_turns:(s.nc-ref.nc)*p.t,residual_delta_deg:deltaDegrees((s.nc-ref.nc)*p.t),first_180_time_ms:s===ref||s.nc===ref.nc?null:500/Math.abs(s.nc-ref.nc)})),one_keV:P.phaseEnergyStep({...ref,ionMassU:ref.M-ref.q*MEU},p.B,p.t),hits};const link=document.createElement("a"),url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));link.href=url;link.download="pi-icr-inputs-results.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){msg(box,e.message);}}});
     const init = () => rows.length ? build() : setTimeout(init, 200); init();
   }
 
