@@ -56,9 +56,10 @@
     <button type="button" class="zg-btn" disabled>{{ $rt.next }} ↻</button><p class="zg-reading-count"></p>
   </section>
   {{- $ct := index hugo.Data.country_labels $base -}}
-  <section class="zg-card zg-country" data-country-card data-country-src="{{ "data/country-cards.json" | relURL }}" data-country-lang="{{ $base }}" data-country-labels="{{ $ct | jsonify }}">
+  <section class="zg-card zg-country" data-country-card data-country-src="{{ "data/country-cards.json" | relURL }}" data-country-lang="{{ $base }}" data-highlights-src="{{ "data/country-highlights.json" | relURL }}" data-country-labels="{{ $ct | jsonify }}">
     <div class="zg-card-label">🌍 {{ $ct.title }}</div>
     <label class="zg-country-select">{{ $ct.select }} <select data-country-select disabled></select></label>
+    <label class="zg-country-all" hidden><input type="checkbox" data-country-all> {{ $ct.all_places }}</label>
     <div class="zg-country-heading"><span class="zg-country-flag" aria-hidden="true"></span><strong class="zg-country-name"></strong></div>
     <div class="zg-country-content" aria-live="polite"><p class="zg-country-location">{{ $ct.loading }}</p><h3 class="zg-country-place"></h3><p class="zg-country-story"></p><p class="zg-country-joke"></p></div>
     <div class="zg-country-links"></div>

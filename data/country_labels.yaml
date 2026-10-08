@@ -15,7 +15,9 @@ en:
   place: Place to explore
   coordinates: Latitude {lat}° · longitude {lon}°
   reading: Read about this place
-  metadata_note: Topics use open geographic records; captions are playful, not historical quotations.
+  metadata_note: Topics use open geographic records; captions are playful, not historical
+    quotations.
+  all_places: Explore all places
 zh:
   title: 每日国家 / 地区
   location: 联合国地区分类：{location}。
@@ -34,6 +36,7 @@ zh:
   coordinates: 纬度 {lat}° · 经度 {lon}°
   reading: 阅读这个地方的故事
   metadata_note: 地点基于开放地理记录；随想是轻松创作，不是历史引文。
+  all_places: 浏览所有地点
 fi:
   title: Päivän maa / alue
   location: 'YK:n alueluokka: {location}.'
@@ -51,7 +54,9 @@ fi:
   place: Tutustumiskohde
   coordinates: Leveysaste {lat}° · pituusaste {lon}°
   reading: Lue tästä paikasta
-  metadata_note: Kohteet perustuvat avoimiin paikkatietoihin; leikkisät huomiot eivät ole historiallisia lainauksia.
+  metadata_note: Kohteet perustuvat avoimiin paikkatietoihin; leikkisät huomiot eivät
+    ole historiallisia lainauksia.
+  all_places: Tutki kaikkia paikkoja
 de:
   title: Land / Region des Tages
   location: 'UN-Region: {location}.'
@@ -69,7 +74,9 @@ de:
   place: Ort zum Entdecken
   coordinates: Breitengrad {lat}° · Längengrad {lon}°
   reading: Über diesen Ort lesen
-  metadata_note: Orte basieren auf offenen Geodaten; die spielerischen Gedanken sind keine historischen Zitate.
+  metadata_note: Orte basieren auf offenen Geodaten; die spielerischen Gedanken sind
+    keine historischen Zitate.
+  all_places: Alle Orte erkunden
 ja:
   title: 今日の国・地域
   location: 国連の地域区分：{location}。
@@ -88,3 +95,4 @@ ja:
   coordinates: 緯度 {lat}° · 経度 {lon}°
   reading: この場所について読む
   metadata_note: 場所は公開地理情報に基づきます。随想は創作であり、歴史的な引用ではありません。
+  all_places: すべての場所を見る

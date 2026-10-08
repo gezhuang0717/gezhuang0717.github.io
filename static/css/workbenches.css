@@ -28,3 +28,5 @@
 .zg-reading{min-width:0}.zg-reading-select{display:grid;gap:.4rem}.zg-reading select{max-width:100%;min-width:0;font:inherit;padding:.35rem;border:1px solid var(--zg-line);border-radius:.5rem;background:var(--zg-card);color:inherit}.zg-reading h3{font-size:1.1rem;line-height:1.45;margin:.5rem 0}.zg-reading-text,.zg-reading-original{white-space:pre-line;font-size:1.05rem;line-height:1.7;margin:.8rem 0;padding:.4rem .75rem;border-left:3px solid #8e4ec6}.zg-reading-kind,.zg-reading-count{font-size:.78rem;color:var(--zg-muted)}.zg-reading-author{font-size:.86rem}.zg-reading-explanation{font-size:.95rem;line-height:1.65}.zg-reading button{display:block;margin-top:.8rem}.zg-reading details{margin:.65rem 0}.zg-reading-source{display:inline-block;margin:.4rem 0}
 
 .zg-reading [hidden]{display:none!important}
+
+.zg-country [hidden]{display:none!important}.zg-country-all{display:flex;align-items:center;gap:.45rem;font-size:.86rem;margin-top:.5rem}
