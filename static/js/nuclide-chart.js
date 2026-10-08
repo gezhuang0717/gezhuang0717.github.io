@@ -12,7 +12,7 @@
   if (!root) return;
   const T = JSON.parse(root.dataset.labels || "{}");
   const P=window.ZGPhysics; let catalog=null, selectedState=null;
-  const zh=document.documentElement.lang.startsWith("zh"); const unknown=zh?"不确定度未知":"uncertainty unavailable";
+  const unknown=T.state_unknown;
   const escape=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const cv = root.querySelector("canvas.nc-canvas"), g = cv.getContext("2d");
   const card = root.querySelector(".nc-card"), legend = root.querySelector(".nc-legend"), ptab = root.querySelector(".nc-ptable");
@@ -55,14 +55,11 @@
     };
     /* two-neutron shell gap δ2n = S2n(Z,N) − S2n(Z,N+2) */
     out.d2n = comb([1, get(Z, N - 2)], [-2, m], [1, get(Z, N + 2)]);   /* = ME(N−2) − 2·ME(N) + ME(N+2) */
-    /* three-point odd–even staggering (pairing gap): Δ(3)n = (−1)^N/2 [ME(N+1) − 2ME(N) + ME(N−1)], same in Z for protons */
-    const sn = N % 2 ? -0.5 : 0.5, sz = Z % 2 ? -0.5 : 0.5;
-    out.d3n = comb([sn, get(Z, N + 1)], [-2 * sn, m], [sn, get(Z, N - 1)]);
-    out.d3p = comb([sz, get(Z + 1, N)], [-2 * sz, m], [sz, get(Z - 1, N)]);
-    /* five-point formula: Δ(5) = (−1)^N/8 [ME(N+2) − 4ME(N+1) + 6ME(N) − 4ME(N−1) + ME(N−2)] */
-    const fn = sn / 4, fz = sz / 4;
-    out.d5n = comb([fn, get(Z, N + 2)], [-4 * fn, get(Z, N + 1)], [6 * fn, m], [-4 * fn, get(Z, N - 1)], [fn, get(Z, N - 2)]);
-    out.d5p = comb([fz, get(Z + 2, N)], [-4 * fz, get(Z + 1, N)], [6 * fz, m], [-4 * fz, get(Z - 1, N)], [fz, get(Z - 2, N)]);
+    /* Mass-excess odd–even indicators; no absolute-value clamp. */
+    out.d3n = P.pairingIndicator(get, Z, N, "N", 3);
+    out.d3p = P.pairingIndicator(get, Z, N, "Z", 3);
+    out.d5n = P.pairingIndicator(get, Z, N, "N", 5);
+    out.d5p = P.pairingIndicator(get, Z, N, "Z", 5);
     out.d2p = comb([1, get(Z - 2, N)], [-2, m], [1, get(Z + 2, N)]);   /* δ2p = S2p(Z) − S2p(Z+2) */
     /* proton–neutron interaction δVpn (Zhang et al. 1989; Cakirli & Casten 2005) from binding energies B = Z·ME(¹H) + N·ME(n) − ME */
     const B = (z, n) => comb([z, MEH], [n, MEn], [-1, get(z, n)]);
@@ -130,7 +127,7 @@
     dmod: { label: T.m_dmod, need: true, v: r => mv(dmod(r)), lo: -3, hi: 3, u: "MeV", div: true },
   };
   const FILTERS = {
-    all: [T.fl_all, () => true], missing: [zh?"质量缺失":"Missing mass",r=>r[3]==null], unknown_unc: [zh?"不确定度缺失":"Unknown mass uncertainty",r=>r[4]==null], known_unc: [zh?"不确定度已知":"Known mass uncertainty",r=>r[3]!=null&&r[4]!=null], state_hash: [zh?"外推激发能":"Extrapolated excitation energy",r=>catalog && (catalog.groups.get(r[2].toLowerCase()+(r[0]+r[1]))||[]).some(s=>s.excitation.value_extrapolated)], meas: [T.fl_meas, r => r[3] != null && !r[5]], extr: [T.fl_extr, r => !!r[5]],
+    all: [T.fl_all, () => true], missing: [T.fl_missing,r=>r[3]==null], unknown_unc: [T.fl_unknown_unc,r=>r[4]==null], known_unc: [T.fl_known_unc,r=>r[3]!=null&&r[4]!=null], state_hash: [T.fl_state_hash,r=>catalog && (catalog.groups.get(r[2].toLowerCase()+(r[0]+r[1]))||[]).some(s=>s.excitation.value_extrapolated)], meas: [T.fl_meas, r => r[3] != null && !r[5]], extr: [T.fl_extr, r => !!r[5]],
     d1: ["δm < 1 keV", r => r[4] != null && !r[5] && r[4] < 1], d10: ["δm < 10 keV", r => r[4] != null && !r[5] && r[4] < 10], d100: ["δm < 100 keV", r => r[4] != null && !r[5] && r[4] < 100],
     stable: [T.fl_stable, r => r[6] === 99], hl: [T.fl_hl, r => r[6] > -90 && r[6] !== 99], iso: [T.fl_iso, r => r[11].length > 0],
     magic: [T.fl_magic, r => MAGIC.includes(r[0]) || MAGIC.includes(r[1])], nz: ["N = Z", r => r[0] === r[1]],
@@ -316,7 +313,7 @@
     if (!r) { card.hidden = true; return; }
     const d = derived(r), dm = src !== "ame" && MOD[src] ? derivedZN(r[0], r[1], src) : null, A = r[0] + r[1], el = EL.find(e => e[0] === r[0]), row = (k, v) => `<tr><th>${k}</th><td>${v}</td></tr>`;
     card.hidden = false;
-    card.innerHTML = `<button type="button" class="nc-close" aria-label="close">×</button>
+    card.innerHTML = `<button type="button" class="nc-close" aria-label="${T.state_close}">×</button>
       <div class="nc-head"><span class="nc-sym">${sup(A)}${r[2]}</span><span>${el ? el[2] : ""}<br><small>Z = ${r[0]} · N = ${r[1]} · A = ${A}</small></span></div>
       <table>${row(T.hl, r[7] === "stable" ? T.stable : r[7])}${row("Jπ", r[8] || "—")}${row(T.decay, decayText(r[10]))}
       ${row(T.me, d.me ? (() => { const [a, b] = fmtU(d.me.v, d.me.e), h = d.me.est ? "#" : ""; return `${a}${h} ± ${b}${d.me.sigmaEst ? "#" : ""} keV`; })() : "—")}
@@ -338,7 +335,7 @@
   function showStates(r) {
     const group=catalog?.groups.get(r[2].toLowerCase()+(r[0]+r[1])); if(!group)return;
     const panel=document.createElement("div");panel.className="nc-state-list";
-    panel.innerHTML=`<h4>${zh?"核态与数据来源":"States and provenance"}</h4><label>${zh?"搜索核态":"Search states"}<input type="search" class="nc-state-search"></label><label>${zh?"核态类型":"State class"}<select class="nc-state-kind"><option value="isomer">${zh?"基态与同核异能态":"Ground state + isomers"}</option><option value="all">${zh?"所有核态（含其他能级及 IAS）":"All states (including levels / IAS)"}</option><option value="unclassified">${zh?"分类未定":"Classification pending"}</option></select></label><div class="nc-state-buttons"></div><div class="nc-state-data" aria-live="polite"></div>`;
+    panel.innerHTML=`<h4>${T.state_heading}</h4><label>${T.state_search}<input type="search" class="nc-state-search"></label><label>${T.state_class}<select class="nc-state-kind"><option value="isomer">${T.state_isomers}</option><option value="all">${T.state_all}</option><option value="unclassified">${T.state_pending}</option></select></label><div class="nc-state-buttons"></div><div class="nc-state-data" aria-live="polite"></div>`;
     card.appendChild(panel);
     const target=group.find(s=>s.id===selectedState);
     if(target && !["ground","isomer"].includes(target.kind))panel.querySelector("select").value="all";
@@ -346,13 +343,13 @@
       selectedState=state.id;panel.querySelectorAll("[data-state]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.state===state.id?"true":"false"));
       const format=q=>`${escape(q.raw||"—")} ${q.raw_uncertainty?"± "+escape(q.raw_uncertainty):"("+unknown+")"}`;
       const life=state.half_life;
-      panel.querySelector(".nc-state-data").innerHTML=`<p><b>${state.A}${escape(state.element)} [${state.label}]</b> · ${escape(state.kind)}${state.existence==="withdrawn"?" — withdrawn / 已撤销":""}</p><p>ME (NUBASE2020): ${format(state.mass_excess)} keV<br>Eₓ: ${format(state.excitation)} keV<br>T½: ${format(life)} ${escape(life.unit)}<br>Jπ: ${escape(state.spin_parity)}</p><p>${state.ordering_uncertain?"* ordering uncertain / 基态与异能态次序未定. ":""}${state.ordering_inverted?"& ordering differs from ENSDF / 次序与 ENSDF 相反. ":""}${escape(state.classification_basis)}.</p><p>${zh?"模型质量仅对应基态。# 分别属于其相邻数值或不确定度。":"Model masses apply to the ground state only. Each # belongs to its adjacent value or uncertainty."}</p>`;
-      const a=document.createElement("a");a.href=location.pathname+"?nuclide="+state.A+state.element+"&state="+state.source_state_index;a.textContent=zh?"此核态链接":"Link to this state";panel.querySelector(".nc-state-data").appendChild(a);
+      panel.querySelector(".nc-state-data").innerHTML=`<p><b>${state.A}${escape(state.element)} [${state.label}]</b> · ${escape(T.state_kinds[state.kind])}${state.existence==="withdrawn"?" — "+T.state_withdrawn:state.existence==="questioned"?" — "+T.state_questioned:""}</p><p>ME (NUBASE2020): ${format(state.mass_excess)} keV<br>Eₓ: ${format(state.excitation)} keV<br>T½: ${format(life)} ${escape(life.unit)}<br>Jπ: ${escape(state.spin_parity)}</p><p>${state.ordering_uncertain?"* "+T.state_order_uncertain+". ":""}${state.ordering_inverted?"& "+T.state_order_inverted+". ":""}${escape(T.state_bases[state.classification_basis])}.</p><p>${T.state_model_note}</p>`;
+      const a=document.createElement("a");a.href=location.pathname+"?nuclide="+state.A+state.element+"&state="+state.source_state_index;a.textContent=T.state_link;panel.querySelector(".nc-state-data").appendChild(a);
     }
     function populate() {
       const q=panel.querySelector("input").value.toLowerCase(), kind=panel.querySelector("select").value;
-      const visible=group.filter(s=>(kind==="all"||s.kind==="ground"||s.kind===kind)&&`${s.label} ${s.kind} ${s.excitation.raw} ${s.spin_parity}`.toLowerCase().includes(q));
-      const box=panel.querySelector(".nc-state-buttons");box.innerHTML=visible.map(st=>`<button type="button" data-state="${st.id}" aria-pressed="${selectedState===st.id}">${escape(st.label)} · ${escape(st.kind)}${st.source_state_index?" · "+escape(st.excitation.raw)+" ± "+escape(st.excitation.raw_uncertainty||"?")+" keV":""}</button>`).join("");
+      const visible=group.filter(s=>(kind==="all"||s.kind==="ground"||s.kind===kind)&&`${s.label} ${s.kind} ${T.state_kinds[s.kind]} ${s.excitation.raw} ${s.spin_parity}`.toLowerCase().includes(q));
+      const box=panel.querySelector(".nc-state-buttons");box.innerHTML=visible.map(st=>`<button type="button" data-state="${st.id}" aria-pressed="${selectedState===st.id}">${escape(st.label)} · ${escape(T.state_kinds[st.kind])}${st.source_state_index?" · "+escape(st.excitation.raw)+" ± "+escape(st.excitation.raw_uncertainty||"?")+" keV":""}</button>`).join("");
       box.querySelectorAll("button").forEach(b=>b.onclick=()=>detail(catalog.states.get(b.dataset.state)));
     }
     panel.querySelector("input").oninput=populate;panel.querySelector("select").onchange=populate;populate();detail(target||group[0]);
@@ -491,7 +488,7 @@
       plotPts.map(p => [p.g, p.r[0], p.r[1], p.r[0] + p.r[1], p.r[2], String(p.y), p.e == null ? "" : String(p.e), p.est ? "#" : ""]), "chains-" + pq.value);
     const mm = new Map(modPts.map(p => [p.x, p.y])), xsAll = [...new Set(plotPts.map(p => p.x).concat(modPts.map(p => p.x)))].sort((a, b) => a - b), pm = new Map(plotPts.map(p => [p.x, p]));
     X.csv(["x (" + (pchain.value === "Z" ? "N" : "Z") + ")", "El", PQ[pq.value][0] + " AME2020 (" + (PQ[pq.value][2] || "-") + ")", "uncertainty", "flag", ...(modPts.length ? [modPts.name] : [])],
-      xsAll.map(x => { const p = pm.get(x); return [x, p ? p.r[2] : "", p ? String(p.y) : "", p ? p.e == null ? "" : String(p.e) : "", p && p.est ? "#" : "", ...(modPts.length ? [mm.has(x) ? mm.get(x).toFixed(6) : ""] : [])]; }), "chain-" + pq.value + (modPts.length ? "-" + modelKey() : ""));
+      xsAll.map(x => { const p = pm.get(x); return [x, p ? p.r[2] : "", p ? String(p.y) : "", p ? p.e == null ? "" : String(p.e) : "", p && p.est ? "#" : "", ...(modPts.length ? [mm.has(x) ? String(mm.get(x)) : ""] : [])]; }), "chain-" + pq.value + (modPts.length ? "-" + modelKey() : ""));
   };
 
   /* ---------- events ---------- */
@@ -540,7 +537,7 @@
     catalog=c;
     rows = d.rows; EL = d.elements; rows.forEach(r => M.set(key(r[0], r[1]), r));
     MEn = get(0, 1) || MEn; MEH = get(1, 0) || MEH; MEa = get(2, 2) || MEa;
-    root.querySelector(".nc-count").textContent = `${rows.length} ${T.nuclides} · ${rows.reduce((a,r)=>a+r[11].length,0)} ${zh?"目录中的同核异能态指认":"catalogued isomer assignments"}`;
+    root.querySelector(".nc-count").textContent = `${rows.length} ${T.nuclides} · ${rows.reduce((a,r)=>a+r[11].length,0)} ${T.state_count}`;
     buildPT(); drawLegend(); fit(); fsel.onchange();
     const q = new URLSearchParams(location.search).get("nuclide");
     if (q) { const state=new URLSearchParams(location.search).get("state"); search.value = q+(state?`[${state}]`:""); search.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" })); }

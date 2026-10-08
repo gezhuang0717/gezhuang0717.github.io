@@ -1,0 +1,195 @@
+en:
+  state_unknown: uncertainty unavailable
+  fl_missing: Missing mass
+  fl_unknown_unc: Unknown mass uncertainty
+  fl_known_unc: Known mass uncertainty
+  fl_state_hash: Extrapolated excitation energy
+  state_heading: States and provenance
+  state_search: Search states
+  state_class: State class
+  state_isomers: Ground state + isomers
+  state_all: All states (including levels / IAS)
+  state_pending: Classification pending
+  state_withdrawn: withdrawn assignment
+  state_questioned: questioned assignment
+  state_order_uncertain: ordering uncertain
+  state_order_inverted: ordering differs from ENSDF
+  state_model_note: 'Model masses apply only to ground states. Each # belongs to its
+    adjacent value or uncertainty.'
+  state_link: Link to this state
+  state_count: catalogued isomer assignments
+  state_kinds:
+    ground: ground state
+    isomer: isomer
+    analogue: analogue state
+    resonance: resonance
+    unclassified: classification pending
+  state_bases:
+    source index 0: Source ground-state index 0
+    source isomer label: Source isomer designation
+    source IAS label: Source analogue-state designation
+    NUBASE2020 section 2 higher-isomer assignment: Higher-isomer assignment, NUBASE2020
+      section 2
+    NUBASE2020 long-lived-state convention with record lifetime: NUBASE2020 long-lived-state
+      convention and this record’s lifetime
+    proton-resonance example in NUBASE2020 Table I explanation: Proton resonance identified
+      in NUBASE2020 Table I explanation
+    excited state; classification not established by available fields: Excited state;
+      available fields do not establish its class
+    'short-lived p/q/r record: lifetime alone does not establish level versus isomer': Short-lived
+      p/q/r record; lifetime alone cannot distinguish a level from an isomer
+  state_close: Close state details
+zh:
+  state_unknown: 不确定度未知
+  fl_missing: 质量缺失
+  fl_unknown_unc: 质量不确定度未知
+  fl_known_unc: 质量不确定度已知
+  fl_state_hash: 外推激发能
+  state_heading: 核态与数据来源
+  state_search: 搜索核态
+  state_class: 核态类型
+  state_isomers: 基态与同核异能态
+  state_all: 所有核态（含其他能级及同量异位类似态）
+  state_pending: 分类未定
+  state_withdrawn: 已撤销的指认
+  state_questioned: 存疑的指认
+  state_order_uncertain: 基态与异能态次序未定
+  state_order_inverted: 次序与 ENSDF 相反
+  state_model_note: 模型质量仅对应基态。# 分别属于相邻数值或不确定度。
+  state_link: 此核态链接
+  state_count: 目录中的同核异能态指认
+  state_kinds:
+    ground: 基态
+    isomer: 同核异能态
+    analogue: 同量异位类似态
+    resonance: 共振态
+    unclassified: 分类未定
+  state_bases:
+    source index 0: 来源基态索引 0
+    source isomer label: 来源的同核异能态标记
+    source IAS label: 来源的同量异位类似态标记
+    NUBASE2020 section 2 higher-isomer assignment: 高阶异能态指认，见 NUBASE2020 第 2 节
+    NUBASE2020 long-lived-state convention with record lifetime: 依据 NUBASE2020 长寿命核态约定及本条记录的寿命
+    proton-resonance example in NUBASE2020 Table I explanation: NUBASE2020 表 I 说明中的质子共振例子
+    excited state; classification not established by available fields: 激发态；现有字段不足以确定类别
+    'short-lived p/q/r record: lifetime alone does not establish level versus isomer': 短寿命
+      p/q/r 记录；仅凭寿命不能区分一般能级与异能态
+  state_close: 关闭核态详情
+fi:
+  state_unknown: epävarmuus ei saatavilla
+  fl_missing: Massa puuttuu
+  fl_unknown_unc: Massan epävarmuus tuntematon
+  fl_known_unc: Massan epävarmuus tunnettu
+  fl_state_hash: Ekstrapoloitu viritysenergia
+  state_heading: Tilat ja alkuperä
+  state_search: Hae tilaa
+  state_class: Tilaluokka
+  state_isomers: Perustila ja isomeerit
+  state_all: Kaikki tilat (myös tasot ja analogiatilat)
+  state_pending: Luokitus avoin
+  state_withdrawn: peruttu määritys
+  state_questioned: epävarma määritys
+  state_order_uncertain: järjestys epävarma
+  state_order_inverted: järjestys eroaa ENSDF:stä
+  state_model_note: 'Mallimassat koskevat vain perustiloja. Kukin # kuuluu viereiseen
+    arvoon tai epävarmuuteen.'
+  state_link: Linkki tähän tilaan
+  state_count: luettelon isomeerimääritystä
+  state_kinds:
+    ground: perustila
+    isomer: isomeeri
+    analogue: analogiatila
+    resonance: resonanssi
+    unclassified: luokitus avoin
+  state_bases:
+    source index 0: Lähteen perustilaindeksi 0
+    source isomer label: Lähteen isomeerimerkintä
+    source IAS label: Lähteen analogiatilamerkintä
+    NUBASE2020 section 2 higher-isomer assignment: Korkeamman isomeerin määritys,
+      NUBASE2020 osa 2
+    NUBASE2020 long-lived-state convention with record lifetime: NUBASE2020:n pitkäikäisen
+      tilan konventio ja tietueen elinikä
+    proton-resonance example in NUBASE2020 Table I explanation: NUBASE2020:n taulukon
+      I selityksen protoniresonanssi
+    excited state; classification not established by available fields: Viritystila;
+      käytettävissä olevat kentät eivät ratkaise luokkaa
+    'short-lived p/q/r record: lifetime alone does not establish level versus isomer': Lyhytikäinen
+      p/q/r-tietue; pelkkä elinikä ei erota tasoa isomeeristä
+  state_close: Sulje tilan tiedot
+de:
+  state_unknown: Unsicherheit nicht verfügbar
+  fl_missing: Masse fehlt
+  fl_unknown_unc: Massenunsicherheit unbekannt
+  fl_known_unc: Massenunsicherheit bekannt
+  fl_state_hash: Extrapolierte Anregungsenergie
+  state_heading: Zustände und Herkunft
+  state_search: Zustände suchen
+  state_class: Zustandsklasse
+  state_isomers: Grundzustand und Isomere
+  state_all: Alle Zustände (auch Niveaus und Analogzustände)
+  state_pending: Klassifikation offen
+  state_withdrawn: zurückgezogene Zuordnung
+  state_questioned: fragliche Zuordnung
+  state_order_uncertain: Reihenfolge unsicher
+  state_order_inverted: Reihenfolge weicht von ENSDF ab
+  state_model_note: 'Modellmassen gelten nur für Grundzustände. Jedes # gehört zum
+    benachbarten Wert oder seiner Unsicherheit.'
+  state_link: Link zu diesem Zustand
+  state_count: katalogisierte Isomerzuordnungen
+  state_kinds:
+    ground: Grundzustand
+    isomer: Isomer
+    analogue: Analogzustand
+    resonance: Resonanz
+    unclassified: Klassifikation offen
+  state_bases:
+    source index 0: Grundzustandsindex 0 der Quelle
+    source isomer label: Isomerbezeichnung der Quelle
+    source IAS label: Analogzustandsbezeichnung der Quelle
+    NUBASE2020 section 2 higher-isomer assignment: Zuordnung eines höheren Isomers,
+      NUBASE2020 Abschnitt 2
+    NUBASE2020 long-lived-state convention with record lifetime: NUBASE2020-Konvention
+      für langlebige Zustände und Lebensdauer dieses Eintrags
+    proton-resonance example in NUBASE2020 Table I explanation: Protonenresonanz in
+      der Erläuterung zu NUBASE2020 Tabelle I
+    excited state; classification not established by available fields: Angeregter
+      Zustand; verfügbare Felder bestimmen die Klasse nicht
+    'short-lived p/q/r record: lifetime alone does not establish level versus isomer': Kurzlebiger
+      p/q/r-Eintrag; die Lebensdauer allein unterscheidet Niveau und Isomer nicht
+  state_close: Zustandsdetails schließen
+ja:
+  state_unknown: 不確かさ不明
+  fl_missing: 質量欠損
+  fl_unknown_unc: 質量の不確かさ不明
+  fl_known_unc: 質量の不確かさ既知
+  fl_state_hash: 外挿した励起エネルギー
+  state_heading: 状態と出典
+  state_search: 状態を検索
+  state_class: 状態の分類
+  state_isomers: 基底状態と異性体
+  state_all: すべての状態（準位とアイソバリック類似状態を含む）
+  state_pending: 分類未確定
+  state_withdrawn: 撤回された同定
+  state_questioned: 疑義のある同定
+  state_order_uncertain: 基底状態と異性体の順序が未確定
+  state_order_inverted: 順序が ENSDF と異なる
+  state_model_note: '模型質量は基底状態だけに適用されます。各 # は隣接する値または不確かさに対応します。'
+  state_link: この状態へのリンク
+  state_count: 収録された異性体の同定
+  state_kinds:
+    ground: 基底状態
+    isomer: 核異性体
+    analogue: 類似状態
+    resonance: 共鳴状態
+    unclassified: 分類未確定
+  state_bases:
+    source index 0: 出典の基底状態索引 0
+    source isomer label: 出典の異性体表記
+    source IAS label: 出典の類似状態表記
+    NUBASE2020 section 2 higher-isomer assignment: 高次異性体の同定、NUBASE2020 第2節
+    NUBASE2020 long-lived-state convention with record lifetime: NUBASE2020 の長寿命状態の規約と本記録の寿命による分類
+    proton-resonance example in NUBASE2020 Table I explanation: NUBASE2020 表Iの説明にある陽子共鳴
+    excited state; classification not established by available fields: 励起状態。利用可能な項目だけでは分類を確定できません
+    'short-lived p/q/r record: lifetime alone does not establish level versus isomer': 短寿命の
+      p/q/r 記録。寿命だけでは通常の準位と異性体を区別できません
+  state_close: 状態の詳細を閉じる

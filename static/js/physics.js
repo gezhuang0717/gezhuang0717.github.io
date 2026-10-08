@@ -20,6 +20,14 @@
     return { v, e, est, sigmaEst:Object.values(p).some(t=>t.sigmaEst), offset, terms: p, uncertainty_model: "diagonal primitive covariance; repeated inputs combined" };
   }
   const constant = v => ({ v, e: 0, est: false, offset: v, terms: {} });
+  // Atomic mass-excess convention: the five-point sign is opposite to B.
+  function pairingIndicator(getMass, Z, N, axis = "N", order = 3) {
+    if (!["N", "Z"].includes(axis) || ![3, 5].includes(order)) throw new Error("Invalid pairing stencil");
+    const n = axis === "N" ? N : Z, parity = n % 2 ? -1 : 1;
+    const weights = order === 3 ? [0.5, -1, 0.5] : [-0.125, 0.5, -0.75, 0.5, -0.125];
+    const half = (weights.length - 1) / 2;
+    return combine(...weights.map((w, i) => [parity * w, getMass(Z + (axis === "Z" ? i - half : 0), N + (axis === "N" ? i - half : 0))]));
+  }
   function catalogue(data, ameData) {
     const states = new Map(data.states.map(s => [s.id, s])), groups = new Map(), ground = new Map();
     data.states.forEach(s => { const k = s.element.toLowerCase() + s.A; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(s); if (!s.source_state_index) ground.set(k, s); });
@@ -214,6 +222,6 @@
     const turns=deltaHz*time,angleDeg=turns===0?0:360*turns;
     return {energyKeV,massStepU,deltaHz,turns,angleDeg,residualDeg:(wrapPhase(2*Math.PI*turns+Math.PI)-Math.PI)*180/Math.PI};
   }
-  const api = { C, FWHM, numeric, primitive, combine, constant, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseEnergyStep };
+  const api = { C, FWHM, numeric, primitive, combine, constant, pairingIndicator, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseEnergyStep };
   host.ZGPhysics = api; if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);
