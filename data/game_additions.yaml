@@ -10,42 +10,37 @@ en:
   compare_title: Accumulation-time comparison
   compare_times: Compare selected times
   wrapped_sep: Minimum wrapped pair separation versus accumulation time
-  compare_note: Known simulation frequencies determine the full turn count. Additional
-    times reveal phase wrapping; this view does not determine an unknown experimental
-    turn count.
+  compare_note: Known simulation frequencies determine the full turn count. Additional times reveal
+    phase wrapping; this view does not determine an unknown experimental turn count.
   inputs_results: Inputs and results
-  rfq_convention: V is the zero-to-peak RF voltage; U is the DC voltage. This collisionless
-    transverse model illustrates finite-time transmission. Axial transport, buffer
-    gas, space charge and fringe fields are omitted.
+  rfq_convention: V is the zero-to-peak RF voltage; U is the DC voltage. This collisionless transverse
+    model illustrates finite-time transmission. Axial transport, buffer gas, space charge and fringe
+    fields are omitted.
   mathieu: Mathieu equation
   small_angle: Small-angle approximation
-  large_angle: 'Large angular width: the small-angle resolution estimate is outside
-    its domain'
+  large_angle: 'Large angular width: the small-angle resolution estimate is outside its domain'
   event_width: Event σφ
   centroid_width: Centroid σφ
   turns: Turns
   relative_phase: Δφ relative to species 1
   event_limit: 3 event σφ
   missing_isomer: No matching calculable isomer
-  invalid_state: Select valid ion states; unavailable states cannot fall back to the
-    ground state.
+  invalid_state: Select valid ion states; unavailable states cannot fall back to the ground state.
   invalid_physical: Invalid physical input
   unconfined: Unconfined ideal-trap parameters
   zero_radius: Phase resolution is undefined at zero detector radius
   positive_population: Use a positive population
   invalid_time: Invalid comparison time
   separation_target: Separation target
-  separation_note: σ means one event’s angular standard deviation. The search checks
-    every ion pair on a 0.01 ms grid up to 5000 ms, including phase wrapping; it is
-    not a fitted confidence level.
+  separation_note: σ means one event’s angular standard deviation. The search checks every ion pair
+    on a 0.01 ms grid up to 5000 ms, including phase wrapping; it is not a fitted confidence level.
   separation_none: No accumulation time meets this target within 5000 ms.
   phase_origin: Magnetron phase origin (°)
   custom_angle: Custom angle
   centre_lines: Connect centre to spots
-  phase_note: Counterclockwise angles. The common origin rotates all spots without
-    changing relative separations. The detector drawing radius is 21.00 mm; it expands
-    to 32.00 mm when the spot radius exceeds 20.00 mm. This drawing does not model
-    detector acceptance losses.
+  phase_note: Counterclockwise angles. The common origin rotates all spots without changing relative
+    separations. The detector drawing radius is 21.00 mm; it expands to 32.00 mm when the spot radius
+    exceeds 20.00 mm. This drawing does not model detector acceptance losses.
   total_turns: Total νc turns
   complete_turns: Complete νc turns
   delta_turns: Δ turns from first species
@@ -53,36 +48,54 @@ en:
   t180: First 180° separation time (ms)
   t180_target: Compare with first species
   apply180: Apply 180° time
-  turn_note: The first species is the reference. Total turns = νc t; Δ turns = (νc
-    − νc,ref)t. Residual angles are wrapped to [−180°, 180°). The first opposite-position
-    time is 1/(2|Δνc|); equal frequencies never separate. This time is pair-specific,
-    and applying it rounds to the 0.01 ms control grid. All turn counts here use known
-    simulation frequencies.
+  turn_note: The first species is the reference. Total turns = νc t; Δ turns = (νc − νc,ref)t. Residual
+    angles are wrapped to [−180°, 180°). The first opposite-position time is 1/(2|Δνc|); equal frequencies
+    never separate. This time is pair-specific, and applying it rounds to the 0.01 ms control grid.
+    All turn counts here use known simulation frequencies.
   energy_hint_title: What angle corresponds to 1 keV?
-  energy_hint_note: 'This is +1 keV of rest energy (mass), not kinetic energy: δm
-    = 1 keV/c² = 0.00000107354410 u. With the same charge and B, δνc = −νc δm/(mion
-    + δm) and δφ = 360° δνc t. Negative means lagging the reference in this counterclockwise
-    convention. The result depends on the first ion and the current accumulation time;
-    it is a hypothetical increment, not a measured isomer energy.'
+  energy_hint_note: 'This is +1 keV of rest energy (mass), not kinetic energy: δm = 1 keV/c² = 0.00000107354410
+    u. With the same charge and B, δνc = −νc δm/(mion + δm) and δφ = 360° δνc t. Negative means lagging
+    the reference in this counterclockwise convention. The result depends on the first ion and the
+    current accumulation time; it is a hypothetical increment, not a measured isomer energy.'
   reference_label: Reference
   unwrapped_angle: Signed, unwrapped angle
   wrapped_angle: Residual angle in [−180°, 180°)
-  pi_h: 'Relative to the common origin, νc = (φ + 2πn)/(2πt), with phase φ in radians
-    and complete turns n. The simulator knows n; experiments must determine it separately.
-    For rest-energy increase E at fixed charge: |Δνc|/νc = E/(mion c² + E). At small
-    angles σφ ≈ σx,y/r; r is editable, initially 10.00 mm. R = 2πνc t/(2.355 σφ) is
-    a FWHM resolution guide, not mass uncertainty. Longer times can make wrapped spots
-    overlap again.'
-  pi_fh: 'The ideal trap has fast radial motion ν₊, slow magnetron motion ν₋ and axial
-    oscillation νz. Here Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmion), νz = √(qU₀/(mion
-    d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Confinement requires νc² > 2νz². Ideal
-    identities: ν₊ + ν₋ = νc and ν₊² + ν₋² + νz² = νc². First order: ν₋ ≈ U₀/(4πBd²).'
+  pi_h: 'Relative to the common origin, νc = (φ + 2πn)/(2πt), with phase φ in radians and complete
+    turns n. The simulator knows n; experiments must determine it separately. For rest-energy increase
+    E at fixed charge: |Δνc|/νc = E/(mion c² + E). At small angles σφ ≈ σx,y/r; r is editable, initially
+    10.00 mm. R = 2πνc t/(2.355 σφ) is a FWHM resolution guide, not mass uncertainty. Longer times
+    can make wrapped spots overlap again.'
+  pi_fh: 'The ideal trap has fast radial motion ν₊, slow magnetron motion ν₋ and axial oscillation
+    νz. Here Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmion), νz = √(qU₀/(mion d²))/(2π), ν± = [νc ± √(νc²
+    − 2νz²)]/2. Confinement requires νc² > 2νz². Ideal identities: ν₊ + ν₋ = νc and ν₊² + ν₋² + νz²
+    = νc². First order: ν₋ ≈ U₀/(4πBd²).'
   custom_field: Custom B (T)
-  zero_field: A zero magnetic field has no cyclotron confinement in this model. Choose
-    B greater than zero.
+  zero_field: A zero magnetic field has no cyclotron confinement in this model. Choose B greater
+    than zero.
   detector_size: Detector radius
-  custom_sigma: "Custom target (σ)"
-  sigma_help: "σ is the angular standard deviation of individual events. 2.355σ approximates one Gaussian peak’s full width at half maximum (FWHM); it is not a confidence level or the combined uncertainty of two centroids. Presets and the custom box set the same target used by the shortest-time search and comparison line."
+  custom_sigma: Custom target (σ)
+  sigma_help: σ is the angular standard deviation of individual events. 2.355σ approximates one Gaussian
+    peak’s full width at half maximum (FWHM); it is not a confidence level or the combined uncertainty
+    of two centroids. Presets and the custom box set the same target used by the shortest-time search
+    and comparison line.
+  minus_offset: ν₋ phase offset (°)
+  plus_offset: ν₊ phase offset (°)
+  overlap_reference: Overlap reference spots
+  phase_clock: Timing clock
+  ideal_clock: Ideal timing
+  actual_tacc: Actual accumulation time
+  ideal_tacc: Ideal accumulation time
+  reference_mismatch: Reference phase mismatch
+  requested_tacc: Requested accumulation time t_acc
+  phase_timing_title: Reference phase and timing
+  phase_timing_note: These are counterclockwise offsets of the projected detector patterns, in the
+    magnetron-reference frame. The first entered ion, or the ground state in single-pair mode, sets
+    the reference frequencies. With overlap enabled, the requested time advances to the next solution
+    of νc t + (δ₊ − δ₋)/360° = integer. The default clock rounds this ideal time to 4 ns, following
+    the PyMassScanner timing convention; the remaining mismatch is shown rather than hidden. Ideal
+    timing gives exact overlap. Plots, turn counts, uncertainty, comparisons and exports use the
+    actual time. The common origin rotates all spots without changing separations.
+  phase_timing_source: PI-ICR phase and overlap method
 zh:
   search: 搜索
   other_states: 其他能级 / 同位旋模拟态 / 分类未定
@@ -119,8 +132,7 @@ zh:
   phase_origin: 磁控管相位原点（°）
   custom_angle: 自定义角度
   centre_lines: 连接中心与斑点
-  phase_note: 角度按逆时针计。共同原点旋转所有斑点，不改变相对分离。探测器绘图半径为 21.00 mm；斑点半径超过 20.00 mm 时，自动扩大到
-    32.00 mm。本图未模拟探测器接收损失。
+  phase_note: 角度按逆时针计。共同原点旋转所有斑点，不改变相对分离。探测器绘图半径为 21.00 mm；斑点半径超过 20.00 mm 时，自动扩大到 32.00 mm。本图未模拟探测器接收损失。
   total_turns: νc 总圈数
   complete_turns: νc 完整圈数
   delta_turns: 相对第一种离子的圈数差
@@ -128,25 +140,37 @@ zh:
   t180: 首次相差 180° 的时间（ms）
   t180_target: 与第一种离子比较
   apply180: 应用 180° 时间
-  turn_note: 第一种离子为参考。总圈数 = νc t；圈数差 = (νc − νc,参考)t。残余角度回绕到 [−180°,180°)。首次到达相反位置的时间为
-    1/(2|Δνc|)；频率相同则不会分离。这是指定离子对的时间，应用时按 0.01 ms 控件网格取整。圈数使用仿真中的已知频率。
+  turn_note: 第一种离子为参考。总圈数 = νc t；圈数差 = (νc − νc,参考)t。残余角度回绕到 [−180°,180°)。首次到达相反位置的时间为 1/(2|Δνc|)；频率相同则不会分离。这是指定离子对的时间，应用时按
+    0.01 ms 控件网格取整。圈数使用仿真中的已知频率。
   energy_hint_title: 1 keV 对应多大角度？
-  energy_hint_note: 这里是静止能量（质量）增加 1 keV，不是动能：δm = 1 keV/c² = 0.00000107354410 u。在相同电荷与
-    B 下，δνc = −νc δm/(m离子 + δm)，δφ = 360° δνc t。在逆时针角度约定下，负值表示落后于参考离子。结果依赖第一种离子与当前积累时间；这是假设的能量增量，不是某个同核异能态的测量值。
+  energy_hint_note: 这里是静止能量（质量）增加 1 keV，不是动能：δm = 1 keV/c² = 0.00000107354410 u。在相同电荷与 B 下，δνc =
+    −νc δm/(m离子 + δm)，δφ = 360° δνc t。在逆时针角度约定下，负值表示落后于参考离子。结果依赖第一种离子与当前积累时间；这是假设的能量增量，不是某个同核异能态的测量值。
   reference_label: 参考离子
   unwrapped_angle: 未回绕的有符号角度
   wrapped_angle: '[−180°,180°) 内的残余角'
-  pi_h: 相对共同角度原点，νc = (φ + 2πn)/(2πt)，φ 用弧度，n 为完整圈数。仿真已知 n，真实测量需另行确定。在相同电荷下，静止能量增加
-    E 时，|Δνc|/νc = E/(m离子c² + E)。小角度下 σφ ≈ σx,y/r；r 可调，初始为 10.00 mm。R = 2πνc t/(2.355
-    σφ) 表示半高全宽分辨本领，不等同于质量不确定度。积累时间更长时，回绕的斑点可能再次重叠。
-  pi_fh: 理想阱包含快速径向运动 ν₊、慢速磁控运动 ν₋ 和轴向振荡 νz。这里 Φ = U₀(z² − r²/2)/(2d²)，νc = qB/(2πm离子)，νz
-    = √(qU₀/(m离子d²))/(2π)，ν± = [νc ± √(νc² − 2νz²)]/2。稳定囚禁需要 νc² > 2νz²。理想关系：ν₊ +
-    ν₋ = νc，ν₊² + ν₋² + νz² = νc²。一阶近似：ν₋ ≈ U₀/(4πBd²)。
+  pi_h: 相对共同角度原点，νc = (φ + 2πn)/(2πt)，φ 用弧度，n 为完整圈数。仿真已知 n，真实测量需另行确定。在相同电荷下，静止能量增加 E 时，|Δνc|/νc =
+    E/(m离子c² + E)。小角度下 σφ ≈ σx,y/r；r 可调，初始为 10.00 mm。R = 2πνc t/(2.355 σφ) 表示半高全宽分辨本领，不等同于质量不确定度。积累时间更长时，回绕的斑点可能再次重叠。
+  pi_fh: 理想阱包含快速径向运动 ν₊、慢速磁控运动 ν₋ 和轴向振荡 νz。这里 Φ = U₀(z² − r²/2)/(2d²)，νc = qB/(2πm离子)，νz = √(qU₀/(m离子d²))/(2π)，ν±
+    = [νc ± √(νc² − 2νz²)]/2。稳定囚禁需要 νc² > 2νz²。理想关系：ν₊ + ν₋ = νc，ν₊² + ν₋² + νz² = νc²。一阶近似：ν₋ ≈
+    U₀/(4πBd²)。
   custom_field: 自定义 B（T）
   zero_field: 此模型中零磁场无法提供回旋囚禁，请选择大于零的 B。
   detector_size: 探测器半径
-  custom_sigma: "自定义目标（σ）"
-  sigma_help: "σ 是单个事件角分布的标准差。2.355σ 近似一个高斯峰的半高全宽（FWHM），不是置信水平，也不是两个质心的合成不确定度。预设与自定义框控制相同目标，用于最短时间搜索及比较图的目标线。"
+  custom_sigma: 自定义目标（σ）
+  sigma_help: σ 是单个事件角分布的标准差。2.355σ 近似一个高斯峰的半高全宽（FWHM），不是置信水平，也不是两个质心的合成不确定度。预设与自定义框控制相同目标，用于最短时间搜索及比较图的目标线。
+  minus_offset: ν₋ 相位偏移（°）
+  plus_offset: ν₊ 相位偏移（°）
+  overlap_reference: 重合参考离子斑点
+  phase_clock: 计时时钟
+  ideal_clock: 理想计时
+  actual_tacc: 实际累积时间
+  ideal_tacc: 理想累积时间
+  reference_mismatch: 参考相位残差
+  requested_tacc: 请求的累积时间 t_acc
+  phase_timing_title: 参考相位与计时
+  phase_timing_note: 这些是磁控管参考坐标系中投影到探测器后的相位偏移，逆时针为正。输入的第一种离子，或单对模式的基态，决定参考频率。勾选重合后，请求时间向上调整到 νc t
+    + (δ₊ − δ₋)/360° 为整数的下一个解。默认时钟按 PyMassScanner 的约定将理想时间舍入到 4 ns，并显示剩余残差。选择理想计时可精确重合。图、圈数、不确定度、时间比较和导出均使用实际时间。共同原点仍同时旋转所有斑点，不改变相对分离。
+  phase_timing_source: PI-ICR 相位与斑点重合方法
 fi:
   search: Haku
   other_states: Muut tasot / IAS / luokitus avoin
@@ -159,12 +183,12 @@ fi:
   compare_title: Kertymäaikojen vertailu
   compare_times: Vertaa valittuja aikoja
   wrapped_sep: Pienin kiedottu vaihe-ero kertymäajan funktiona
-  compare_note: Tunnetut simulaatiotaajuudet määräävät täydet kierrokset. Lisäajat
-    näyttävät vaiheen kiertymisen; näkymä ei ratkaise kokeen tuntematonta kierroslukua.
+  compare_note: Tunnetut simulaatiotaajuudet määräävät täydet kierrokset. Lisäajat näyttävät vaiheen
+    kiertymisen; näkymä ei ratkaise kokeen tuntematonta kierroslukua.
   inputs_results: Syötteet ja tulokset
-  rfq_convention: V on RF-jännitteen nollasta huippuun mitattu amplitudi; U on tasajännite.
-    Törmäyksetön poikittaismalli havainnollistaa läpäisyä rajallisessa ajassa. Aksiaalinen
-    kuljetus, puskurikaasu, avaruusvaraus ja reunakentät puuttuvat.
+  rfq_convention: V on RF-jännitteen nollasta huippuun mitattu amplitudi; U on tasajännite. Törmäyksetön
+    poikittaismalli havainnollistaa läpäisyä rajallisessa ajassa. Aksiaalinen kuljetus, puskurikaasu,
+    avaruusvaraus ja reunakentät puuttuvat.
   mathieu: Mathieun yhtälö
   small_angle: Pienen kulman approksimaatio
   large_angle: 'Suuri kulmaleveys: pienen kulman erotuskykyarvio ei ole sovellettavissa'
@@ -181,16 +205,15 @@ fi:
   positive_population: Käytä positiivista populaatiota
   invalid_time: Virheellinen vertailuaika
   separation_target: Erottumistavoite
-  separation_note: σ on yhden tapahtuman kulman keskihajonta. Haku tarkistaa kaikki
-    ioniparit 0,01 ms välein 5000 ms asti ja huomioi vaiheen kiertymisen; kyse ei
-    ole sovituksen luottamustasosta.
+  separation_note: σ on yhden tapahtuman kulman keskihajonta. Haku tarkistaa kaikki ioniparit 0,01
+    ms välein 5000 ms asti ja huomioi vaiheen kiertymisen; kyse ei ole sovituksen luottamustasosta.
   separation_none: Tavoitetta vastaavaa kertymäaikaa ei löytynyt 5000 ms asti.
   phase_origin: Magnetronivaiheen nollakohta (°)
   custom_angle: Oma kulma
   centre_lines: Yhdistä keskipiste täpliin
-  phase_note: Kulmat ovat vastapäivään. Yhteinen origo kiertää täplät muuttamatta
-    suhteellisia eroja. Detektorin piirrossäde on 21,00 mm ja kasvaa 32,00 mm:iin,
-    kun täpläsäde ylittää 20,00 mm. Piirros ei mallinna detektorin hyväksyntähäviöitä.
+  phase_note: Kulmat ovat vastapäivään. Yhteinen origo kiertää täplät muuttamatta suhteellisia eroja.
+    Detektorin piirrossäde on 21,00 mm ja kasvaa 32,00 mm:iin, kun täpläsäde ylittää 20,00 mm. Piirros
+    ei mallinna detektorin hyväksyntähäviöitä.
   total_turns: νc-kierroksia yhteensä
   complete_turns: Täydet νc-kierrokset
   delta_turns: Kierrosero ensimmäiseen ionilajiin
@@ -198,35 +221,54 @@ fi:
   t180: Ensimmäinen 180° erotusaika (ms)
   t180_target: Vertaa ensimmäiseen ionilajiin
   apply180: Käytä 180° aikaa
-  turn_note: Ensimmäinen ionilaji on referenssi. Kierrokset = νc t; ero = (νc − νc,ref)t.
-    Jäännöskulma kiedotaan välille [−180°,180°). Ensimmäinen vastakkainen asema saavutetaan
-    ajassa 1/(2|Δνc|); samat taajuudet eivät erotu. Aika koskee yhtä paria ja pyöristetään
-    0,01 ms säätöväliin. Kierrosluvut perustuvat tunnettuihin simulaatiotaajuuksiin.
+  turn_note: Ensimmäinen ionilaji on referenssi. Kierrokset = νc t; ero = (νc − νc,ref)t. Jäännöskulma
+    kiedotaan välille [−180°,180°). Ensimmäinen vastakkainen asema saavutetaan ajassa 1/(2|Δνc|);
+    samat taajuudet eivät erotu. Aika koskee yhtä paria ja pyöristetään 0,01 ms säätöväliin. Kierrosluvut
+    perustuvat tunnettuihin simulaatiotaajuuksiin.
   energy_hint_title: Mitä kulmaa 1 keV vastaa?
-  energy_hint_note: 'Tämä on 1 keV:n lisäys lepoenergiaan eli massaan, ei liike-energiaan:
-    δm = 1 keV/c² = 0,00000107354410 u. Samalla varauksella ja B:llä δνc = −νc δm/(mioni
-    + δm) ja δφ = 360° δνc t. Negatiivinen kulma tarkoittaa referenssin jäljessä olevaa
-    vaihetta vastapäiväisessä käytännössä. Tulos riippuu ensimmäisestä ionista ja
-    nykyisestä kertymäajasta. Kyseessä on oletettu lisäys, ei mitattu isomeerienergia.'
+  energy_hint_note: 'Tämä on 1 keV:n lisäys lepoenergiaan eli massaan, ei liike-energiaan: δm = 1
+    keV/c² = 0,00000107354410 u. Samalla varauksella ja B:llä δνc = −νc δm/(mioni + δm) ja δφ = 360°
+    δνc t. Negatiivinen kulma tarkoittaa referenssin jäljessä olevaa vaihetta vastapäiväisessä käytännössä.
+    Tulos riippuu ensimmäisestä ionista ja nykyisestä kertymäajasta. Kyseessä on oletettu lisäys,
+    ei mitattu isomeerienergia.'
   reference_label: Referenssi
   unwrapped_angle: Etumerkillinen kulma ilman kiertoa
   wrapped_angle: Jäännöskulma välillä [−180°,180°)
-  pi_h: Yhteisestä origosta νc = (φ + 2πn)/(2πt), missä φ on radiaaneina ja n täydet
-    kierrokset. Simulaatio tuntee n:n; mittaus määrittää sen erikseen. Samalla varauksella
-    lepoenergian lisäys E antaa |Δνc|/νc = E/(mioni c² + E). Pienillä kulmilla σφ
-    ≈ σx,y/r; säädettävä r on aluksi 10,00 mm. R = 2πνc t/(2,355 σφ) on FWHM-erotuskyvyn
-    ohjearvo, ei massan epävarmuus. Pidempi aika voi saada kiertävät täplät taas päällekkäin.
-  pi_fh: 'Ideaaliloukun liikkeet: nopea radiaalinen ν₊, hidas magnetroniliike ν₋ ja
-    aksiaalinen värähtely νz. Tässä Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmioni), νz
-    = √(qU₀/(mioni d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Vakaus edellyttää νc² >
-    2νz². Ideaalisuhteet: ν₊ + ν₋ = νc ja ν₊² + ν₋² + νz² = νc². Ensimmäinen approksimaatio:
-    ν₋ ≈ U₀/(4πBd²).'
+  pi_h: Yhteisestä origosta νc = (φ + 2πn)/(2πt), missä φ on radiaaneina ja n täydet kierrokset.
+    Simulaatio tuntee n:n; mittaus määrittää sen erikseen. Samalla varauksella lepoenergian lisäys
+    E antaa |Δνc|/νc = E/(mioni c² + E). Pienillä kulmilla σφ ≈ σx,y/r; säädettävä r on aluksi 10,00
+    mm. R = 2πνc t/(2,355 σφ) on FWHM-erotuskyvyn ohjearvo, ei massan epävarmuus. Pidempi aika voi
+    saada kiertävät täplät taas päällekkäin.
+  pi_fh: 'Ideaaliloukun liikkeet: nopea radiaalinen ν₊, hidas magnetroniliike ν₋ ja aksiaalinen värähtely
+    νz. Tässä Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmioni), νz = √(qU₀/(mioni d²))/(2π), ν± = [νc ±
+    √(νc² − 2νz²)]/2. Vakaus edellyttää νc² > 2νz². Ideaalisuhteet: ν₊ + ν₋ = νc ja ν₊² + ν₋² + νz²
+    = νc². Ensimmäinen approksimaatio: ν₋ ≈ U₀/(4πBd²).'
   custom_field: Oma B (T)
-  zero_field: Nollamagneettikenttä ei anna syklotronikonfinementtia tässä mallissa.
-    Valitse B yli nollan.
+  zero_field: Nollamagneettikenttä ei anna syklotronikonfinementtia tässä mallissa. Valitse B yli
+    nollan.
   detector_size: Detektorin säde
-  custom_sigma: "Oma tavoite (σ)"
-  sigma_help: "σ on yksittäisten tapahtumien kulmajakauman keskihajonta. 2,355σ vastaa likimain yhden Gaussin huipun puoliarvoleveyttä (FWHM), ei luottamustasoa tai kahden keskipisteen yhteistä epävarmuutta. Esiasetus ja oma arvo ohjaavat samaa lyhimmän ajan hakua ja vertailuviivaa."
+  custom_sigma: Oma tavoite (σ)
+  sigma_help: σ on yksittäisten tapahtumien kulmajakauman keskihajonta. 2,355σ vastaa likimain yhden
+    Gaussin huipun puoliarvoleveyttä (FWHM), ei luottamustasoa tai kahden keskipisteen yhteistä epävarmuutta.
+    Esiasetus ja oma arvo ohjaavat samaa lyhimmän ajan hakua ja vertailuviivaa.
+  minus_offset: ν₋-vaiheen siirto (°)
+  plus_offset: ν₊-vaiheen siirto (°)
+  overlap_reference: Aseta referenssitäplät päällekkäin
+  phase_clock: Ajoituskello
+  ideal_clock: Ideaalinen ajoitus
+  actual_tacc: Todellinen kertymäaika
+  ideal_tacc: Ideaalinen kertymäaika
+  reference_mismatch: Referenssin vaihe-ero
+  requested_tacc: Pyydetty kertymäaika t_acc
+  phase_timing_title: Referenssin vaihe ja ajoitus
+  phase_timing_note: Siirrot koskevat detektorille projisoituja kuvioita magnetronireferenssin koordinaatistossa;
+    positiivinen kulma on vastapäivään. Ensimmäinen syötetty ioni tai parin perustila määrää referenssitaajuudet.
+    Päällekkäisyys siirtää pyydetyn ajan seuraavaan ratkaisuun, jossa νc t + (δ₊ − δ₋)/360° on kokonaisluku.
+    Oletuskello pyöristää ideaalisen ajan 4 ns:n välein PyMassScannerin tapaan; jäljelle jäävä vaihe-ero
+    näytetään. Ideaalinen ajoitus tuottaa tarkan päällekkäisyyden. Kuviot, kierrokset, epävarmuudet,
+    vertailut ja vienti käyttävät todellista aikaa. Yhteinen origo kiertää kaikkia täpliä muuttamatta
+    suhteellisia eroja.
+  phase_timing_source: PI-ICR:n vaihe- ja päällekkäisyysmenetelmä
 de:
   search: Suchen
   other_states: Andere Niveaus / IAS / ungeklärte Klasse
@@ -239,42 +281,39 @@ de:
   compare_title: Vergleich der Akkumulationszeiten
   compare_times: Ausgewählte Zeiten vergleichen
   wrapped_sep: Kleinster gewickelter Phasenabstand gegen Akkumulationszeit
-  compare_note: Bekannte Simulationsfrequenzen bestimmen die vollen Umläufe. Weitere
-    Zeiten zeigen die Phasenwicklung; die Ansicht ermittelt keine unbekannte experimentelle
-    Umlaufzahl.
+  compare_note: Bekannte Simulationsfrequenzen bestimmen die vollen Umläufe. Weitere Zeiten zeigen
+    die Phasenwicklung; die Ansicht ermittelt keine unbekannte experimentelle Umlaufzahl.
   inputs_results: Eingaben und Ergebnisse
-  rfq_convention: V ist die HF-Spitzenspannung gegenüber null; U ist die Gleichspannung.
-    Das kollisionsfreie transversale Modell veranschaulicht die Transmission in endlicher
-    Zeit. Axialer Transport, Puffergas, Raumladung und Randfelder fehlen.
+  rfq_convention: V ist die HF-Spitzenspannung gegenüber null; U ist die Gleichspannung. Das kollisionsfreie
+    transversale Modell veranschaulicht die Transmission in endlicher Zeit. Axialer Transport, Puffergas,
+    Raumladung und Randfelder fehlen.
   mathieu: Mathieu-Gleichung
   small_angle: Kleinwinkelnäherung
-  large_angle: 'Große Winkelbreite: die Auflösungsabschätzung mit Kleinwinkelnäherung
-    ist nicht anwendbar'
+  large_angle: 'Große Winkelbreite: die Auflösungsabschätzung mit Kleinwinkelnäherung ist nicht anwendbar'
   event_width: Ereignis-σφ
   centroid_width: Schwerpunkt-σφ
   turns: Umläufe
   relative_phase: Δφ relativ zu Ionensorte 1
   event_limit: 3 Ereignis-σφ
   missing_isomer: Kein berechenbares passendes Isomer
-  invalid_state: Gültige Ionenzustände wählen; fehlende Zustände werden nicht durch
-    den Grundzustand ersetzt.
+  invalid_state: Gültige Ionenzustände wählen; fehlende Zustände werden nicht durch den Grundzustand
+    ersetzt.
   invalid_physical: Ungültige physikalische Eingabe
   unconfined: Die idealen Fallenparameter erlauben keinen Einschluss
   zero_radius: Die Phasenauflösung ist bei Detektorradius null nicht definiert
   positive_population: Eine positive Population verwenden
   invalid_time: Ungültige Vergleichszeit
   separation_target: Trennungsziel
-  separation_note: σ ist die Winkelstandardabweichung eines Ereignisses. Die Suche
-    prüft alle Ionenpaare auf einem 0,01-ms-Raster bis 5000 ms einschließlich Phasenumlauf;
-    dies ist kein Konfidenzniveau einer Anpassung.
+  separation_note: σ ist die Winkelstandardabweichung eines Ereignisses. Die Suche prüft alle Ionenpaare
+    auf einem 0,01-ms-Raster bis 5000 ms einschließlich Phasenumlauf; dies ist kein Konfidenzniveau
+    einer Anpassung.
   separation_none: Bis 5000 ms erreicht keine Akkumulationszeit dieses Ziel.
   phase_origin: Magnetron-Phasenursprung (°)
   custom_angle: Eigener Winkel
   centre_lines: Zentrum mit Flecken verbinden
-  phase_note: Winkel gegen den Uhrzeigersinn. Der gemeinsame Ursprung dreht alle Flecken
-    ohne ihre relativen Abstände zu ändern. Der Zeichnungsradius beträgt 21,00 mm
-    und wächst auf 32,00 mm, wenn der Fleckenradius 20,00 mm überschreitet. Akzeptanzverluste
-    des Detektors werden nicht modelliert.
+  phase_note: Winkel gegen den Uhrzeigersinn. Der gemeinsame Ursprung dreht alle Flecken ohne ihre
+    relativen Abstände zu ändern. Der Zeichnungsradius beträgt 21,00 mm und wächst auf 32,00 mm,
+    wenn der Fleckenradius 20,00 mm überschreitet. Akzeptanzverluste des Detektors werden nicht modelliert.
   total_turns: Gesamte νc-Umläufe
   complete_turns: Vollständige νc-Umläufe
   delta_turns: Umlaufdifferenz zur ersten Ionensorte
@@ -282,38 +321,55 @@ de:
   t180: Erste 180°-Trennzeit (ms)
   t180_target: Mit erster Ionensorte vergleichen
   apply180: 180°-Zeit anwenden
-  turn_note: Die erste Ionensorte ist Referenz. Umläufe = νc t; Differenz = (νc −
-    νc,ref)t. Restwinkel liegen in [−180°,180°). Die erste gegenüberliegende Position
-    wird nach 1/(2|Δνc|) erreicht; gleiche Frequenzen trennen sich nicht. Die Zeit
-    gilt für ein Paar und wird auf 0,01 ms gerundet. Umlaufzahlen nutzen bekannte
-    Simulationsfrequenzen.
+  turn_note: Die erste Ionensorte ist Referenz. Umläufe = νc t; Differenz = (νc − νc,ref)t. Restwinkel
+    liegen in [−180°,180°). Die erste gegenüberliegende Position wird nach 1/(2|Δνc|) erreicht; gleiche
+    Frequenzen trennen sich nicht. Die Zeit gilt für ein Paar und wird auf 0,01 ms gerundet. Umlaufzahlen
+    nutzen bekannte Simulationsfrequenzen.
   energy_hint_title: Welchem Winkel entspricht 1 keV?
-  energy_hint_note: 'Gemeint ist eine Zunahme der Ruheenergie (Masse) um 1 keV, keine
-    kinetische Energie: δm = 1 keV/c² = 0,00000107354410 u. Bei gleicher Ladung und
-    gleichem B gilt δνc = −νc δm/(mIon + δm), δφ = 360° δνc t. Negative Werte bedeuten
-    im Gegenuhrzeigersinn einen Rückstand gegenüber der Referenz. Das Ergebnis hängt
-    vom ersten Ion und der aktuellen Akkumulationszeit ab. Dies ist eine angenommene
-    Erhöhung, keine gemessene Isomerenergie.'
+  energy_hint_note: 'Gemeint ist eine Zunahme der Ruheenergie (Masse) um 1 keV, keine kinetische
+    Energie: δm = 1 keV/c² = 0,00000107354410 u. Bei gleicher Ladung und gleichem B gilt δνc = −νc
+    δm/(mIon + δm), δφ = 360° δνc t. Negative Werte bedeuten im Gegenuhrzeigersinn einen Rückstand
+    gegenüber der Referenz. Das Ergebnis hängt vom ersten Ion und der aktuellen Akkumulationszeit
+    ab. Dies ist eine angenommene Erhöhung, keine gemessene Isomerenergie.'
   reference_label: Referenz
   unwrapped_angle: Vorzeichenbehafteter, ungekürzter Winkel
   wrapped_angle: Restwinkel in [−180°,180°)
-  pi_h: 'Vom gemeinsamen Ursprung gilt νc = (φ + 2πn)/(2πt), mit φ in Radiant und
-    n vollständigen Umläufen. Die Simulation kennt n; Experimente bestimmen n getrennt.
-    Bei gleicher Ladung ergibt zusätzliche Ruheenergie E: |Δνc|/νc = E/(mIon c² +
-    E). Für kleine Winkel gilt σφ ≈ σx,y/r; r ist einstellbar, anfangs 10,00 mm. R
-    = 2πνc t/(2,355 σφ) ist ein FWHM-Auflösungsrichtwert, keine Massenunsicherheit.
-    Längere Zeiten können die umlaufenden Flecken erneut überlagern.'
-  pi_fh: 'Ideale Bewegungen: schnelle radiale Bewegung ν₊, langsame Magnetronbewegung
-    ν₋, axiale Schwingung νz. Hier Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmIon), νz =
-    √(qU₀/(mIon d²))/(2π), ν± = [νc ± √(νc² − 2νz²)]/2. Einschluss erfordert νc² >
-    2νz². Ideale Identitäten: ν₊ + ν₋ = νc, ν₊² + ν₋² + νz² = νc². Erste Ordnung:
-    ν₋ ≈ U₀/(4πBd²).'
+  pi_h: 'Vom gemeinsamen Ursprung gilt νc = (φ + 2πn)/(2πt), mit φ in Radiant und n vollständigen
+    Umläufen. Die Simulation kennt n; Experimente bestimmen n getrennt. Bei gleicher Ladung ergibt
+    zusätzliche Ruheenergie E: |Δνc|/νc = E/(mIon c² + E). Für kleine Winkel gilt σφ ≈ σx,y/r; r
+    ist einstellbar, anfangs 10,00 mm. R = 2πνc t/(2,355 σφ) ist ein FWHM-Auflösungsrichtwert, keine
+    Massenunsicherheit. Längere Zeiten können die umlaufenden Flecken erneut überlagern.'
+  pi_fh: 'Ideale Bewegungen: schnelle radiale Bewegung ν₊, langsame Magnetronbewegung ν₋, axiale
+    Schwingung νz. Hier Φ = U₀(z² − r²/2)/(2d²), νc = qB/(2πmIon), νz = √(qU₀/(mIon d²))/(2π), ν±
+    = [νc ± √(νc² − 2νz²)]/2. Einschluss erfordert νc² > 2νz². Ideale Identitäten: ν₊ + ν₋ = νc,
+    ν₊² + ν₋² + νz² = νc². Erste Ordnung: ν₋ ≈ U₀/(4πBd²).'
   custom_field: Eigenes B (T)
-  zero_field: Ohne Magnetfeld gibt es in diesem Modell keinen Zyklotroneinschluss.
-    Wählen Sie B größer als null.
+  zero_field: Ohne Magnetfeld gibt es in diesem Modell keinen Zyklotroneinschluss. Wählen Sie B größer
+    als null.
   detector_size: Detektorradius
-  custom_sigma: "Eigenes Ziel (σ)"
-  sigma_help: "σ ist die Standardabweichung der Winkel einzelner Ereignisse. 2,355σ entspricht ungefähr der Halbwertsbreite (FWHM) eines Gauß-Peaks, keinem Konfidenzniveau oder der kombinierten Unsicherheit zweier Schwerpunkte. Vorgabe und eigener Wert steuern dieselbe Suche nach der kürzesten Zeit und dieselbe Vergleichslinie."
+  custom_sigma: Eigenes Ziel (σ)
+  sigma_help: σ ist die Standardabweichung der Winkel einzelner Ereignisse. 2,355σ entspricht ungefähr
+    der Halbwertsbreite (FWHM) eines Gauß-Peaks, keinem Konfidenzniveau oder der kombinierten Unsicherheit
+    zweier Schwerpunkte. Vorgabe und eigener Wert steuern dieselbe Suche nach der kürzesten Zeit
+    und dieselbe Vergleichslinie.
+  minus_offset: ν₋-Phasenversatz (°)
+  plus_offset: ν₊-Phasenversatz (°)
+  overlap_reference: Referenzflecken überlagern
+  phase_clock: Zeitgeber
+  ideal_clock: Ideale Zeitgebung
+  actual_tacc: Tatsächliche Akkumulationszeit
+  ideal_tacc: Ideale Akkumulationszeit
+  reference_mismatch: Phasenrest der Referenz
+  requested_tacc: Gewünschte Akkumulationszeit t_acc
+  phase_timing_title: Referenzphase und Zeitgebung
+  phase_timing_note: Die Versätze gelten für die projizierten Detektormuster im Magnetron-Referenzsystem;
+    positive Winkel laufen gegen den Uhrzeigersinn. Das erste eingegebene Ion oder der Grundzustand
+    des Paars bestimmt die Referenzfrequenzen. Die Überlagerung erhöht die gewünschte Zeit bis zur
+    nächsten Lösung mit ganzzahligem νc t + (δ₊ − δ₋)/360°. Der Standardzeitgeber rundet wie PyMassScanner
+    auf 4 ns; der verbleibende Phasenrest wird angezeigt. Ideale Zeitgebung liefert genaue Überlagerung.
+    Diagramme, Umläufe, Unsicherheiten, Vergleiche und Exporte verwenden die tatsächliche Zeit. Der
+    gemeinsame Ursprung dreht alle Flecken bei unveränderten relativen Abständen.
+  phase_timing_source: PI-ICR-Phasen- und Überlagerungsverfahren
 ja:
   search: 検索
   other_states: その他の準位・IAS・分類未確定
@@ -350,8 +406,8 @@ ja:
   phase_origin: マグネトロン位相の原点（°）
   custom_angle: 角度を指定
   centre_lines: 中心とスポットを結ぶ
-  phase_note: 角度は反時計回りです。共通の原点は全スポットを回転させ、相対分離は保ちます。検出器の描画半径は 21.00 mm で、スポット半径が 20.00
-    mm を超えると 32.00 mm に拡大します。検出器の受け入れ損失はモデル化しません。
+  phase_note: 角度は反時計回りです。共通の原点は全スポットを回転させ、相対分離は保ちます。検出器の描画半径は 21.00 mm で、スポット半径が 20.00 mm を超えると 32.00
+    mm に拡大します。検出器の受け入れ損失はモデル化しません。
   total_turns: νc の総周回数
   complete_turns: νc の完了周回数
   delta_turns: 第1イオン種との差（周回）
@@ -359,8 +415,8 @@ ja:
   t180: 最初に 180° 分離する時間（ms）
   t180_target: 第1イオン種と比較
   apply180: 180° の時間を適用
-  turn_note: 第1イオン種が基準です。総周回数 = νc t、差 = (νc − νc,基準)t。残余角は [−180°,180°) に折り返します。最初に反対位置となる時間は
-    1/(2|Δνc|) で、同じ周波数では分離しません。これは一対の時間で、適用時は 0.01 ms 刻みに丸めます。周回数は既知のシミュレーション周波数から計算します。
+  turn_note: 第1イオン種が基準です。総周回数 = νc t、差 = (νc − νc,基準)t。残余角は [−180°,180°) に折り返します。最初に反対位置となる時間は 1/(2|Δνc|)
+    で、同じ周波数では分離しません。これは一対の時間で、適用時は 0.01 ms 刻みに丸めます。周回数は既知のシミュレーション周波数から計算します。
   energy_hint_title: 1 keV はどの角度に対応しますか？
   energy_hint_note: これは静止エネルギー（質量）が 1 keV 増加した場合で、運動エネルギーではありません。δm = 1 keV/c² = 0.00000107354410
     u。同じ電荷と B では δνc = −νc δm/(mイオン + δm)、δφ = 360° δνc t です。反時計回りの角度規約で負の値は基準より遅れることを示します。結果は第1イオンと現在の蓄積時間に依存します。仮定した増分であり、測定した異性体エネルギーではありません。
@@ -368,13 +424,26 @@ ja:
   unwrapped_angle: 折り返さない符号付き角度
   wrapped_angle: '[−180°,180°) の残余角'
   pi_h: 共通原点から測ると νc = (φ + 2πn)/(2πt)。φ はラジアン、n は完了周回数です。仮想実験は n を知っていますが、実測では別途決定します。同じ電荷で静止エネルギーが
-    E 増加すると |Δνc|/νc = E/(mイオンc² + E)。小角度では σφ ≈ σx,y/r。調整できる r の初期値は 10.00 mm。R =
-    2πνc t/(2.355 σφ) は半値全幅の分解能指標で、質量不確かさではありません。時間を延ばすと折り返すスポットが再び重なる場合があります。
-  pi_fh: 理想的な運動は速い半径方向運動 ν₊、遅いマグネトロン運動 ν₋、軸方向振動 νz です。Φ = U₀(z² − r²/2)/(2d²)、νc =
-    qB/(2πmイオン)、νz = √(qU₀/(mイオンd²))/(2π)、ν± = [νc ± √(νc² − 2νz²)]/2。閉じ込めには νc² >
-    2νz² が必要。理想的な関係は ν₊ + ν₋ = νc、ν₊² + ν₋² + νz² = νc²。一階近似は ν₋ ≈ U₀/(4πBd²)。
+    E 増加すると |Δνc|/νc = E/(mイオンc² + E)。小角度では σφ ≈ σx,y/r。調整できる r の初期値は 10.00 mm。R = 2πνc t/(2.355
+    σφ) は半値全幅の分解能指標で、質量不確かさではありません。時間を延ばすと折り返すスポットが再び重なる場合があります。
+  pi_fh: 理想的な運動は速い半径方向運動 ν₊、遅いマグネトロン運動 ν₋、軸方向振動 νz です。Φ = U₀(z² − r²/2)/(2d²)、νc = qB/(2πmイオン)、νz
+    = √(qU₀/(mイオンd²))/(2π)、ν± = [νc ± √(νc² − 2νz²)]/2。閉じ込めには νc² > 2νz² が必要。理想的な関係は ν₊ + ν₋ = νc、ν₊²
+    + ν₋² + νz² = νc²。一階近似は ν₋ ≈ U₀/(4πBd²)。
   custom_field: B の指定値（T）
   zero_field: このモデルではゼロ磁場でサイクロトロン閉じ込めはできません。B をゼロより大きくしてください。
   detector_size: 検出器半径
-  custom_sigma: "任意の目標（σ）"
-  sigma_help: "σ は個々のイベントの角度分布の標準偏差です。2.355σ は一つのガウスピークの半値全幅（FWHM）の近似で、信頼水準や二つの重心の合成不確かさではありません。プリセットと入力値は同じ最短時間探索と比較線の目標を設定します。"
+  custom_sigma: 任意の目標（σ）
+  sigma_help: σ は個々のイベントの角度分布の標準偏差です。2.355σ は一つのガウスピークの半値全幅（FWHM）の近似で、信頼水準や二つの重心の合成不確かさではありません。プリセットと入力値は同じ最短時間探索と比較線の目標を設定します。
+  minus_offset: ν₋ 位相オフセット（°）
+  plus_offset: ν₊ 位相オフセット（°）
+  overlap_reference: 基準イオンのスポットを重ねる
+  phase_clock: タイミングクロック
+  ideal_clock: 理想タイミング
+  actual_tacc: 実際の蓄積時間
+  ideal_tacc: 理想の蓄積時間
+  reference_mismatch: 基準の位相残差
+  requested_tacc: 指定した蓄積時間 t_acc
+  phase_timing_title: 基準位相とタイミング
+  phase_timing_note: 磁気回転基準の座標系で、検出器へ投影したパターンの位相をずらします。反時計回りが正です。入力した最初のイオン、または単一対の基底状態が基準周波数を決めます。重ね合わせを有効にすると、νc
+    t + (δ₊ − δ₋)/360° が整数になる次の解へ指定時間を進めます。標準クロックは PyMassScanner と同様に理想時間を 4 ns 刻みに丸め、残る位相差を表示します。理想タイミングでは正確に重なります。図、周回数、不確かさ、時間比較、出力には実際の時間を使います。共通の原点はすべてのスポットを回転させ、相対的な間隔を保ちます。
+  phase_timing_source: PI-ICR の位相と重ね合わせ法

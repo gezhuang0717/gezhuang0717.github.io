@@ -206,13 +206,29 @@
     const massScale=4*C.e*V/(C.uKg*(r0/1000)**2*(2*Math.PI*frequencyMHz*1e6)**2);
     return {status:Math.abs(U)===0?'rf-only':'window',slope,criticalSlope,qLow,qHigh,aLow:slope*qLow,aHigh:slope*qHigh,lowMassU:massScale/qHigh,highMassU:qLow===0?Infinity:massScale/qLow};
   }
-  function shortestPhaseTime(frequencies,sigma,target,maxMs=5000,stepMs=.01) {
+  function shortestPhaseTime(frequencies,sigma,target,maxMs=5000,stepMs=.01,adjustTimeMs=null) {
     if(frequencies.length<2||!frequencies.every(Number.isFinite)||!(sigma>0&&target>0&&maxMs>0&&stepMs>0))return null;
     const differences=[];for(let i=0;i<frequencies.length;i++)for(let j=i+1;j<frequencies.length;j++){const d=Math.abs(frequencies[i]-frequencies[j]);if(d===0)return null;differences.push(d);}
     const angle=sigma*target;if(angle>Math.PI)return null;
-    const first=Math.max(1,Math.ceil(angle/(2*Math.PI*Math.min(...differences))*1000/stepMs-1e-9));
-    for(let k=first;k<=Math.floor(maxMs/stepMs);k++){const ms=k*stepMs;if(differences.every(d=>{const phase=wrapPhase(2*Math.PI*d*ms/1000);return Math.min(phase,2*Math.PI-phase)+1e-12>=angle;}))return ms;}
+    const first=adjustTimeMs?1:Math.max(1,Math.ceil(angle/(2*Math.PI*Math.min(...differences))*1000/stepMs-1e-9));
+    for(let k=first;k<=Math.floor(maxMs/stepMs);k++){const requested=k*stepMs,ms=adjustTimeMs?adjustTimeMs(requested):requested;if(ms<=maxMs&&differences.every(d=>{const phase=wrapPhase(2*Math.PI*d*ms/1000);return Math.min(phase,2*Math.PI-phase)+1e-12>=angle;}))return requested;}
     return null;
+  }
+  // Projected PI-ICR patterns: alpha+ - alpha- = 2pi nu_c t + offset.
+  // Advance to the next permitted turn, then optionally emulate a timing clock.
+  function phaseTiming(requestedSeconds,frequencyHz,minusDeg=0,plusDeg=0,overlap=false,clockNs=4) {
+    if(![requestedSeconds,frequencyHz,minusDeg,plusDeg,clockNs].every(numeric)||requestedSeconds<0||frequencyHz<=0||clockNs<0)throw new Error('Invalid reference phase timing');
+    const shift=(plusDeg-minusDeg)/360;
+    const requestedCycles=frequencyHz*requestedSeconds+shift;
+    const turns=overlap?Math.ceil(requestedCycles-8*Number.EPSILON*Math.max(1,Math.abs(requestedCycles))):null;
+    const idealSeconds=overlap?(turns-shift)/frequencyHz:requestedSeconds;
+    const tick=clockNs*1e-9;
+    let actualSeconds=overlap&&tick>0?Math.round(idealSeconds/tick)*tick:idealSeconds;
+    // Preserve a non-earlier request when it lies between timing-clock ticks.
+    if(overlap&&tick>0&&actualSeconds<requestedSeconds-1e-14)actualSeconds=Math.ceil(requestedSeconds/tick)*tick;
+    const cycles=frequencyHz*actualSeconds+shift;
+    return {requestedSeconds,idealSeconds,actualSeconds,turns,clockNs:overlap?clockNs:0,overlap,
+            residualDeg:(wrapPhase(2*Math.PI*(cycles-Math.round(cycles))+Math.PI)-Math.PI)*180/Math.PI};
   }
   // Rest-energy increase at fixed charge and field, relative to the input ion.
   function phaseEnergyStep(ion,B,time,energyKeV=1) {
@@ -222,6 +238,6 @@
     const turns=deltaHz*time,angleDeg=turns===0?0:360*turns;
     return {energyKeV,massStepU,deltaHz,turns,angleDeg,residualDeg:(wrapPhase(2*Math.PI*turns+Math.PI)-Math.PI)*180/Math.PI};
   }
-  const api = { C, FWHM, numeric, primitive, combine, constant, pairingIndicator, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseEnergyStep };
+  const api = { C, FWHM, numeric, primitive, combine, constant, pairingIndicator, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseTiming, phaseEnergyStep };
   host.ZGPhysics = api; if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);
