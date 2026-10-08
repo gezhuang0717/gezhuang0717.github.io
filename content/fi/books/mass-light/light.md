@@ -1,28 +1,36 @@
 ---
-title: "3. Valo, fotonit ja suhteellisuusteoria"
+title: 8. Mitä valo on? Säteistä Maxwellin teoriaan
+date: '2026-10-08T00:00:00+03:00'
+weight: 8
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "Luku kerrallaan etenevä verkkokirja aineesta, massasta, fotoneista ja neutriinoista. Aloita neljästä kuvitetusta perusteesta ja syvennä tietojasi lähteiden avulla."
+description: Säteet ovat hyvä approksimaatio, kun aallonpituus on pieni verrattuna
+  esteisiin ja aukkoihin. Taittumislaki on
 ---
 
-Säteet, sähkömagneettiset aallot ja fotonit kuvaavat valoa eri kysymyksissä. Sädeoptiikka sopii, kun aallonpituus on pieni geometriaan nähden. Aallot selittävät interferenssiä ja diffraktiota, fotonit kentän kvantittuneita energianvaihtoja.
+## Säteet ja aallot
 
-Tyhjiössä
+Säteet ovat hyvä approksimaatio, kun aallonpituus on pieni verrattuna esteisiin ja aukkoihin. Taittumislaki on
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>E</mi><mo>=</mo><mi>h</mi><mi>f</mi><mo>=</mo><mfrac><mrow><mi>h</mi><mi>c</mi></mrow><mi>λ</mi></mfrac><mo>=</mo><mi>p</mi><mi>c</mi></mrow></math></div>
+{{< reader-math "block" >}}n_1\sin\theta_1=n_2\sin\theta_2.{{< /reader-math >}}
 
-f on tavallinen taajuus ja λ tyhjiöaallonpituus. SI-määritelmät h = 6.62607015 × 10⁻³⁴ J s ja c = 299792458 m/s ovat täsmällisiä. Kulmataajuus on ω = 2πf, joten E = ℏω on sama suhde.
+Kulmat mitataan pinnan normaalista; n on taitekerroin. Interferenssissä koherentit amplitudit summataan ennen neliöintiä. Kahdelle yhtä suurelle amplitudille
 
-Esimerkin 500 nm vastaa taajuutta 5.99584916 × 10¹⁴ Hz ja energiaa noin 2.47968 eV. Aallonpituus on esimerkkisyöte, ei mittaus epävarmuuksineen. Väliaine muuttaa vaihenopeutta ja aallonpituutta; tyhjiön c:tä ei voi korvata mekaanisesti kaikissa yhtälöissä.
+{{< reader-math "block" >}}I\propto2E_0^2(1+\cos\Delta\phi).{{< /reader-math >}}
 
-Fotonin invariantti massa on nolla, mutta sillä on energia ja liikemäärä. Fotonilla ei ole inertiaalista lepokoordinaatistoa. Kahden fotonin yhteinen invariantti massa voi olla nollasta poikkeava.
+Riippumattomien lähteiden keskiarvoistettu intensiteetti voi sen sijaan summata ilman interferenssitermiä.
 
-**Kokeile:** tyhjiöaallonpituuden kaksinkertaistaminen puolittaa energian. Yleispätevää nollasta poikkeavaa fotonin vähimmäisenergiaa ei ole; ilmaisin asettaa oman kynnyksensä.
+## Sähkömagneettinen aalto
+
+Lähteettömässä tyhjiössä Maxwellin yhtälöistä seuraa
+
+{{< reader-math "block" >}}\nabla^2\mathbf E-\mu_0\epsilon_0\partial_t^2\mathbf E=0,\qquad c=(\mu_0\epsilon_0)^{-1/2}.{{< /reader-math >}}
+
+c=299792458 m/s on tarkka SI-määritelmä. μ₀:n ja ε₀:n yksittäiset arvot eivät nykyisessä SI:ssä ole tarkkoja määritteleviä vakioita. Polarisaatio kuvaa poikittaista sähkömagneettista rakennetta. Michelson–Morley-koe rajoitti eetterimalleja; sen klassinen odotettu johtava signaali oli toista kertalukua nopeussuhteessa v/c.
+
 
 ## Lähteet ja lisälukeminen
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+- [Fundamental Physical Constants: 2022 CODATA Recommended Values (2024)](https://physics.nist.gov/cuu/Constants/)
+- [Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
 
-[Sisällys]({{< relref "books/mass-light/_index.md" >}}) · [Edellinen luku](../mass/) · [Seuraava luku](../neutrinos/)
+[Sisällys]({{< relref "books/mass-light/_index.md" >}}) · [Edellinen luku](../early-universe/) · [Seuraava luku](../photons/)

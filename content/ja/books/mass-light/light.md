@@ -1,28 +1,35 @@
 ---
-title: "3. 光、光子、相対性理論"
+title: 8. 光とは何か：光線からマクスウェルへ
+date: '2026-10-08T00:00:00+03:00'
+weight: 8
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "物質、質量、光子、ニュートリノを章ごとに読めるウェブ読本です。四つの図解付き基礎章から始め、参考文献で大学院水準の内容へ進めます。"
+description: 波長が開口や障害物より十分短いとき、光線近似が役立ちます。屈折の法則は
 ---
 
-光線、電磁波、光子は異なる問いに役立つ光の記述です。波長が幾何学的な尺度より小さいときは光線近似が便利です。波は干渉と回折を、光子は場の量子化されたエネルギー交換を説明します。
+## 光線と振幅
 
-真空中では
+波長が開口や障害物より十分短いとき、光線近似が役立ちます。屈折の法則は
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>E</mi><mo>=</mo><mi>h</mi><mi>f</mi><mo>=</mo><mfrac><mrow><mi>h</mi><mi>c</mi></mrow><mi>λ</mi></mfrac><mo>=</mo><mi>p</mi><mi>c</mi></mrow></math></div>
+{{< reader-math "block" >}}n_1\sin\theta_1=n_2\sin\theta_2.{{< /reader-math >}}
 
-f は通常の振動数、λ は真空波長です。h = 6.62607015 × 10⁻³⁴ J s と c = 299792458 m/s は正確な SI 定義値です。角振動数 ω = 2πf を使えば同じ関係は E = ℏω です。
+角度は面の法線から測ります。干渉ではコヒーレントな振幅を足してから二乗します。同じ大きさの振幅なら
 
-500 nm の例では、f = 5.99584916 × 10¹⁴ Hz、E ≈ 2.47968 eV です。波長は例題の入力で、測定の不確かさを暗に含む値ではありません。物質中では位相速度と波長が変わるため、すべての式で c を機械的に置き換えることはできません。
+{{< reader-math "block" >}}I\propto2E_0^2(1+\cos\Delta\phi).{{< /reader-math >}}
 
-光子は不変質量ゼロでもエネルギーと運動量を持ちます。光子に慣性系の静止座標系はありません。二つの光子の系にはゼロでない不変質量があり得ます。
+独立した光源の平均では干渉項が消え、強度が加算される場合があります。
 
-**計算してみよう：**真空波長を二倍にするとエネルギーは半分になります。普遍的な正の最小光子エネルギーはなく、検出しきい値は装置の性質です。
+## 電磁波
+
+電荷と電流のない真空で、マクスウェル方程式から
+
+{{< reader-math "block" >}}\nabla^2\mathbf E-\mu_0\epsilon_0\partial_t^2\mathbf E=0,\qquad c=(\mu_0\epsilon_0)^{-1/2}.{{< /reader-math >}}
+
+c=299792458 m/s は厳密な SI 定義です。現在の SI では μ₀、ε₀ の個々の値は厳密な定義定数ではありません。偏光は横波の構造を示します。マイケルソン・モーリー実験はエーテル模型を制限しました。古典的に予想された先頭の信号は v/c の二次でした。
+
 
 ## 出典と発展的な読書
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+- [Fundamental Physical Constants: 2022 CODATA Recommended Values (2024)](https://physics.nist.gov/cuu/Constants/)
+- [Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
 
-[目次]({{< relref "books/mass-light/_index.md" >}}) · [前の章](../mass/) · [次の章](../neutrinos/)
+[目次]({{< relref "books/mass-light/_index.md" >}}) · [前の章](../early-universe/) · [次の章](../photons/)

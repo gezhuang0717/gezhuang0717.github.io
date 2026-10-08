@@ -1,28 +1,81 @@
 ---
-title: "3. 光、光子与相对论"
+title: 8. 光是什么？从光线到麦克斯韦
+date: '2026-10-08T00:00:00+03:00'
+weight: 8
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "按章节阅读物质、质量、光子与中微子的网页读本。先从四篇配图基础讲解开始，再沿参考文献深入研究生层次的内容。"
+description: 波振幅可以有正负或复数相位；强度与振幅模平方成正比。相干振幅先相加再取平方，独立强度在平均后相加。折射定律中的角度从界面法线量起。下文无源真空方程假定没有电荷和电流。
 ---
 
-光有多个互补描述。波长远小于几何尺度时，光线适合描述传播；电磁波解释干涉与衍射；光子描述电磁场的量子化能量交换。光子并不是搭乘另一条独立波动的小球。
+## 从振幅到强度
 
-真空中的光子满足
+波振幅可以有正负或复数相位；强度与振幅模平方成正比。相干振幅先相加再取平方，独立强度在平均后相加。折射定律中的角度从界面法线量起。下文无源真空方程假定没有电荷和电流。
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>E</mi><mo>=</mo><mi>h</mi><mi>f</mi><mo>=</mo><mfrac><mrow><mi>h</mi><mi>c</mi></mrow><mi>λ</mi></mfrac><mo>=</mo><mi>p</mi><mi>c</mi></mrow></math></div>
 
-f 为普通频率，λ 为真空波长；h = 6.62607015 × 10⁻³⁴ J s，c = 299792458 m/s。后两个数是精确的国际单位制定值。角频率 ω = 2πf，等价表达为 E = ℏω，不要混淆 f 与 ω。
+{{< reader-figure "original/em_spectrum_zh.png" "电磁谱：可见光只是很窄的一段。" >}}
 
-以真空波长 500 nm 为例：f = 5.99584916 × 10¹⁴ Hz，E ≈ 2.47968 eV。波长是教学输入，并非隐含测量不确定度的实测值。介质会改变相速度与波长，不能在所有光子能量公式中机械地替换真空光速。
+## 8.1 第一层：几何光学中的光线
 
-光子不变质量为零，却携带能量与动量。光子没有惯性静止参考系：有质量的观察者不能达到 c。多个光子的系统可以具有非零不变质量。
+在波长远小于器件或障碍物尺度时，光可近似沿射线传播。反射定律
 
-**自己算一算：**真空波长增大一倍，光子能量减半。光子能量不存在普适的非零最小值；探测阈值是仪器的性质。
+{{< reader-math "block" >}}\theta_i=\theta_r{{< /reader-math >}}
 
-## 来源与延伸阅读
+和 Snell 折射定律
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+{{< reader-math "block" >}}n_1\sin\theta_1=n_2\sin\theta_2{{< /reader-math >}}
 
-[目录]({{< relref "books/mass-light/_index.md" >}}) · [上一章](../mass/) · [下一章](../neutrinos/)
+都能从费马原理或波动光学的短波极限推出。光“近似直线传播”因此并不能证明它是经典小硬球。
+
+## 8.2 第二层：干涉与衍射
+
+Young 的双缝实验是波动光学史上的关键证据之一。两个相干波的强度满足
+
+{{< reader-math "block" >}}I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta.{{< /reader-math >}}
+
+在远场近似下，双缝亮纹间距
+
+{{< reader-math "block" >}}\Delta y\simeq\frac{\lambda L}{d},{{< /reader-math >}}
+
+其中 {{< reader-math "inline" >}}d{{< /reader-math >}} 是缝间距，{{< reader-math "inline" >}}L{{< /reader-math >}} 为屏距。[The Bakerian Lecture: On the theory of light and colours (1802)](https://doi.org/10.1098/rstl.1802.0004)
+
+{{< reader-figure "original/double_slit_zh.png" "双缝干涉的几何关系。" >}}
+
+## 8.3 第三层：麦克斯韦的电磁波
+
+真空中的麦克斯韦方程为
+
+{{< reader-math "block" >}}\nabla\cdot\mathbf E=0,\qquad
+\nabla\cdot\mathbf B=0,{{< /reader-math >}}
+
+{{< reader-math "block" >}}\nabla\times\mathbf E=-\frac{\partial\mathbf B}{\partial t},{{< /reader-math >}}
+
+{{< reader-math "block" >}}\nabla\times\mathbf B=
+\mu_0\epsilon_0\frac{\partial\mathbf E}{\partial t}.{{< /reader-math >}}
+
+由此得到波动方程
+
+{{< reader-math "block" >}}\nabla^2\mathbf E-
+\mu_0\epsilon_0\frac{\partial^2\mathbf E}{\partial t^2}=0,{{< /reader-math >}}
+
+传播速度满足
+
+{{< reader-math "block" >}}c=\frac{1}{\sqrt{\mu_0\epsilon_0}}{{< /reader-math >}}
+
+在经典 SI 表述下成立。麦克斯韦由电磁常数与已知光速的一致性认识到光是电磁现象。[A Dynamical Theory of the Electromagnetic Field (1865)](https://doi.org/10.1098/rstl.1865.0008)
+
+平面波中
+
+{{< reader-math "block" >}}\mathbf B=\frac{1}{c}\hat{\mathbf k}\times\mathbf E,{{< /reader-math >}}
+
+能流由 Poynting 向量描述：
+
+{{< reader-math "block" >}}\mathbf S=\frac{1}{\mu_0}\mathbf E\times\mathbf B.{{< /reader-math >}}
+
+## 8.4 以太与 Michelson--Morley 实验
+
+19 世纪曾普遍设想电磁波需要某种“发光以太”作为机械介质。Michelson--Morley 1887 年的干涉实验没有发现经典静止以太模型预期的以太风信号。[On the Relative Motion of the Earth and the Luminiferous Ether (1887)](https://doi.org/10.2475/ajs.s3-34.203.333)
+
+历史上不能简单说“一次实验就证明以太不存在”；Lorentz 等人在此后还发展了更复杂的框架。真正系统地改变时空观的是 1905 年狭义相对论：物理规律在惯性系中具有相同形式，真空光速 {{< reader-math "inline" >}}c{{< /reader-math >}} 对所有惯性观察者相同。[Zur Elektrodynamik bewegter K\"orper (1905)](https://doi.org/10.1002/andp.19053221004)
+
+
+
+[目录]({{< relref "books/mass-light/_index.md" >}}) · [上一章](../early-universe/) · [下一章](../photons/)

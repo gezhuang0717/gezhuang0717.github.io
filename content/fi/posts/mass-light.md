@@ -1,11 +1,11 @@
 ---
-title: "Mistä massa syntyy, ja mitä valo on? — Standardimallista modernin fysiikan rajoille"
-date: 2026-10-08T00:00:00+03:00
-description: "Luku kerrallaan etenevä verkkokirja aineesta, massasta, fotoneista ja neutriinoista. Aloita neljästä kuvitetusta perusteesta ja syvennä tietojasi lähteiden avulla."
+title: Mistä massa syntyy, ja mitä valo on? — Standardimallista modernin fysiikan
+  rajoille
+date: 2026-10-08 00:00:00+03:00
+description: Tutustu siihen, miten atomit, kvanttikentät ja aika-avaruus selittävät
+  ainetta, massaa ja valoa. Etene Higgsin kentästä ja QCD:stä fotoneihin, neutriinoihin,
+  suprajohtavuuteen ja laajenevaan maailmankaikkeuteen.
 ---
+Tutustu siihen, miten atomit, kvanttikentät ja aika-avaruus selittävät ainetta, massaa ja valoa. Etene Higgsin kentästä ja QCD:stä fotoneihin, neutriinoihin, suprajohtavuuteen ja laajenevaan maailmankaikkeuteen.
 
-Luku kerrallaan etenevä verkkokirja aineesta, massasta, fotoneista ja neutriinoista. Aloita neljästä kuvitetusta perusteesta ja syvennä tietojasi lähteiden avulla.
-
-[Valitse luku](../../books/mass-light/)
-
-Tämä ensimmäinen verkkoversio sisältää neljä tarkistettua johdantolukua vuoden 2026 opetuspaketista. Koko jatko-opintotekstiä tarkistetaan luku kerrallaan; sitä ei vielä julkaista kokonaan tarkistettuna.
+{{< reader-contents >}}

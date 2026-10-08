@@ -1,28 +1,36 @@
 ---
-title: "3. Licht, Photonen und Relativität"
+title: 8. Was ist Licht? Von Strahlen zu Maxwell
+date: '2026-10-08T00:00:00+03:00'
+weight: 8
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "Ein Weblesebuch in einzelnen Kapiteln über Materie, Masse, Photonen und Neutrinos. Vier bebilderte Grundlagen führen zu den weiterführenden Quellen."
+description: Strahlenoptik ist sinnvoll, wenn Wellenlängen klein gegen die relevanten
+  Öffnungen und Hindernisse sind. Das Brechungsgesetz ist
 ---
 
-Strahlen, elektromagnetische Wellen und Photonen beschreiben Licht für unterschiedliche Fragen. Strahlenoptik passt zu Wellenlängen, die klein gegenüber der Geometrie sind. Wellen erklären Interferenz und Beugung; Photonen beschreiben quantisierte Energieübertragung des Feldes.
+## Strahlen und Amplituden
 
-Im Vakuum gilt
+Strahlenoptik ist sinnvoll, wenn Wellenlängen klein gegen die relevanten Öffnungen und Hindernisse sind. Das Brechungsgesetz ist
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>E</mi><mo>=</mo><mi>h</mi><mi>f</mi><mo>=</mo><mfrac><mrow><mi>h</mi><mi>c</mi></mrow><mi>λ</mi></mfrac><mo>=</mo><mi>p</mi><mi>c</mi></mrow></math></div>
+{{< reader-math "block" >}}n_1\sin\theta_1=n_2\sin\theta_2.{{< /reader-math >}}
 
-f ist die gewöhnliche Frequenz und λ die Vakuumwellenlänge. h = 6.62607015 × 10⁻³⁴ J s und c = 299792458 m/s sind exakte SI-Definitionen. Mit der Kreisfrequenz ω = 2πf lautet dieselbe Beziehung E = ℏω.
+Winkel werden gegen die Flächennormale gemessen. Bei Interferenz werden kohärente Amplituden vor dem Quadrieren addiert. Für gleich große Amplituden gilt
 
-500 nm entsprechen 5.99584916 × 10¹⁴ Hz und ungefähr 2.47968 eV. Die Wellenlänge ist eine Beispieleingabe, keine Messung mit implizierter Unsicherheit. Ein Medium ändert Phasengeschwindigkeit und Wellenlänge; c darf nicht überall mechanisch ersetzt werden.
+{{< reader-math "block" >}}I\propto2E_0^2(1+\cos\Delta\phi).{{< /reader-math >}}
 
-Ein Photon hat keine invariante Masse, aber Energie und Impuls. Es besitzt kein inertiales Ruhesystem. Ein System aus zwei Photonen kann eine von null verschiedene invariante Masse haben.
+Bei unabhängigen Quellen kann die Mittelung den Interferenzterm entfernen; dann addieren sich Intensitäten.
 
-**Rechne nach:** Eine doppelte Vakuumwellenlänge halbiert die Energie. Eine universelle positive Mindestenergie des Photons gibt es nicht; die Nachweisschwelle gehört zum Detektor.
+## Die elektromagnetische Welle
+
+In ladungs- und stromfreiem Vakuum folgen aus Maxwell
+
+{{< reader-math "block" >}}\nabla^2\mathbf E-\mu_0\epsilon_0\partial_t^2\mathbf E=0,\qquad c=(\mu_0\epsilon_0)^{-1/2}.{{< /reader-math >}}
+
+c=299792458 m/s ist exakt definiert. Die Einzelwerte von μ₀ und ε₀ sind im heutigen SI keine exakt festgelegten Definitionskonstanten. Polarisation zeigt die transversale Struktur. Der Michelson–Morley-Versuch schränkte Äthermodelle ein; das klassisch erwartete führende Signal war zweiter Ordnung in v/c.
+
 
 ## Quellen und weiterführende Literatur
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+- [Fundamental Physical Constants: 2022 CODATA Recommended Values (2024)](https://physics.nist.gov/cuu/Constants/)
+- [Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
 
-[Inhalt]({{< relref "books/mass-light/_index.md" >}}) · [Vorheriges Kapitel](../mass/) · [Nächstes Kapitel](../neutrinos/)
+[Inhalt]({{< relref "books/mass-light/_index.md" >}}) · [Vorheriges Kapitel](../early-universe/) · [Nächstes Kapitel](../photons/)

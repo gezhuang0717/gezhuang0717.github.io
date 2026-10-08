@@ -1,30 +1,36 @@
 ---
-title: "2. Masse, Energie und das Higgsfeld"
+title: 3. Masse und Energie in der Relativitätstheorie
+date: '2026-10-08T00:00:00+03:00'
+weight: 3
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "Ein Weblesebuch in einzelnen Kapiteln über Materie, Masse, Photonen und Neutrinos. Vier bebilderte Grundlagen führen zu den weiterführenden Quellen."
+description: 'Die invariante Masse m ist für alle Inertialbeobachter gleich. Energie
+  und Impuls hängen vom Bezugssystem ab:'
 ---
 
-m bezeichnet die invariante Masse. Energie E und Impuls p hängen vom Beobachter ab. Für ein freies Teilchen gilt
+## Invariante Masse und bewegungsabhängige Energie
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>E</mi><mn>2</mn></msup><mo>=</mo><msup><mi>p</mi><mn>2</mn></msup><msup><mi>c</mi><mn>2</mn></msup><mo>+</mo><msup><mi>m</mi><mn>2</mn></msup><msup><mi>c</mi><mn>4</mn></msup></mrow></math></div>
+Die invariante Masse m ist für alle Inertialbeobachter gleich. Energie und Impuls hängen vom Bezugssystem ab:
 
-p ist der Betrag des räumlichen Impulses. In Ruhe ist p = 0 und E₀ = mc²; für ein Photon ist m = 0 und E = pc. Mehr Bewegungsenergie ändert nicht die Ruhemasse desselben Teilchens.
+{{< reader-math "block" >}}E^2=p^2c^2+m^2c^4.{{< /reader-math >}}
 
-Die Masse eines abgeschlossenen zusammengesetzten Systems ist seine Gesamtenergie geteilt durch c² im Schwerpunktsystem. Atomare und nukleare Bindung verringert daher die Masse gegenüber der Summe getrennter Bestandteile. Der Großteil der Nukleonenmasse entsteht aus QCD-Dynamik; eine genaue Zerlegung hängt von Operatoren, Skala und Renormalisierungsschema ab.
+p ist der Betrag des räumlichen Impulses. Im Ruhesystem E₀=mc², die kinetische Energie ist K=E−E₀. Für das masselose Photon gilt E=pc. Die Bewegung eines Teilchens erhöht nicht seine invariante Masse.
 
-Der nichtverschwindende Vakuumerwartungswert des Higgsfeldes gibt über Wechselwirkungen den W- und Z-Bosonen und geladenen Fermionen Masse. In natürlichen Einheiten ℏ = c = 1 gilt auf Baumebene
+## Masse eines Systems
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>m</mi><mi>f</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>y</mi><mi>f</mi></msub><mi>v</mi></mrow><msqrt><mn>2</mn></msqrt></mfrac></mrow></math></div>
+Für die addierten Energien und Impulse gilt
 
-Die Yukawakopplung y_f ist dimensionslos; v ≈ 246 GeV. Das ist weder Reibung noch das Aufsaugen gespeicherter Higgsenergie. Beobachtete Neutrinomassen benötigen eine Erweiterung des Minimalmodells.
+{{< reader-math "block" >}}M^2c^4=E_{\rm tot}^2-c^2|\mathbf P_{\rm tot}|^2.{{< /reader-math >}}
 
-**Rechne nach:** Zwei Photonen gleicher Energie E mit entgegengesetzten Impulsen haben zusammen M = 2E/c². Jedes einzelne Photon hat weiterhin invariante Masse null.
+Im Schwerpunktssystem ist Mc²=Etot. Bindung kann die Masse unter die Summe getrennter Bestandteile senken. Die Nukleonmasse ist die Energie eines stark wechselwirkenden QCD-Zustands, keine einfache Summe dreier Quarkmassen.
+
+In natürlichen Einheiten ℏ=c=1 schreibt man Massen oft in GeV. In SI entspricht dies GeV/c²; die Einheiten müssen beim Rechnen wiederhergestellt werden.
+
+**Beispiel:** Zwei Photonen gleicher Energie mit entgegengesetzten Impulsen haben zusammen M=2E/c², obwohl jedes einzelne Photon masselos ist.
+
 
 ## Quellen und weiterführende Literatur
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+- [Fundamental Physical Constants: 2022 CODATA Recommended Values (2024)](https://physics.nist.gov/cuu/Constants/)
+- [Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
 
-[Inhalt]({{< relref "books/mass-light/_index.md" >}}) · [Vorheriges Kapitel](../matter/) · [Nächstes Kapitel](../light/)
+[Inhalt]({{< relref "books/mass-light/_index.md" >}}) · [Vorheriges Kapitel](../standard-model/) · [Nächstes Kapitel](../higgs/)

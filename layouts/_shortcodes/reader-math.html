@@ -1,0 +1,4 @@
+{{- $display := eq (.Get 0) "block" -}}
+{{- if $display -}}<div class="zg-reader-equation">{{- end -}}
+{{- partialCached "reader/math.html" (dict "text" .Inner "display" $display) .Inner $display -}}
+{{- if $display -}}</div>{{- end -}}

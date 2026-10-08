@@ -1,30 +1,36 @@
 ---
-title: "2. Massa, energia ja Higgsin kenttä"
+title: 3. Massa ja energia suhteellisuusteoriassa
+date: '2026-10-08T00:00:00+03:00'
+weight: 3
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "Luku kerrallaan etenevä verkkokirja aineesta, massasta, fotoneista ja neutriinoista. Aloita neljästä kuvitetusta perusteesta ja syvennä tietojasi lähteiden avulla."
+description: 'Invariantti massa m on sama kaikille inertiaalihavaitsijoille. Energia
+  E ja liikemäärä p riippuvat koordinaatistosta:'
 ---
 
-Massa m tarkoittaa invarianttia massaa. Energia E ja liikemäärä p riippuvat havaitsijasta. Vapaalle hiukkaselle pätee
+## Lepomassa ei ole kokonaisenergia
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>E</mi><mn>2</mn></msup><mo>=</mo><msup><mi>p</mi><mn>2</mn></msup><msup><mi>c</mi><mn>2</mn></msup><mo>+</mo><msup><mi>m</mi><mn>2</mn></msup><msup><mi>c</mi><mn>4</mn></msup></mrow></math></div>
+Invariantti massa m on sama kaikille inertiaalihavaitsijoille. Energia E ja liikemäärä p riippuvat koordinaatistosta:
 
-p on kolmiulotteisen liikemäärän itseisarvo. Levossa p = 0 ja E₀ = mc². Fotonille m = 0 ja E = pc. Liike-energian kasvu ei muuta saman hiukkasen lepomassaa.
+{{< reader-math "block" >}}E^2=p^2c^2+m^2c^4.{{< /reader-math >}}
 
-Suljetun yhdistelmäjärjestelmän massa on kokonaisenergia jaettuna c²:lla siinä koordinaatistossa, jossa kokonaisliikemäärä on nolla. Atomin ja ytimen sidosenergia pienentää massaa erillisten osien summaan nähden. Nukleonimassa syntyy enimmäkseen QCD-dynamiikasta; eri osuuksien täsmällinen erottelu riippuu operaattoreista, skaalasta ja renormalisointikäytännöstä.
+p tarkoittaa kolmiulotteisen liikemäärän suuruutta. Lepotilassa E₀=mc²; liike-energia on K=E−E₀. Massattomalle fotonille E=pc. Hiukkasen liikuttaminen ei muuta sen invarianttia massaa.
 
-Higgsin kentän nollasta poikkeava tyhjiöodotusarvo antaa vuorovaikutusten kautta massan W- ja Z-bosoneille sekä varatuille fermioneille. Luonnollisissa yksiköissä ℏ = c = 1 varatun fermionin puutason suhde on
+## Yhdistelmäjärjestelmät
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>m</mi><mi>f</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>y</mi><mi>f</mi></msub><mi>v</mi></mrow><msqrt><mn>2</mn></msqrt></mfrac></mrow></math></div>
+Järjestelmän kokonaisenergia ja kokonaisliikemäärä ratkaisevat sen massan:
 
-Yukawan kytkentä y_f on dimensioton ja v ≈ 246 GeV. Mekanismi ei ole kitkaa eikä Higgsin energiavaraston imemistä. Havaittujen neutriinomassojen selitys tarvitsee minimimallin laajennuksen.
+{{< reader-math "block" >}}M^2c^4=E_{\rm tot}^2-c^2|\mathbf P_{\rm tot}|^2.{{< /reader-math >}}
 
-**Kokeile:** kahden vastakkaisiin suuntiin liikkuvan fotonin, joilla kummallakin on energia E, yhteinen massa on M = 2E/c². Kummankin fotonin oma massa on silti nolla.
+Kokonaisliikemäärän ollessa nolla Mc²=Etot. Sidotun atomin massa on pienempi kuin erillisen ytimen ja elektronien massojen summa. Nukleonin massa on vahvasti vuorovaikuttavan QCD-tilan energiaa, ei vain kolmen kvarkkimassan summa.
+
+Luonnollisissa yksiköissä ℏ=c=1 energia ja massa ilmoitetaan usein GeV-yksiköissä; SI-järjestelmässä massaa vastaa GeV/c². Yksikkökonventio on palautettava numeerisessa laskussa.
+
+**Esimerkki:** kaksi vastakkaisiin suuntiin etenevää samanenergistä fotonia muodostavat järjestelmän, jonka massa on 2E/c². Samaan suuntaan kulkevien fotonien kokonaisliikemäärä ei kumoudu.
+
 
 ## Lähteet ja lisälukeminen
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+- [Fundamental Physical Constants: 2022 CODATA Recommended Values (2024)](https://physics.nist.gov/cuu/Constants/)
+- [Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
 
-[Sisällys]({{< relref "books/mass-light/_index.md" >}}) · [Edellinen luku](../matter/) · [Seuraava luku](../light/)
+[Sisällys]({{< relref "books/mass-light/_index.md" >}}) · [Edellinen luku](../standard-model/) · [Seuraava luku](../higgs/)

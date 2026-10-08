@@ -1,26 +1,68 @@
 ---
-title: "1. 物质与粒子地图"
+title: 1. 物质的层级：原子、原子核、核子与场
+date: '2026-10-08T00:00:00+03:00'
+weight: 1
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "按章节阅读物质、质量、光子与中微子的网页读本。先从四篇配图基础讲解开始，再沿参考文献深入研究生层次的内容。"
+description: 原子是量子束缚系统，并非坚硬小球。“半径”通常描述分布或特征尺度。1 飞米等于 10⁻¹⁵ m，1 纳米等于 10⁻⁹ m。原子核承担几乎全部原子质量，电子云决定主要尺寸。下文场方程若未写明国际单位制，则采用
+  ℏ=c=1。
 ---
 
-{{< reader-scales >}}
+## 先建立尺度感
 
-原子由原子核与电子组成。原子核包含质子和中子，二者统称核子。质子的价夸克组分为 **uud**，中子为 **udd**。这并不是三颗孤立小球的清单：胶子与夸克—反夸克动力学同样参与核子的量子态。
+原子是量子束缚系统，并非坚硬小球。“半径”通常描述分布或特征尺度。1 飞米等于 10⁻¹⁵ m，1 纳米等于 10⁻⁹ m。原子核承担几乎全部原子质量，电子云决定主要尺寸。下文场方程若未写明国际单位制，则采用 ℏ=c=1。
 
-原子的典型尺度约为 10⁻¹⁰ m，原子核约为 10⁻¹⁵–10⁻¹⁴ m。这些是特征尺度，并非硬球边界。在目前实验精度下，电子与基本粒子的描述一致。
 
-标准模型包含六种夸克味、六种轻子味、规范玻色子和希格斯玻色子。夸克与轻子自旋为 ½；光子等规范玻色子自旋为 1；希格斯自旋为 0。常见图表有 17 个格子，但这是展示约定：颜色、反粒子、电荷态和量子态使“基本粒子究竟有多少个”不能只有一个不加定义的答案。
+## 1.1 原子并不是缩小版的“实心小球”
 
-三代粒子重复相同的规范电荷结构，代数并不是发现先后。引力不属于标准模型。中微子振荡要求超出最小无质量中微子标准模型的物理。
+典型原子尺度约为 {{< reader-math "inline" >}}10^{-10}\,\mathrm{m}{{< /reader-math >}}，原子核尺度约为 {{< reader-math "inline" >}}10^{-15}{{< /reader-math >}}--{{< reader-math "inline" >}}10^{-14}\,\mathrm{m}{{< /reader-math >}}。电子在目前实验精度内与点粒子描述相容，而质子具有有限的电荷分布，特征尺度约为 {{< reader-math "inline" >}}0.84\,\mathrm{fm}{{< /reader-math >}}。因此普通物质不是由一层套一层的经典小球组成，而是跨越许多数量级的量子体系。[Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
 
-**想一想：**哪一层是复合系统？原子、原子核和核子都是；标准模型将电子和夸克视为基本粒子。“基本”并不意味着所有性质都已得到解释。
+质量层级同样惊人。NIST 收录的 2022 CODATA 推荐值给出电子静能
 
-## 来源与延伸阅读
+{{< reader-math "block" >}}m_ec^2=0.510\,998\,950\,69(16)\ \mathrm{MeV},{{< /reader-math >}}
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+质子和中子分别为
 
-[目录]({{< relref "books/mass-light/_index.md" >}}) · [下一章](../mass/)
+{{< reader-math "block" >}}m_pc^2=938.272\,089\,43(29)\ \mathrm{MeV},{{< /reader-math >}}
+
+{{< reader-math "block" >}}m_nc^2=939.565\,421\,94(48)\ \mathrm{MeV}.{{< /reader-math >}}
+
+因此
+
+{{< reader-math "block" >}}\frac{m_p}{m_e}=1836.152\,673\,426(32).{{< /reader-math >}}
+
+这些数值和不确定度来自 2022 CODATA 基本常数调整。[CODATA recommended values of the fundamental physical constants: 2022 (2024)](https://physics.nist.gov/constants) · [Fundamental Physical Constants: 2022 CODATA Recommended Values (2024)](https://physics.nist.gov/cuu/Constants/)
+
+对于质量数为 {{< reader-math "inline" >}}A{{< /reader-math >}}、原子序数为 {{< reader-math "inline" >}}Z{{< /reader-math >}} 的中性原子，其静质量绝大部分来自原子核。电子静质量一般只占 {{< reader-math "inline" >}}Zm_e/(A m_N){{< /reader-math >}} 的千分之一量级或更少；在精密质量学中，还必须进一步考虑电子结合能、原子核结合能以及原子电子缺失/增加带来的修正。
+
+## 1.2 质子和中子不是基本粒子
+
+质子的价夸克组成为 {{< reader-math "inline" >}}uud{{< /reader-math >}}，中子为 {{< reader-math "inline" >}}udd{{< /reader-math >}}。这里的“价夸克”非常重要：完整的核子态还包含动态的夸克--反夸克海以及胶子自由度。轻夸克质量参数在常用 {{< reader-math "inline" >}}\overline{\mathrm{MS}}{{< /reader-math >}} 方案和给定重整化尺度下只有数 MeV；由于色禁闭，单个夸克质量不是像电子质量那样能够直接隔离测量的可观测量。因此引用夸克质量时必须同时说明定义、方案与尺度。[Quark Masses (2025)](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-quark-masses.pdf)
+
+本书第一条核心结论是：
+
+> **复合量子体系的质量，一般不等于“构成成分静质量”的简单算术和。**
+
+束缚的相对论量子体系，其静能还包含动能、场能、相互作用能、真空极化、对称性破缺效应以及经过重整化定义的算符贡献。对原子核还要加入核结合能；对原子还要加入更小的电子结合修正。
+
+## 1.3 现代物理中，场比“小粒子图像”更基本
+
+标准模型是一套相对论性量子场论。在这个语言中，电子不是一颗微小珠子在一个独立的“电子场”里游动；更准确地说，**电子是电子场的量子激发**。光子是电磁规范场的量子激发，夸克是夸克场的激发，胶子则是非阿贝尔 {{< reader-math "inline" >}}SU(3)_C{{< /reader-math >}} 规范场的量子。[Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
+
+最简单的自由实标量场可由拉格朗日量密度表示：
+
+{{< reader-math "block" >}}\mathcal{L}=\frac12\partial_\mu\phi\,\partial^\mu\phi-
+\frac12m^2\phi^2.{{< /reader-math >}}
+
+对场进行量子化后，每一个正常模都具有类似量子谐振子的离散激发结构。这里的“量子化”意味着特定模式的能量交换以量子为单位发生，而不是意味着宇宙存在一个统一固定的“最小能量”。
+
+## 1.4 真空期望值不等于真空能量
+
+这是大众科普里极容易混淆的一点。一个场的真空期望值
+
+{{< reader-math "block" >}}\langle0|\phi|0\rangle{{< /reader-math >}}
+
+等于零，并不意味着真空没有零点涨落，也不意味着真空总能量为零。同样，希格斯场具有非零真空期望值，也不能简单翻译成“希格斯场储存了一桶能量给其他粒子吸收”。真空期望值、真空能量密度、涨落关联函数是不同的物理对象。
+
+
+
+[目录]({{< relref "books/mass-light/_index.md" >}}) · [下一章](../standard-model/)

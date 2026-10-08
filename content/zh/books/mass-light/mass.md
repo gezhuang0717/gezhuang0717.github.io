@@ -1,30 +1,83 @@
 ---
-title: "2. 质量、能量与希格斯场"
+title: 3. 相对论中的质量与能量
+date: '2026-10-08T00:00:00+03:00'
+weight: 3
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "按章节阅读物质、质量、光子与中微子的网页读本。先从四篇配图基础讲解开始，再沿参考文献深入研究生层次的内容。"
+description: 不变质量对所有惯性观察者相同；总能量和动量随参考系变化。静能写作 E₀=mc²，动能 K=E−E₀。自然单位中常将质量写成 GeV；恢复国际单位制后质量单位应为
+  GeV/c²。复合系统须先相加各组分的能量和动量，再求整体不变质量。
 ---
 
-现代物理中的质量 m 指不变质量。能量 E 与动量 p 随观察者参考系改变。自由粒子满足
+## 质量、动量与单位
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>E</mi><mn>2</mn></msup><mo>=</mo><msup><mi>p</mi><mn>2</mn></msup><msup><mi>c</mi><mn>2</mn></msup><mo>+</mo><msup><mi>m</mi><mn>2</mn></msup><msup><mi>c</mi><mn>4</mn></msup></mrow></math></div>
+不变质量对所有惯性观察者相同；总能量和动量随参考系变化。静能写作 E₀=mc²，动能 K=E−E₀。自然单位中常将质量写成 GeV；恢复国际单位制后质量单位应为 GeV/c²。复合系统须先相加各组分的能量和动量，再求整体不变质量。
 
-p 为三维动量的大小，c 为光速。静止时 p = 0，得到 E₀ = mc²；光子 m = 0，得到 E = pc。运动能量增加并不意味着同一粒子的静质量增加。
 
-封闭复合系统在质心动量为零的参考系中，总能量除以 c² 就是不变质量。因此原子与原子核的束缚会使质量小于分离组分的质量之和。核子质量大部分来自量子色动力学的动力学；将质量精确分配给某项夸克或胶子贡献，需要说明算符、尺度与重整化方案。
+## 3.1 完整公式不是只有 {{< reader-math "inline" >}}E=mc^2{{< /reader-math >}}
 
-希格斯场的非零真空期望值通过相互作用赋予 W、Z 玻色子及带电费米子质量。在自然单位制（ℏ = c = 1）中，带电费米子的树级关系为
+狭义相对论真正通用的能量--动量关系是
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>m</mi><mi>f</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>y</mi><mi>f</mi></msub><mi>v</mi></mrow><msqrt><mn>2</mn></msqrt></mfrac></mrow></math></div>
+{{< reader-math "block" >}}E^2=p^2c^2+m^2c^4.{{< /reader-math >}}
 
-汤川耦合 y_f 无量纲，v ≈ 246 GeV。这不是介质摩擦，也不是粒子从希格斯背景“吸收能量包”。最小标准模型需要扩展，才能解释观测到的中微子质量。
+在粒子静止系 {{< reader-math "inline" >}}p=0{{< /reader-math >}}，才得到
 
-**自己算一算：**两颗能量均为 E、方向相反的光子，总动量为零；系统的不变质量 M = 2E/c²，但每颗光子的不变质量仍为零。
+{{< reader-math "block" >}}E_0=mc^2.{{< /reader-math >}}
 
-## 来源与延伸阅读
+对无质量粒子 {{< reader-math "inline" >}}m=0{{< /reader-math >}}，则
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+{{< reader-math "block" >}}E=pc.{{< /reader-math >}}
 
-[目录]({{< relref "books/mass-light/_index.md" >}}) · [上一章](../matter/) · [下一章](../light/)
+因此光子虽然没有静质量，仍然具有能量和动量。现代粒子物理一般使用不变质量（rest/invariant mass），不再鼓励“运动质量随速度增加”的旧式说法。[Zur Elektrodynamik bewegter K\"orper (1905)](https://doi.org/10.1002/andp.19053221004) · [Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
+
+由四动量 {{< reader-math "inline" >}}p^\mu=(E/c,\mathbf p){{< /reader-math >}} 可写
+
+{{< reader-math "block" >}}p_\mu p^\mu=m^2c^2.{{< /reader-math >}}
+
+不变质量因此是洛伦兹不变量，不依赖观察者惯性系。
+
+## 3.2 自然单位
+
+高能物理常取
+
+{{< reader-math "block" >}}\hbar=c=1,{{< /reader-math >}}
+
+于是质量、动量、能量都可用 eV、MeV、GeV 表示。常用换算是
+
+{{< reader-math "block" >}}\hbar c\simeq197.3269804\ \mathrm{MeV\,fm},{{< /reader-math >}}
+
+以及
+
+{{< reader-math "block" >}}1\ \mathrm{GeV}^{-1}\simeq0.1973\ \mathrm{fm}.{{< /reader-math >}}
+
+CODATA 体系中，真空光速为定义值
+
+{{< reader-math "block" >}}c=299\,792\,458\ \mathrm{m\,s^{-1}},{{< /reader-math >}}
+
+普朗克常数也在 2019 年 SI 重定义后成为精确定义值
+
+{{< reader-math "block" >}}h=6.626\,070\,15\times10^{-34}\ \mathrm{J\,s}.{{< /reader-math >}}
+
+基本电荷
+
+{{< reader-math "block" >}}e=1.602\,176\,634\times10^{-19}\ \mathrm{C}{{< /reader-math >}}
+
+同样是 SI 定义常数。[CODATA recommended values of the fundamental physical constants: 2022 (2024)](https://physics.nist.gov/constants) · [Fundamental Physical Constants: 2022 CODATA Recommended Values (2024)](https://physics.nist.gov/cuu/Constants/)
+
+## 3.3 复合体系的质量就是静止系总能量
+
+对于一个复合体系，若总四动量为 {{< reader-math "inline" >}}P^\mu{{< /reader-math >}}，其不变质量满足
+
+{{< reader-math "block" >}}M^2c^2=P_\mu P^\mu.{{< /reader-math >}}
+
+在质心系 {{< reader-math "inline" >}}\mathbf P=0{{< /reader-math >}}，有
+
+{{< reader-math "block" >}}Mc^2=E_{\mathrm{total}}.{{< /reader-math >}}
+
+这就是为什么核结合能、夸克和胶子的场能、动能都能改变复合体系质量。核反应与精密 Penning-trap 质量测量中常用
+
+{{< reader-math "block" >}}Q=(M_i-M_f)c^2{{< /reader-math >}}
+
+把质量差直接转换成反应或衰变能量。
+
+
+
+[目录]({{< relref "books/mass-light/_index.md" >}}) · [上一章](../standard-model/) · [下一章](../higgs/)

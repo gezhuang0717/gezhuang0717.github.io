@@ -1,10 +1,11 @@
 ---
-title: "4. 中微子与振荡究竟测量什么"
+title: 中微子与振荡究竟测量什么
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "按章节阅读物质、质量、光子与中微子的网页读本。先从四篇配图基础讲解开始，再沿参考文献深入研究生层次的内容。"
+date: 2026-10-08 00:00:00+03:00
+description: 从原子、量子场与时空出发，理解物质、质量与光。沿着希格斯场和量子色动力学，走向光子、中微子、超导以及膨胀中的宇宙。
+weight: 100
+reader_supplement: true
 ---
-
 弱相互作用产生和探测电子、缪子、陶子中微子味态；传播由质量本征态 ν₁、ν₂、ν₃ 描述。PMNS 矩阵联系这两组基底。本章采用
 
 <div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>|</mo><msub><mi>ν</mi><mi>α</mi></msub><mo>⟩</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>3</mn></munderover><msubsup><mi>U</mi><mrow><mi>α</mi><mi>i</mi></mrow><mo>*</mo></msubsup><mo>|</mo><msub><mi>ν</mi><mi>i</mi></msub><mo>⟩</mo></mrow></math></div>
@@ -25,4 +26,4 @@ L 的单位为 km，E 为 GeV，Δm² 为 eV²；数值因子完成单位换算�
 
 - [PDG 2026 · PMNS](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-neutrino-mixing.pdf)
 
-[目录]({{< relref "books/mass-light/_index.md" >}}) · [上一章](../light/)
+[目录]({{< relref "books/mass-light/_index.md" >}})

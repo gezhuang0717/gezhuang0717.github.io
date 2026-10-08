@@ -1,10 +1,11 @@
 ---
-title: "4. ニュートリノ振動は何を測るのか"
+title: ニュートリノ振動は何を測るのか
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "物質、質量、光子、ニュートリノを章ごとに読めるウェブ読本です。四つの図解付き基礎章から始め、参考文献で大学院水準の内容へ進めます。"
+date: 2026-10-08 00:00:00+03:00
+description: 原子、量子場、時空から、物質・質量・光の仕組みを学びます。ヒッグス場と量子色力学から、光子、ニュートリノ、超伝導、膨張する宇宙へ進みます。
+weight: 100
+reader_supplement: true
 ---
-
 弱い相互作用は電子、ミュー、タウのニュートリノのフレーバーを生成・検出します。伝播は質量固有状態 ν₁、ν₂、ν₃ で記述します。PMNS 行列が二つの基底を結びます。本章の規約は
 
 <div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>|</mo><msub><mi>ν</mi><mi>α</mi></msub><mo>⟩</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>3</mn></munderover><msubsup><mi>U</mi><mrow><mi>α</mi><mi>i</mi></mrow><mo>*</mo></msubsup><mo>|</mo><msub><mi>ν</mi><mi>i</mi></msub><mo>⟩</mo></mrow></math></div>
@@ -25,4 +26,4 @@ L は km、E は GeV、Δm² は eV² です。数値係数は単位を変換し
 
 - [PDG 2026 · PMNS](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-neutrino-mixing.pdf)
 
-[目次]({{< relref "books/mass-light/_index.md" >}}) · [前の章](../light/)
+[目次]({{< relref "books/mass-light/_index.md" >}})

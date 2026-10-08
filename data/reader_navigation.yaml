@@ -1,0 +1,35 @@
+en:
+  contents: Chapters
+  supplements: Further study and reference
+  sources: Sources and further reading
+  previous: Previous chapter
+  next: Next chapter
+  back: Contents
+zh:
+  contents: 章节目录
+  supplements: 拓展阅读与参考
+  sources: 来源与延伸阅读
+  previous: 上一章
+  next: 下一章
+  back: 目录
+fi:
+  contents: Luvut
+  supplements: Syventävä lukeminen ja hakemisto
+  sources: Lähteet ja lisälukeminen
+  previous: Edellinen luku
+  next: Seuraava luku
+  back: Sisällys
+de:
+  contents: Kapitel
+  supplements: Vertiefung und Nachschlagewerk
+  sources: Quellen und weiterführende Literatur
+  previous: Vorheriges Kapitel
+  next: Nächstes Kapitel
+  back: Inhalt
+ja:
+  contents: 章の一覧
+  supplements: 発展学習と参考資料
+  sources: 出典と発展的な読書
+  previous: 前の章
+  next: 次の章
+  back: 目次

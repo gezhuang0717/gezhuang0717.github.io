@@ -1,0 +1,19 @@
+{{- $key := cond (hasPrefix site.Language.Lang "zh") "zh" site.Language.Lang -}}
+{{- $t := index hugo.Data.reader_navigation $key -}}
+{{- with site.GetPage "books/mass-light" -}}
+<nav class="zg-reader-contents" aria-label="{{ $t.contents }}">
+  <h2>{{ $t.contents }}</h2>
+  <ol>
+    {{- range .RegularPages.ByWeight -}}
+      {{- if not .Params.reader_supplement -}}
+      <li><a href="{{ .RelPermalink }}">{{ replaceRE `^[0-9]+\.\s*` "" .Title }}</a></li>
+      {{- end -}}
+    {{- end -}}
+  </ol>
+  {{- $extra := where .RegularPages "Params.reader_supplement" true -}}
+  {{- if $extra -}}
+  <h2>{{ $t.supplements }}</h2>
+  <ul>{{ range $extra.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul>
+  {{- end -}}
+</nav>
+{{- end -}}

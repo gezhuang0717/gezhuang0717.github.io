@@ -1,28 +1,85 @@
 ---
-title: "3. Light, photons and relativity"
+title: 8. What is light? From rays to Maxwell
+date: '2026-10-08T00:00:00+03:00'
+weight: 8
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "A chapter-by-chapter web reader about matter, mass, photons and neutrinos. Start with four illustrated foundations, then follow the references into the graduate material."
+description: A wave amplitude can have positive, negative or complex phase. Intensity
+  is proportional to the squared amplitude. Coherent amplitudes add before squaring;
+  independent intensities add after averaging. Angles in Snell’s law are mea
 ---
 
-Light has several useful descriptions. Rays describe propagation when wavelengths are small compared with the relevant geometry. Electromagnetic waves explain interference and diffraction. Photons describe quantized exchanges with the electromagnetic field. These descriptions answer different questions; a photon is not a tiny classical ball riding a separate wave.
+## From amplitudes to intensity
 
-For a photon in vacuum,
+A wave amplitude can have positive, negative or complex phase. Intensity is proportional to the squared amplitude. Coherent amplitudes add before squaring; independent intensities add after averaging. Angles in Snell’s law are measured from the surface normal. The source-free vacuum equations below assume no charges and no currents.
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>E</mi><mo>=</mo><mi>h</mi><mi>f</mi><mo>=</mo><mfrac><mrow><mi>h</mi><mi>c</mi></mrow><mi>λ</mi></mfrac><mo>=</mo><mi>p</mi><mi>c</mi></mrow></math></div>
 
-Here f is ordinary frequency, λ is vacuum wavelength, h = 6.62607015 × 10⁻³⁴ J s and c = 299792458 m/s. The last two constants are exact SI definitions. Do not confuse f with angular frequency ω = 2πf; E = ℏω is the equivalent expression.
+{{< reader-figure "original/em_spectrum_en.png" "The electromagnetic spectrum." >}}
 
-A vacuum wavelength of 500 nm corresponds to f = 5.99584916 × 10¹⁴ Hz and E ≈ 2.47968 eV. The wavelength is an illustrative input, not a measured quantity with an implied uncertainty. In a material, phase velocity and wavelength change; simply replacing vacuum c in every photon-energy relation is unsafe.
+## 8.1 Level 1: geometric optics
 
-A photon has zero invariant mass and still carries energy and momentum. There is no inertial rest frame for a photon: a massive observer cannot reach c. Two photons can form a system with nonzero invariant mass.
+When wavelengths are much smaller than apertures and obstacles, light is efficiently described by rays. Reflection obeys
 
-**Try it:** doubling a vacuum wavelength halves the photon energy. There is no universal nonzero minimum photon energy. A detector's threshold belongs to the detector.
+{{< reader-math "block" >}}\theta_i=\theta_r,{{< /reader-math >}}
 
-## Sources and further reading
+and Snell’s law is
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+{{< reader-math "block" >}}n_1\sin\theta_1=n_2\sin\theta_2.{{< /reader-math >}}
 
-[Contents]({{< relref "books/mass-light/_index.md" >}}) · [Previous chapter](../mass/) · [Next chapter](../neutrinos/)
+Geometric optics is an approximation to wave propagation, not evidence that light is made of rigid microscopic pellets.
+
+## 8.2 Level 2: interference and diffraction
+
+Young’s interference experiments established the power of a wave description. For two coherent paths with phase difference {{< reader-math "inline" >}}\Delta\phi{{< /reader-math >}}, equal-amplitude fields produce
+
+{{< reader-math "block" >}}I\propto|E_1+E_2|^2
+=2E_0^2(1+\cos\Delta\phi).{{< /reader-math >}}
+
+This cross term distinguishes coherent wave amplitudes from a simple classical addition of intensities. [The Bakerian Lecture: On the theory of light and colours (1802)](https://doi.org/10.1098/rstl.1802.0004)
+
+{{< reader-figure "original/double_slit_en.png" "A simple double-slit interference pattern." >}}
+
+Polarization further shows that electromagnetic radiation has transverse degrees of freedom. Classical wave optics correctly predicts a vast domain of diffraction, interference, imaging, Fourier optics, and polarization phenomena.
+
+## 8.3 Level 3: Maxwell’s electromagnetic wave
+
+In vacuum, Maxwell’s equations are
+
+{{< reader-math "block" >}}\nabla\cdot\mathbf{E}=0,{{< /reader-math >}}
+
+{{< reader-math "block" >}}\nabla\cdot\mathbf{B}=0,{{< /reader-math >}}
+
+{{< reader-math "block" >}}\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t},{{< /reader-math >}}
+
+{{< reader-math "block" >}}\nabla\times\mathbf{B}=\mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t}.{{< /reader-math >}}
+
+Taking another curl yields the wave equation
+
+{{< reader-math "block" >}}\nabla^2\mathbf{E}-\mu_0\epsilon_0\frac{\partial^2\mathbf{E}}{\partial t^2}=0,{{< /reader-math >}}
+
+and similarly for {{< reader-math "inline" >}}\mathbf B{{< /reader-math >}}, with wave speed
+
+{{< reader-math "block" >}}c=\frac{1}{\sqrt{\mu_0\epsilon_0}}.{{< /reader-math >}}
+
+Maxwell recognized that the calculated electromagnetic wave speed agreed with the measured speed of light, leading to the electromagnetic theory of light. [A Dynamical Theory of the Electromagnetic Field (1865)](https://doi.org/10.1098/rstl.1865.0008)
+
+In modern SI, the speed of light is defined exactly as
+
+{{< reader-math "block" >}}c=299\,792\,458\ \mathrm{m\,s^{-1}}.{{< /reader-math >}}
+
+The Planck constant and elementary charge are also exact SI defining constants:
+
+{{< reader-math "block" >}}h=6.62607015\times10^{-34}\ \mathrm{J\,s},{{< /reader-math >}}
+
+{{< reader-math "block" >}}e=1.602176634\times10^{-19}\ \mathrm{C}.{{< /reader-math >}}
+
+[CODATA recommended values of the fundamental physical constants: 2022 (2024)](https://physics.nist.gov/constants)
+
+## 8.4 Ether and Michelson-Morley
+
+Nineteenth-century physicists often assumed that a mechanical wave required a medium, so an electromagnetic “luminiferous ether” was proposed. The Michelson-Morley experiment found no expected leading second-order directional ether-wind signal within its sensitivity and became one of the historically important constraints on ether models. [On the Relative Motion of the Earth and the Luminiferous Ether (1887)](https://doi.org/10.2475/ajs.s3-34.203.333)
+
+It is an oversimplification to say that one experiment single-handedly “proved the ether does not exist.” The deeper replacement came from a new spacetime kinematics: special relativity and Lorentz invariance.
+
+
+
+[Contents]({{< relref "books/mass-light/_index.md" >}}) · [Previous chapter](../early-universe/) · [Next chapter](../photons/)

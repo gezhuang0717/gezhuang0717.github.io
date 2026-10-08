@@ -1,30 +1,60 @@
 ---
-title: "2. Mass, energy and the Higgs field"
+title: 3. Mass and energy in relativity
+date: '2026-10-08T00:00:00+03:00'
+weight: 3
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "A chapter-by-chapter web reader about matter, mass, photons and neutrinos. Start with four illustrated foundations, then follow the references into the graduate material."
+description: Invariant mass is the same for every inertial observer. Momentum and
+  total energy change under a change of frame. Write E₀=mc² for rest energy and K=E−E₀
+  for kinetic energy. In natural units one often writes a mass in GeV; in SI t
 ---
 
-The modern mass m is invariant mass. Energy E and momentum p depend on the observer. For a free particle,
+## Mass, momentum and units
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>E</mi><mn>2</mn></msup><mo>=</mo><msup><mi>p</mi><mn>2</mn></msup><msup><mi>c</mi><mn>2</mn></msup><mo>+</mo><msup><mi>m</mi><mn>2</mn></msup><msup><mi>c</mi><mn>4</mn></msup></mrow></math></div>
+Invariant mass is the same for every inertial observer. Momentum and total energy change under a change of frame. Write E₀=mc² for rest energy and K=E−E₀ for kinetic energy. In natural units one often writes a mass in GeV; in SI the corresponding mass unit is GeV/c². For a composite system, add both energies and momenta before calculating its invariant mass.
 
-Here p is the magnitude of the three-momentum and c is the speed of light. At rest p = 0, giving E₀ = mc². For a photon m = 0, giving E = pc. Energy is not automatically an extra rest mass of the same moving particle.
 
-For a closed composite system in its centre-of-momentum frame, its invariant mass is its total rest-frame energy divided by c². Nuclear and atomic binding therefore reduce the mass below the sum of separated constituents. Most nucleon mass comes from QCD dynamics; an exact percentage assigned to individual quark and gluon contributions depends on operator definitions, scale and renormalization scheme.
+## 3.1 The full energy-momentum relation
 
-The Higgs field gives the W and Z bosons and charged fermions their masses through their interactions with its nonzero vacuum expectation value. In natural units (ℏ = c = 1), the tree-level charged-fermion relation is
+The famous expression {{< reader-math "inline" >}}E=mc^2{{< /reader-math >}} is the rest-frame special case of
 
-<div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>m</mi><mi>f</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>y</mi><mi>f</mi></msub><mi>v</mi></mrow><msqrt><mn>2</mn></msqrt></mfrac></mrow></math></div>
+{{< reader-math "block" >}}E^2=p^2c^2+m^2c^4.{{< /reader-math >}}
 
-The Yukawa coupling y_f is dimensionless and v ≈ 246 GeV. This is not friction through a substance and not particles absorbing stored packets of Higgs energy. The minimal Standard Model does not generate observed neutrino masses without an extension.
+For a particle at rest, {{< reader-math "inline" >}}p=0{{< /reader-math >}} and therefore
 
-**Try it:** two photons of equal energy E moving in opposite directions have total momentum zero. Their system has invariant mass M = 2E/c², although each individual photon has zero invariant mass.
+{{< reader-math "block" >}}E_0=mc^2.{{< /reader-math >}}
 
-## Sources and further reading
+For a massless particle, {{< reader-math "inline" >}}m=0{{< /reader-math >}}, so
 
-- [PDG 2026](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-standard-model.pdf)
-- [NIST / CODATA](https://physics.nist.gov/cuu/Constants/)
-- [PDG · QCD](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-quark-masses.pdf)
+{{< reader-math "block" >}}E=pc.{{< /reader-math >}}
 
-[Contents]({{< relref "books/mass-light/_index.md" >}}) · [Previous chapter](../matter/) · [Next chapter](../light/)
+This is the form relevant to photons. Modern particle physics usually avoids the older language “relativistic mass” or “moving mass.” The invariant mass {{< reader-math "inline" >}}m{{< /reader-math >}} is frame-independent; energy and momentum transform as components of a four-vector. [Zur Elektrodynamik bewegter K\"orper (1905)](https://doi.org/10.1002/andp.19053221004) · [Review of Particle Physics (2026)](https://pdg.lbl.gov/2026/)
+
+## 3.2 Natural units
+
+High-energy physics commonly sets
+
+{{< reader-math "block" >}}\hbar=c=1.{{< /reader-math >}}
+
+Then energy, momentum, and mass are expressed in the same units, often eV, MeV, or GeV. To convert back, the extremely useful CODATA identity is
+
+{{< reader-math "block" >}}\hbar c=197.3269804\ldots\ \mathrm{MeV\,fm},{{< /reader-math >}}
+
+which is exact once the defining SI constants are used. [CODATA recommended values of the fundamental physical constants: 2022 (2024)](https://physics.nist.gov/constants)
+
+For example a characteristic length scale associated with momentum transfer {{< reader-math "inline" >}}Q{{< /reader-math >}} is roughly
+
+{{< reader-math "block" >}}\Delta x\sim\frac{\hbar c}{Q}.{{< /reader-math >}}
+
+Thus {{< reader-math "inline" >}}Q=1\,\mathrm{GeV}{{< /reader-math >}} probes distances of order {{< reader-math "inline" >}}0.2\,\mathrm{fm}{{< /reader-math >}}, while {{< reader-math "inline" >}}Q=100\,\mathrm{GeV}{{< /reader-math >}} probes around {{< reader-math "inline" >}}2\times10^{-3}\,\mathrm{fm}{{< /reader-math >}}.
+
+## 3.3 Composite mass is a rest-frame energy eigenvalue
+
+For a closed composite system in its center-of-momentum frame,
+
+{{< reader-math "block" >}}M c^2 = E_{\mathrm{total}}(\mathbf{P}=0).{{< /reader-math >}}
+
+This equation is conceptually more reliable than “add the constituent masses.” A hydrogen atom weighs slightly less than a free proton plus free electron because its electromagnetic binding energy is negative. A bound nucleus weighs less than the corresponding free nucleons by its nuclear binding energy. A proton, however, is a relativistic strongly coupled QCD state, so its mass must be calculated from the QCD Hamiltonian or from correlation functions in lattice QCD rather than from a nonrelativistic constituent sum. [Revisiting the proton mass decomposition (2020)](https://doi.org/10.1103/PhysRevD.102.114042) · [Lattice-QCD Validation of Hadron Mass and Trace-Anomaly Decomposition Sum Rules (2026)](https://doi.org/10.1103/5n46-717z)
+
+
+
+[Contents]({{< relref "books/mass-light/_index.md" >}}) · [Previous chapter](../standard-model/) · [Next chapter](../higgs/)

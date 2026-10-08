@@ -1,10 +1,13 @@
 ---
-title: "4. Neutrinos und was Oszillationen messen"
+title: Neutrinos und was Oszillationen messen
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "Ein Weblesebuch in einzelnen Kapiteln über Materie, Masse, Photonen und Neutrinos. Vier bebilderte Grundlagen führen zu den weiterführenden Quellen."
+date: 2026-10-08 00:00:00+03:00
+description: Wie erklären Atome, Quantenfelder und die Raumzeit Materie, Masse und
+  Licht? Der Weg führt vom Higgsfeld und der QCD zu Photonen, Neutrinos, Supraleitung
+  und dem expandierenden Universum.
+weight: 100
+reader_supplement: true
 ---
-
 Die schwache Wechselwirkung erzeugt und detektiert Elektron-, Myon- und Tau-Neutrinoflavours. Die Massenzustände ν₁, ν₂ und ν₃ beschreiben die Ausbreitung. Die PMNS-Matrix verbindet diese Basen; hier gilt die Konvention
 
 <div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>|</mo><msub><mi>ν</mi><mi>α</mi></msub><mo>⟩</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>3</mn></munderover><msubsup><mi>U</mi><mrow><mi>α</mi><mi>i</mi></mrow><mo>*</mo></msubsup><mo>|</mo><msub><mi>ν</mi><mi>i</mi></msub><mo>⟩</mo></mrow></math></div>
@@ -25,4 +28,4 @@ Die zwei beobachteten unabhängigen Massendifferenzquadrate verlangen mindestens
 
 - [PDG 2026 · PMNS](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-neutrino-mixing.pdf)
 
-[Inhalt]({{< relref "books/mass-light/_index.md" >}}) · [Vorheriges Kapitel](../light/)
+[Inhalt]({{< relref "books/mass-light/_index.md" >}})

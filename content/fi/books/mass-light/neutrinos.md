@@ -1,10 +1,13 @@
 ---
-title: "4. Neutriinot ja oskillaatioiden mittaamat suureet"
+title: Neutriinot ja oskillaatioiden mittaamat suureet
 showPagination: false
-date: 2026-10-08T00:00:00+03:00
-description: "Luku kerrallaan etenevä verkkokirja aineesta, massasta, fotoneista ja neutriinoista. Aloita neljästä kuvitetusta perusteesta ja syvennä tietojasi lähteiden avulla."
+date: 2026-10-08 00:00:00+03:00
+description: Tutustu siihen, miten atomit, kvanttikentät ja aika-avaruus selittävät
+  ainetta, massaa ja valoa. Etene Higgsin kentästä ja QCD:stä fotoneihin, neutriinoihin,
+  suprajohtavuuteen ja laajenevaan maailmankaikkeuteen.
+weight: 100
+reader_supplement: true
 ---
-
 Heikko vuorovaikutus tuottaa ja havaitsee elektronin, myonin ja taun neutriinomakuja. Massatilat ν₁, ν₂ ja ν₃ määräävät etenemisen. PMNS-matriisi yhdistää kannat; tässä käytetään sopimusta
 
 <div class="zg-reader-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>|</mo><msub><mi>ν</mi><mi>α</mi></msub><mo>⟩</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>3</mn></munderover><msubsup><mi>U</mi><mrow><mi>α</mi><mi>i</mi></mrow><mo>*</mo></msubsup><mo>|</mo><msub><mi>ν</mi><mi>i</mi></msub><mo>⟩</mo></mrow></math></div>
@@ -25,4 +28,4 @@ Kaksi havaittua riippumatonta massaneliöeroa edellyttävät vähintään kahta 
 
 - [PDG 2026 · PMNS](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-neutrino-mixing.pdf)
 
-[Sisällys]({{< relref "books/mass-light/_index.md" >}}) · [Edellinen luku](../light/)
+[Sisällys]({{< relref "books/mass-light/_index.md" >}})
