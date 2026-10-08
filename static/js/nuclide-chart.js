@@ -28,6 +28,7 @@
   const key = (Z, N) => Z * 1000 + N;
   const css = getComputedStyle(document.documentElement), ink = (css.getPropertyValue("--zg-ink") || "").trim() || "#1d2433";
   const X = window.zgExport;
+  const lineWidth = () => +(root.querySelector("[name=nc-line-width]")?.value || 1);
   const DPR = () => Math.min(4, Math.max(2, window.devicePixelRatio || 1));   /* render at ≥ 2× for crisp text and lines */
   cv._cw = 960; cv._ch = 600; pc._cw = 960; pc._ch = 480;
   const sizeCanvas = (c, w, h) => { const k = DPR(); c._cw = w; c._ch = h; c.width = Math.round(w * k); c.height = Math.round(h * k); c.style.aspectRatio = `${w} / ${h}`; };
@@ -166,13 +167,13 @@
     const P = (Z, N) => [v.x + N * s, Hd - v.y - (Z + 1) * s];
     c.clearRect(0, 0, Wd, Hd);
     if (sc > 1) { c.fillStyle = "#ffffff"; c.fillRect(0, 0, Wd, Hd); }
-    c.strokeStyle = "rgba(127,127,160,.35)"; c.lineWidth = sc;
+    c.strokeStyle = "rgba(127,127,160,.35)"; c.lineWidth = 0.45 * lineWidth() * sc;
     const optOn = n => !ovl || !ovl.querySelector(`[data-opt=${n}]`) || ovl.querySelector(`[data-opt=${n}]`).checked;
     if (optOn("magic")) MAGIC.forEach(m => {
       const [x] = P(0, m); c.beginPath(); c.moveTo(x, 0); c.lineTo(x, Hd); c.moveTo(x + s, 0); c.lineTo(x + s, Hd); c.stroke();
       if (m <= 120) { const [, y] = P(m, 0); c.beginPath(); c.moveTo(0, y); c.lineTo(Wd, y); c.moveTo(0, y + s); c.lineTo(Wd, y + s); c.stroke(); }
     });
-    if (optOn("nz")) { c.save(); c.strokeStyle = "rgba(142,78,198,.75)"; c.lineWidth = 1.6 * sc; c.setLineDash([5 * sc, 5 * sc]); const a = P(0, 0), b = P(120, 120); c.beginPath(); c.moveTo(a[0], a[1] + s); c.lineTo(b[0] + s, b[1]); c.stroke(); c.restore(); }
+    if (optOn("nz")) { c.save(); c.strokeStyle = "rgba(142,78,198,.75)"; c.lineWidth = lineWidth() * sc; c.setLineDash([5 * sc, 5 * sc]); const a = P(0, 0), b = P(120, 120); c.beginPath(); c.moveTo(a[0], a[1] + s); c.lineTo(b[0] + s, b[1]); c.stroke(); c.restore(); }
     const big = s >= 26 * sc, mid = s >= 14 * sc;
     c.textAlign = "center"; c.textBaseline = "middle";
     for (const r of allRows()) {
@@ -192,7 +193,6 @@
     drawOverlays(c, v, Hd, sc);
     [[hover, ink], [pin, "#e5484d"]].forEach(([r, col]) => { if (!r || sc > 1 && r === hover) return; const [x, y] = P(r[0], r[1]); c.strokeStyle = col; c.lineWidth = 2 * sc; c.strokeRect(x - sc, y - sc, s + sc, s + sc); });
     c.fillStyle = ink; c.font = `${12 * sc}px system-ui`; c.textAlign = "left"; c.fillText("N →", Wd - 36 * sc, Hd - 8 * sc); c.fillText("Z ↑", 6 * sc, 14 * sc);
-    if (sc > 1) { c.font = `${10 * sc}px system-ui`; c.textAlign = "right"; c.fillStyle = "#555"; c.fillText("AME2020 / NUBASE2020 · gezhuang0717.github.io", Wd - 8 * sc, 12 * sc); }
   }
   /* ---------- theory masses, drip lines and process paths ---------- */
   const DRIP = { sn: ["#2563eb", [6, 4]], s2n: ["#1e3a8a", []], sp: ["#ef4444", [6, 4]], s2p: ["#991b1b", []] };
@@ -217,7 +217,7 @@
     ovl.querySelectorAll("input[data-drip]:checked").forEach(cb => {
       const q = cb.dataset.drip; if (src !== "ame" && !MOD[src]) return;
       const [col, dash] = DRIP[q], pts = dripLine(q), nType = q === "sn" || q === "s2n";
-      c.strokeStyle = col; c.lineWidth = 2.4 * sc; c.setLineDash(dash.map(d => d * sc)); c.beginPath();
+      c.strokeStyle = col; c.lineWidth = Math.max(0.35 * sc, Math.min(lineWidth() * sc, 0.3 * s)); c.lineJoin = "round"; c.lineCap = "round"; c.setLineDash(dash.map(d => d * sc)); c.beginPath();
       let prev = null;
       pts.forEach(([i, j]) => {
         if (nType) { const x = xN(j + 1); if (prev && prev[0] === i - 1) c.lineTo(x, yZ(i)); else c.moveTo(x, yZ(i)); c.lineTo(x, yZ(i + 1)); }
@@ -227,9 +227,9 @@
       c.stroke(); c.setLineDash([]);
     });
     ovl.querySelectorAll("input[data-path]:checked").forEach(cb => {
-      const P = PATHS[cb.dataset.path]; if (!P) return; const col = cb.dataset.path === "r" ? "#d97706" : "#db2777";
+      const P = PATHS[cb.dataset.path]; if (!P) return; const col = cb.dataset.path === "r" ? "#d97706" : "#00873e";
       c.fillStyle = col; c.strokeStyle = col; c.lineWidth = 1.5 * sc; c.globalAlpha = 0.85;
-      P.pts.forEach(([Z, N]) => { c.beginPath(); c.arc(xN(N + 0.5), yZ(Z + 0.5), Math.max(1.6 * sc, s * 0.22), 0, 6.283); c.fill(); });
+      P.pts.forEach(([Z, N]) => { c.beginPath(); c.arc(xN(N + 0.5), yZ(Z + 0.5), Math.max(1.4 * sc, s * 0.22), 0, 6.283); c.fill(); c.strokeStyle = "#ffffff"; c.lineWidth = 0.5 * sc; c.stroke(); });
       c.globalAlpha = 1;
     });
   }
@@ -407,7 +407,7 @@
     const L = 62 * sc, R = 16 * sc, Tp = 18 * sc, B = 42 * sc, xs = plotPts.map(p => p.x).concat(modPts.map(p => p.x)), ys = plotPts.flatMap(p => [p.y - (p.e || 0), p.y + (p.e || 0)]).concat(modPts.map(p => p.y));
     let x0 = Math.min(...xs) - 1, x1 = Math.max(...xs) + 1, y0 = Math.min(...ys), y1 = Math.max(...ys); const pad = (y1 - y0) * 0.08 || 1; y0 -= pad; y1 += pad;
     const px = x => L + (x - x0) / (x1 - x0) * (Wd - L - R), py = y => Hd - B - (y - y0) / (y1 - y0) * (Hd - B - Tp);
-    c.strokeStyle = "rgba(127,127,160,.45)"; c.lineWidth = sc; c.strokeRect(L, Tp, Wd - L - R, Hd - B - Tp);
+    c.strokeStyle = "rgba(127,127,160,.45)"; c.lineWidth = 0.45 * lineWidth() * sc; c.strokeRect(L, Tp, Wd - L - R, Hd - B - Tp);
     c.fillStyle = sc > 1 ? "#222" : ink; c.font = `${11 * sc}px system-ui`; c.textAlign = "center";
     niceTicks(x0, x1, 12).filter(x => Number.isInteger(x)).forEach(x => { c.fillText(x, px(x), Hd - B + 15 * sc); c.save(); c.strokeStyle = "rgba(127,127,160,.15)"; c.beginPath(); c.moveTo(px(x), Tp); c.lineTo(px(x), Hd - B); c.stroke(); c.restore(); });
     const ch = pchain.value; c.fillText(ch === "Z" ? "N" : "Z", (L + Wd - R) / 2, Hd - 8 * sc);
@@ -416,11 +416,11 @@
     c.strokeStyle = "rgba(229,72,77,.35)"; c.setLineDash([4 * sc, 4 * sc]);
     MAGIC.forEach(m => { if (m > x0 && m < x1) { c.beginPath(); c.moveTo(px(m), Tp); c.lineTo(px(m), Hd - B); c.stroke(); } }); c.setLineDash([]);
     if (modPts.length) {   /* theory curve: dashed green, gaps where the chain is interrupted */
-      c.strokeStyle = "#16a34a"; c.lineWidth = 1.6 * sc; c.setLineDash([6 * sc, 4 * sc]); c.beginPath();
+      c.strokeStyle = "#16a34a"; c.lineWidth = lineWidth() * sc; c.setLineDash([6 * sc, 4 * sc]); c.beginPath();
       modPts.forEach((p, i) => i && p.x - modPts[i - 1].x <= 2 ? c.lineTo(px(p.x), py(p.y)) : c.moveTo(px(p.x), py(p.y))); c.stroke(); c.setLineDash([]);
       c.fillStyle = "#16a34a"; modPts.forEach(p => { c.beginPath(); c.arc(px(p.x), py(p.y), 1.8 * sc, 0, 6.283); c.fill(); });
       c.font = `${10.5 * sc}px system-ui`; c.textAlign = "left"; c.fillText(`– – ${modPts.name}`, L + 8 * sc, Tp + 30 * sc);
-      c.strokeStyle = "rgba(127,127,160,.6)"; c.lineWidth = sc; c.beginPath(); c.moveTo(L, py(0)); c.lineTo(Wd - R, py(0)); if (y0 < 0 && y1 > 0) c.stroke();
+      c.strokeStyle = "rgba(127,127,160,.6)"; c.lineWidth = 0.45 * lineWidth() * sc; c.beginPath(); c.moveTo(L, py(0)); c.lineTo(Wd - R, py(0)); if (y0 < 0 && y1 > 0) c.stroke();
     }
     const groups = plotPts.groups || [], multi = groups.length > 1, gcol = g => multi ? `hsl(${(groups.indexOf(g) / groups.length) * 300},75%,${sc > 1 ? 40 : 48}%)` : "#3b5bdb";
     const showLine = !root.querySelector("[name=nc-lines]") || root.querySelector("[name=nc-lines]").checked, showErr = !root.querySelector("[name=nc-err]") || root.querySelector("[name=nc-err]").checked;
@@ -436,7 +436,6 @@
       if (chain && p.r === chain) { c.strokeStyle = "#e5484d"; c.lineWidth = 2 * sc; c.beginPath(); c.arc(xx, py(p.y), 7 * sc, 0, 6.283); c.stroke(); }
     });
     c.textAlign = "left"; c.font = `${10.5 * sc}px system-ui`; c.fillStyle = "#3b5bdb"; c.fillText(`● ${T.measured}`, L + 8 * sc, Tp + 14 * sc); c.fillStyle = "#f59e0b"; c.fillText(`○ ${T.extrap}`, L + 90 * sc, Tp + 14 * sc);
-    if (sc > 1) { c.fillStyle = "#555"; c.textAlign = "right"; c.fillText("AME2020 / NUBASE2020" + (modPts.length ? " · " + modPts.name : "") + " · gezhuang0717.github.io", Wd - R - 4 * sc, Tp + 14 * sc); }
     if (plotHover && sc === 1) { const p = plotHover; c.fillStyle = ink; c.textAlign = "left"; c.font = `${12}px system-ui`; c.fillText(`${sup(p.r[0] + p.r[1])}${p.r[2]}: ${(([a, b]) => p.e > 0 ? a + (p.est ? "#" : "") + " ± " + b : a)(fmtU(p.y, p.e))}`, Math.min(px(p.x) + 8, Wd - 220), Math.max(py(p.y) - 10, 30)); }
   }
   pc.addEventListener("mousemove", e => {
@@ -476,6 +475,7 @@
     const m = src !== "ame" && MOD[src] ? MOD[src].map.get(key(r[0], r[1])) : null;
     return [r[0], r[1], r[0] + r[1], r[2], d.me ? d.me.v : "", d.me ? d.me.e : "", r[5] ? "#" : "", ...f(d.BEA), ...f(d.sn), ...f(d.s2n), ...f(d.sp), ...f(d.s2p), ...f(d.qbm), ...f(d.qec), ...f(d.qa), ...f(d.d3n), ...f(d.d3p), ...f(d.vpn), r[7], r[8], r[10], r[9] || "", r[11].length, ...(src !== "ame" ? [m ? m[0] : "", m ? m[1] / 1000 : ""] : [])]; };
   const csvHead = () => ["Z", "N", "A", "El", "ME_keV", "dME_keV", "ME_flag", ...["BE/A", "Sn", "S2n", "Sp", "S2p", "Qbeta-", "QEC", "Qalpha", "D3n", "D3p", "dVpn"].flatMap(k => [k + "_MeV", "d" + k + "_MeV", k + "_flag"]), "T1/2", "Jpi", "decay_modes", "discovery_year", "isomers", ...(src !== "ame" ? ["ME_keV_" + src, "beta2_" + src] : [])];
+  root.querySelector("[name=nc-line-width]").onchange = () => { draw(); drawPlot(); };
   root.querySelector("[data-nc=png]").onclick = () => X.png(sc => { const o = document.createElement("canvas"); o.width = W() * sc; o.height = H() * sc; draw(o.getContext("2d"), o.width, o.height, sc); return o; }, "chart-of-nuclides", 6);
   root.querySelector("[data-nc=csv]").onclick = () => X.csv(csvHead(), rows.filter(pass).map(csvRow), "ame2020-nubase2020" + (filt === "all" ? "" : "-" + filt) + (src === "ame" ? "" : "-with-" + src));
   root.querySelector("[data-nc=video]").onclick = e => {

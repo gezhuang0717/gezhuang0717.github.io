@@ -1,8 +1,7 @@
 en:
   title: Country / region of the day
-  location: 'Location: {location}.'
+  location: 'UN region: {location}.'
   intro: Explore its geography, culture and history.
-  joke: Kind travel humour
   wiki: Wikipedia
   maps: Google Maps
   baidu: Baidu Maps
@@ -15,16 +14,12 @@ en:
   story_next: Another story
   place: Place to explore
   coordinates: Latitude {lat}° · longitude {lon}°
-  no_story: Explore the country’s geography through the links below; a place story
-    is not yet available for this selection.
   reading: Read about this place
-  metadata_note: Topics use open geographic records; captions are playful, not historical
-    quotations.
+  metadata_note: Topics use open geographic records; captions are playful, not historical quotations.
 zh:
   title: 每日国家 / 地区
-  location: 位置：{location}。
+  location: 联合国地区分类：{location}。
   intro: 探索这里的地理、文化与历史。
-  joke: 友善旅行小幽默
   wiki: 维基百科
   maps: 谷歌地图
   baidu: 百度地图
@@ -37,14 +32,12 @@ zh:
   story_next: 换个故事
   place: 值得探索的地方
   coordinates: 纬度 {lat}° · 经度 {lon}°
-  no_story: 可通过下方链接了解这里的地理；当前选择尚无专题地点故事。
   reading: 阅读这个地方的故事
   metadata_note: 地点基于开放地理记录；随想是轻松创作，不是历史引文。
 fi:
   title: Päivän maa / alue
-  location: 'Sijainti: {location}.'
+  location: 'YK:n alueluokka: {location}.'
   intro: Tutustu maantieteeseen, kulttuuriin ja historiaan.
-  joke: Ystävällinen matkahuomio
   wiki: Wikipedia
   maps: Google Maps
   baidu: Baidu Maps
@@ -57,16 +50,12 @@ fi:
   story_next: Toinen tarina
   place: Tutustumiskohde
   coordinates: Leveysaste {lat}° · pituusaste {lon}°
-  no_story: Tutustu maan maantieteeseen alla olevista linkeistä; valinnalle ei vielä
-    ole paikkatarinaa.
   reading: Lue tästä paikasta
-  metadata_note: Kohteet perustuvat avoimiin paikkatietoihin; leikkisät huomiot eivät
-    ole historiallisia lainauksia.
+  metadata_note: Kohteet perustuvat avoimiin paikkatietoihin; leikkisät huomiot eivät ole historiallisia lainauksia.
 de:
   title: Land / Region des Tages
-  location: 'Lage: {location}.'
+  location: 'UN-Region: {location}.'
   intro: Entdecke Geografie, Kultur und Geschichte.
-  joke: Freundlicher Reisehumor
   wiki: Wikipedia
   maps: Google Maps
   baidu: Baidu Maps
@@ -79,16 +68,12 @@ de:
   story_next: Andere Geschichte
   place: Ort zum Entdecken
   coordinates: Breitengrad {lat}° · Längengrad {lon}°
-  no_story: Die Links unten führen zur Geografie des Landes; für diese Auswahl liegt
-    noch keine Ortsgeschichte vor.
   reading: Über diesen Ort lesen
-  metadata_note: Orte basieren auf offenen Geodaten; die spielerischen Gedanken sind
-    keine historischen Zitate.
+  metadata_note: Orte basieren auf offenen Geodaten; die spielerischen Gedanken sind keine historischen Zitate.
 ja:
   title: 今日の国・地域
-  location: 位置：{location}。
+  location: 国連の地域区分：{location}。
   intro: 地理、文化、歴史を調べてみましょう。
-  joke: やさしい旅のユーモア
   wiki: ウィキペディア
   maps: Google マップ
   baidu: 百度マップ
@@ -101,6 +86,5 @@ ja:
   story_next: 別の話
   place: 訪ねてみたい場所
   coordinates: 緯度 {lat}° · 経度 {lon}°
-  no_story: 下のリンクから地理を調べられます。この選択の場所の物語はまだ用意されていません。
   reading: この場所について読む
   metadata_note: 場所は公開地理情報に基づきます。随想は創作であり、歴史的な引用ではありません。

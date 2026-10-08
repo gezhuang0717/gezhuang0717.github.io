@@ -10,11 +10,44 @@
     document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
   };
   const stamp = () => new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-");
+  let imageFormat = "png";
+  // A self-contained image PDF: no upload, external service or website branding.
+  function imagePdf(canvas, name) {
+    const flat = document.createElement("canvas");
+    flat.width = canvas.width; flat.height = canvas.height;
+    const ctx = flat.getContext("2d"); ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, flat.width, flat.height); ctx.drawImage(canvas, 0, 0);
+    const jpeg = Uint8Array.from(atob(flat.toDataURL("image/jpeg", 0.97).split(",")[1]), c => c.charCodeAt(0));
+    const landscape = flat.width >= flat.height, pageW = landscape ? 842 : 595, pageH = landscape ? 595 : 842;
+    const ratio = Math.min((pageW - 36) / flat.width, (pageH - 36) / flat.height);
+    const w = flat.width * ratio, h = flat.height * ratio, x = (pageW - w) / 2, y = (pageH - h) / 2;
+    const enc = new TextEncoder(), chunks = [], offsets = [0]; let size = 0;
+    const append = v => { const b = typeof v === "string" ? enc.encode(v) : v; chunks.push(b); size += b.length; };
+    const object = (n, body) => { offsets[n] = size; append(`${n} 0 obj\n${body}\nendobj\n`); };
+    append("%PDF-1.4\n% image figure\n");
+    object(1, "<< /Type /Catalog /Pages 2 0 R >>");
+    object(2, "<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+    object(3, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Resources << /XObject << /Figure 4 0 R >> >> /Contents 5 0 R >>`);
+    offsets[4] = size;
+    append(`4 0 obj\n<< /Type /XObject /Subtype /Image /Width ${flat.width} /Height ${flat.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpeg.length} >>\nstream\n`);
+    append(jpeg); append("\nendstream\nendobj\n");
+    const commands = `q\n${w.toFixed(5)} 0 0 ${h.toFixed(5)} ${x.toFixed(5)} ${y.toFixed(5)} cm\n/Figure Do\nQ\n`;
+    object(5, `<< /Length ${enc.encode(commands).length} >>\nstream\n${commands}endstream`);
+    const xref = size;
+    append("xref\n0 6\n0000000000 65535 f \n");
+    for (let i = 1; i <= 5; i++) append(`${String(offsets[i]).padStart(10, "0")} 00000 n \n`);
+    append(`trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`);
+    save(new Blob(chunks, { type: "application/pdf" }), `${name}-${stamp()}.pdf`);
+  }
   window.zgExport = {
     save, stamp,
     png(render, name, scale = 4) {
       const c = typeof render === "function" ? render(scale) : render;
+      if (imageFormat === "pdf") { imagePdf(c, name); return; }
       c.toBlob(b => save(b, `${name}-${stamp()}.png`), "image/png");
+    },
+    pdf(render, name, scale = 4) {
+      imagePdf(typeof render === "function" ? render(scale) : render, name);
     },
     csv(header, rows, name) {
       const q = v => v == null ? "" : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
@@ -43,4 +76,24 @@
       return rec;
     },
   };
+  // Reuse each figure's own PNG renderer so PDF shows the same inputs and view.
+  const lang = (document.documentElement.lang || "en").split("-")[0];
+  const note = ({ en: "Save PDF · high-resolution image", zh: "保存 PDF · 高分辨率图像", fi: "Tallenna PDF · tarkka kuva", de: "PDF speichern · hochauflösendes Bild", ja: "PDF 保存 · 高解像度画像" })[lang] || "Save PDF";
+  function addPdfButtons(node) {
+    const buttons = node.matches?.("button") ? [node] : Array.from(node.querySelectorAll?.("button") || []);
+    for (const source of buttons) {
+      if (source.dataset.pdfExport !== undefined || source.dataset.pdfReady || !/\bPNG\b/i.test(source.textContent)) continue;
+      source.dataset.pdfReady = "true";
+      const button = document.createElement("button"); button.type = "button";
+      button.className = source.className; button.textContent = "⤓ PDF";
+      button.title = note; button.setAttribute("aria-label", note); button.dataset.pdfExport = "";
+      button.addEventListener("click", () => { if (source.disabled) return; imageFormat = "pdf"; try { source.click(); } finally { imageFormat = "png"; } });
+      source.after(button);
+    }
+  }
+  const install = () => {
+    addPdfButtons(document.body);
+    new MutationObserver(changes => { for (const change of changes) for (const node of change.addedNodes) if (node.nodeType === 1) addPdfButtons(node); }).observe(document.body, { childList: true, subtree: true });
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install, { once: true }); else install();
 })();

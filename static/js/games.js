@@ -329,7 +329,7 @@
       species = species.slice(0, 8); species.forEach((s, i) => (s.c = cols[i], s.t = 0, s.l = 0));
       const tsel = sel("target"), keep = tsel.value; tsel.innerHTML = species.map((s, i) => `<option value="${i}">${s.label}</option>`).join("");
       target = keep !== "" && species[+keep] ? +keep : Math.min(1, species.length - 1); tsel.value = target;
-      ions = Array.from({ length: 30 }, (_, i) => spawn(i)); ions.forEach(o => (o.age = random() * 40)); sparks = [];
+      ions = Array.from({ length: 30 }, (_, i) => spawn(i)); sparks = [];
       box.querySelector(".rfq-leg").innerHTML = species.map((s, i) => `<span><i style="background:${s.c}"></i>${s.label}${i === target ? " ★" : ""}</span>`).join("");
       bad.textContent = sel("custom").checked && (sel("ions").value || "").split(/[,;]/).filter(x => x.trim() && !massOf(x)).length ? TL.rfq_bad : "";
       refresh();
@@ -387,6 +387,7 @@
     let cutoffKey='',cutoff;
     function currentCutoffs(){const key=['U','V','r0','f'].map(V).join('|');if(key!==cutoffKey){cutoffKey=key;cutoff=P.rfqCutoffs(V('U'),V('V'),V('r0'),V('f'));}return cutoff;}
     function report() {
+      box.querySelector("[data-rfq-residence]").textContent = (V("cycles") / V("f")).toFixed(2) + " µs";
       const c=currentCutoffs(),fmt=x=>Number.isFinite(x)?x.toPrecision(8):'∞',out=box.querySelector('[data-rfq-cutoff-values]');
       if(c.status==='window'||c.status==='rf-only')out.innerHTML=`<dt>${RT.line}</dt><dd>a = ${fmt(c.slope)} q = (2|U|/V) q</dd><dt>${RT.low}</dt><dd>${fmt(c.lowMassU)} u/e · (q, a) = (${fmt(c.qHigh)}, ${fmt(c.aHigh)})</dd><dt>${RT.high}</dt><dd>${Number.isFinite(c.highMassU)?`${fmt(c.highMassU)} u/e · (q, a) = (${fmt(c.qLow)}, ${fmt(c.aLow)})`:RT.rfonly}</dd><dt>${RT.range}</dt><dd>${fmt(c.lowMassU)} &lt; m/z &lt; ${fmt(c.highMassU)} u/e</dd>`;
       else out.innerHTML=`<dd>${c.status==='rf-off'?RT.off:RT.none}</dd>`;

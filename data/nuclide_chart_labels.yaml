@@ -34,6 +34,8 @@ en:
     - "Wigner indicator W = δV<sub>pn</sub>(N) − ½ [δV<sub>pn</sub>(N+2) + δV<sub>pn</sub>(N−2)] (as in the Mulberry code): the extra binding of N = Z nuclei (Wigner energy) shows up as a peak at N = Z."
     - "Uncertainties are added in quadrature from the AME2020 mass uncertainties (correlations neglected); # marks values that use extrapolated masses. Theory masses have no uncertainty."
     - "Models: FRDM (1995) — Möller, Nix, Myers, Swiatecki, ADNDT 59, 185 (1995); HFB-17 — Goriely, Chamel, Pearson, PRL 102, 152503 (2009); HFB-D1M — Goriely, Hilaire, Girod, Péru, PRL 102, 242501 (2009). Tables as distributed with TALYS 1.95. r-process path: digitised from ApJ 815, 82 (2015); rp-process path approximate."
+  line_width: "Overlay line width"
+  export_hint: "PNG and PDF use the current view and line settings. PDF contains a high-resolution image; CSV preserves numeric data."
 zh:
   magic_lines: "幻数线"
   p_lines: "连线"
@@ -68,6 +70,8 @@ zh:
     - "Wigner 指标 W = δV<sub>pn</sub>(N) − ½ [δV<sub>pn</sub>(N+2) + δV<sub>pn</sub>(N−2)]（与 Mulberry 代码相同）：N = Z 核的额外结合（Wigner 能）表现为 N = Z 处的峰。"
     - "不确定度由 AME2020 质量误差按平方和合成（忽略相关性）；# 表示用到了外推质量。理论质量没有误差。"
     - "模型：FRDM (1995) — Möller, Nix, Myers, Swiatecki, ADNDT 59, 185 (1995)；HFB-17 — Goriely, Chamel, Pearson, PRL 102, 152503 (2009)；HFB-D1M — Goriely, Hilaire, Girod, Péru, PRL 102, 242501 (2009)。表格取自 TALYS 1.95。r 过程路径数字化自 ApJ 815, 82 (2015)；rp 过程路径为近似。"
+  line_width: "叠加线宽"
+  export_hint: "PNG 与 PDF 使用当前视图及线宽。PDF 内含高分辨率图像；CSV 保留数值数据。"
 fi:
   magic_lines: "maagiset luvut"
   p_lines: "viivat"
@@ -88,6 +92,8 @@ fi:
   m_dmod: "ME(AME) − ME(malli)"
   wig: "Wigner-indikaattori W"
   defs: "Johdettujen suureiden määritelmät"
+  line_width: "Päälle piirrettyjen viivojen leveys"
+  export_hint: "PNG ja PDF käyttävät nykyistä näkymää ja viiva-asetuksia. PDF sisältää tarkan kuvan; CSV säilyttää numeeriset tiedot."
 de:
   magic_lines: "magische Zahlen"
   p_lines: "Linien"
@@ -108,6 +114,8 @@ de:
   m_dmod: "ME(AME) − ME(Modell)"
   wig: "Wigner-Indikator W"
   defs: "Definitionen der abgeleiteten Größen"
+  line_width: "Breite der überlagerten Linien"
+  export_hint: "PNG und PDF verwenden die aktuelle Ansicht und Linienbreite. Das PDF enthält ein hochauflösendes Bild; CSV erhält die Zahlenwerte."
 ja:
   magic_lines: "魔法数"
   p_lines: "線"
@@ -128,3 +136,5 @@ ja:
   m_dmod: "ME(AME) − ME(模型)"
   wig: "Wigner 指標 W"
   defs: "導出量の定義"
+  line_width: "重ね合わせ線の幅"
+  export_hint: "PNG と PDF は現在の表示範囲と線幅を使用します。PDF には高解像度画像、CSV には数値データを保存します。"
