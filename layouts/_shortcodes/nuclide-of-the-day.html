@@ -46,6 +46,15 @@
     <p class="zg-word-s" id="zg-word-s"></p>
     <button type="button" class="zg-btn" id="zg-word-next">{{ i18n "zg_another" | default "Another one" }} ↻</button>
   </section>
+  {{- $rt := index hugo.Data.daily_reading_labels $base -}}
+  <section class="zg-card zg-reading" data-daily-reading data-lang="{{ $base }}" data-src="{{ (printf "data/daily-readings/%s.json" $base) | relURL }}" data-labels="{{ $rt | jsonify }}">
+    <div class="zg-card-label">🪶 {{ $rt.title }}</div>
+    <label class="zg-reading-select">{{ $rt.collection }} <select disabled><option value="all">{{ $rt.all }}</option>{{ range $code := slice "en" "zh" "fi" "de" "ja" "original" }}<option value="{{ $code }}">{{ index $rt.languages $code }}</option>{{ end }}</select></label>
+    <div class="zg-reading-content" aria-live="polite"><p class="zg-reading-kind"></p><h3 class="zg-reading-title"></h3><blockquote class="zg-reading-text"></blockquote><p class="zg-reading-author"></p><p class="zg-reading-explanation">{{ $rt.loading }}</p></div>
+    <details hidden><summary>{{ $rt.show_original }}</summary><blockquote class="zg-reading-original"></blockquote></details>
+    <a class="zg-reading-source" hidden target="_blank" rel="noopener">{{ $rt.source }}</a>
+    <button type="button" class="zg-btn" disabled>{{ $rt.next }} ↻</button><p class="zg-reading-count"></p>
+  </section>
   {{- $ct := index hugo.Data.country_labels $base -}}
   <section class="zg-card zg-country" data-country-card data-country-src="{{ "data/country-cards.json" | relURL }}" data-country-lang="{{ $base }}" data-country-labels="{{ $ct | jsonify }}">
     <div class="zg-card-label">🌍 {{ $ct.title }}</div>
@@ -58,6 +67,7 @@
   </section>
 </div>
 <script defer src="{{ "js/country-card.js" | relURL }}"></script>
+<script defer src="{{ "js/daily-reading.js" | relURL }}"></script>
 <script>
 (function () {
   var items = {{ $items | jsonify | safeJS }}, lang = {{ .Page.Language.Locale | default $lang }};

@@ -1,0 +1,70 @@
+en:
+  title: Sentence / poem of the day
+  collection: Collection
+  all: All traditions
+  original: Original reflection
+  excerpt: Poem excerpt
+  rendering: Prose rendering
+  show_original: Original text
+  source: Read the source
+  next: Another reading
+  loading: Opening a small window onto words…
+  error: The readings could not be loaded. Please reload the page.
+  count: '{count} distinct readings'
+  languages: {en: English, zh: Chinese, fi: Finnish, de: German, ja: Japanese, original: Original reflections}
+zh:
+  title: 每日一句 / 一首诗
+  collection: 文集
+  all: 所有语言传统
+  original: 原创短句
+  excerpt: 诗歌节选
+  rendering: 诗意释义
+  show_original: 查看原文
+  source: 阅读出处
+  next: 再读一篇
+  loading: 为文字打开一扇小窗……
+  error: 未能加载文集，请刷新页面。
+  count: '{count} 篇不同读物'
+  languages: {en: 英语, zh: 中文, fi: 芬兰语, de: 德语, ja: 日语, original: 原创短句}
+fi:
+  title: Päivän lause / runo
+  collection: Kokoelma
+  all: Kaikki perinteet
+  original: Uusi mietelause
+  excerpt: Runokatkelma
+  rendering: Proosamuotoinen tulkinta
+  show_original: Alkuperäinen teksti
+  source: Lue lähdeteksti
+  next: Seuraava lukupala
+  loading: Avataan pieni ikkuna sanoihin…
+  error: Lukupaloja ei voitu ladata. Päivitä sivu.
+  count: '{count} erilaista lukupalaa'
+  languages: {en: Englanti, zh: Kiina, fi: Suomi, de: Saksa, ja: Japani, original: Uudet mietelauseet}
+de:
+  title: Satz / Gedicht des Tages
+  collection: Sammlung
+  all: Alle Traditionen
+  original: Neuer Gedanke
+  excerpt: Gedichtauszug
+  rendering: Übertragung in Prosa
+  show_original: Originaltext
+  source: Quelle lesen
+  next: Nächster Text
+  loading: Ein kleines Fenster zu Worten öffnet sich…
+  error: Die Texte konnten nicht geladen werden. Bitte die Seite neu laden.
+  count: '{count} verschiedene Texte'
+  languages: {en: Englisch, zh: Chinesisch, fi: Finnisch, de: Deutsch, ja: Japanisch, original: Neue Gedanken}
+ja:
+  title: 今日の一文 / 詩
+  collection: 文集
+  all: すべての伝統
+  original: 新しい短文
+  excerpt: 詩の抜粋
+  rendering: 散文による意訳
+  show_original: 原文を見る
+  source: 出典を読む
+  next: 次の一篇
+  loading: 言葉への小さな窓を開いています…
+  error: 文集を読み込めませんでした。ページを再読み込みしてください。
+  count: '{count} 篇の異なる読み物'
+  languages: {en: 英語, zh: 中国語, fi: フィンランド語, de: ドイツ語, ja: 日本語, original: 新しい短文}
