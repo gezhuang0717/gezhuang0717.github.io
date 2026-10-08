@@ -81,6 +81,8 @@ en:
   zero_field: A zero magnetic field has no cyclotron confinement in this model. Choose
     B greater than zero.
   detector_size: Detector radius
+  custom_sigma: "Custom target (σ)"
+  sigma_help: "σ is the angular standard deviation of individual events. 2.355σ approximates one Gaussian peak’s full width at half maximum (FWHM); it is not a confidence level or the combined uncertainty of two centroids. Presets and the custom box set the same target used by the shortest-time search and comparison line."
 zh:
   search: 搜索
   other_states: 其他能级 / 同位旋模拟态 / 分类未定
@@ -143,6 +145,8 @@ zh:
   custom_field: 自定义 B（T）
   zero_field: 此模型中零磁场无法提供回旋囚禁，请选择大于零的 B。
   detector_size: 探测器半径
+  custom_sigma: "自定义目标（σ）"
+  sigma_help: "σ 是单个事件角分布的标准差。2.355σ 近似一个高斯峰的半高全宽（FWHM），不是置信水平，也不是两个质心的合成不确定度。预设与自定义框控制相同目标，用于最短时间搜索及比较图的目标线。"
 fi:
   search: Haku
   other_states: Muut tasot / IAS / luokitus avoin
@@ -221,6 +225,8 @@ fi:
   zero_field: Nollamagneettikenttä ei anna syklotronikonfinementtia tässä mallissa.
     Valitse B yli nollan.
   detector_size: Detektorin säde
+  custom_sigma: "Oma tavoite (σ)"
+  sigma_help: "σ on yksittäisten tapahtumien kulmajakauman keskihajonta. 2,355σ vastaa likimain yhden Gaussin huipun puoliarvoleveyttä (FWHM), ei luottamustasoa tai kahden keskipisteen yhteistä epävarmuutta. Esiasetus ja oma arvo ohjaavat samaa lyhimmän ajan hakua ja vertailuviivaa."
 de:
   search: Suchen
   other_states: Andere Niveaus / IAS / ungeklärte Klasse
@@ -306,6 +312,8 @@ de:
   zero_field: Ohne Magnetfeld gibt es in diesem Modell keinen Zyklotroneinschluss.
     Wählen Sie B größer als null.
   detector_size: Detektorradius
+  custom_sigma: "Eigenes Ziel (σ)"
+  sigma_help: "σ ist die Standardabweichung der Winkel einzelner Ereignisse. 2,355σ entspricht ungefähr der Halbwertsbreite (FWHM) eines Gauß-Peaks, keinem Konfidenzniveau oder der kombinierten Unsicherheit zweier Schwerpunkte. Vorgabe und eigener Wert steuern dieselbe Suche nach der kürzesten Zeit und dieselbe Vergleichslinie."
 ja:
   search: 検索
   other_states: その他の準位・IAS・分類未確定
@@ -368,3 +376,5 @@ ja:
   custom_field: B の指定値（T）
   zero_field: このモデルではゼロ磁場でサイクロトロン閉じ込めはできません。B をゼロより大きくしてください。
   detector_size: 検出器半径
+  custom_sigma: "任意の目標（σ）"
+  sigma_help: "σ は個々のイベントの角度分布の標準偏差です。2.355σ は一つのガウスピークの半値全幅（FWHM）の近似で、信頼水準や二つの重心の合成不確かさではありません。プリセットと入力値は同じ最短時間探索と比較線の目標を設定します。"

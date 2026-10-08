@@ -497,7 +497,7 @@
     let plottedOrigin = 90;
     const detectorRadius = () => V("radius") > 20 ? 32 : 21;
     function phys() {
-      if (["tacc","B","spot","ratio","cfrac","u0","dch","radius","floor","centroid-count","pi-seed","phase-offset"].some(n=>!sel(n).checkValidity())) throw new Error(TL.invalid_physical);
+      if (["tacc","B","spot","ratio","cfrac","u0","dch","radius","floor","centroid-count","pi-seed","phase-offset","separation-sigma"].some(n=>!sel(n).checkValidity())) throw new Error(TL.invalid_physical);
       if(V("B")===0)throw new Error(TL.zero_field);
       const t = V("tacc") / 1000, sp = species().map(s => { const f = freqs(s); return { ...s, ...f, phi: ph(2 * Math.PI * f.nc * t + V("phase-offset")*Math.PI/180), n: Math.floor(f.nc * t) }; });
       const nu = sp[0].nc, resolution=P.phaseResolution(nu,t,V("radius"),V("spot")/10,V("centroid-count"),V("floor")/1000), sig=resolution.defined ? resolution.eventSigma : Infinity;
@@ -607,6 +607,8 @@
     let tId = 0;
     box.addEventListener("input", e => { if (e.target.name === "ions") { clearTimeout(tId); tId = setTimeout(parse, 350); } });
     box.addEventListener("change", e => { const n = e.target.name;
+      if(n === "separation-preset"){if(e.target.value!=="custom"){sel("separation-sigma").value=e.target.value;sel("separation-sigma").dispatchEvent(new Event("input",{bubbles:true}));sel("separation-sigma").dispatchEvent(new Event("change",{bubbles:true}));}return;}
+      if(n === "separation-sigma"){const value=V("separation-sigma"),known=Array.from(sel("separation-preset").options).some(o=>o.value!=="custom"&&Number(o.value)===value);sel("separation-preset").value=known?String(value):"custom";}
       if(n === "B-preset"){if(e.target.value!=="custom"){sel("B").value=Number(e.target.value).toFixed(2);sel("B").dispatchEvent(new Event("input",{bubbles:true}));}return;}
       if(n === "B"){sel("B-preset").value=Number.isInteger(V("B"))?String(V("B")):"custom";}
       if(n === "phase-preset"){if(e.target.value!=="custom"){sel("phase-offset").value=Number(e.target.value).toFixed(2);sel("phase-offset").dispatchEvent(new Event("input",{bubbles:true}));}return;}
@@ -629,7 +631,7 @@
       if (a === "png") { savePNG(cv, paint, "pi-icr-detector"); }
       if (a === "png2") savePNG(cvh, paintH, "pi-icr-angle");
       if (a === "csv" && window.zgExport) { const sp = phys().sp; window.zgExport.csv(["x_rel", "y_rel", "x_mm", "y_mm", "detector_radius_mm", "angle_deg", "state"], hits.map(([x, y, k]) => [x, y, x*detectorRadius(), y*detectorRadius(), detectorRadius(), k === 2 ? "" : ((Math.atan2(y, x) * 180 / Math.PI + 360) % 360), k === 2 ? "centre" : k === 3 ? "magnetron-reference" : (sp[k - 10] || {}).txt || "?"]), "pi-icr-hits"); }
-      if (a === "fcsv" && window.zgExport) { const p=phys(),ref=p.sp[0];window.zgExport.csv(["ion","q","m_ion_u","mass_sigma_keV","nu_c_Hz","nu_plus_Hz","nu_minus_Hz","nu_z_Hz","phi_c_deg","mass_table","B_T","U0_V","d_mm","t_acc_ms","total_turns","complete_turns","delta_turns_from_first","residual_delta_deg","first_180_time_ms","phase_origin_deg","seed","spot_radius_mm","detector_radius_mm"],p.sp.map(s=>[s.txt,s.q,s.M-s.q*MEU,s.e??"",s.nc,s.np,s.nm,s.nz,s.phi*180/Math.PI,s.src||"NUBASE2020",p.B,V("u0"),V("dch"),V("tacc"),s.nc*p.t,Math.floor(s.nc*p.t),(s.nc-ref.nc)*p.t,deltaDegrees((s.nc-ref.nc)*p.t),s===ref?"":s.nc===ref.nc?"unavailable":500/Math.abs(s.nc-ref.nc),V("phase-offset"),V("pi-seed"),V("radius"),detectorRadius()]),"pi-icr-frequencies"); }
+      if (a === "fcsv" && window.zgExport) { const p=phys(),ref=p.sp[0];window.zgExport.csv(["ion","q","m_ion_u","mass_sigma_keV","nu_c_Hz","nu_plus_Hz","nu_minus_Hz","nu_z_Hz","phi_c_deg","mass_table","B_T","U0_V","d_mm","t_acc_ms","total_turns","complete_turns","delta_turns_from_first","residual_delta_deg","first_180_time_ms","phase_origin_deg","seed","spot_radius_mm","detector_radius_mm","separation_target_sigma"],p.sp.map(s=>[s.txt,s.q,s.M-s.q*MEU,s.e??"",s.nc,s.np,s.nm,s.nz,s.phi*180/Math.PI,s.src||"NUBASE2020",p.B,V("u0"),V("dch"),V("tacc"),s.nc*p.t,Math.floor(s.nc*p.t),(s.nc-ref.nc)*p.t,deltaDegrees((s.nc-ref.nc)*p.t),s===ref?"":s.nc===ref.nc?"unavailable":500/Math.abs(s.nc-ref.nc),V("phase-offset"),V("pi-seed"),V("radius"),detectorRadius(),V("separation-sigma")]),"pi-icr-frequencies"); }
       } catch(e) { msg(box,e.message); }
     });
     sel("iso-search").addEventListener("input",()=>filterList());
