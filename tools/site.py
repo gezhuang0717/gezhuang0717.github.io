@@ -90,6 +90,18 @@ def load_yaml(path: Path, default=None):
     return default if data is None else data
 
 
+def deployment_config():
+    """Use the workflow's repository-specific address for generated outputs."""
+    cfg = load_yaml(SITE, {})
+    override = os.environ.get("SITE_BASE_URL")
+    if override:
+        parsed = urllib.parse.urlsplit(override)
+        if parsed.scheme not in ("https", "http") or not parsed.netloc or parsed.query or parsed.fragment:
+            raise ValueError("SITE_BASE_URL must be an absolute HTTP(S) site address")
+        cfg["base_url"] = override.rstrip("/") + "/"
+    return cfg
+
+
 def header_of(path: Path) -> str:
     """Return the leading comment block of a YAML file so rewrites keep it."""
     if not path.exists():
@@ -688,7 +700,7 @@ def gen_papermod(cfg: dict):
 
 
 def _cmd_config_direct(a):
-    cfg = load_yaml(SITE)
+    cfg = deployment_config()
     if cfg.get("live_theme") not in THEMES:
         sys.exit(f"site.yaml: live_theme must be one of {THEMES}")
     for theme in ("congo", "blowfish"):
@@ -751,7 +763,7 @@ def cmd_export_react(a):
         rendered = inline(item["title"]).removeprefix("<p>").removesuffix("</p>\n").strip()
         item["title_html"] = re.sub(r"&lt;(/?)(sup|sub|em|strong|i|b)&gt;", r"<\1\2>", rendered)
     entries = [{k: v for k, v in e.items() if not k.startswith("_")} for e in all_entries()]
-    cfg = load_yaml(SITE, {})
+    cfg = deployment_config()
     maintenance.strict_check(ROOT)
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)

@@ -110,10 +110,25 @@
     {
       "date": "2026-10-07",
       "type": "news",
-      "title": "Ultrashort laser pulses let new microscope map electron interactions across thin materials",
-      "summary": "A new type of advanced microscope (wide-field coherent multidimensional microscopy) has been developed. It uses a carefully designed sequence of ultrashort light pulses to study the behavior of high-tech materials, with potential practical applications in the study of…",
-      "url": "https://phys.org/news/2026-10-ultrashort-laser-pulses-microscope-electron.html",
-      "source": "Phys.org — nuclear physics",
+      "title": "Hybrid Quantum Computer Could Simulate Both Fermions and Bosons",
+      "summary": "Author(s): Anthony Ciavarella Pairing superconducting qubits with microwave cavities could reduce the hardware requirements for quantum simulations of fundamental physics. [Physics 19, 135] Published Wed Oct 07, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.135",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "Quantum Light Leaves Its Fingerprint on Electrons",
+      "summary": "Author(s): Ryan Wilkinson When intense quantum light knocks electrons out of atoms, the statistics of the light can be transferred to the electrons. [Physics 19, s123] Published Wed Oct 07, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.s123",
+      "source": "APS Physics — news",
       "tags": [
         "nuclear"
       ],
@@ -185,6 +200,82 @@
     {
       "date": "2026-10-07",
       "type": "news",
+      "title": "The first stand-alone nuclear clock is ticking in Vienna",
+      "summary": "For decades, researchers around the world have been working toward this goal—and now major advances are following in rapid succession. Vienna is now home to the world's first nuclear clock that stabilizes itself, as atomic clocks typically do. This system has been shown to…",
+      "url": "https://phys.org/news/2026-10-nuclear-clock-vienna.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "paper",
+      "title": "Investigation of antimagnetic rotation in the $N=46$ odd-$A$ isotones $^{83}\\mathrm{Rb}$ and $^{85}\\mathrm{Y}$",
+      "summary": "Author(s): Yi-Chun Hao, Ke-Yan Ma, and Guo-Mo Zeng The possible antimagnetic rotation in the $N=46$ odd-$A$ isotones $^{83}\\mathrm{Rb}$ and $^{85}\\mathrm{Y}$ is investigated using the cranked shell model combined with a particle-number-conserving method. For the positive-parity…",
+      "url": "http://link.aps.org/doi/10.1103/4443-dlq4",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "paper",
+      "title": "A long-sought phase in CuGeO 3 traces the full evolution of spin fractionalization",
+      "summary": "Nature Physics, Published online: 07 October 2026; doi:10.1038/s41567-026-03465-3 Neutron spectroscopy measurements combined with tensor network simulations have placed the long-studied quantum spin-chain compound CuGeO3 in a spontaneously dimerized phase predicted in 1982. In…",
+      "url": "https://www.nature.com/articles/s41567-026-03465-3",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "paper",
+      "title": "Clarity on carbon under extreme compression",
+      "summary": "Nature Physics, Published online: 07 October 2026; doi:10.1038/s41567-026-03460-8 Carbon’s high-pressure phase diagram has long been debated. Now shock experiments have tracked diamond through its melting curve, providing a resolution. The findings also serve as a benchmark for…",
+      "url": "https://www.nature.com/articles/s41567-026-03460-8",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "paper",
+      "title": "Non-reciprocity in quantum technologies",
+      "summary": "Nature Physics, Published online: 07 October 2026; doi:10.1038/s41567-026-03464-4 Non-reciprocity in the quantum regime promises unidirectional transport and enhanced sensing, but traditional approaches hinder device integration. This Review highlights magnet-free routes for…",
+      "url": "https://www.nature.com/articles/s41567-026-03464-4",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
       "title": "A look back at the 24th GANIL symposium",
       "summary": "From 21 to 25 September 2026, the nuclear physics community gathered in Bussang, in the heart of the Vosges, for the 24th GANIL Symposium. Co-organised by the CEA in Saclay and GANIL, this scientific event aims to provide an overview of the research being carried out at GANIL…",
       "url": "https://www.ganil-spiral2.eu/2026/10/06/a-look-back-at-the-24th-ganil-symposium/",
@@ -199,6 +290,21 @@
       "facility_ids": [
         "ganil-spiral2"
       ]
+    },
+    {
+      "date": "2026-10-07",
+      "type": "news",
+      "title": "Ultrashort laser pulses let new microscope map electron interactions across thin materials",
+      "summary": "A new type of advanced microscope (wide-field coherent multidimensional microscopy) has been developed. It uses a carefully designed sequence of ultrashort light pulses to study the behavior of high-tech materials, with potential practical applications in the study of…",
+      "url": "https://phys.org/news/2026-10-ultrashort-laser-pulses-microscope-electron.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-07",
+      "verification_status": "feed-collected"
     },
     {
       "date": "2026-10-06",

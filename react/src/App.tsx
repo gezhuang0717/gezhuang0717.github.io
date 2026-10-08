@@ -56,7 +56,10 @@ function IonTrace() {
 type Lang = "en" | "zh" | "fi" | "de" | "ja";
 const tabs = ["about", "research", "projects", "publications", "talks", "facilities", "daily", "group", "blog", "cv"];
 const labels: Record<string, string> = {about:"简介",research:"研究",projects:"项目",publications:"论文",talks:"主要报告",facilities:"设施",daily:"每日",group:"团队",blog:"博客",cv:"简历"};
-function prefix(lang:string){const l=site.config.languages.find(l=>l.code===lang);const keys=l&&"theme_keys" in l?l.theme_keys as Record<string,string>:{};return lang==="en"?"/":"/"+(keys[site.config.live_theme]||lang)+"/";}
+const siteRoot = new URL(site.config.base_url).pathname.replace(/\/?$/, "/");
+function localPath(path:string){return path.startsWith("//")||path.startsWith(siteRoot)&&siteRoot!=="/"?path:siteRoot+path.replace(/^\//,"");}
+function canonicalHtml(html:string){return html.replace(/(href|src)="(\/[^\"]*)"/g,(_,attribute,path)=>attribute+'="'+localPath(path)+'"');}
+function prefix(lang:string){const l=site.config.languages.find(l=>l.code===lang);const keys=l&&"theme_keys" in l?l.theme_keys as Record<string,string>:{};return siteRoot+(lang==="en"?"":(keys[site.config.live_theme]||lang)+"/");}
 const nodeModules = new Map<string, Promise<void>>();
 function script(src:string){
   if(!nodeModules.has(src))nodeModules.set(src,new Promise((resolve,reject)=>{const s=document.createElement("script");s.src=src;s.onload=()=>resolve();s.onerror=reject;document.head.append(s);}));
@@ -65,10 +68,10 @@ function script(src:string){
 function SharedView({tab,lang}:{tab:string;lang:Lang}){
   const ref=useRef<HTMLDivElement>(null);
   useEffect(()=>{const root=ref.current!;root.innerHTML="";delete root.dataset.mounted;let active=true;
-    const mount=async()=>{if(tab==="facilities"){await script("/vendor/leaflet/leaflet.js");await script("/vendor/leaflet/markercluster.js");await script("/js/atlas.js");if(active)(window as unknown as {mountFacilityAtlas:(r:HTMLElement)=>void}).mountFacilityAtlas(root);}else{await script("/js/daily.js");if(active)(window as unknown as {mountDaily:(r:HTMLElement)=>void}).mountDaily(root);}};
+    const mount=async()=>{if(tab==="facilities"){await script(localPath("vendor/leaflet/leaflet.js"));await script(localPath("vendor/leaflet/markercluster.js"));await script(localPath("js/atlas.js"));if(active)(window as unknown as {mountFacilityAtlas:(r:HTMLElement)=>void}).mountFacilityAtlas(root);}else{await script(localPath("js/daily.js"));if(active)(window as unknown as {mountDaily:(r:HTMLElement)=>void}).mountDaily(root);}};
     mount().catch(()=>{if(active)root.textContent=lang==="zh"?"页面资源加载失败，请重新加载。":"Page resources could not load. Reload to retry.";});return()=>{active=false;};
   },[tab,lang]);
-  return <div key={tab+lang} ref={ref} data-lang={lang} data-root="/" data-locale={prefix(lang)} data-resources={tab==="daily"?"true":undefined}/>;
+  return <div key={tab+lang} ref={ref} data-lang={lang} data-root={siteRoot} data-locale={prefix(lang)} data-resources={tab==="daily"?"true":undefined}/>;
 }
 export default function App(){
  const initialLang=new URLSearchParams(location.search).get("lang")||"en";
@@ -87,8 +90,8 @@ export default function App(){
  {tab==="publications"&&<><p>{site.papers.length} {pubLabels.zg_pub_records}</p><ol className="records">{site.papers.map(p=><li key={p.doi||p.title}><strong>{p.year}</strong> · <a href={rowLink(p)} dangerouslySetInnerHTML={{__html:p.title_html}}/><p>{(p.full_authors||[p.authors.replace(/[*]/g,"")]).join("; ")} · {"journal" in p?p.journal:""} · {publicationRole(p)}</p></li>)}</ol></>}
  {tab==="talks"&&<><p>{site.talks.length} {zh?"条有公开来源的报告":"talks with public sources"}</p><ol className="records">{site.talks.map(t=><li key={t.date+t.title}><strong>{t.date}</strong> · <a href={t.url} dangerouslySetInnerHTML={{__html:t.title_html}}/><p>{t.event} · {t.place}</p></li>)}</ol></>}
  {(tab==="facilities"||tab==="daily")&&<SharedView key={tab+lang} tab={tab} lang={lang}/>}
- {page&&!["publications","talks","facilities","daily"].includes(tab)&&<div className="prose" dangerouslySetInnerHTML={{__html:page.html||""}}/>}
+ {page&&!["publications","talks","facilities","daily"].includes(tab)&&<div className="prose" dangerouslySetInnerHTML={{__html:canonicalHtml(page.html||"")}}/>}
  {tab==="blog"&&<a href={prefix(lang)+"posts/"}>{zh?"阅读博客":"Read the blog"}</a>}
- {(tab==="about"||tab==="research")&&<div className="canonical-gallery">{site.gallery.images.filter(i=>tab==="research"||("home" in i&&i.home)).map((i,index)=><figure key={index}>{"file" in i?<img src={"/img/gallery/"+i.file} alt={i.caption[lang]||i.caption.en} loading="lazy"/>:"video" in i?<video controls preload="none" poster={"/img/gallery/"+i.poster}><source src={"/img/gallery/"+i.video}/></video>:null}<figcaption>{i.caption[lang]||i.caption.en}{"url" in i&&<><br/><a href={i.url}>{"source" in i?i.source:zh?"来源":"Source"}</a></>}</figcaption></figure>)}</div>}
+ {(tab==="about"||tab==="research")&&<div className="canonical-gallery">{site.gallery.images.filter(i=>tab==="research"||("home" in i&&i.home)).map((i,index)=><figure key={index}>{"file" in i?<img src={localPath("img/gallery/"+i.file)} alt={i.caption[lang]||i.caption.en} loading="lazy"/>:"video" in i?<video controls preload="none" poster={localPath("img/gallery/"+i.poster)}><source src={localPath("img/gallery/"+i.video)}/></video>:null}<figcaption>{i.caption[lang]||i.caption.en}{"url" in i&&<><br/><a href={i.url}>{"source" in i?i.source:zh?"来源":"Source"}</a></>}</figcaption></figure>)}</div>}
  </section></main></div>;
 }
