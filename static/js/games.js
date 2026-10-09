@@ -89,7 +89,7 @@
     /* ion and field are selectable; ν_c = zeB/(2π m_ion), m_ion = M_atom − z·m_e (AME2020 mass) */
     let NU_REF = 808795.0115, M_CS = 132.905451933, B = 7.0, ZQ = 1, ION = "¹³³Cs⁺", A_ION = 133;
     function setIon() {
-      try { const cal=window.ZGCal?window.ZGCal.active(box.querySelector("[data-cal-panel]")):null; B=cal?cal.B:+sel("bfield").value; const ion=catalog.resolve(sel("ion").value,{q:+sel("zq").value}); ZQ=ion.q;sel("zq").value=ZQ;M_CS=ion.M;A_ION=ion.A;ION=ion.label;NU_REF=P.frequency(ion,B);box.querySelector(".tof-bad").textContent="";return true; }
+      try { B=+sel("bfield").value; const ion=catalog.resolve(sel("ion").value,{q:+sel("zq").value}); ZQ=ion.q;sel("zq").value=ZQ;M_CS=ion.M;A_ION=ion.A;ION=ion.label;NU_REF=P.frequency(ion,B);box.querySelector(".tof-bad").textContent="";return true; }
       catch(e) {box.querySelector(".tof-bad").textContent=e.message;return false;}
     }
     let nuTrue, Trf, scheme, Wd, ions = [], shots = 0, fit = null, reveal = false, step;
@@ -157,7 +157,7 @@
       if (reveal) { const x = X(nuTrue - NU_REF); g.strokeStyle = "#e5484d"; g.lineWidth = 1; g.beginPath(); g.moveTo(x, P.t); g.lineTo(x, P.b); g.stroke(); }
       g.restore();
       g.fillStyle = ink; g.font = "13px system-ui,sans-serif"; g.textAlign = "right";
-      g.fillText(`${ION} · B = ${+B.toFixed(9)} T · ν_c ≈ ${NU_REF.toFixed(1)} Hz · T_rf = ${Trf * 1000} ms (${scheme === "rect" ? "rectangular" : "Ramsey 10–80–10 %"}) · ${ions.length} ions / ${shots} shots`, P.r - 4, P.t + 13);
+      g.fillText(`${ION} · B = ${B} T · ν_c ≈ ${NU_REF.toFixed(1)} Hz · T_rf = ${Trf * 1000} ms (${scheme === "rect" ? "rectangular" : "Ramsey 10–80–10 %"}) · ${ions.length} ions / ${shots} shots`, P.r - 4, P.t + 13);
     }
     const draw = () => { const [g, W, H] = crisp(cv); paint(g, W, H, inkOf(), false); };
     function info() {
@@ -191,7 +191,6 @@
     sl.addEventListener("input", () => { upd(); draw(); });
     ["trf", "scheme", "bfield", "zq"].forEach(n => sel(n).addEventListener("change", reset));
     sel("ion").addEventListener("change", reset);
-    { const ce = box.querySelector("[data-cal-panel]"); if (ce) ce.addEventListener("zg-cal-change", reset); }
     const waitRows = () => rows.length ? reset() : setTimeout(waitRows, 250); waitRows();
     ["view", "theory"].forEach(n => sel(n).addEventListener("change", draw));
     addEventListener("resize", draw);
@@ -444,8 +443,8 @@
      position-sensitive MCP. Ground state and isomer (heavier by E_x/c²) differ by Δν_c = ν_c · E_x/(m c²),
      so their spots are Δφ = 2π Δν_c t_acc apart (mod 2π). Spot width σ_φ ≈ σ_r / R_spot. Resolving power
      R = ν_c/Δν_FWHM = 2π ν_c t_acc / (2.355 σ_φ) (Eliseev et al., PRL 110, 082501 (2013); Nesterenko et al., EPJA 54, 154 (2018)). */
-  function piicrGame() {
-    const box = $("#g-pi"); if (!box) return;
+  function piicrGame(boxId = "g-pi-classic") {
+    const box = $("#" + boxId); if (!box) return;   /* g-pi-classic (original) and g-pi-fancier (double-trap tab) are independent instances */
     const TL = T, [cv, cvh] = box.querySelectorAll("canvas"), sel = n => box.querySelector(`[name=${n}]`), V = n => +sel(n).value;
     /* CODATA 2018 / AME2020 constants */
     const UKEV = 931494.10242, QE = 1.602176634e-19, U = 1.66053906660e-27, MEU = 5.48579909065e-4, UNIT = { ys: 1e-24, zs: 1e-21, as: 1e-18, fs: 1e-15, ps: 1e-12, ns: 1e-9, us: 1e-6, "μs": 1e-6, ms: 1e-3, s: 1, m: 60, h: 3600, d: 86400, y: 3.156e7, ky: 3.156e10, My: 3.156e13, Gy: 3.156e16 };
@@ -492,11 +491,12 @@
       const ground=catalog.resolve(`${st.A}${st.element}`,options), excited=catalog.resolve(`${st.A}${st.element}[${st.source_state_index}]`,options);
       return [{...ground,w:1-r,col:COL[0],src:ground.source},{...excited,w:r,col:COL[1],src:excited.source}];
     }
-    /* CAL1: with the calibration box checked, νc/ν±/νz come from the calibrant(s) (PyMassScanner style), otherwise the ideal trap */
-    const calEl = box.querySelector("[data-cal-panel]"), calOf = () => (window.ZGCal ? window.ZGCal.active(calEl) : null);
+    /* Fancier tab only: with a double-trap calibration panel in this box, νc/ν±/νz come from the trap-2 calibrant(s)
+       (PyMassScanner get_trap2_frequencies); the original box has no panel, so calOf() is always null there. */
+    const calEl = box.querySelector("[data-cal-panel]"), calOf = () => (calEl && window.ZGCal ? window.ZGCal.active(calEl) : null);
     const fieldB = () => { const c = calOf(); return c ? c.B : V("B"); };
     function freqs(sp) { const ion={...sp,ionMassU:sp.M-sp.q*P.C.electronU}, c=calOf(); return c ? P.calibratedPenning(ion,c) : P.penning(ion,V("B"),V("u0"),V("dch")/1000); }
-    if (calEl) calEl.addEventListener("zg-cal-change", () => { hits = []; phaseOffsets = []; try { draw(); } catch (e) { /* drawn on next input */ } });
+    if (calEl) calEl.addEventListener("zg-cal-change", () => { hits = []; phaseOffsets = []; try { draw(); } catch (e) { /* redrawn on next input */ } });
     const ph = P.wrapPhase;
     const adist = (a, b) => { let d = Math.abs(a - b) % (2 * Math.PI); return Math.min(d, 2 * Math.PI - d); };
     let plottedOrigin = 90;
@@ -562,6 +562,12 @@
     }
     const f3 = v => isFinite(v) ? v.toLocaleString("en-US", { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "—";
     const deltaDegrees = cycles => (ph(2*Math.PI*cycles+Math.PI)-Math.PI)*180/Math.PI;
+    function doubleTrapNote(p) {   /* fancier tab: trap-1 cleaning νc and RFQ→T1 / T1→T2 TOFs of the reference ion (PyMassScanner get_TOFs) */
+      const dt = calEl.zgCal.double(), ref = p.sp[0]; if (!dt) return "";
+      const f = P.doubleTrapFrequencies({...ref, ionMassU: ref.M - ref.q * P.C.electronU}, dt), c = calOf();
+      return `⚙ ${c.list.map(x => x.label).join(", ")} · B₂ = ${p.B.toFixed(9)} T · ${c.mode}` + (f.trap1 ? ` · ${ref.label}: νc(T1) = ${f.trap1.nc.toFixed(3)} Hz` : "") +
+        (f.tofRfqT1 != null ? ` · TOF RFQ→T1 ${f.tofRfqT1.toFixed(3)} µs` : "") + (f.tofT1T2 != null ? ` · T1→T2 ${f.tofT1T2.toFixed(3)} µs` : "") + "<br>";
+    }
     function table(p) {      /* eigenfrequencies of every species (ideal trap, masses from AME2020 / NUBASE2020) */
       const ref = p.sp[0];
       const energy=P.phaseEnergyStep({...ref,ionMassU:ref.M-ref.q*MEU},p.B,p.t);box.querySelector(".pi-energy-hint").textContent=`${TL.reference_label}: ${ref.label}; B = ${p.B.toFixed(2)} T; t = ${(p.t*1000).toFixed(6)} ms; δνc = ${energy.deltaHz.toPrecision(6)} Hz; ${TL.unwrapped_angle}: ${energy.angleDeg.toPrecision(6)}°; ${TL.wrapped_angle}: ${energy.residualDeg.toPrecision(6)}°.`;
@@ -573,7 +579,7 @@
       const target=sel("t180-target"),old=target.value;target.innerHTML=p.sp.slice(1).map((s,i)=>`<option value="${i+1}">${s.label}</option>`).join("");if([...target.options].some(o=>o.value===old))target.value=old;
       const other=p.sp[+target.value],time180=other&&other.nc!==ref.nc?500/Math.abs(other.nc-ref.nc):null;sel("t180").value=time180==null?"":time180.toFixed(2);box.querySelector('[data-act="apply180"]').disabled=time180==null||time180>10000||time180<.005;
       box.querySelector(".pi-freq").innerHTML = `<table class="zg-table pi-tab"><thead><tr><th>${TL.ion}</th><th>q</th><th>m_ion (u)</th><th>ν_c (Hz)</th><th>ν₊ (Hz)</th><th>ν₋ (Hz)</th><th>ν_z (Hz)</th><th>φ_c</th><th>Δν_c / Δφ</th><th>${TL.total_turns}</th><th>${TL.complete_turns}</th><th>${TL.delta_turns}</th><th>${TL.residual_phase}</th><th>${TL.t180}</th><th>${TL.pi_mtab}</th></tr></thead><tbody>${rowsH}</tbody></table>` +
-        `<p class="zg-muted pi-inv">${p.calibrated ? `⚙ ${calOf().list.map(c => c.label).join(", ")} · B = ${p.B.toFixed(9)} T · ${calOf().mode} · ` : ""}ν₊ + ν₋ = ν_c · ν₊² + ν₋² + ν_z² = ν_c² · ν₋ ≈ U₀/(4πB d²) (${TL.pi_mindep}) ${p.sp.some(s => !s.stable) ? " · ⚠ " + TL.pi_unstable : ""}</p>`;
+        `<p class="zg-muted pi-inv">${p.calibrated ? doubleTrapNote(p) : ""}ν₊ + ν₋ = ν_c · ν₊² + ν₋² + ν_z² = ν_c² · ν₋ ≈ U₀/(4πB d²) (${TL.pi_mindep}) ${p.sp.some(s => !s.stable) ? " · ⚠ " + TL.pi_unstable : ""}</p>`;
     }
     function timeComparison(p) {
       const host=box.querySelector(".pi-times");host.hidden=!sel("compare-times").checked;
@@ -677,7 +683,7 @@
     next();
   }
 
-  Promise.all([fetch(root.dataset.src).then(r => {if(!r.ok)throw new Error("Nuclear data unavailable");return r.json();}), P.load(root.dataset.catalogue,root.dataset.ame)]).then(([d,c])=>{rows=d.rows;catalog=c;hlGame();quiz(d.elements);tofGame();mrtofGame();rfqGame();piicrGame();}).catch(e=>{root.insertAdjacentHTML("afterbegin",`<p role="alert">${e.message}</p>`);});
+  Promise.all([fetch(root.dataset.src).then(r => {if(!r.ok)throw new Error("Nuclear data unavailable");return r.json();}), P.load(root.dataset.catalogue,root.dataset.ame)]).then(([d,c])=>{rows=d.rows;catalog=c;hlGame();quiz(d.elements);tofGame();mrtofGame();rfqGame();piicrGame("g-pi-classic");piicrGame("g-pi-fancier");}).catch(e=>{root.insertAdjacentHTML("afterbegin",`<p role="alert">${e.message}</p>`);});
   /* number boxes next to sliders: typing a value moves the slider (and widens its range if needed) */
   root.querySelectorAll(".g-num[data-for]").forEach(n => {
     const box = n.closest(".g-box"), r = box && box.querySelector(`input[type=range][name="${n.dataset.for}"]`); if (!r) return;

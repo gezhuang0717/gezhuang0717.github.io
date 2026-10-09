@@ -1,26 +1,46 @@
-{{- /* Shared calibrant-frequency panel (CAL1). Params: scope (string), full (bool: ion list + results table).
-       Script: static/js/calibration.js (auto-initialised), physics in static/js/physics.js (trapCalibration, calibratedPenning). */ -}}
+{{- /* Shared double-trap calibrant panel (CAL1, JYFLTRAP as in PyMassScanner ame_legacy: trap 1 = purification, trap 2 = precision).
+       Params: scope (string), trap ("1"/"2": trap used by the host, default "2"), choose (bool: host may switch the trap),
+       full (bool: ion list + results table). Script: static/js/calibration.js; physics: static/js/physics.js. */ -}}
 {{- $k := cond (hasPrefix site.Language.Lang "zh") "zh" site.Language.Lang -}}
 {{- $L := merge (index hugo.Data.calibration_labels "en") (index hugo.Data.calibration_labels $k | default dict) -}}
-<details class="zg-cal" data-cal-panel data-full-precision data-scope="{{ .scope }}"{{ if .full }} data-full open{{ end }}
+{{- $trap := .trap | default "2" -}}
+{{- $id := printf "zg-cal-%s" .scope -}}
+<div class="zg-cal" data-cal-panel data-full-precision data-scope="{{ .scope }}" data-trap="{{ $trap }}"{{ if .full }} data-full{{ end }}
   data-catalogue="{{ "data/nuclear-states.json" | relURL }}" data-ame="{{ "data/ame2020.json" | relURL }}" data-labels="{{ $L | jsonify }}">
-  <summary>⚙ {{ $L.title }} <span class="zg-cal-badge">{{ $L.off }}</span></summary>
-  <div class="zg-cal-body">
-    <label class="g-chk"><input type="checkbox" name="cal-on"{{ if .full }} checked{{ end }}> {{ $L.use }}</label>
+  <div class="zg-cal-bar">
+    <button type="button" class="zg-btn zg-btn-ghost zg-cal-toggle" data-cal="toggle" aria-expanded="false" aria-controls="{{ $id }}">⚙ {{ $L.title }} <span class="zg-cal-badge">{{ $L.off }}</span></button>
+    <p class="zg-cal-out" aria-live="polite"></p>
+  </div>
+  <div class="zg-cal-pop" id="{{ $id }}" role="dialog" aria-label="{{ $L.title }}" hidden>
+    <button type="button" class="zg-cal-x" data-cal="close" aria-label="{{ $L.close | default "Close" }}">×</button>
+    <h3 class="zg-cal-h">⚙ {{ $L.title }}</h3>
+    <label class="g-chk"><input type="checkbox" name="cal-on"{{ if or .full .on }} checked{{ end }}> {{ $L.use }}</label>
     <div class="g-opts-row">
-      <label>{{ $L.preset }} <select name="cal-preset"><option value="custom">{{ $L.custom }}</option><option value="cs133" selected>¹³³Cs⁺ · 808 542.788 Hz</option><option value="mo97">⁹⁷Mo⁺ · 1 108 887.227 Hz</option></select></label>
+      <label>{{ $L.preset }} <select name="cal-preset"><option value="jyfltrap" selected>{{ $L.preset_jyfl }}</option><option value="custom">{{ $L.custom }}</option></select></label>
       <label>{{ $L.source }} <select name="cal-source"><option value="ame" selected>AME2020</option><option value="nubase">NUBASE2020</option></select></label>
       <label>{{ $L.mode }} <select name="cal-mode"><option value="fixed-minus" selected>{{ $L.fixed }}</option><option value="ideal">{{ $L.ideal }}</option></select></label>
+      {{- if .choose }}<label>{{ $L.trap_used }} <select name="cal-trap"><option value="1"{{ if eq $trap "1" }} selected{{ end }}>{{ $L.trap1 }}</option><option value="2"{{ if eq $trap "2" }} selected{{ end }}>{{ $L.trap2 }}</option></select></label>
+      {{- else }}<span class="zg-muted zg-small">{{ $L.trap_used }}: {{ if eq $trap "1" }}{{ $L.trap1 }}{{ else }}{{ $L.trap2 }}{{ end }}</span>{{ end }}
     </div>
     <p class="zg-muted zg-small zg-cal-example">ⓘ {{ $L.example }}</p>
-    <div class="zg-cal-tablewrap"><table class="zg-table zg-cal-cals"><thead><tr><th>{{ $L.calibrant }}</th><th>{{ $L.charge }}</th><th>{{ $L.nc }}</th><th>{{ $L.snc }}</th><th>{{ $L.nm }}</th><th>{{ $L.snm }}</th>{{ if .full }}<th>{{ $L.tof }}</th>{{ end }}<th></th></tr></thead><tbody></tbody></table></div>
-    <button type="button" class="zg-btn zg-btn-ghost" data-cal="add">{{ $L.add }}</button>
-    <p class="zg-cal-out" aria-live="polite"></p>
-    {{- if .full }}
-    <label class="zg-cal-ions">{{ $L.ions }}<textarea name="cal-ions" rows="2" spellcheck="false">133Cs, 85Rb, 87Rb, 129Sn, 129mSn, 170Yb+2, 12C11</textarea></label>
-    <div class="zg-row"><button type="button" class="zg-btn" data-cal="compute">{{ $L.compute }}</button><button type="button" class="zg-btn zg-btn-ghost" data-cal="csv">⤓ {{ $L.csv }}</button><button type="button" class="zg-btn zg-btn-ghost" data-cal="json">⤓ {{ $L.json }}</button></div>
-    <div class="zg-cal-results"></div>
+    {{- range slice "1" "2" }}
+    <fieldset class="zg-cal-trap" data-trap-block="{{ . }}"><legend>{{ index $L (printf "trap%s" .) }}</legend>
+      <p class="zg-muted zg-small">{{ index $L (printf "trap%s_note" .) }}</p>
+      <div class="zg-cal-tablewrap"><table class="zg-table zg-cal-cals" data-trap-table="{{ . }}"><thead><tr><th>{{ $L.calibrant }}</th><th>{{ $L.charge }}</th><th>{{ $L.nc }}</th><th>{{ $L.snc }}</th><th>{{ $L.nm }}</th><th>{{ $L.snm }}</th><th></th></tr></thead><tbody></tbody></table></div>
+      <button type="button" class="zg-btn zg-btn-ghost" data-cal="add" data-trap="{{ . }}">{{ $L.add }}</button>
+    </fieldset>
     {{- end }}
+    <fieldset class="zg-cal-trap zg-cal-tof"><legend>{{ $L.tof_cal }}</legend>
+      <div class="zg-cal-tablewrap"><table class="zg-table zg-cal-cals"><thead><tr><th></th><th>{{ $L.calibrant }}</th><th>{{ $L.charge }}</th><th>{{ $L.tof_us }}</th></tr></thead><tbody>
+        <tr data-tof="rfqT1"><td>{{ $L.rfq_t1 }}</td><td data-label="{{ $L.calibrant }}"><input type="text" name="t-ion" value="82Se" spellcheck="false" aria-label="{{ $L.rfq_t1 }}: {{ $L.calibrant }}"></td><td data-label="q"><input type="number" name="t-q" min="1" max="100" step="1" value="1" aria-label="q"></td><td data-label="{{ $L.tof_us }}"><input type="number" name="t-t" min="0" step="0.001" value="177" aria-label="{{ $L.rfq_t1 }}: {{ $L.tof_us }}"></td></tr>
+        <tr data-tof="t1T2"><td>{{ $L.t1_t2 }}</td><td data-label="{{ $L.calibrant }}"><input type="text" name="t-ion" value="133Cs" spellcheck="false" aria-label="{{ $L.t1_t2 }}: {{ $L.calibrant }}"></td><td data-label="q"><input type="number" name="t-q" min="1" max="100" step="1" value="1" aria-label="q"></td><td data-label="{{ $L.tof_us }}"><input type="number" name="t-t" min="0" step="0.001" value="47.3" aria-label="{{ $L.t1_t2 }}: {{ $L.tof_us }}"></td></tr>
+      </tbody></table></div>
+    </fieldset>
     <details class="g-hints"><summary>💡 ⓘ</summary><p>{{ $L.hint }}</p></details>
   </div>
-</details>
+  {{- if .full }}
+    <label class="zg-cal-ions">{{ $L.ions }}<textarea name="cal-ions" rows="2" spellcheck="false">39K, 85Rb, 133Cs, 94Ag, 94mAg, 129Sn, 129mSn, 170Yb+2, 12C11</textarea></label>
+    <div class="zg-row"><button type="button" class="zg-btn" data-cal="compute">{{ $L.compute }}</button><button type="button" class="zg-btn zg-btn-ghost" data-cal="csv">⤓ {{ $L.csv }}</button><button type="button" class="zg-btn zg-btn-ghost" data-cal="json">⤓ {{ $L.json }}</button></div>
+    <div class="zg-cal-results"></div>
+  {{- end }}
+</div>

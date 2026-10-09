@@ -1,191 +1,276 @@
-# Labels for the shared calibrant-frequency panel (layouts/_partials/zg/calibration-panel.html, static/js/calibration.js).
+# Labels for the shared double-trap calibrant panel (layouts/_partials/zg/calibration-panel.html, static/js/calibration.js).
 en:
-  title: "Calibration (as in PyMassScanner)"
-  off: "off"
-  on: "on"
-  use: "Use calibrant frequencies (replaces the ideal-trap B, U₀ and d)"
-  preset: "Preset"
-  custom: "custom"
-  example: "example values from PyMassScanner, not a current measurement"
-  source: "Masses"
-  mode: "ν−, ν+, νz"
-  fixed: "fixed ν− (PyMassScanner): ν+ = νc − ν−"
-  ideal: "ideal quadrupole: νz² ∝ q/m from the calibrant"
-  calibrant: "Calibrant ion"
-  charge: "q"
-  nc: "νc (Hz)"
-  snc: "σνc (Hz)"
-  nm: "ν− (Hz)"
-  snm: "σν− (Hz)"
-  tof: "TOF (µs, optional)"
-  add: "+ calibrant"
-  remove: "remove"
-  beff: "Effective field B"
-  consistency: "Calibrant consistency"
-  birge: "Birge ratio"
-  ions: "Ions and states (comma or new line; e.g. 85Rb, 129mSn, 170Yb+2, 12C11)"
-  compute: "Calculate"
-  ion: "Ion"
-  mion: "m_ion (u)"
-  ratio: "νc,cal / νc"
-  kevhz: "keV per Hz"
-  tofp: "TOF (µs)"
-  src: "Mass source"
-  csv: "CSV"
-  json: "JSON"
-  bad_ion: "Unknown, unavailable or ambiguous ion/state"
-  invalid: "Calibration not used: check the calibrant values"
-  using: "Calibrated from"
-  hint: "PyMassScanner scales every ion from measured calibrant frequencies instead of an ideal trap: νc(ion) = νc(cal)·(m_cal/m_ion)·(q_ion/q_cal), with ion masses from AME2020 or NUBASE2020 (isomers include Ex). ν− is either kept at the calibrant value (PyMassScanner) or scaled as an ideal quadrupole; both modes give the same νc. Several calibrants are averaged with weights 1/σB²; their agreement is shown in ppb. Uncertainties include the calibrant σνc and the mass covariance of shared AME/NUBASE inputs."
+  title: Calibration of the double trap (as in PyMassScanner)
+  false: 'off'
+  true: 'on'
+  use: Use calibrant frequencies (replaces the ideal-trap B, U₀ and d)
+  preset: Preset
+  custom: custom
+  example: PyMassScanner R31 default.ini values (T1 ⁹⁷Mo⁺, T2 ¹³³Cs⁺, ν− = 1653.063 Hz, TOF ⁸²Se⁺ 177 µs and ¹³³Cs⁺ 47.3 µs) — examples, not a current measurement
+  source: Masses
+  mode: ν−, ν+, νz
+  fixed: 'fixed ν− (PyMassScanner): ν+ = νc − ν−'
+  ideal: 'ideal quadrupole: νz² ∝ q/m from the calibrant'
+  calibrant: Calibrant ion
+  charge: q
+  nc: νc (Hz)
+  snc: σνc (Hz)
+  nm: ν− (Hz)
+  snm: σν− (Hz)
+  tof: TOF (µs, optional)
+  add: + calibrant
+  remove: remove
+  beff: Effective field B
+  consistency: Calibrant consistency
+  birge: Birge ratio
+  ions: Ions and states (comma or new line; e.g. 85Rb, 129mSn, 170Yb+2, 12C11)
+  compute: Calculate
+  ion: Ion
+  mion: m_ion (u)
+  ratio: νc,cal / νc
+  kevhz: keV per Hz
+  tofp: TOF (µs)
+  src: Mass source
+  csv: CSV
+  json: JSON
+  bad_ion: Unknown, unavailable or ambiguous ion/state
+  invalid: 'Calibration not used: check the calibrant values'
+  using: Calibrated from
+  hint: 'JYFLTRAP is a double Penning trap. PyMassScanner keeps one calibration per trap: a reference ion with its measured νc and the trap''s ν−. Every other ion or state is scaled by the frequency-ratio law νc(ion) = νc(ref)·(m_ref/m_ion)·(q_ion/q_ref) with AME2020/NUBASE2020 masses (isomers include Ex). ν− stays at the trap''s value (PyMassScanner) or is scaled as an ideal quadrupole; ν+ = νc − ν−, νz = √(νc² − ν+² − ν−²). Trap 1 gives the cleaning frequency, trap 2 the TOF-ICR/PI-ICR frequencies, periods and keV per Hz. Times of flight RFQ→T1 and T1→T2 scale as √(m/q) from their own calibrant. With the PyMassScanner defaults the site reproduces PyMassScanner''s own ³⁹K⁺ outputs to < 1 mHz.'
+  trap1: Trap 1 — purification trap
+  trap2: Trap 2 — precision trap
+  trap1_note: 'Mass-selective buffer-gas cooling: νc of trap 1 sets the conversion (cleaning) scan.'
+  trap2_note: 'TOF-ICR and PI-ICR: νc, ν+ = νc − ν−, νz and the motion periods come from trap 2.'
+  tof_cal: TOF calibration (t ∝ √(m/q))
+  rfq_t1: RFQ → trap 1
+  t1_t2: trap 1 → trap 2
+  tof_us: t (µs)
+  trap_used: Trap used here
+  nc1: νc trap 1 (Hz)
+  nc2: νc trap 2 (Hz)
+  periods: 'Periods (µs): axial / cyclotron / magnetron'
+  field_ratio: B₂/B₁ − 1
+  tof_rfq: TOF RFQ→T1 (µs)
+  tof_t12: TOF T1→T2 (µs)
+  preset_jyfl: JYFLTRAP defaults from PyMassScanner R31
+  close: Close
 zh:
-  title: "标定（按 PyMassScanner 方式）"
-  off: "关"
-  on: "开"
-  use: "使用标定离子的频率（替代理想阱的 B、U₀ 和 d）"
-  preset: "预设"
-  custom: "自定义"
-  example: "PyMassScanner 中的示例值，并非当前测量"
-  source: "质量"
-  mode: "ν−、ν+、νz"
-  fixed: "固定 ν−（PyMassScanner）：ν+ = νc − ν−"
-  ideal: "理想四极场：由标定离子按 q/m 缩放 νz²"
-  calibrant: "标定离子"
-  charge: "q"
-  nc: "νc (Hz)"
-  snc: "σνc (Hz)"
-  nm: "ν− (Hz)"
-  snm: "σν− (Hz)"
-  tof: "飞行时间（µs，可选）"
-  add: "+ 标定离子"
-  remove: "删除"
-  beff: "等效磁场 B"
-  consistency: "标定离子一致性"
-  birge: "Birge 比"
-  ions: "离子与核态（逗号或换行分隔；如 85Rb、129mSn、170Yb+2、12C11）"
-  compute: "计算"
-  ion: "离子"
-  mion: "离子质量 (u)"
-  ratio: "νc,标定 / νc"
-  kevhz: "每 Hz 对应 keV"
-  tofp: "飞行时间 (µs)"
-  src: "质量来源"
-  csv: "CSV"
-  json: "JSON"
-  bad_ion: "未知、不可用或有歧义的离子/核态"
-  invalid: "未使用标定：请检查标定离子的数值"
-  using: "标定来源"
-  hint: "PyMassScanner 不用理想阱，而是由标定离子的实测频率缩放每个离子：νc(离子) = νc(标定)·(m_标定/m_离子)·(q_离子/q_标定)，离子质量取自 AME2020 或 NUBASE2020（同核异能态计入激发能 Ex）。ν− 可保持为标定离子的值（PyMassScanner 方式），也可按理想四极场缩放；两种方式的 νc 相同。多个标定离子按 1/σB² 加权平均，彼此的一致性以 ppb 显示。不确定度包括标定离子的 σνc 以及共享 AME/NUBASE 输入的质量协方差。"
+  title: 双阱标定（按 PyMassScanner 方式）
+  false: 关
+  true: 开
+  use: 使用标定离子的频率（替代理想阱的 B、U₀ 和 d）
+  preset: 预设
+  custom: 自定义
+  example: PyMassScanner R31 default.ini 的数值（阱 1 ⁹⁷Mo⁺，阱 2 ¹³³Cs⁺，ν− = 1653.063 Hz，飞行时间 ⁸²Se⁺ 177 µs 与 ¹³³Cs⁺ 47.3 µs）——仅为示例，并非当前测量
+  source: 质量
+  mode: ν−、ν+、νz
+  fixed: 固定 ν−（PyMassScanner）：ν+ = νc − ν−
+  ideal: 理想四极场：由标定离子按 q/m 缩放 νz²
+  calibrant: 标定离子
+  charge: q
+  nc: νc (Hz)
+  snc: σνc (Hz)
+  nm: ν− (Hz)
+  snm: σν− (Hz)
+  tof: 飞行时间（µs，可选）
+  add: + 标定离子
+  remove: 删除
+  beff: 等效磁场 B
+  consistency: 标定离子一致性
+  birge: Birge 比
+  ions: 离子与核态（逗号或换行分隔；如 85Rb、129mSn、170Yb+2、12C11）
+  compute: 计算
+  ion: 离子
+  mion: 离子质量 (u)
+  ratio: νc,标定 / νc
+  kevhz: 每 Hz 对应 keV
+  tofp: 飞行时间 (µs)
+  src: 质量来源
+  csv: CSV
+  json: JSON
+  bad_ion: 未知、不可用或有歧义的离子/核态
+  invalid: 未使用标定：请检查标定离子的数值
+  using: 标定来源
+  hint: JYFLTRAP 是双彭宁阱。PyMassScanner 为每个阱各保存一套标定：参考离子及其实测 νc，以及该阱的 ν−。其他离子或核态按频率比定律 νc(离子) = νc(参考)·(m_参考/m_离子)·(q_离子/q_参考) 缩放，质量取自 AME2020/NUBASE2020（同核异能态计入 Ex）。ν− 保持该阱的值（PyMassScanner）或按理想四极场缩放；ν+ = νc − ν−，νz = √(νc² − ν+² − ν−²)。阱 1 给出清洗频率，阱 2 给出 TOF-ICR/PI-ICR 频率、周期和每 Hz 对应的 keV。RFQ→T1 与 T1→T2 的飞行时间由各自的标定离子按 √(m/q) 缩放。使用 PyMassScanner 默认值时，本站重现 PyMassScanner 自身的 ³⁹K⁺ 输出，误差小于 1 mHz。
+  trap1: 阱 1——纯化阱
+  trap2: 阱 2——精密阱
+  trap1_note: 质量选择性缓冲气体冷却：阱 1 的 νc 决定转换（清洗）扫描。
+  trap2_note: TOF-ICR 与 PI-ICR：νc、ν+ = νc − ν−、νz 及运动周期均取自阱 2。
+  tof_cal: 飞行时间标定（t ∝ √(m/q)）
+  rfq_t1: RFQ → 阱 1
+  t1_t2: 阱 1 → 阱 2
+  tof_us: t (µs)
+  trap_used: 此处使用的阱
+  nc1: 阱 1 的 νc (Hz)
+  nc2: 阱 2 的 νc (Hz)
+  periods: 周期 (µs)：轴向 / 回旋 / 磁控
+  field_ratio: B₂/B₁ − 1
+  tof_rfq: 飞行时间 RFQ→T1 (µs)
+  tof_t12: 飞行时间 T1→T2 (µs)
+  preset_jyfl: PyMassScanner R31 中的 JYFLTRAP 默认值
+  close: 关闭
 fi:
-  title: "Kalibrointi (kuten PyMassScannerissa)"
-  off: "pois"
-  on: "päällä"
-  use: "Käytä kalibrointi-ionin taajuuksia (korvaa ideaaliloukun B:n, U₀:n ja d:n)"
-  preset: "Esiasetus"
-  custom: "oma"
-  example: "PyMassScannerin esimerkkiarvot, ei ajantasainen mittaus"
-  source: "Massat"
-  mode: "ν−, ν+, νz"
-  fixed: "kiinteä ν− (PyMassScanner): ν+ = νc − ν−"
-  ideal: "ideaalinen kvadrupoli: νz² ∝ q/m kalibrointi-ionista"
-  calibrant: "Kalibrointi-ioni"
-  charge: "q"
-  nc: "νc (Hz)"
-  snc: "σνc (Hz)"
-  nm: "ν− (Hz)"
-  snm: "σν− (Hz)"
-  tof: "Lentoaika (µs, valinnainen)"
-  add: "+ kalibrointi-ioni"
-  remove: "poista"
-  beff: "Efektiivinen kenttä B"
-  consistency: "Kalibrointi-ionien yhtäpitävyys"
-  birge: "Birgen suhde"
-  ions: "Ionit ja tilat (pilkulla tai rivinvaihdolla; esim. 85Rb, 129mSn, 170Yb+2, 12C11)"
-  compute: "Laske"
-  ion: "Ioni"
-  mion: "m_ioni (u)"
-  ratio: "νc,kal / νc"
-  kevhz: "keV hertsiä kohden"
-  tofp: "Lentoaika (µs)"
-  src: "Massalähde"
-  csv: "CSV"
-  json: "JSON"
-  bad_ion: "Tuntematon, puuttuva tai monitulkintainen ioni/tila"
-  invalid: "Kalibrointia ei käytetty: tarkista kalibrointi-ionin arvot"
-  using: "Kalibroitu ionista"
-  hint: "PyMassScanner skaalaa jokaisen ionin mitatuista kalibrointitaajuuksista ideaaliloukun sijaan: νc(ioni) = νc(kal)·(m_kal/m_ioni)·(q_ioni/q_kal); massat AME2020:sta tai NUBASE2020:sta (isomeereille lisätään Ex). ν− pidetään kalibrointi-ionin arvossa (PyMassScanner) tai skaalataan ideaalisena kvadrupolina; molemmat antavat saman νc:n. Useat kalibrointi-ionit keskiarvoistetaan painoilla 1/σB²; niiden yhtäpitävyys näytetään ppb-yksiköissä. Epävarmuus sisältää σνc:n ja yhteisten AME/NUBASE-syötteiden massakovarianssin."
+  title: Kaksoisloukun kalibrointi (kuten PyMassScannerissa)
+  false: pois
+  true: päällä
+  use: Käytä kalibrointi-ionin taajuuksia (korvaa ideaaliloukun B:n, U₀:n ja d:n)
+  preset: Esiasetus
+  custom: oma
+  example: PyMassScanner R31 default.ini -arvot (T1 ⁹⁷Mo⁺, T2 ¹³³Cs⁺, ν− = 1653.063 Hz, lentoajat ⁸²Se⁺ 177 µs ja ¹³³Cs⁺ 47.3 µs) — esimerkkejä, ei ajantasainen mittaus
+  source: Massat
+  mode: ν−, ν+, νz
+  fixed: 'kiinteä ν− (PyMassScanner): ν+ = νc − ν−'
+  ideal: 'ideaalinen kvadrupoli: νz² ∝ q/m kalibrointi-ionista'
+  calibrant: Kalibrointi-ioni
+  charge: q
+  nc: νc (Hz)
+  snc: σνc (Hz)
+  nm: ν− (Hz)
+  snm: σν− (Hz)
+  tof: Lentoaika (µs, valinnainen)
+  add: + kalibrointi-ioni
+  remove: poista
+  beff: Efektiivinen kenttä B
+  consistency: Kalibrointi-ionien yhtäpitävyys
+  birge: Birgen suhde
+  ions: Ionit ja tilat (pilkulla tai rivinvaihdolla; esim. 85Rb, 129mSn, 170Yb+2, 12C11)
+  compute: Laske
+  ion: Ioni
+  mion: m_ioni (u)
+  ratio: νc,kal / νc
+  kevhz: keV hertsiä kohden
+  tofp: Lentoaika (µs)
+  src: Massalähde
+  csv: CSV
+  json: JSON
+  bad_ion: Tuntematon, puuttuva tai monitulkintainen ioni/tila
+  invalid: 'Kalibrointia ei käytetty: tarkista kalibrointi-ionin arvot'
+  using: Kalibroitu ionista
+  hint: 'JYFLTRAP on kaksois-Penning-loukku. PyMassScanner pitää kummallekin loukulle oman kalibroinnin: vertailuioni, sen mitattu νc ja loukun ν−. Muut ionit ja tilat skaalataan taajuussuhteella νc(ioni) = νc(ref)·(m_ref/m_ioni)·(q_ioni/q_ref) AME2020/NUBASE2020-massoilla (isomeereille lisätään Ex). ν− pidetään loukun arvossa (PyMassScanner) tai skaalataan ideaalisena kvadrupolina; ν+ = νc − ν−, νz = √(νc² − ν+² − ν−²). Loukku 1 antaa puhdistustaajuuden, loukku 2 TOF-ICR/PI-ICR-taajuudet, jaksot ja keV/Hz. Lentoajat RFQ→T1 ja T1→T2 skaalautuvat √(m/q):n mukaan omasta kalibrointi-ionistaan. PyMassScannerin oletuksilla sivusto toistaa PyMassScannerin omat ³⁹K⁺-tulokset alle 1 mHz:n tarkkuudella.'
+  trap1: Loukku 1 — puhdistusloukku
+  trap2: Loukku 2 — tarkkuusloukku
+  trap1_note: 'Massaselektiivinen puskurikaasujäähdytys: loukun 1 νc määrää konversio- eli puhdistuspyyhkäisyn.'
+  trap2_note: 'TOF-ICR ja PI-ICR: νc, ν+ = νc − ν−, νz ja liikkeiden jaksot tulevat loukusta 2.'
+  tof_cal: Lentoajan kalibrointi (t ∝ √(m/q))
+  rfq_t1: RFQ → loukku 1
+  t1_t2: loukku 1 → loukku 2
+  tof_us: t (µs)
+  trap_used: Tässä käytetty loukku
+  nc1: νc loukku 1 (Hz)
+  nc2: νc loukku 2 (Hz)
+  periods: 'Jaksot (µs): aksiaalinen / syklotroni / magnetroni'
+  field_ratio: B₂/B₁ − 1
+  tof_rfq: Lentoaika RFQ→T1 (µs)
+  tof_t12: Lentoaika T1→T2 (µs)
+  preset_jyfl: JYFLTRAP-oletukset PyMassScanner R31:stä
+  close: Sulje
 de:
-  title: "Kalibrierung (wie in PyMassScanner)"
-  off: "aus"
-  on: "an"
-  use: "Kalibrantfrequenzen verwenden (ersetzt B, U₀ und d der idealen Falle)"
-  preset: "Vorgabe"
-  custom: "eigene"
-  example: "Beispielwerte aus PyMassScanner, keine aktuelle Messung"
-  source: "Massen"
-  mode: "ν−, ν+, νz"
-  fixed: "festes ν− (PyMassScanner): ν+ = νc − ν−"
-  ideal: "idealer Quadrupol: νz² ∝ q/m aus dem Kalibranten"
-  calibrant: "Kalibrant-Ion"
-  charge: "q"
-  nc: "νc (Hz)"
-  snc: "σνc (Hz)"
-  nm: "ν− (Hz)"
-  snm: "σν− (Hz)"
-  tof: "Flugzeit (µs, optional)"
-  add: "+ Kalibrant"
-  remove: "entfernen"
-  beff: "Effektives Feld B"
-  consistency: "Konsistenz der Kalibranten"
-  birge: "Birge-Verhältnis"
-  ions: "Ionen und Zustände (Komma oder Zeilenumbruch; z. B. 85Rb, 129mSn, 170Yb+2, 12C11)"
-  compute: "Berechnen"
-  ion: "Ion"
-  mion: "m_Ion (u)"
-  ratio: "νc,Kal / νc"
-  kevhz: "keV pro Hz"
-  tofp: "Flugzeit (µs)"
-  src: "Massenquelle"
-  csv: "CSV"
-  json: "JSON"
-  bad_ion: "Unbekanntes, nicht verfügbares oder mehrdeutiges Ion/Zustand"
-  invalid: "Kalibrierung nicht verwendet: Kalibrantwerte prüfen"
-  using: "Kalibriert mit"
-  hint: "PyMassScanner skaliert jedes Ion aus gemessenen Kalibrantfrequenzen statt aus einer idealen Falle: νc(Ion) = νc(Kal)·(m_Kal/m_Ion)·(q_Ion/q_Kal), Massen aus AME2020 oder NUBASE2020 (Isomere mit Ex). ν− bleibt entweder beim Kalibrantwert (PyMassScanner) oder wird als idealer Quadrupol skaliert; beide Modi liefern dasselbe νc. Mehrere Kalibranten werden mit Gewichten 1/σB² gemittelt; ihre Übereinstimmung wird in ppb angezeigt. Die Unsicherheit enthält σνc und die Massenkovarianz gemeinsamer AME/NUBASE-Eingaben."
+  title: Kalibrierung der Doppelfalle (wie in PyMassScanner)
+  false: aus
+  true: an
+  use: Kalibrantfrequenzen verwenden (ersetzt B, U₀ und d der idealen Falle)
+  preset: Vorgabe
+  custom: eigene
+  example: Werte aus PyMassScanner R31 default.ini (T1 ⁹⁷Mo⁺, T2 ¹³³Cs⁺, ν− = 1653.063 Hz, Flugzeiten ⁸²Se⁺ 177 µs und ¹³³Cs⁺ 47.3 µs) — Beispiele, keine aktuelle Messung
+  source: Massen
+  mode: ν−, ν+, νz
+  fixed: 'festes ν− (PyMassScanner): ν+ = νc − ν−'
+  ideal: 'idealer Quadrupol: νz² ∝ q/m aus dem Kalibranten'
+  calibrant: Kalibrant-Ion
+  charge: q
+  nc: νc (Hz)
+  snc: σνc (Hz)
+  nm: ν− (Hz)
+  snm: σν− (Hz)
+  tof: Flugzeit (µs, optional)
+  add: + Kalibrant
+  remove: entfernen
+  beff: Effektives Feld B
+  consistency: Konsistenz der Kalibranten
+  birge: Birge-Verhältnis
+  ions: Ionen und Zustände (Komma oder Zeilenumbruch; z. B. 85Rb, 129mSn, 170Yb+2, 12C11)
+  compute: Berechnen
+  ion: Ion
+  mion: m_Ion (u)
+  ratio: νc,Kal / νc
+  kevhz: keV pro Hz
+  tofp: Flugzeit (µs)
+  src: Massenquelle
+  csv: CSV
+  json: JSON
+  bad_ion: Unbekanntes, nicht verfügbares oder mehrdeutiges Ion/Zustand
+  invalid: 'Kalibrierung nicht verwendet: Kalibrantwerte prüfen'
+  using: Kalibriert mit
+  hint: 'JYFLTRAP ist eine Doppel-Penningfalle. PyMassScanner führt je Falle eine Kalibrierung: Referenzion mit gemessenem νc und das ν− der Falle. Andere Ionen und Zustände werden mit dem Frequenzverhältnis νc(Ion) = νc(Ref)·(m_Ref/m_Ion)·(q_Ion/q_Ref) und AME2020/NUBASE2020-Massen skaliert (Isomere mit Ex). ν− bleibt beim Wert der Falle (PyMassScanner) oder wird als idealer Quadrupol skaliert; ν+ = νc − ν−, νz = √(νc² − ν+² − ν−²). Falle 1 liefert die Reinigungsfrequenz, Falle 2 die TOF-ICR/PI-ICR-Frequenzen, Perioden und keV pro Hz. Flugzeiten RFQ→T1 und T1→T2 skalieren mit √(m/q) aus eigenen Kalibranten. Mit den PyMassScanner-Vorgaben reproduziert die Seite PyMassScanners eigene ³⁹K⁺-Ausgaben auf < 1 mHz.'
+  trap1: Falle 1 — Reinigungsfalle
+  trap2: Falle 2 — Präzisionsfalle
+  trap1_note: 'Massenselektive Puffergaskühlung: νc der Falle 1 bestimmt den Konversions- (Reinigungs-)Scan.'
+  trap2_note: 'TOF-ICR und PI-ICR: νc, ν+ = νc − ν−, νz und die Bewegungsperioden stammen aus Falle 2.'
+  tof_cal: Flugzeitkalibrierung (t ∝ √(m/q))
+  rfq_t1: RFQ → Falle 1
+  t1_t2: Falle 1 → Falle 2
+  tof_us: t (µs)
+  trap_used: Hier verwendete Falle
+  nc1: νc Falle 1 (Hz)
+  nc2: νc Falle 2 (Hz)
+  periods: 'Perioden (µs): axial / Zyklotron / Magnetron'
+  field_ratio: B₂/B₁ − 1
+  tof_rfq: Flugzeit RFQ→T1 (µs)
+  tof_t12: Flugzeit T1→T2 (µs)
+  preset_jyfl: JYFLTRAP-Vorgaben aus PyMassScanner R31
+  close: Schließen
 ja:
-  title: "較正（PyMassScanner 方式）"
-  off: "オフ"
-  on: "オン"
-  use: "較正イオンの周波数を使う（理想トラップの B・U₀・d の代わり）"
-  preset: "プリセット"
-  custom: "手入力"
-  example: "PyMassScanner の例示値であり、最新の測定値ではありません"
-  source: "質量"
-  mode: "ν−・ν+・νz"
-  fixed: "ν− 固定（PyMassScanner）：ν+ = νc − ν−"
-  ideal: "理想四重極：較正イオンから νz² ∝ q/m"
-  calibrant: "較正イオン"
-  charge: "q"
-  nc: "νc (Hz)"
-  snc: "σνc (Hz)"
-  nm: "ν− (Hz)"
-  snm: "σν− (Hz)"
-  tof: "飛行時間（µs、任意）"
-  add: "+ 較正イオン"
-  remove: "削除"
-  beff: "実効磁場 B"
-  consistency: "較正イオン間の整合性"
-  birge: "Birge 比"
-  ions: "イオンと状態（カンマまたは改行区切り。例：85Rb, 129mSn, 170Yb+2, 12C11）"
-  compute: "計算"
-  ion: "イオン"
-  mion: "イオン質量 (u)"
-  ratio: "νc,較正 / νc"
-  kevhz: "1 Hz あたりの keV"
-  tofp: "飛行時間 (µs)"
-  src: "質量の出典"
-  csv: "CSV"
-  json: "JSON"
-  bad_ion: "不明・利用不可・あいまいなイオン／状態です"
-  invalid: "較正は使われていません：較正イオンの値を確認してください"
-  using: "較正イオン"
-  hint: "PyMassScanner は理想トラップではなく、較正イオンの実測周波数から各イオンを換算します：νc(イオン) = νc(較正)·(m_較正/m_イオン)·(q_イオン/q_較正)。質量は AME2020 または NUBASE2020（核異性体は励起エネルギー Ex を含む）。ν− は較正イオンの値に固定する（PyMassScanner）か、理想四重極として換算します。どちらでも νc は同じです。複数の較正イオンは重み 1/σB² で平均し、相互の一致を ppb で示します。不確かさには σνc と、共通する AME/NUBASE 入力の質量共分散が含まれます。"
+  title: ダブルトラップの較正（PyMassScanner 方式）
+  false: オフ
+  true: オン
+  use: 較正イオンの周波数を使う（理想トラップの B・U₀・d の代わり）
+  preset: プリセット
+  custom: 手入力
+  example: PyMassScanner R31 default.ini の値（T1 ⁹⁷Mo⁺、T2 ¹³³Cs⁺、ν− = 1653.063 Hz、飛行時間 ⁸²Se⁺ 177 µs と ¹³³Cs⁺ 47.3 µs）— 例示値であり、最新の測定値ではありません
+  source: 質量
+  mode: ν−・ν+・νz
+  fixed: ν− 固定（PyMassScanner）：ν+ = νc − ν−
+  ideal: 理想四重極：較正イオンから νz² ∝ q/m
+  calibrant: 較正イオン
+  charge: q
+  nc: νc (Hz)
+  snc: σνc (Hz)
+  nm: ν− (Hz)
+  snm: σν− (Hz)
+  tof: 飛行時間（µs、任意）
+  add: + 較正イオン
+  remove: 削除
+  beff: 実効磁場 B
+  consistency: 較正イオン間の整合性
+  birge: Birge 比
+  ions: イオンと状態（カンマまたは改行区切り。例：85Rb, 129mSn, 170Yb+2, 12C11）
+  compute: 計算
+  ion: イオン
+  mion: イオン質量 (u)
+  ratio: νc,較正 / νc
+  kevhz: 1 Hz あたりの keV
+  tofp: 飛行時間 (µs)
+  src: 質量の出典
+  csv: CSV
+  json: JSON
+  bad_ion: 不明・利用不可・あいまいなイオン／状態です
+  invalid: 較正は使われていません：較正イオンの値を確認してください
+  using: 較正イオン
+  hint: JYFLTRAP はダブルペニングトラップです。PyMassScanner はトラップごとに較正を保持します：基準イオンとその実測 νc、およびそのトラップの ν−。他のイオンや状態は周波数比の法則 νc(イオン) = νc(基準)·(m_基準/m_イオン)·(q_イオン/q_基準) で換算し、質量は AME2020/NUBASE2020（核異性体は Ex を含む）。ν− はトラップの値に固定（PyMassScanner）するか理想四重極として換算します。ν+ = νc − ν−、νz = √(νc² − ν+² − ν−²)。トラップ 1 はクリーニング周波数、トラップ 2 は TOF-ICR/PI-ICR の周波数・周期・1 Hz あたりの keV を与えます。RFQ→T1 と T1→T2 の飛行時間はそれぞれの較正イオンから √(m/q) で換算します。PyMassScanner の既定値では、本サイトは PyMassScanner 自身の ³⁹K⁺ の出力を 1 mHz 未満の差で再現します。
+  trap1: トラップ 1 — 精製トラップ
+  trap2: トラップ 2 — 精密トラップ
+  trap1_note: 質量選択的バッファーガス冷却：トラップ 1 の νc で変換（クリーニング）掃引を決めます。
+  trap2_note: TOF-ICR と PI-ICR：νc、ν+ = νc − ν−、νz と運動周期はトラップ 2 から求めます。
+  tof_cal: 飛行時間の較正（t ∝ √(m/q)）
+  rfq_t1: RFQ → トラップ 1
+  t1_t2: トラップ 1 → トラップ 2
+  tof_us: t (µs)
+  trap_used: ここで使うトラップ
+  nc1: トラップ 1 の νc (Hz)
+  nc2: トラップ 2 の νc (Hz)
+  periods: 周期 (µs)：軸方向 / サイクロトロン / マグネトロン
+  field_ratio: B₂/B₁ − 1
+  tof_rfq: 飛行時間 RFQ→T1 (µs)
+  tof_t12: 飛行時間 T1→T2 (µs)
+  preset_jyfl: PyMassScanner R31 の JYFLTRAP 既定値
+  close: 閉じる

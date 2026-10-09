@@ -1,6 +1,13 @@
+{{- /* Local sub-tabs: original (classic), advanced ("fancy") and, when .fancier is set, the double-trap "fancier" tab.
+       Params: id, advanced (default true), fancier (default false). Script: static/js/topic-navigation.js. */ -}}
 {{- $k := cond (hasPrefix site.Language.Lang "zh") "zh" site.Language.Lang -}}
 {{- $t := index hugo.Data.tool_navigation $k -}}
 <div class="zg-local-tabs" role="tablist" aria-label="{{ $t.tools }}">
 <button class="zg-btn" type="button" role="tab" id="{{ .id }}-classic-tab" data-local-tab="classic" aria-selected="true">{{ $t.classic }}</button>
+{{- if ne .advanced false }}
 <button class="zg-btn zg-btn-ghost" type="button" role="tab" id="{{ .id }}-advanced-tab" data-local-tab="advanced" aria-selected="false">{{ $t.advanced }}</button>
+{{- end }}
+{{- if .fancier }}
+<button class="zg-btn zg-btn-ghost" type="button" role="tab" id="{{ .id }}-fancier-tab" data-local-tab="fancier" aria-selected="false">{{ $t.fancier }}</button>
+{{- end }}
 </div>

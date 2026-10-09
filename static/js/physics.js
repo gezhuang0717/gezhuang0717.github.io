@@ -294,6 +294,26 @@
     if (!(tCal > 0 && calIon.ionMassU > 0 && ion.ionMassU > 0)) throw new Error("Invalid TOF scaling input.");
     return tCal * Math.sqrt((ion.ionMassU / ion.q) / (calIon.ionMassU / calIon.q));
   }
-  const api = { C, FWHM, numeric, primitive, combine, constant, pairingIndicator, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseTiming, phaseEnergyStep, trapCalibration, calibratedPenning, tofScale };
+  /* ---------- JYFLTRAP double Penning trap (PyMassScanner ame_legacy: get_trap1/2_frequencies, get_TOFs) ----------
+     Trap 1 = purification trap (mass-selective buffer-gas cooling: νc for the conversion/cleaning scan);
+     Trap 2 = precision trap (TOF-ICR/PI-ICR: νc, ν+ = νc − ν−, νz, motion periods, keV per Hz).
+     Each trap has its own calibrant(s) and ν−. TOF calibrations RFQ→T1 and T1→T2 scale as √(m/q) of the ion mass
+     (here including the isomer excitation, which PyMassScanner's get_TOFs omits). */
+  function doubleTrapCalibration(spec, mode = "fixed-minus") {
+    const out = { mode, traps: {}, tof: {} };
+    for (const k of ["1", "2"]) if (spec.traps && spec.traps[k] && spec.traps[k].length) out.traps[k] = trapCalibration(spec.traps[k], mode);
+    if (!out.traps["1"] && !out.traps["2"]) throw new Error("At least one trap needs a calibrant.");
+    for (const k of ["rfqT1", "t1T2"]) { const t = spec.tof && spec.tof[k]; if (t && t.ion && t.t > 0) out.tof[k] = t; }
+    if (out.traps["1"] && out.traps["2"]) out.fieldRatio = out.traps["2"].B / out.traps["1"].B;
+    return out;
+  }
+  function doubleTrapFrequencies(ion, dt) {
+    const t1 = dt.traps["1"] ? calibratedPenning(ion, dt.traps["1"]) : null, t2 = dt.traps["2"] ? calibratedPenning(ion, dt.traps["2"]) : null;
+    const tof = k => dt.tof[k] ? tofScale(dt.tof[k].t, dt.tof[k].ion, ion) : null;
+    return { trap1: t1, trap2: t2, tofRfqT1: tof("rfqT1"), tofT1T2: tof("t1T2"),
+      periodsUs: t2 && t2.nz > 0 && t2.np > 0 && t2.nm > 0 ? { axial: 1e6 / t2.nz, cyclotron: 1e6 / t2.np, magnetron: 1e6 / t2.nm } : null,
+      keVperHz: t2 ? t2.keVperHz : t1 ? t1.keVperHz : null };
+  }
+  const api = { C, FWHM, numeric, primitive, combine, constant, pairingIndicator, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseTiming, phaseEnergyStep, trapCalibration, calibratedPenning, tofScale, doubleTrapCalibration, doubleTrapFrequencies };
   host.ZGPhysics = api; if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);

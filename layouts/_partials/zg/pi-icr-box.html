@@ -1,0 +1,50 @@
+{{- /* PI-ICR game box (original markup of the Games page, moved unchanged into a partial so the double-trap "fancier"
+       tab can show a second, independent instance). Params: id, t (games labels), cal (bool: double-trap calibration panel). */ -}}
+{{- $t := .t -}}
+  <section class="zg-card g-box" id="{{ .id }}"><h2>🌀 {{ $t.pi }}</h2><p class="zg-muted">{{ $t.pi_n }}</p>{{ if .cal }}
+    {{ partial "zg/calibration-panel.html" (dict "scope" "pi-fancier" "trap" "2" "on" true) }}{{ end }}
+    <div class="g-opts-row">
+      <span class="pi-single"><label>{{ $t.search }} <input type="search" name="iso-search" placeholder="133Xe"></label><label class="g-chk"><input name="other-states" type="checkbox">{{ $t.other_states }}</label><label>{{ $t.iso_pick }} <select name="iso"></select></label>
+      <button type="button" class="zg-btn zg-btn-ghost" data-act="rand">🎲</button></span>
+      <label class="g-chk"><input type="checkbox" name="multi"> {{ $t.pi_multi }}</label>
+      <label>{{ $t.pi_mtab }} <select name="mtab"><option value="ame" selected>AME2020</option><option value="nubase">NUBASE2020</option></select></label>
+      <label>B <select name="B-preset">{{ range seq 0 30 }}<option value="{{ . }}"{{ if eq . 7 }} selected{{ end }}>{{ printf "%.2f" (float .) }} T</option>{{ end }}<option value="custom">{{ $t.custom_field }}</option></select></label><label>{{ $t.custom_field }} <input type="number" name="B" value="7.00" min="0" max="30" step="0.01" aria-label="B (T)"></label>
+      <label>{{ $t.counts }} <select name="nshot"><option>20</option><option selected>100</option><option>500</option><option>2000</option></select></label>
+      <label class="g-chk"><input type="checkbox" name="pix"> {{ $t.v_pix }}</label>
+      <label class="g-chk"><input type="checkbox" name="ref" checked> {{ $t.pi_ref }}</label>
+      <label>{{ $t.phase_origin }} <select name="phase-preset"><option value="0">0.00°</option><option value="45">45.00°</option><option value="90" selected>90.00°</option><option value="135">135.00°</option><option value="180">180.00°</option><option value="225">225.00°</option><option value="270">270.00°</option><option value="315">315.00°</option><option value="360">360.00°</option><option value="custom">{{ $t.custom_angle }}</option></select> <input type="number" name="phase-offset" min="0" max="360" step="0.01" value="90.00" aria-label="{{ $t.phase_origin }}"></label><label><input type="checkbox" name="centre-lines">{{ $t.centre_lines }}</label>
+    </div>
+    <div class="g-opts-row pi-phase-controls"><label>{{ $t.minus_offset }} <input type="number" name="minus-offset" min="-360" max="360" step="0.01" required value="0.00"></label><label>{{ $t.plus_offset }} <input type="number" name="plus-offset" min="-360" max="360" step="0.01" required value="0.00"></label><label><input type="checkbox" name="overlap-reference">{{ $t.overlap_reference }}</label><label>{{ $t.phase_clock }} <select name="phase-clock"><option value="4" selected>4 ns</option><option value="0">{{ $t.ideal_clock }}</option></select></label></div>
+    <div class="g-opts-row pi-timing-readout"><label>{{ $t.actual_tacc }} <input type="text" name="actual-tacc" readonly value="" aria-label="{{ $t.actual_tacc }}"> ms</label><label>{{ $t.ideal_tacc }} <input type="text" name="ideal-tacc" readonly value="" aria-label="{{ $t.ideal_tacc }}"> ms</label><label>{{ $t.reference_mismatch }} <input type="text" name="reference-mismatch" readonly value="" aria-label="{{ $t.reference_mismatch }}"> °</label></div><p class="pi-reference-timing zg-small" aria-live="polite"></p><details class="g-hints pi-phase-hints"><summary>{{ $t.phase_timing_title }}</summary><p>{{ $t.phase_timing_note }}</p><p>α₋ = α₀ + δ₋; α₊ = α₀ + δ₊ + 360°νc t; νc = ν₊ + ν₋.</p><p><a href="https://doi.org/10.1140/epja/s10050-023-00935-7" target="_blank" rel="noopener">{{ $t.phase_timing_source }}</a></p></details>
+    <details class="g-hints"><summary>{{ $t.detector_practice }}</summary><div class="g-opts-row"><label>{{ $t.angular_floor }} <input type="number" name="floor" min="0" max="100" step="0.01" value="0"></label><label>{{ $t.centroid_counts }} <input type="number" name="centroid-count" min="1" max="1000000" value="100"></label><label>{{ $t.seed_label }} <input type="number" name="pi-seed" min="0" max="4294967295" value="20261007"></label><label><input type="checkbox" name="practice-filter"> {{ $t.practice_filter }}</label></div></details>
+    <div class="pi-man" hidden>
+      <label class="pi-ions">{{ $t.pi_ions }} <input type="text" name="ions" class="g-text" value="84Sr, 84Rb, 84Kr" spellcheck="false"></label>
+      <span class="pi-bad g-warn"></span>
+      <div class="zg-row pi-presets"><span class="zg-muted">{{ $t.pi_presets }}:</span>
+        <button type="button" class="zg-btn zg-btn-ghost" data-act="preset" data-ions="84Sr, 84Rb, 84Kr">A = 84</button>
+        <button type="button" class="zg-btn zg-btn-ghost" data-act="preset" data-ions="100Sn, 100In, 100Cd, 100Ag">A = 100</button>
+        <button type="button" class="zg-btn zg-btn-ghost" data-act="preset" data-ions="129Sb, 129mSb, 129Sn, 129mSn">¹²⁹Sb/Sn + m</button>
+        <button type="button" class="zg-btn zg-btn-ghost" data-act="preset" data-ions="133Cs, 133Xe, 12C11">¹³³Cs, ¹²C₁₁</button>
+        <button type="button" class="zg-btn zg-btn-ghost" data-act="preset" data-ions="85Rb, 170Yb+2, 87Rb:0.3">q = 1, 2</button></div>
+      <p class="zg-muted zg-small">{{ $t.pi_syntax }}</p>
+    </div>
+    <div class="g-rfq-grid"><canvas width="420" height="420"></canvas><canvas width="420" height="420"></canvas></div>
+    <div class="pi-freq"></div><div class="g-opts-row"><label>{{ $t.t180_target }} <select name="t180-target"></select></label><label>{{ $t.t180 }} <input type="number" name="t180" readonly step="0.01"></label><button type="button" class="zg-btn zg-btn-ghost" data-act="apply180">{{ $t.apply180 }}</button></div><p class="zg-muted">{{ $t.turn_note }}</p>
+    <details class="g-hints"><summary>{{ $t.compare_title }}</summary>
+      <div class="g-opts-row"><label><input name="compare-times" type="checkbox">{{ $t.compare_times }}</label><label>t₂ (ms) <input name="compare-t2" type="number" min="0.01" max="10000" step="0.01" value="100"></label><label>t₃ (ms) <input name="compare-t3" type="number" min="0.01" max="10000" step="0.01" value="500"></label></div>
+      <div class="pi-times" hidden><canvas width="720" height="260" aria-label="{{ $t.wrapped_sep }}"></canvas><div class="pi-comparison"></div></div>
+      <p class="zg-muted">{{ $t.compare_note }}</p>
+    </details>
+    <p class="zg-muted">{{ $t.phase_note }}</p><p class="zg-muted">{{ $t.separation_note }}</p>
+    <div class="g-sliders">
+      <label class="g-slider">{{ $t.detector_radius }} <input type="range" name="radius" min="0.10" max="30.00" step="0.01" value="10.00"> <input type="number" class="g-num" data-for="radius" min="0.10" max="30.00" step="0.01"><span class="g-unit">mm</span></label>
+      <label class="g-slider">{{ $t.requested_tacc }} <input type="range" name="tacc" min="0.01" max="10000" step="0.01" value="50"> <input type="number" class="g-num" data-for="tacc" step="0.01"><span class="g-unit">ms</span></label>
+      <label class="g-slider">{{ $t.pi_spot }} <input type="range" name="spot" min="1" max="100" step="0.01" value="6"> <input type="number" class="g-num" data-for="spot" step="0.01"><span class="g-unit">0.1 mm</span></label>
+      <label class="g-slider">{{ $t.pi_ratio }} <input type="range" name="ratio" min="0" max="90" step="0.01" value="30"> <input type="number" class="g-num" data-for="ratio" step="0.01"><span class="g-unit">%</span></label>
+      <label class="g-slider">{{ $t.pi_cfrac }} <input type="range" name="cfrac" min="0" max="50" step="0.01" value="10"> <input type="number" class="g-num" data-for="cfrac" step="0.01"><span class="g-unit">%</span></label>
+      <label class="g-slider">U₀ <input type="range" name="u0" min="0.1" max="200" step="0.01" value="100.00"> <input type="number" class="g-num" data-for="u0" step="0.01"><span class="g-unit">V</span></label>
+      <label class="g-slider">d <input type="range" name="dch" min="1" max="50" step="0.01" value="26.05"> <input type="number" class="g-num" data-for="dch" step="0.01"><span class="g-unit">mm</span></label>
+    </div>
+    <div class="zg-row"><button type="button" class="zg-btn" data-act="shot">{{ $t.shot }}</button><label>{{ $t.separation_target }} <select name="separation-preset"><option value="0.5">0.50σ</option><option value="1">1.00σ</option><option value="2">2.00σ</option><option value="3" selected>3.00σ</option><option value="2.355">2.355σ (FWHM)</option><option value="4">4.00σ</option><option value="5">5.00σ</option><option value="6">6.00σ</option><option value="10">10.00σ</option><option value="custom">{{ $t.custom_sigma }}</option></select></label><label>{{ $t.custom_sigma }} <input type="number" name="separation-sigma" min="0.01" max="100" step="0.01" required data-decimal-places="3" value="3.00" aria-label="{{ $t.custom_sigma }}"></label><button type="button" class="zg-btn zg-btn-ghost" data-act="auto">{{ $t.pi_auto }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="clear">{{ $t.new }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png">⤓ {{ $t.png }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="png2">⤓ {{ $t.png }} (φ)</button><button type="button" class="zg-btn zg-btn-ghost" data-act="csv">⤓ {{ $t.csv }}</button><button type="button" class="zg-btn zg-btn-ghost" data-act="fcsv">⤓ ν {{ $t.csv }}</button></div><p class="zg-small zg-muted">{{ $t.sigma_help }}</p>
+    <button type="button" class="zg-btn zg-btn-ghost" data-act="json">{{ $t.inputs_results }}</button><p class="g-msg" aria-live="polite"></p>
+    <details class="g-hints"><summary>💡 {{ $t.hints }}</summary><p>{{ $t.pi_h }}</p><p>{{ $t.pi_fh }}</p><h3>{{ $t.energy_hint_title }}</h3><p>{{ $t.energy_hint_note }}</p><p class="pi-energy-hint" aria-live="polite"></p></details></section>

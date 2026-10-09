@@ -14,7 +14,7 @@
 <div class="zg-lab">
 <datalist id="trap-phase-presets"><option value="0"><option value="45"><option value="90"><option value="180"><option value="270"></datalist>
 
-<section id="penning-tools" data-local-tabs class="zg-tool">{{ partial "zg/local-tabs.html" (dict "id" "penning") }}<div data-local-panel="classic">
+<section id="penning-tools" data-local-tabs class="zg-tool">{{ partial "zg/local-tabs.html" (dict "id" "penning" "fancier" true) }}<div data-local-panel="classic">
 <section class="zg-card zg-lab-sim" data-trap2d>
   <h2>{{ i18n "zg_lab_sim" | default "Ion motion in a Penning trap" }}</h2>
   <p class="zg-muted">{{ i18n "zg_lab_sim_note" | default "A charged particle in a strong magnetic field plus a weak electric quadrupole field moves on two circles at once — the fast modified-cyclotron motion (ν₊) riding on the slow magnetron motion (ν₋) — while oscillating along the field axis (ν_z). The sum ν₊ + ν₋ = ν_c gives the mass." }}</p>
@@ -40,10 +40,7 @@
 </section>
 
 {{ partial "zg/legacy-penning3d.html" . }}
-</div><div data-local-panel="advanced">{{ partial "zg/measurement-workbench.html" (dict "kind" "penning" "id" "penning-motion") }}</div></section>
-<section class="zg-card" id="calibrated-frequencies">
-  {{ partial "zg/calibration-panel.html" (dict "scope" "lab" "full" true) }}
-</section>
+</div><div data-local-panel="advanced">{{ partial "zg/measurement-workbench.html" (dict "kind" "penning" "id" "penning-motion") }}</div><div data-local-panel="fancier" hidden><section class="zg-card" id="calibrated-frequencies">{{ partial "zg/calibration-panel.html" (dict "scope" "lab" "full" true "on" true) }}</section>{{ partial "zg/measurement-workbench.html" (dict "kind" "penning" "id" "penning-motion-fancier" "cal" true) }}</div></section>
 <section class="zg-card">
   <h2>{{ i18n "zg_lab_nuc" | default "Cyclotron-frequency calculator" }}</h2>
   <div class="zg-form">

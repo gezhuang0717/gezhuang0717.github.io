@@ -59,3 +59,25 @@ test('TOF scales with √(m/q)',()=>{
 test('unchecked calibration leaves the ideal-trap result untouched (regression)',()=>{
   const a=ion('133Cs'),f=P.penning(a,7,100,.02605);near(f.nc,P.frequency(a,7),0);
 });
+
+// JYFLTRAP double trap: PyMassScanner default.ini (R31, 2026-07-22) stores trap-1 97Mo 1108887.227 Hz, trap-2 133Cs 808542.788 Hz,
+// ν− = 1653.063 Hz in both traps, TOF calibrants RFQ→T1 82Se 177 µs and T1→T2 133Cs 47.3 µs, and its own outputs for 39K⁺:
+// fc_T1 2757919.066, fc_T2 2757972.066, ν+ 2756319.003, νz 95460.662 Hz, TOF RFQ→T1 122.072 µs, T1→T2 25.610 µs,
+// periods 10.476 / 0.363 / 604.938 µs, 13 keV per Hz. The website must reproduce them.
+test('double trap reproduces the PyMassScanner reference outputs for 39K',()=>{
+  const dt=P.doubleTrapCalibration({traps:{'1':[{ion:ion('97Mo'),nc:1108887.227,nm:1653.063}],'2':[{ion:ion('133Cs'),nc:808542.788,nm:1653.063}]},
+    tof:{rfqT1:{ion:ion('82Se'),t:177},t1T2:{ion:ion('133Cs'),t:47.3}}});
+  const f=P.doubleTrapFrequencies(ion('39K'),dt);
+  near(f.trap1.nc,2757919.066,6e-4);near(f.trap2.nc,2757972.066,6e-4);near(f.trap2.np,2756319.003,6e-4);near(f.trap2.nz,95460.662,6e-4);
+  near(f.tofRfqT1,122.072,6e-4);near(f.tofT1T2,25.610,6e-4);
+  near(f.periodsUs.axial,10.476,6e-4);near(f.periodsUs.cyclotron,0.363,6e-4);near(f.periodsUs.magnetron,604.938,6e-4);
+  assert.equal(Math.round(f.keVperHz),13);
+  assert.ok(dt.fieldRatio>1&&dt.fieldRatio-1<1e-4);   // the two traps sit at slightly different fields of the same magnet
+});
+test('double trap needs at least one trap calibrant; TOF includes the isomer energy',()=>{
+  assert.throws(()=>P.doubleTrapCalibration({traps:{}}));
+  const dt=P.doubleTrapCalibration({traps:{'2':[{ion:ion('133Cs'),nc:808542.788,nm:1653.063}]},tof:{t1T2:{ion:ion('133Cs'),t:47.3}}});
+  const g=P.doubleTrapFrequencies(ion('133Xe'),dt),m=P.doubleTrapFrequencies(ion('133mXe'),dt);
+  assert.equal(g.trap1,null);assert.ok(m.tofT1T2>g.tofT1T2);
+  near(m.tofT1T2/g.tofT1T2,Math.sqrt(ion('133mXe').ionMassU/ion('133Xe').ionMassU),1e-12);
+});
