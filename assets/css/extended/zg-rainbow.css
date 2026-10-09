@@ -366,3 +366,17 @@ main section > article.mt-6::before{content:"";position:absolute;left:0;top:12px
 .zg-decimal-arrows button:focus-visible{outline:2px solid #8e4ec6;outline-offset:1px}
 .g-sliders{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 @media(max-width:640px){.g-slider{flex-wrap:wrap}.g-slider input[type=range]{flex:1 1 100%;order:2}.g-slider .zg-decimal-spin{margin-inline-start:auto}}
+
+/* CAL1 calibrant-frequency panel (layouts/_partials/zg/calibration-panel.html) */
+.zg-cal{margin:.8rem 0;padding:.5rem .8rem;border:1px solid var(--zg-line);border-radius:.7rem;background:var(--zg-card)}
+.zg-cal>summary{cursor:pointer;font-weight:600}
+.zg-cal-badge{display:inline-block;margin-inline-start:.4rem;padding:0 .45rem;border-radius:999px;font-size:.75rem;font-weight:600;border:1px solid var(--zg-line);opacity:.8}
+.zg-cal-badge.on{background:#30a46c;border-color:#30a46c;color:#fff;opacity:1}
+.zg-cal-body{margin-top:.5rem}
+.zg-cal-tablewrap{overflow-x:auto;max-width:100%}
+.zg-cal-cals input{width:100%;min-width:5.5rem;font:inherit;padding:.15rem .3rem;border:1px solid var(--zg-line);border-radius:.3rem;background:transparent;color:inherit}
+.zg-cal-cals input[name=c-nc]{min-width:9rem}.zg-cal-cals input[name=c-nm]{min-width:7rem}
+@media(max-width:640px){.zg-cal-cals thead{display:none}.zg-cal-cals tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem .6rem;padding:.4rem 0;border-bottom:1px solid var(--zg-line)}.zg-cal-cals td{display:block;padding:0;border:0}.zg-cal-cals td[data-label]::before{content:attr(data-label);display:block;font-size:.75rem;opacity:.7}.zg-cal-cals input,.zg-cal-cals input[name=c-nc],.zg-cal-cals input[name=c-nm]{min-width:0}}
+.zg-cal-cals input[name=c-q]{min-width:3rem}
+.zg-cal-out{margin:.4rem 0;overflow-wrap:anywhere}
+.zg-cal-ions{display:block;margin:.5rem 0}.zg-cal-ions textarea{display:block;width:100%;font:inherit;margin-top:.25rem}

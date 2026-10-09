@@ -125,7 +125,9 @@
       } catch (e) { controls.querySelector(".wb-cal-result").textContent = e.message; }
       displayRows = xs.map((x, i) => [x, ...curves.filter(c => !c.bars).map(c => c.points[i][1])]);
     }
-    function tofParameters() { return { B: val("B"), T: val("T") / 1000, scheme: $("scheme").value }; }
+    /* CAL1: calibrant-based field (and ν−/νz) when the calibration box is checked */
+    const calEl = root.querySelector("[data-cal-panel]"), calOf = () => (window.ZGCal ? window.ZGCal.active(calEl) : null);
+    function tofParameters() { const c = calOf(); return { B: c ? c.B : val("B"), T: val("T") / 1000, scheme: $("scheme").value, calibrated: !!c }; }
     function renderTOF() {
       parameters = tofParameters(); const target = Math.min(val("target"), ions.length - 1); $("target").value = target;
       [...$("target").options].forEach((o, i) => { o.hidden = i >= ions.length; o.textContent = ions[i]?.label || "—"; });
@@ -149,11 +151,11 @@
     }
     function renderPenning() {
       parameters = { B: val("B"), voltage: val("voltage"), d: val("d") / 1000, rp: val("rp"), rm: val("rm"), axial: val("axial"), duration: val("duration") * 1e-6, x0:val("x0"),y0:val("y0"),z0:val("z0") };
-      model = P.penning(ions[0], parameters.B, parameters.voltage, parameters.d);
+      { const c = calOf(); if (c) { parameters.B = c.B; parameters.calibrated = c.list.map(x => x.label).join(", ") + " · " + c.mode; } model = c ? P.calibratedPenning(ions[0], c) : P.penning(ions[0], parameters.B, parameters.voltage, parameters.d); }
       if (!model.stable) { orbit = []; displayRows = []; plot(canvas("trajectory"), [], { x: [-1, 1], y: [-1, 1], xlabel: "x (mm)", ylabel: "y (mm)" }); summary.innerHTML = `<p><b>${model.marginal ? "Marginal confinement" : "Unconfined / invalid ideal-trap parameters"}</b>. νc² − 2νz² must be positive and U₀ > 0 for confinement.</p>`; return; }
       const count = Math.max(200, Math.ceil(model.np * parameters.duration * 24)); if (count > 60000) throw new Error("Shorten the trajectory duration: at least 24 samples per cyclotron cycle are required.");
       orbit = Array.from({ length: count + 1 }, (_, i) => { const time = parameters.duration * i / count; return [time, parameters.x0 + parameters.rp * Math.cos(2 * Math.PI * model.np * time) + parameters.rm * Math.cos(2 * Math.PI * model.nm * time), parameters.y0 - parameters.rp * Math.sin(2 * Math.PI * model.np * time) - parameters.rm * Math.sin(2 * Math.PI * model.nm * time), parameters.z0 + parameters.axial * Math.cos(2 * Math.PI * model.nz * time)]; });
-      summary.innerHTML = `<p>νc = <b>${fmt(model.nc, 10)} Hz</b>; ν+ = ${fmt(model.np, 10)} Hz; ν− = ${fmt(model.nm, 10)} Hz; νz = ${fmt(model.nz, 10)} Hz.</p><p>ν+ + ν− = νc; ν+² + ν−² + νz² = νc². t = ${fmt(parameters.duration * 1e6)} µs, ${count + 1} samples.</p><p>${T.penning_note}</p>`;
+      summary.innerHTML = (parameters.calibrated ? `<p>⚙ ${esc(parameters.calibrated)} · B = ${fmt(parameters.B, 10)} T${model.snc != null ? ` · σνc = ${fmt(model.snc, 3)} Hz` : ""}</p>` : "") + `<p>νc = <b>${fmt(model.nc, 10)} Hz</b>; ν+ = ${fmt(model.np, 10)} Hz; ν− = ${fmt(model.nm, 10)} Hz; νz = ${fmt(model.nz, 10)} Hz.</p><p>ν+ + ν− = νc; ν+² + ν−² + νz² = νc². t = ${fmt(parameters.duration * 1e6)} µs, ${count + 1} samples.</p><p>${T.penning_note}</p>`;
       displayRows = orbit; paintOrbit();
     }
     function paintOrbit() {
@@ -207,6 +209,7 @@
       } catch (err) { error.hidden = false; error.textContent = err.message; }
     });
     for (let i = 0; i < ionRows; i++) syncStates(i, false, kind === "mr" && i === 1 ? 1 : 0);
+    if (calEl) calEl.addEventListener("zg-cal-change", () => update());
     update();
     if (kind === "tof" && model) { acquisition = P.acquire(ions, parameters, origin - model.span, origin + model.span); fit = P.fitSingle(acquisition.scan, parameters, origin); renderTOF(); }
     new ResizeObserver(() => { if (!model) return; if (kind === "mr") renderMR(); else if (kind === "tof") renderTOF(); else paintOrbit(); }).observe(plots);

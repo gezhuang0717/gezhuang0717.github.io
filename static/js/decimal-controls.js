@@ -4,7 +4,7 @@
   const words={en:['Increase','Decrease'],zh:['增加','减少'],fi:['Suurenna','Pienennä'],de:['Erhöhen','Verringern'],ja:['増やす','減らす']}[lang]||['Increase','Decrease'];
   const scope='[data-games], [data-workbench], .zg-lab';
   function decorate(n) {
-    if(n.dataset.decimalControl||n.readOnly||n.disabled||n.step==='1'||['zg-c-m','zg-r-m1','zg-r-m2','zg-u-v'].includes(n.id)||!n.closest(scope))return;
+    if(n.dataset.decimalControl||n.readOnly||n.disabled||n.step==='1'||['zg-c-m','zg-r-m1','zg-r-m2','zg-u-v'].includes(n.id)||n.closest('[data-full-precision]')||!n.closest(scope))return;  // measured inputs (calibrant frequencies, masses) keep full precision
     n.dataset.decimalControl='true';
     const digits=n.dataset.decimalPlaces==='3'?3:2, factor=10**digits;
     const display=x=>digits===3?x.toFixed(3).replace(/0$/,''):x.toFixed(2);

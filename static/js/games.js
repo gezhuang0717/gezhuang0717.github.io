@@ -89,7 +89,7 @@
     /* ion and field are selectable; ν_c = zeB/(2π m_ion), m_ion = M_atom − z·m_e (AME2020 mass) */
     let NU_REF = 808795.0115, M_CS = 132.905451933, B = 7.0, ZQ = 1, ION = "¹³³Cs⁺", A_ION = 133;
     function setIon() {
-      try { B=+sel("bfield").value; const ion=catalog.resolve(sel("ion").value,{q:+sel("zq").value}); ZQ=ion.q;sel("zq").value=ZQ;M_CS=ion.M;A_ION=ion.A;ION=ion.label;NU_REF=P.frequency(ion,B);box.querySelector(".tof-bad").textContent="";return true; }
+      try { const cal=window.ZGCal?window.ZGCal.active(box.querySelector("[data-cal-panel]")):null; B=cal?cal.B:+sel("bfield").value; const ion=catalog.resolve(sel("ion").value,{q:+sel("zq").value}); ZQ=ion.q;sel("zq").value=ZQ;M_CS=ion.M;A_ION=ion.A;ION=ion.label;NU_REF=P.frequency(ion,B);box.querySelector(".tof-bad").textContent="";return true; }
       catch(e) {box.querySelector(".tof-bad").textContent=e.message;return false;}
     }
     let nuTrue, Trf, scheme, Wd, ions = [], shots = 0, fit = null, reveal = false, step;
@@ -157,7 +157,7 @@
       if (reveal) { const x = X(nuTrue - NU_REF); g.strokeStyle = "#e5484d"; g.lineWidth = 1; g.beginPath(); g.moveTo(x, P.t); g.lineTo(x, P.b); g.stroke(); }
       g.restore();
       g.fillStyle = ink; g.font = "13px system-ui,sans-serif"; g.textAlign = "right";
-      g.fillText(`${ION} · B = ${B} T · ν_c ≈ ${NU_REF.toFixed(1)} Hz · T_rf = ${Trf * 1000} ms (${scheme === "rect" ? "rectangular" : "Ramsey 10–80–10 %"}) · ${ions.length} ions / ${shots} shots`, P.r - 4, P.t + 13);
+      g.fillText(`${ION} · B = ${+B.toFixed(9)} T · ν_c ≈ ${NU_REF.toFixed(1)} Hz · T_rf = ${Trf * 1000} ms (${scheme === "rect" ? "rectangular" : "Ramsey 10–80–10 %"}) · ${ions.length} ions / ${shots} shots`, P.r - 4, P.t + 13);
     }
     const draw = () => { const [g, W, H] = crisp(cv); paint(g, W, H, inkOf(), false); };
     function info() {
@@ -191,6 +191,7 @@
     sl.addEventListener("input", () => { upd(); draw(); });
     ["trf", "scheme", "bfield", "zq"].forEach(n => sel(n).addEventListener("change", reset));
     sel("ion").addEventListener("change", reset);
+    { const ce = box.querySelector("[data-cal-panel]"); if (ce) ce.addEventListener("zg-cal-change", reset); }
     const waitRows = () => rows.length ? reset() : setTimeout(waitRows, 250); waitRows();
     ["view", "theory"].forEach(n => sel(n).addEventListener("change", draw));
     addEventListener("resize", draw);
@@ -491,7 +492,11 @@
       const ground=catalog.resolve(`${st.A}${st.element}`,options), excited=catalog.resolve(`${st.A}${st.element}[${st.source_state_index}]`,options);
       return [{...ground,w:1-r,col:COL[0],src:ground.source},{...excited,w:r,col:COL[1],src:excited.source}];
     }
-    function freqs(sp) { return P.penning({...sp,ionMassU:sp.M-sp.q*P.C.electronU},V("B"),V("u0"),V("dch")/1000); }
+    /* CAL1: with the calibration box checked, νc/ν±/νz come from the calibrant(s) (PyMassScanner style), otherwise the ideal trap */
+    const calEl = box.querySelector("[data-cal-panel]"), calOf = () => (window.ZGCal ? window.ZGCal.active(calEl) : null);
+    const fieldB = () => { const c = calOf(); return c ? c.B : V("B"); };
+    function freqs(sp) { const ion={...sp,ionMassU:sp.M-sp.q*P.C.electronU}, c=calOf(); return c ? P.calibratedPenning(ion,c) : P.penning(ion,V("B"),V("u0"),V("dch")/1000); }
+    if (calEl) calEl.addEventListener("zg-cal-change", () => { hits = []; phaseOffsets = []; try { draw(); } catch (e) { /* drawn on next input */ } });
     const ph = P.wrapPhase;
     const adist = (a, b) => { let d = Math.abs(a - b) % (2 * Math.PI); return Math.min(d, 2 * Math.PI - d); };
     let plottedOrigin = 90;
@@ -499,7 +504,7 @@
     const phaseTiming=(seconds,nc)=>P.phaseTiming(seconds,nc,V("minus-offset"),V("plus-offset"),sel("overlap-reference").checked,V("phase-clock"));
     function phys() {
       if (["tacc","B","spot","ratio","cfrac","u0","dch","radius","floor","centroid-count","pi-seed","phase-offset","separation-sigma","minus-offset","plus-offset"].some(n=>!sel(n).checkValidity())) throw new Error(TL.invalid_physical);
-      if(V("B")===0)throw new Error(TL.zero_field);
+      if(!calOf()&&V("B")===0)throw new Error(TL.zero_field);
       const raw=species(),reference=freqs(raw[0]);
       const timing=phaseTiming(V("tacc")/1000,reference.nc),t=timing.actualSeconds;
       if(t>10+1e-12)throw new Error(TL.invalid_time);
@@ -509,7 +514,7 @@
       const nu = sp[0].nc, resolution=P.phaseResolution(nu,t,V("radius"),V("spot")/10,V("centroid-count"),V("floor")/1000), sig=resolution.defined ? resolution.eventSigma : Infinity;
       let minsep = Infinity, pair = null;
       for (let i = 0; i < sp.length; i++) for (let j = i + 1; j < sp.length; j++) { const d = adist(sp[i].phi, sp[j].phi); if (d < minsep) { minsep = d; pair = [i, j]; } }
-      return { B: V("B"), t, timing, magnetronPhi, sp, nu, sig, d: minsep, pair, sep: sp.length > 1 ? minsep / sig : Infinity, R: resolution.resolvingPower || 0, resolution };
+      return { B: fieldB(), calibrated: !!calOf(), t, timing, magnetronPhi, sp, nu, sig, d: minsep, pair, sep: sp.length > 1 ? minsep / sig : Infinity, R: resolution.resolvingPower || 0, resolution };
     }
     /* hit types: 2 centre spot (no radial motion), 3 magnetron reference, 10+i species i */
     function shoot(n) {
@@ -561,14 +566,14 @@
       const ref = p.sp[0];
       const energy=P.phaseEnergyStep({...ref,ionMassU:ref.M-ref.q*MEU},p.B,p.t);box.querySelector(".pi-energy-hint").textContent=`${TL.reference_label}: ${ref.label}; B = ${p.B.toFixed(2)} T; t = ${(p.t*1000).toFixed(6)} ms; δνc = ${energy.deltaHz.toPrecision(6)} Hz; ${TL.unwrapped_angle}: ${energy.angleDeg.toPrecision(6)}°; ${TL.wrapped_angle}: ${energy.residualDeg.toPrecision(6)}°.`;
       const rowsH = p.sp.map(s => `<tr><td><span class="pi-dot" style="background:${s.col}"></span>${s.label}</td><td>${s.q}</td><td>${(s.M - s.q * MEU).toFixed(8)}<br>σ = ${s.e == null ? "?" : s.e.toPrecision(4)} keV</td>` +
-        `<td>${f3(s.nc)}</td><td>${f3(s.np)}</td><td>${f3(s.nm)}</td><td>${f3(s.nz)}</td><td>${(s.phi * 180 / Math.PI).toFixed(2)}°</td>` +
+        `<td>${f3(s.nc)}${s.snc != null ? `<br><small>± ${s.snc.toPrecision(3)}</small>` : ""}</td><td>${f3(s.np)}</td><td>${f3(s.nm)}</td><td>${f3(s.nz)}</td><td>${(s.phi * 180 / Math.PI).toFixed(2)}°</td>` +
         `<td>${s === ref ? "—" : ((s.nc - ref.nc) >= 0 ? "+" : "") + (s.nc - ref.nc).toFixed(4) + " Hz / " + (adist(s.phi, ref.phi) * 180 / Math.PI).toFixed(2) + "°"}</td>` +
         `<td>${(s.nc*p.t).toFixed(6)}</td><td>${Math.floor(s.nc*p.t)}</td><td>${((s.nc-ref.nc)*p.t).toFixed(6)}</td><td>${deltaDegrees((s.nc-ref.nc)*p.t).toFixed(2)}</td><td>${s===ref?"—":s.nc===ref.nc?"∞":(500/Math.abs(s.nc-ref.nc)).toFixed(2)}</td>` +
         `<td class="zg-muted">${s.src || "NUBASE2020"}${s.est ? " (#)" : ""}</td></tr>`).join("");
       const target=sel("t180-target"),old=target.value;target.innerHTML=p.sp.slice(1).map((s,i)=>`<option value="${i+1}">${s.label}</option>`).join("");if([...target.options].some(o=>o.value===old))target.value=old;
       const other=p.sp[+target.value],time180=other&&other.nc!==ref.nc?500/Math.abs(other.nc-ref.nc):null;sel("t180").value=time180==null?"":time180.toFixed(2);box.querySelector('[data-act="apply180"]').disabled=time180==null||time180>10000||time180<.005;
       box.querySelector(".pi-freq").innerHTML = `<table class="zg-table pi-tab"><thead><tr><th>${TL.ion}</th><th>q</th><th>m_ion (u)</th><th>ν_c (Hz)</th><th>ν₊ (Hz)</th><th>ν₋ (Hz)</th><th>ν_z (Hz)</th><th>φ_c</th><th>Δν_c / Δφ</th><th>${TL.total_turns}</th><th>${TL.complete_turns}</th><th>${TL.delta_turns}</th><th>${TL.residual_phase}</th><th>${TL.t180}</th><th>${TL.pi_mtab}</th></tr></thead><tbody>${rowsH}</tbody></table>` +
-        `<p class="zg-muted pi-inv">ν₊ + ν₋ = ν_c · ν₊² + ν₋² + ν_z² = ν_c² · ν₋ ≈ U₀/(4πB d²) (${TL.pi_mindep}) ${p.sp.some(s => !s.stable) ? " · ⚠ " + TL.pi_unstable : ""}</p>`;
+        `<p class="zg-muted pi-inv">${p.calibrated ? `⚙ ${calOf().list.map(c => c.label).join(", ")} · B = ${p.B.toFixed(9)} T · ${calOf().mode} · ` : ""}ν₊ + ν₋ = ν_c · ν₊² + ν₋² + ν_z² = ν_c² · ν₋ ≈ U₀/(4πB d²) (${TL.pi_mindep}) ${p.sp.some(s => !s.stable) ? " · ⚠ " + TL.pi_unstable : ""}</p>`;
     }
     function timeComparison(p) {
       const host=box.querySelector(".pi-times");host.hidden=!sel("compare-times").checked;

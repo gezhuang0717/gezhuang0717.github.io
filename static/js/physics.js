@@ -238,6 +238,62 @@
     const turns=deltaHz*time,angleDeg=turns===0?0:360*turns;
     return {energyKeV,massStepU,deltaHz,turns,angleDeg,residualDeg:(wrapPhase(2*Math.PI*turns+Math.PI)-Math.PI)*180/Math.PI};
   }
-  const api = { C, FWHM, numeric, primitive, combine, constant, pairingIndicator, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseTiming, phaseEnergyStep };
+  /* ---------- calibrant-based trap frequencies (as in PyMassScanner, ame_legacy 172–219) ----------
+     A calibrant is a resolved ion (catalogue.resolve) with a measured cyclotron frequency nc ± snc and magnetron
+     frequency nm ± snm (Hz). The effective field follows from nc = qeB/(2π m_ion); every other ion or state is scaled by
+     the frequency-ratio law nc(ion) = nc(cal)·(m_cal/m_ion)·(q_ion/q_cal) (isomers include Ex through the catalogue mass).
+     Modes:  "fixed-minus" (PyMassScanner): ν− is the calibrant's ν− for every ion; ν+ = νc − ν−; νz = √(2ν+ν−).
+             "ideal": νz² ∝ q/m from the calibrant (ideal quadrupole), ν± = [νc ± √(νc² − 2νz²)]/2 (mass-dependent ν−).
+     Uncertainty: relative σ of νc combines the calibrant σνc and the mass covariance of shared primitives (AME/NUBASE inputs),
+     so an ion identical to the calibrant returns exactly σνc; several calibrants are averaged with weights 1/σB². */
+  function massTerms(ion) {               /* u per keV coefficients of the atomic-mass primitives of an ion */
+    const t = {}; for (const [id, x] of Object.entries(ion.value?.terms || {})) t[id] = { c: x.c, e: x.e }; return t;
+  }
+  function trapCalibration(calibrants, mode = "fixed-minus") {
+    if (!Array.isArray(calibrants) || !calibrants.length) throw new Error("At least one calibrant is required.");
+    if (!["fixed-minus", "ideal"].includes(mode)) throw new Error("Unknown calibration mode.");
+    const list = calibrants.map(c => {
+      const ion = c.ion, nc = +c.nc, nm = +c.nm, snc = +(c.snc || 0), snm = +(c.snm || 0);
+      if (!(ion && ion.ionMassU > 0 && ion.q > 0)) throw new Error("Calibrant ion unavailable.");
+      if (!(nc > 0) || !(nm > 0) || !(nm < nc / 2) || !(snc >= 0) || !(snm >= 0)) throw new Error("Calibrant needs νc > 0, 0 < ν− < νc/2 and nonnegative uncertainties.");
+      const m = ion.ionMassU, B = 2 * Math.PI * nc * m * C.uKg / (ion.q * C.e);
+      const terms = massTerms(ion), massSigma = Object.values(terms).some(t => !numeric(t.e)) ? null : Math.sqrt(Object.values(terms).reduce((s, t) => s + (t.c * t.e) ** 2, 0));
+      const relB = massSigma == null ? null : Math.hypot(snc / nc, massSigma / m);
+      const np = nc - nm, nz2 = 2 * np * nm;
+      return { ion, label: ion.label, q: ion.q, m, nc, snc, nm, snm, np, nz: Math.sqrt(nz2), k: nz2 * m / ion.q, B, sB: relB == null ? null : B * relB, terms };
+    });
+    const known = list.every(c => c.sB > 0);
+    const w = list.map(c => known ? 1 / c.sB ** 2 : 1), W = w.reduce((a, b) => a + b, 0), a = w.map(x => x / W);
+    const B = list.reduce((s, c, i) => s + a[i] * c.B, 0);
+    const sB = list.every(c => c.sB != null) ? Math.sqrt(list.reduce((s, c, i) => s + (a[i] * c.sB) ** 2, 0)) : null;
+    const ppb = list.map(c => (c.B - B) / B * 1e9);
+    const chi2 = known && list.length > 1 ? list.reduce((s, c) => s + ((c.B - B) / c.sB) ** 2, 0) : null;
+    const k = list.reduce((s, c, i) => s + a[i] * c.k, 0), nm = list.reduce((s, c, i) => s + a[i] * c.nm, 0);
+    return { mode, list, weights: a, B, sB, ppb, chi2, birge: chi2 == null ? null : Math.sqrt(chi2 / (list.length - 1)), k, nm,
+      convention: "nc ∝ q/m_ion (m_ion = M_atom − q·m_e); ν+ + ν− = νc; ν+² + ν−² + νz² = νc²" };
+  }
+  function calibratedPenning(ion, cal) {
+    if (!cal || !cal.list) throw new Error("Calibration unavailable.");
+    if (!(ion.ionMassU > 0 && ion.q > 0)) throw new Error("Ion unavailable.");
+    const m = ion.ionMassU, q = ion.q, nc = q * C.e * cal.B / (2 * Math.PI * m * C.uKg);
+    /* σ(ln νc) = Σ_i a_i ln νc,i − ln m_ion + Σ a_i ln m_cal,i  → gradient over shared mass primitives */
+    const own = massTerms(ion), g = {};
+    let unknown = Object.values(own).some(t => !numeric(t.e)) || cal.list.some(c => Object.values(c.terms).some(t => !numeric(t.e)));
+    cal.list.forEach((c, i) => { for (const [id, t] of Object.entries(c.terms)) { g[id] ||= { c: 0, e: t.e }; g[id].c += cal.weights[i] * t.c / c.m; } });
+    for (const [id, t] of Object.entries(own)) { g[id] ||= { c: 0, e: t.e }; g[id].c -= t.c / m; }
+    const rel = unknown ? null : Math.sqrt(Object.values(g).reduce((s, t) => s + (t.c * t.e) ** 2, 0) + cal.list.reduce((s, c, i) => s + (cal.weights[i] * c.snc / c.nc) ** 2, 0));
+    let np, nm, nz, stable;
+    if (cal.mode === "fixed-minus") { nm = cal.nm; np = nc - nm; nz = np > 0 ? Math.sqrt(2 * np * nm) : NaN; stable = np > nm && nm > 0; }
+    else { const nz2 = cal.k * q / m, D = nc * nc - 2 * nz2; nz = Math.sqrt(nz2); stable = D > 0; np = D >= 0 ? (nc + Math.sqrt(D)) / 2 : null; nm = D >= 0 ? (nc - Math.sqrt(D)) / 2 : null; }
+    const snm = cal.mode === "fixed-minus" ? Math.sqrt(cal.list.reduce((s, c, i) => s + (cal.weights[i] * c.snm) ** 2, 0)) : null;
+    return { nc, snc: rel == null ? null : nc * rel, relSigma: rel, np, nm, nz, snm, stable, marginal: false, B: cal.B, mode: cal.mode, calibrated: true,
+      keVperHz: m * C.uKeV / nc, convention: cal.convention };
+  }
+  /* time of flight ∝ √(m/q) relative to a calibrant time (same flight path, same energy per charge) */
+  function tofScale(tCal, calIon, ion) {
+    if (!(tCal > 0 && calIon.ionMassU > 0 && ion.ionMassU > 0)) throw new Error("Invalid TOF scaling input.");
+    return tCal * Math.sqrt((ion.ionMassU / ion.q) / (calIon.ionMassU / calIon.q));
+  }
+  const api = { C, FWHM, numeric, primitive, combine, constant, pairingIndicator, catalogue, load, frequency, penning, mrtof, calibration, conversion, tof, tofMean, tofShape, mixture, rng, gaussian, acquire, fitSingle, wrapPhase, phaseResolution, mathieuA0: MA0, mathieuB1: MB1, mathieuStable, mathieuParameters, rfqCutoffs, shortestPhaseTime, phaseTiming, phaseEnergyStep, trapCalibration, calibratedPenning, tofScale };
   host.ZGPhysics = api; if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);

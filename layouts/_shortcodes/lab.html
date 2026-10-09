@@ -41,6 +41,9 @@
 
 {{ partial "zg/legacy-penning3d.html" . }}
 </div><div data-local-panel="advanced">{{ partial "zg/measurement-workbench.html" (dict "kind" "penning" "id" "penning-motion") }}</div></section>
+<section class="zg-card" id="calibrated-frequencies">
+  {{ partial "zg/calibration-panel.html" (dict "scope" "lab" "full" true) }}
+</section>
 <section class="zg-card">
   <h2>{{ i18n "zg_lab_nuc" | default "Cyclotron-frequency calculator" }}</h2>
   <div class="zg-form">
@@ -89,6 +92,7 @@
 
 </div>
 <script defer src="{{ "js/physics.js" | relURL }}"></script>
+<script defer src="{{ "js/calibration.js" | relURL }}"></script>
 <script defer src="{{ "js/workbenches.js" | relURL }}"></script>
 <script defer src="{{ "js/topic-navigation.js" | relURL }}"></script>
 <script defer src="{{ "js/decimal-controls.js" | relURL }}"></script>

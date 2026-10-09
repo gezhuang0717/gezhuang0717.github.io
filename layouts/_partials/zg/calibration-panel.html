@@ -1,0 +1,26 @@
+{{- /* Shared calibrant-frequency panel (CAL1). Params: scope (string), full (bool: ion list + results table).
+       Script: static/js/calibration.js (auto-initialised), physics in static/js/physics.js (trapCalibration, calibratedPenning). */ -}}
+{{- $k := cond (hasPrefix site.Language.Lang "zh") "zh" site.Language.Lang -}}
+{{- $L := merge (index hugo.Data.calibration_labels "en") (index hugo.Data.calibration_labels $k | default dict) -}}
+<details class="zg-cal" data-cal-panel data-full-precision data-scope="{{ .scope }}"{{ if .full }} data-full open{{ end }}
+  data-catalogue="{{ "data/nuclear-states.json" | relURL }}" data-ame="{{ "data/ame2020.json" | relURL }}" data-labels="{{ $L | jsonify }}">
+  <summary>⚙ {{ $L.title }} <span class="zg-cal-badge">{{ $L.off }}</span></summary>
+  <div class="zg-cal-body">
+    <label class="g-chk"><input type="checkbox" name="cal-on"{{ if .full }} checked{{ end }}> {{ $L.use }}</label>
+    <div class="g-opts-row">
+      <label>{{ $L.preset }} <select name="cal-preset"><option value="custom">{{ $L.custom }}</option><option value="cs133" selected>¹³³Cs⁺ · 808 542.788 Hz</option><option value="mo97">⁹⁷Mo⁺ · 1 108 887.227 Hz</option></select></label>
+      <label>{{ $L.source }} <select name="cal-source"><option value="ame" selected>AME2020</option><option value="nubase">NUBASE2020</option></select></label>
+      <label>{{ $L.mode }} <select name="cal-mode"><option value="fixed-minus" selected>{{ $L.fixed }}</option><option value="ideal">{{ $L.ideal }}</option></select></label>
+    </div>
+    <p class="zg-muted zg-small zg-cal-example">ⓘ {{ $L.example }}</p>
+    <div class="zg-cal-tablewrap"><table class="zg-table zg-cal-cals"><thead><tr><th>{{ $L.calibrant }}</th><th>{{ $L.charge }}</th><th>{{ $L.nc }}</th><th>{{ $L.snc }}</th><th>{{ $L.nm }}</th><th>{{ $L.snm }}</th>{{ if .full }}<th>{{ $L.tof }}</th>{{ end }}<th></th></tr></thead><tbody></tbody></table></div>
+    <button type="button" class="zg-btn zg-btn-ghost" data-cal="add">{{ $L.add }}</button>
+    <p class="zg-cal-out" aria-live="polite"></p>
+    {{- if .full }}
+    <label class="zg-cal-ions">{{ $L.ions }}<textarea name="cal-ions" rows="2" spellcheck="false">133Cs, 85Rb, 87Rb, 129Sn, 129mSn, 170Yb+2, 12C11</textarea></label>
+    <div class="zg-row"><button type="button" class="zg-btn" data-cal="compute">{{ $L.compute }}</button><button type="button" class="zg-btn zg-btn-ghost" data-cal="csv">⤓ {{ $L.csv }}</button><button type="button" class="zg-btn zg-btn-ghost" data-cal="json">⤓ {{ $L.json }}</button></div>
+    <div class="zg-cal-results"></div>
+    {{- end }}
+    <details class="g-hints"><summary>💡 ⓘ</summary><p>{{ $L.hint }}</p></details>
+  </div>
+</details>
