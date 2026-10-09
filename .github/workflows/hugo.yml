@@ -1,7 +1,7 @@
 name: Validate and deploy website
 on:
   push:
-    branches: [main, 'codex/**']
+    branches: [main, test, 'codex/**']
   pull_request:
   schedule:
     # Daily feeds refresh at 00:01 and 08:01 Helsinki time. GitHub cron is UTC and best-effort
@@ -30,7 +30,8 @@ env:
 jobs:
   daily:
     # Runs on schedule, on manual request, and on every push to main (a push refreshes Daily only if it is older than 12 h)
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'push' || inputs.fetch)
+    # Daily feeds only on the production repositories; the test/staging site never refreshes or commits.
+    if: github.repository != 'gezhuang0717/test.github.io' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'push' || inputs.fetch)
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -111,6 +112,11 @@ jobs:
           owner=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]'); repo="${GITHUB_REPOSITORY#*/}"
           base="https://${owner}.github.io/"; [ "$(echo "$repo" | tr '[:upper:]' '[:lower:]')" = "${owner}.github.io" ] || base="${base}${repo}/"
           echo "SITE_BASE_URL=$base" >> "$GITHUB_ENV"
+          # Test/staging site: TEST SITE ribbon and noindex (Hugo reads HUGO_PARAMS_* as site params).
+          if [ "$GITHUB_REPOSITORY" = "gezhuang0717/test.github.io" ]; then
+            echo "HUGO_PARAMS_TESTSITE=true" >> "$GITHUB_ENV"
+            echo "HUGO_PARAMS_ROBOTS=noindex, nofollow" >> "$GITHUB_ENV"
+          fi
       - name: Data and recovery tests
         run: |
           python tools/site.py check
@@ -139,8 +145,9 @@ jobs:
           path: public
   deploy:
     needs: validate
-    # Publish the original user site or the owner-selected IGISOL project; other copies only validate.
-    if: always() && (github.repository == format('{0}/{0}.github.io', github.repository_owner) || github.repository == 'gezhuang0717/igisol.github.io') && github.ref == 'refs/heads/main' && needs.validate.result == 'success' && github.event_name != 'pull_request'
+    # Publish the user site, the owner-selected IGISOL project or the test/staging site; other copies
+    # and the `test` branch only validate.
+    if: always() && (github.repository == format('{0}/{0}.github.io', github.repository_owner) || github.repository == 'gezhuang0717/igisol.github.io' || github.repository == 'gezhuang0717/test.github.io') && github.ref == 'refs/heads/main' && needs.validate.result == 'success' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write
