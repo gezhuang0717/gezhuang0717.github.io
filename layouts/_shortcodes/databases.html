@@ -1,0 +1,93 @@
+{{- /*
+  Databases page: data/databases.yaml → server-rendered cards (works without JavaScript; every guide is a <details>),
+  enhanced by static/js/databases.js (search, category chips, favourites, pop-up guides, CSV export, nuclide look-up).
+  Text: field.<lang> with English fallback; UI labels: labels.<lang>.
+*/ -}}
+{{- $d := hugo.Data.databases -}}
+{{- $lang := substr site.Language.Lang 0 2 -}}
+{{- $L := index $d.labels $lang | default $d.labels.en -}}
+{{- $tx := dict -}}
+<link rel="stylesheet" href="{{ "css/databases.css" | relURL }}">
+<div class="zg-db" data-databases data-lang="{{ $lang }}"
+     data-chart="{{ "lab/" | relLangURL }}"
+     data-nubase="{{ "data/nubase2020.json" | relURL }}"
+     data-labels="{{ $L | jsonify }}">
+  <p class="zg-db-note">{{ $L.title_note }}</p>
+
+  <details class="zg-db-help"><summary>ⓘ {{ $L.help_t }}</summary><p>{{ $L.help }}</p></details>
+
+  <section class="zg-db-lookup" aria-labelledby="zg-db-lookup-t">
+    <h2 id="zg-db-lookup-t">{{ $L.lookup_t }}</h2>
+    <p>{{ $L.lookup_p }}</p>
+    <form class="zg-db-lookup-f" onsubmit="return false">
+      <input type="text" name="nuc" placeholder="100Sn" aria-label="{{ $L.lookup_t }}" autocomplete="off" spellcheck="false">
+      <button type="submit">{{ $L.lookup_go }}</button>
+    </form>
+    <div class="zg-db-lookup-out" aria-live="polite"></div>
+  </section>
+
+  <div class="zg-db-tools" hidden>
+    <input type="search" name="q" placeholder="{{ $L.search }}" aria-label="{{ $L.search }}">
+    <div class="zg-db-chips" role="group">
+      <button type="button" class="on" data-cat="">{{ $L.all }}</button>
+      {{- range $d.categories }}
+      <button type="button" data-cat="{{ .key }}">{{ .icon }} {{ index .name $lang | default .name.en }}</button>
+      {{- end }}
+      <button type="button" data-cat="__fav">{{ $L.fav }}</button>
+    </div>
+    <div class="zg-db-actions">
+      <span class="zg-db-count"></span>
+      <button type="button" data-act="expand">{{ $L.expand }}</button>
+      <button type="button" data-act="collapse">{{ $L.collapse }}</button>
+      <button type="button" data-act="csv">{{ $L.export }}</button>
+    </div>
+  </div>
+  <p class="zg-db-none" hidden>{{ $L.none }}</p>
+
+  {{- range $d.categories }}
+  {{- $cat := . }}
+  <section class="zg-db-cat" data-cat="{{ .key }}">
+    <h2 id="cat-{{ .key }}">{{ .icon }} {{ index .name $lang | default .name.en }}</h2>
+    {{- if eq .key "networks" }}<p class="zg-db-net">{{ $L.networks_p }}</p>{{ end }}
+    <div class="zg-db-grid">
+    {{- range where $d.items "cat" .key }}
+      {{- $kindLabel := index $L (printf "k_%s" .kind) | default .kind }}
+      <article class="zg-db-card" id="db-{{ .id }}" data-id="{{ .id }}" data-kind="{{ .kind }}"
+               data-text="{{ lower (printf "%s %s %s %s %s" .name .org (index .short $lang | default .short.en) .short.en .kind) }}">
+        <header>
+          <h3><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></h3>
+          <button type="button" class="zg-db-fav" aria-pressed="false" title="{{ $L.fav }}">☆</button>
+        </header>
+        <p class="zg-db-org">{{ .org }} · <span class="zg-db-kind" title="{{ $L.kind }}">{{ $kindLabel }}</span></p>
+        <p class="zg-db-short">{{ index .short $lang | default .short.en }}</p>
+        <details class="zg-db-guide">
+          <summary>ⓘ {{ $L.guide }}</summary>
+          <h4>{{ $L.what }}</h4><p>{{ index .what $lang | default .what.en }}</p>
+          {{- with .use }}
+          <h4>{{ $L.use }}</h4>
+          <ol>{{ range (index . $lang | default .en) }}<li>{{ . }}</li>{{ end }}</ol>
+          {{- end }}
+          {{- with .tips }}<h4>{{ $L.tips }}</h4><p>{{ if reflect.IsMap . }}{{ index . $lang | default .en }}{{ else }}{{ . }}{{ end }}</p>{{ end }}
+          {{- with .cite }}<h4>{{ $L.cite }}</h4><p class="zg-db-cite">{{ if reflect.IsMap . }}{{ index . $lang | default .en }}{{ else }}{{ . }}{{ end }}</p>{{ end }}
+        </details>
+        <footer>
+          <a class="zg-db-btn" href="{{ .url }}" target="_blank" rel="noopener">{{ $L.open }} ↗</a>
+          {{- with .help }}<a class="zg-db-btn" href="{{ . }}" target="_blank" rel="noopener">{{ $L.manual }} ↗</a>{{ end }}
+          <button type="button" class="zg-db-btn zg-db-link" hidden>{{ $L.link }}</button>
+        </footer>
+      </article>
+    {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  <section class="zg-db-terms">
+    <h2>{{ $L.terms_t }}</h2>
+    {{- range $d.terms }}
+    <details id="term-{{ .key }}"><summary>{{ index .name $lang | default .name.en }}</summary><p>{{ index .text $lang | default .text.en }}</p></details>
+    {{- end }}
+  </section>
+
+  <dialog class="zg-db-dialog"><form method="dialog"><button class="zg-db-x" aria-label="{{ $L.close }}">×</button></form><div class="zg-db-dbody"></div></dialog>
+</div>
+<script defer src="{{ "js/databases.js" | relURL }}"></script>

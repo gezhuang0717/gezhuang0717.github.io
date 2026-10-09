@@ -1,0 +1,44 @@
+/* Databases page (layouts/_shortcodes/databases.html) */
+.zg-db{--db-line:rgba(127,127,160,.28);--db-soft:rgba(127,127,160,.08);--db-accent:#3e63dd}
+.zg-db h2{margin-top:1.6em}
+.zg-db-note{font-size:1.05em}
+.zg-db-help,.zg-db-lookup{border:1px solid var(--db-line);border-radius:10px;padding:.6em .9em;margin:.8em 0;background:var(--db-soft)}
+.zg-db-help summary{cursor:pointer;font-weight:600}
+.zg-db-lookup h2{margin:.2em 0 .3em;font-size:1.15em}
+.zg-db-lookup-f{display:flex;gap:.5em;flex-wrap:wrap}
+.zg-db-lookup-f input{flex:1 1 10em;min-width:0;padding:.35em .6em;border:1px solid var(--db-line);border-radius:6px;background:transparent;color:inherit}
+.zg-db button,.zg-db-btn{font:inherit;font-size:.9em;padding:.25em .7em;border:1px solid var(--db-line);border-radius:999px;background:transparent;color:inherit;cursor:pointer;text-decoration:none;display:inline-block;margin:.15em .2em .15em 0}
+.zg-db button:hover,.zg-db-btn:hover{border-color:var(--db-accent)}
+.zg-db-tools{position:sticky;top:0;z-index:5;padding:.5em 0;background:rgba(255,255,255,.94);backdrop-filter:blur(6px)}
+html.dark .zg-db-tools{background:rgba(23,23,30,.94)}
+.zg-db-tools input[type=search]{width:100%;padding:.45em .7em;border:1px solid var(--db-line);border-radius:8px;background:transparent;color:inherit}
+.zg-db-chips{display:flex;flex-wrap:wrap;margin:.4em 0}
+.zg-db-chips button.on{background:var(--db-accent);border-color:var(--db-accent);color:#fff}
+.zg-db-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.2em}
+.zg-db-count{margin-right:auto;opacity:.75;font-size:.9em}
+.zg-db-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:.8em}
+.zg-db-card{border:1px solid var(--db-line);border-radius:10px;padding:.7em .9em;display:flex;flex-direction:column;min-width:0}
+.zg-db-card.fav{border-color:#f5b800}
+.zg-db-card.hl{box-shadow:0 0 0 3px var(--db-accent)}
+.zg-db-card header{display:flex;justify-content:space-between;align-items:flex-start;gap:.4em}
+.zg-db-card h3{margin:0;font-size:1.05em;overflow-wrap:anywhere}
+.zg-db-fav{border:none!important;font-size:1.2em!important;padding:0 .2em!important;color:#f5b800!important}
+.zg-db-org{margin:.2em 0;font-size:.85em;opacity:.75}
+.zg-db-kind{border-bottom:1px dotted currentColor}
+.zg-db-short{margin:.3em 0;flex:1}
+.zg-db-guide summary{cursor:pointer;color:var(--db-accent);font-size:.92em}
+.zg-db-guide h4,.zg-db-dialog h4{margin:.7em 0 .2em;font-size:.95em}
+.zg-db-card footer{margin-top:.4em}
+.zg-db-cite{font-size:.9em;overflow-wrap:anywhere}
+.zg-db-terms details{border-bottom:1px solid var(--db-line);padding:.35em 0}
+.zg-db-terms summary{cursor:pointer;font-weight:600}
+.zg-db-dialog{max-width:min(42rem,92vw);max-height:85vh;border:1px solid var(--db-line);border-radius:12px;padding:1em 1.2em;color:#1d2433;background:#fff;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+html.dark .zg-db-dialog{background:#1c1c24;color:#e8e8ef}
+.zg-db-dialog::backdrop{background:rgba(0,0,0,.45)}
+.zg-db-x{float:right;border:none!important;font-size:1.4em!important;line-height:1}
+.zg-db-nuc{margin-top:.6em}
+.zg-db-nuc dl{display:grid;grid-template-columns:max-content 1fr;gap:.2em 1em;margin:.4em 0}
+.zg-db-nuc dt{opacity:.75}.zg-db-nuc dd{margin:0}
+.zg-db-bad{color:#e5484d}
+.zg-db-est{font-size:.88em;opacity:.8}
+@media print{.zg-db-tools,.zg-db-fav,.zg-db-lookup,.zg-db-link{display:none!important}.zg-db-guide{display:block}.zg-db-guide>*{display:block}}

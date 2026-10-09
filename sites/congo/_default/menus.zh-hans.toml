@@ -29,18 +29,22 @@
   pageRef = "games"
   weight = 70
 [[main]]
+  name = "数据库"
+  pageRef = "databases"
+  weight = 80
+[[main]]
   name = "项目"
   pageRef = "projects"
-  weight = 80
+  weight = 90
 [[main]]
   name = "团队"
   pageRef = "group"
-  weight = 90
+  weight = 100
 [[main]]
   name = "博客"
   pageRef = "posts"
-  weight = 100
+  weight = 110
 [[main]]
   name = "简历"
   pageRef = "cv"
-  weight = 110
+  weight = 120

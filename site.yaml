@@ -96,6 +96,13 @@ menu:
     fi: Pelit
     de: Spiele
     ja: ゲーム
+- page: databases
+  label:
+    en: Databases
+    zh: 数据库
+    fi: Tietokannat
+    de: Datenbanken
+    ja: データベース
 - page: projects
   label:
     en: Projects
