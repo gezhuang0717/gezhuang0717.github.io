@@ -1,0 +1,95 @@
+{
+  "entries": [
+    {
+      "date": "2026-10-09",
+      "type": "news",
+      "title": "First Nuclear Clocks Kick Off a Precision Race",
+      "summary": "Author(s): Matteo Rini Two independent teams have built operating nuclear clocks—devices that might one day rival the best atomic clocks and offer new ways to probe fundamental physics. [Physics 19, 139] Published Wed Oct 07, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.139",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-07",
+      "collected_at": "2026-10-09",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-09",
+      "type": "news",
+      "title": "Lensless imaging method enables long-term monitoring of living cells without staining",
+      "summary": "In a study led by Tampere University, researchers have developed a new lensless imaging method that produces precise quantitative data on living cells from a single image. The compact system can be placed inside a standard cell-culture incubator, allowing living cells to be…",
+      "url": "https://phys.org/news/2026-10-lensless-imaging-method-enables-term.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-08",
+      "collected_at": "2026-10-09",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-09",
+      "type": "news",
+      "title": "Nonchaotic model reveals how predictability can emerge from seemingly unpredictable dynamics",
+      "summary": "Predicting a system's final outcome from its initial state is the ultimate goal for many physicists. In certain complex systems, however, this goal is thwarted by chaos, where even the subtlest tweaks to the initial state can lead to completely different fates, making the…",
+      "url": "https://phys.org/news/2026-10-nonchaotic-reveals-emerge-seemingly-unpredictable.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-08",
+      "collected_at": "2026-10-09",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-09",
+      "type": "news",
+      "title": "How researchers tell different quantum excitations apart in individual molecules",
+      "summary": "Molecules can be placed in a wide variety of quantum states. How can these states be distinguished in measurements when theoretical models are unreliable? Which excitation process lies behind which measurement signal?",
+      "url": "https://phys.org/news/2026-10-quantum-individual-molecules.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-08",
+      "collected_at": "2026-10-09",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-09",
+      "type": "news",
+      "title": "Layered semiconductor unlocks magnetic control of light emitted by quantum condensates",
+      "summary": "Quantum technologies are considered key technologies of the future. However, research in this field requires not only scientific expertise but sometimes also highly specialized laboratory conditions. Bose–Einstein condensates are a remarkable example, in which atoms move in…",
+      "url": "https://phys.org/news/2026-10-layered-semiconductor-magnetic-emitted-quantum.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-08",
+      "collected_at": "2026-10-09",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-09",
+      "type": "news",
+      "title": "Gravity and light reveal how liquids turn into thin fibers",
+      "summary": "From spiders spinning their webs to the manufacturing of textiles, the formation of fibers from liquids plays an important role in both nature and industry. Yet accurately predicting the properties of such fibers remains a challenge. The fiber is often much thinner than the…",
+      "url": "https://phys.org/news/2026-10-gravity-reveal-liquids-thin-fibers.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-08",
+      "collected_at": "2026-10-09",
+      "verification_status": "feed-collected"
+    }
+  ],
+  "fetched": "2026-10-09T00:54:29+00:00"
+}
