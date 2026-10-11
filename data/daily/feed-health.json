@@ -1,22 +1,20 @@
 {
-  "checked_at": "2026-10-10T07:42:46+00:00",
+  "checked_at": "2026-10-11T00:03:32+00:00",
   "feeds": [
     {
       "source": "arXiv — ion traps & mass spectrometry",
-      "status": "PASS",
-      "matched": 2,
-      "new": 2
+      "status": "FAILED",
+      "error": "HTTP Error 429: Unknown Error"
     },
     {
       "source": "arXiv — nuclear masses, Q-values & astrophysics",
-      "status": "PASS",
-      "matched": 0,
-      "new": 0
+      "status": "FAILED",
+      "error": "HTTP Error 429: Unknown Error"
     },
     {
       "source": "INSPIRE-HEP Jobs — nuclear physics",
       "status": "PASS",
-      "matched": 4,
+      "matched": 1,
       "new": 0
     },
     {
