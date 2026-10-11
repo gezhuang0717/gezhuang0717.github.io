@@ -44,7 +44,37 @@
       "published": "2026-10-10",
       "collected_at": "2026-10-11",
       "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-11",
+      "type": "paper",
+      "title": "You should advertise your conference",
+      "summary": "Nature Physics, Published online: 09 October 2026; doi:10.1038/s41567-026-03507-w Participation in conferences is a great way to learn about a new field and make connections across international and disciplinary boundaries. However, that can only happen if people know where to…",
+      "url": "https://www.nature.com/articles/s41567-026-03507-w",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-09",
+      "collected_at": "2026-10-11",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-11",
+      "type": "paper",
+      "title": "Capture CO 2 concentration",
+      "summary": "Nature Physics, Published online: 09 October 2026; doi:10.1038/s41567-026-03474-2 Enhanced concentrations of greenhouse gases in the atmosphere drive climate change. Oksana Tarasova explains how they are measured.",
+      "url": "https://www.nature.com/articles/s41567-026-03474-2",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-09",
+      "collected_at": "2026-10-11",
+      "verification_status": "feed-collected"
     }
   ],
-  "fetched": "2026-10-11T00:03:32+00:00"
+  "fetched": "2026-10-11T12:08:25+00:00"
 }
