@@ -14,7 +14,84 @@
       "published": "2026-10-11",
       "collected_at": "2026-10-12",
       "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-12",
+      "type": "preprint",
+      "title": "Quantum dynamics of an ion in an RF quadrupole trap with weak octupolar anharmonicity",
+      "summary": "Sukanya Jana et al. — We investigate the quantum dynamics of a single ion confined in a radio-frequency (RF) Paul trap in the presence of weak octupole-induced anharmonicity, as can occur in realistic ion-trap potential. The explicitly time-dependent quadrupole potential is…",
+      "url": "https://arxiv.org/abs/2610.13293v1",
+      "source": "arXiv — ion traps & mass spectrometry",
+      "tags": [
+        "trap"
+      ],
+      "lang": "en",
+      "published": "2026-10-09",
+      "arxiv": "2610.13293v1",
+      "collected_at": "2026-10-12",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-12",
+      "type": "preprint",
+      "title": "Impact of ab initio E1 strength on neutron capture rates along the nickel isotopic chain",
+      "summary": "Francesca Bonaiti et al. — Nucleosynthesis simulations of the r-process require neutron capture rates for neutron-rich nuclei, many of which lie beyond experimental reach. Predicting these rates relies on theoretical calculations of the low-energy electric dipole (E1) strength…",
+      "url": "https://arxiv.org/abs/2610.13868v1",
+      "source": "arXiv — nuclear masses, Q-values & astrophysics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-09",
+      "arxiv": "2610.13868v1",
+      "collected_at": "2026-10-12",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-12",
+      "type": "news",
+      "title": "Hybrid quantum computers could finally get to grips with light and matter",
+      "summary": "Many of nature's most important processes depend on how particles of matter interact with light and other force-carrying particles. So far, however, it has proven difficult for conventional computers to determine how individual particles behave in these interactions.",
+      "url": "https://phys.org/news/2026-10-hybrid-quantum.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-12",
+      "collected_at": "2026-10-12",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-12",
+      "type": "paper",
+      "title": "Morphogenesis of a stratified cell mound at a vortex defect",
+      "summary": "Nature Physics, Published online: 12 October 2026; doi:10.1038/s41567-026-03427-9 In cell monolayers with a vortex-like orientation defect, cells converge towards the core of the defect and form a highly organized three-dimensional mound. This mechanism may be relevant for…",
+      "url": "https://www.nature.com/articles/s41567-026-03427-9",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-12",
+      "collected_at": "2026-10-12",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-12",
+      "type": "paper",
+      "title": "Chip-mediated manipulation of photonic quantum skyrmions",
+      "summary": "Nature Physics, Published online: 12 October 2026; doi:10.1038/s41567-026-03487-x Although photonic quantum skyrmions can be generated as entangled or single-photon states, a means to switch between the two is required for quantum information processing. Now, entangled…",
+      "url": "https://www.nature.com/articles/s41567-026-03487-x",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-12",
+      "collected_at": "2026-10-12",
+      "verification_status": "feed-collected"
     }
   ],
-  "fetched": "2026-10-12T00:56:58+00:00"
+  "fetched": "2026-10-12T14:28:27+00:00"
 }
