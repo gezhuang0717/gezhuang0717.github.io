@@ -1,0 +1,157 @@
+413 links: {'OK': 257, 'CHECK': 138, 'BROKEN': 18}
+BROKEN   0 http://radiology.hku.hk/en/Research-Services/Cyclotron  ← data/facilities/facilities.json ConnectTimeout: HTTPConnectionPool(host='radiology.hku.hk', port=80): Max retries exceeded with url: /en/Research-Services/Cyclotron (Caused by ConnectTimeoutError(<HTTPConnect
+BROKEN   0 http://slcj.uw.edu.pl/en  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.slcj.uw.edu.pl', port=443): Max retries exceeded with url: /en (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_
+BROKEN   0 http://www.aeoi.org.ir  ← data/facilities/facilities.json ReadTimeout: HTTPSConnectionPool(host='www.aeoi.org.ir', port=443): Read timed out. (read timeout=20)
+BROKEN   0 http://www.incan.salud.gob.mx/  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='incan.salud.gob.mx', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VE
+BROKEN   0 http://www.sparklepet.it/en/index.htm  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.sparklepet.it', port=443): Max retries exceeded with url: /en/index.htm (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CER
+BROKEN   0 http://www.tlabs.ac.za  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIF
+BROKEN 404 https://arxiv.org/abs/  ← layouts/_partials/zg/paper.html 
+BROKEN   0 https://chetec-infra.eu/  ← content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/daily_link SSLError: HTTPSConnectionPool(host='chetec-infra.eu', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIF
+BROKEN 404 https://doi.org/10.1016/0029-5582  ← content/en/books/mass-light/standard-model.md 
+BROKEN 404 https://doi.org/10.1016/0370-2693  ← content/en/books/mass-light/cosmology.md; content/zh/books/mass-light/cosmology.md 
+BROKEN   0 https://indico.icc.ub.edu/event/341/  ← data/talks.yaml ReadTimeout: HTTPSConnectionPool(host='indico.icc.ub.edu', port=443): Read timed out. (read timeout=20)
+BROKEN 404 https://physics.nist.gov/cuu/Units/mass.html  ← data/nuclides.yaml 
+BROKEN   0 https://tlabs.ac.za/  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FA
+BROKEN   0 https://www.hkdyfy.cn/en/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.hkdyfy.cn', port=443): Max retries exceeded with url: /en/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.hkdyfy.cn', p
+BROKEN   0 https://www.kxc120.cn/  ← data/facilities/facilities.json ReadTimeout: HTTPSConnectionPool(host='www.kxc120.cn', port=443): Read timed out. (read timeout=20)
+BROKEN   0 https://www.monrol.com.tr/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.monrol.com.tr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.monrol.com.t
+BROKEN   0 https://www.pesrmyy.com/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.pesrmyy.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.pesrmyy.com', 
+BROKEN   0 https://www.slhd.nsw.gov.au  ← data/facilities/facilities.json ReadTimeout: HTTPSConnectionPool(host='slhd.health.nsw.gov.au', port=443): Read timed out. (read timeout=20)
+CHECK  500 http://www.asst-spedalicivili.it  ← data/facilities/facilities.json 
+CHECK  403 http://www.beaconhospital.com.my/cyclotron  ← data/facilities/facilities.json 
+CHECK  501 http://www.ciae.ac.cn/  ← data/facilities/facilities.json 
+CHECK  412 http://www.en.jdyfy.com/index.htm  ← data/facilities/facilities.json 
+CHECK  403 http://www.feofaniya.org  ← data/facilities/facilities.json 
+CHECK  403 http://www.nkti.gov.ph/index.php/services/kidney-pancreas-transplant/pet-ct-center  ← data/facilities/facilities.json 
+CHECK  500 http://www.radnusa.com  ← data/facilities/facilities.json 
+CHECK  403 http://www.svetamarina.com/  ← data/facilities/facilities.json 
+CHECK  429 https://api.crossref.org/works/10.1007/s41365-019-0676-1  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2018.04.043  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2024.169252  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2024.170186  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2026.171513  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nimb.2016.02.006  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nimb.2019.05.029  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nimb.2023.05.007  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nuclphysa.2025.123041  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2022.137135  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2022.137226  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2023.138249  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2023.138371  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2024.138654  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2024.138916  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2024.139094  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2025.139359  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2025.140012  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1038/s41467-026-77082-2  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1038/s41586-022-04827-6  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1051/epjconf/201716501030  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1051/epjconf/201818402013  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1051/epjconf/202329002001  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1051/epjconf/202329002006  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1063/1.5030807  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1063/1.5030815  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1063/5.0213443  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/0031-8949/2015/t166/014009  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/0031-8949/2015/t166/014010  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/0031-8949/2015/t166/014044  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/1674-1137/39/10/104001  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/1674-1137/39/10/106201  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/1742-6596/1643/1/012058  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/1742-6596/1643/1/012090  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevC.103.065502  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevC.106.015501  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevC.106.015502  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevC.108.045502  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevC.110.034325  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevC.111.L031601  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevLett.127.272301  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevLett.128.152501  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevLett.128.152701  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevLett.131.222502  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevLett.133.132503  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevLett.134.042501  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/PhysRevLett.134.172501  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/bgj9-mzcq  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/g393-xx1w  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/kksz-prtb  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/lsp5-qntn  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/mhhn-kmgx  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.106.024310  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.108.054301  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.108.064302  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.108.064315  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.110.014310  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.110.014328  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.110.024314  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.110.034326  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.110.045809  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.111.044314  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.95.014610  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.96.031303  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/physrevc.99.064303  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1103/vp3m-5rpp  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-021-00608-3  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-022-00695-w  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-023-01176-4  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-024-01248-z  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-024-01317-3  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-024-01359-7  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-024-01458-5  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-025-01694-3  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-026-01883-8  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1140/epja/s10050-026-01914-4  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.3389/fphy.2023.1163299  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.3390/s24227261  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.3847/1538-4357/ac80fc  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.3847/2041-8213/ac061f  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.3938/jkps.73.1055  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.7566/JPSCP.35.011023  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.7566/jpscp.31.011036  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.7566/jpscp.31.011073  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.7566/jpscp.35.011025  ← data/publications.yaml 
+CHECK  400 https://doi.org/%s  ← layouts/_partials/zg/paper.html 
+CHECK  403 https://doi.org/10.1002/andp.19053220607  ← content/de/books/mass-light/photons.md; content/en/books/mass-light/light-levels.md; content/en/books/mass-light/photons 
+CHECK  403 https://doi.org/10.1002/andp.19053221004  ← content/en/books/mass-light/light-levels.md; content/en/books/mass-light/mass.md; content/en/books/mass-light/spacetime. 
+CHECK  403 https://doi.org/10.1051/0004-6361/201833910  ← content/de/books/mass-light/cosmology.md; content/en/books/mass-light/cosmology.md; content/fi/books/mass-light/cosmolog 
+CHECK  403 https://doi.org/10.1098/rspa.1927.0039  ← content/en/books/mass-light/photons.md; content/zh/books/mass-light/photons.md 
+CHECK  403 https://doi.org/10.1098/rstl.1802.0004  ← content/en/books/mass-light/light.md; content/zh/books/mass-light/light-levels.md; content/zh/books/mass-light/light.md 
+CHECK  403 https://doi.org/10.1098/rstl.1865.0008  ← content/en/books/mass-light/light-levels.md; content/en/books/mass-light/light.md; content/zh/books/mass-light/light-lev 
+CHECK  403 https://doi.org/10.1103/5n46-717z  ← content/en/books/mass-light/mass.md; content/en/books/mass-light/qcd.md; content/zh/books/mass-light/qcd.md 
+CHECK  403 https://doi.org/10.1103/PhysRev.108.1175  ← content/de/books/mass-light/superconductivity.md; content/en/books/mass-light/superconductivity.md; content/fi/books/mas 
+CHECK  403 https://doi.org/10.1103/PhysRev.122.345  ← content/en/books/mass-light/qcd.md; content/zh/books/mass-light/qcd.md 
+CHECK  403 https://doi.org/10.1103/PhysRev.130.439  ← content/de/books/mass-light/superconductivity.md; content/en/books/mass-light/superconductivity.md; content/fi/books/mas 
+CHECK  403 https://doi.org/10.1103/PhysRev.21.483  ← content/de/books/mass-light/photons.md; content/en/books/mass-light/light-levels.md; content/en/books/mass-light/photons 
+CHECK  403 https://doi.org/10.1103/PhysRev.96.191  ← content/de/books/mass-light/interactions.md; content/en/books/mass-light/interactions.md; content/en/books/mass-light/st 
+CHECK  403 https://doi.org/10.1103/PhysRevD.10.2445  ← content/en/books/mass-light/qcd.md; content/zh/books/mass-light/qcd.md 
+CHECK  403 https://doi.org/10.1103/PhysRevD.102.114042  ← content/de/books/mass-light/qcd.md; content/en/books/mass-light/mass.md; content/en/books/mass-light/qcd.md; content/fi/ 
+CHECK  403 https://doi.org/10.1103/PhysRevD.23.347  ← content/en/books/mass-light/cosmology.md; content/zh/books/mass-light/cosmology.md 
+CHECK  403 https://doi.org/10.1103/PhysRevLett.13.321  ← content/en/books/mass-light/higgs.md; content/zh/books/mass-light/higgs.md 
+CHECK  403 https://doi.org/10.1103/PhysRevLett.13.508  ← content/de/books/mass-light/higgs.md; content/en/books/mass-light/higgs.md; content/fi/books/mass-light/higgs.md; conten 
+CHECK  403 https://doi.org/10.1103/PhysRevLett.13.585  ← content/en/books/mass-light/higgs.md; content/zh/books/mass-light/higgs.md 
+CHECK  403 https://doi.org/10.1103/PhysRevLett.19.1264  ← content/en/books/mass-light/higgs.md; content/en/books/mass-light/standard-model.md; content/zh/books/mass-light/higgs.m 
+CHECK  403 https://doi.org/10.1103/PhysRevLett.30.1343  ← content/en/books/mass-light/qcd.md; content/zh/books/mass-light/qcd.md 
+CHECK  403 https://doi.org/10.1103/PhysRevLett.30.1346  ← content/en/books/mass-light/qcd.md; content/zh/books/mass-light/qcd.md 
+CHECK  403 https://doi.org/10.1103/PhysRevLett.94.092501  ← layouts/_shortcodes/nuclide-chart.html 
+CHECK  403 https://doi.org/10.1103/RevModPhys.29.454  ← content/en/books/mass-light/cosmology.md; content/zh/books/mass-light/cosmology.md 
+CHECK  403 https://doi.org/10.1103/bgj9-mzcq  ← data/daily/manual/2026-09.yaml 
+CHECK  403 https://doi.org/10.7566/JPSCP.35.011023  ← data/gallery.yaml 
+CHECK  403 https://journals.aps.org/prc  ← data/daily_links.yaml 
+CHECK  403 https://journals.aps.org/prl  ← data/daily_links.yaml 
+CHECK  403 https://sciprofiles.com/profile/zhuang-ge  ← content/de/publications.md; content/en/publications.md; content/fi/publications.md; content/ja/publications.md; content/ 
+CHECK  403 https://www-nds.iaea.org/amdc/  ← data/glossary.yaml 
+CHECK  403 https://www-nds.iaea.org/amdc/ame2020/  ← layouts/_shortcodes/nuclide-chart.html; layouts/_shortcodes/nuclide-of-the-day.html 
+CHECK  403 https://www.austin.org.au/PET_for_health_professionals/#Section1  ← data/facilities/facilities.json 
+CHECK  403 https://www.cancer.gov.co/  ← data/facilities/facilities.json 
+CHECK  403 https://www.cardiff.ac.uk/wales-research-diagnostic-pet-imaging-centre  ← data/facilities/facilities.json 
+CHECK  999 https://www.linkedin.com/in/zhuang-ge-847898202  ← site.yaml 
+CHECK  403 https://www.mdpi.com/journal/atoms  ← data/daily_links.yaml 
+CHECK  403 https://www.mdpi.com/journal/sensors/special_issues/8I8CN6PDV1  ← content/de/cv.md; content/de/group.md; content/en/cv.md; content/en/group.md; content/fi/cv.md; content/fi/group.md; con 
+CHECK  403 https://www.researchgate.net/profile/Zhuang-Ge  ← content/de/cv.md; content/en/cv.md; content/fi/cv.md; content/ja/cv.md; content/zh/cv.md; site.yaml 
+CHECK  403 https://www.sciencedirect.com/journal/international-journal-of-mass-spectrometry  ← data/daily_links.yaml 
+CHECK  403 https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a-accelerators-spectrometers-detectors-and-associated-equipment  ← data/daily_links.yaml 
+CHECK  403 https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-b-beam-interactions-with-materials-and-atoms  ← data/daily_links.yaml 
+CHECK  403 https://www.sciencedirect.com/journal/nuclear-physics-a  ← data/daily_links.yaml 
+CHECK  403 https://www.sciencedirect.com/journal/physics-letters-b  ← data/daily_links.yaml 
+CHECK  403 https://www.scopus.com/authid/detail.uri?authorId=56915277300  ← content/de/cv.md; content/de/publications.md; content/en/cv.md; content/en/publications.md; content/fi/cv.md; content/fi 
+CHECK  403 https://www.uc.pt/en/  ← data/facilities/facilities.json 
