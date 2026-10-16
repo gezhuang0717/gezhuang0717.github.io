@@ -1,0 +1,67 @@
+{
+  "entries": [
+    {
+      "date": "2026-10-16",
+      "type": "news",
+      "title": "New spectroscopy method enables direct comparisons of nuclear sizes across heavy elements",
+      "summary": "The size of a nucleus (nuclear charge radius) is an important physical quantity that reflects the arrangement of protons and neutrons within the nucleus. Particularly in deformed nuclei, such as those of rare-earth elements, examining changes in the charge radius can deepen our…",
+      "url": "https://phys.org/news/2026-10-spectroscopy-method-enables-comparisons-nuclear.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-16",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-16",
+      "type": "news",
+      "title": "Silicon qubits surpass 99.99% gate fidelity while operating three at once",
+      "summary": "Silicon spin qubits are a promising platform for building scalable quantum computers as they are compatible with the semiconductor manufacturing technologies used to produce today's computer chips. However, they have an important weakness: silicon spin qubits typically lose…",
+      "url": "https://phys.org/news/2026-10-silicon-qubits-surpass-gate-fidelity.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-16",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-16",
+      "type": "paper",
+      "title": "Precision Hypernuclear Structure from Interaction Cross Sections",
+      "summary": "Author(s): Carlos A. Bertulani We establish interaction cross sections as a quantitative structural observable for hypernuclei. Using the hypertriton, $_{\\mathrm{Λ}}^{3}\\mathrm{H}$, as the most stringent benchmark, microscopic three-body wave functions are combined with a…",
+      "url": "http://link.aps.org/doi/10.1103/vzp5-ttyh",
+      "source": "Physical Review Letters — Nuclear Physics",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-16",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-16",
+      "type": "paper",
+      "title": "Chiral effective field theory analysis of the (“hep”) reaction $S$ factor and the (“hen”) reaction cross section",
+      "summary": "Author(s): M. Viviani, A. Gnech, L. E. Marcucci, A. Kievsky, and L. Girlanda We present a new accurate analysis of the $^{3}\\mathrm{He}(p,{e}^{+}{ν}_{e})^{4}\\mathrm{He}$ (“hep”) reaction at astrophysical energies. The $S$-factor is computed using a state-of-the-art method to…",
+      "url": "http://link.aps.org/doi/10.1103/h98v-cd4t",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-16",
+      "verification_status": "feed-collected"
+    }
+  ],
+  "fetched": "2026-10-16T06:19:22+00:00"
+}
