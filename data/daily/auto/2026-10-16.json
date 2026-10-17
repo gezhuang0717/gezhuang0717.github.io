@@ -304,6 +304,21 @@
       "lang": "en",
       "collected_at": "2026-10-16",
       "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-16",
+      "type": "paper",
+      "title": "Monolayer van der Waals kagome lattice for high-temperature flat-band physics",
+      "summary": "Nature Physics, Published online: 15 October 2026; doi:10.1038/s41567-026-03492-0 The experimental realization of intrinsic 2D kagome materials with controllable flat bands has remained challenging. Now a van der Waals kagome material family is shown to host an isolated,…",
+      "url": "https://www.nature.com/articles/s41567-026-03492-0",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-16",
+      "verification_status": "feed-collected"
     }
   ],
   "fetched": "2026-10-16T19:03:43+00:00"

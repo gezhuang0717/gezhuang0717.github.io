@@ -13,6 +13,7 @@
   const T = JSON.parse(root.dataset.labels || "{}");
   const P=window.ZGPhysics; let catalog=null, selectedState=null;
   const unknown=T.state_unknown;
+  const cardT=cardLabels(document.documentElement.lang);
   const escape=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const cv = root.querySelector("canvas.nc-canvas"), g = cv.getContext("2d");
   const card = root.querySelector(".nc-card"), legend = root.querySelector(".nc-legend"), ptab = root.querySelector(".nc-ptable");
@@ -21,12 +22,21 @@
   const MAGIC = [2, 8, 20, 28, 50, 82, 126], SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
   const sup = n => String(n).replace(/\d/g, d => SUP[d]);
   let rows = [], M = new Map(), EL = [], view = { s: 4, x: 10, y: 0 }, pin = null, hover = null, mode = "decay", filt = "all", anim = null;
-  let chain = null, plotPts = [], modPts = [], plotHover = null;
+  let chain = null, plotPts = [], modPts = [], plotHover = null, plotDomain = null, bands = [], residualPts = [], visibleSeries = [], residualDomain = null;
+  const rc=root.querySelector("canvas.nc-residual"),rg=rc.getContext("2d");
+  const CP = window.ZGChainPlot, rangeMemory = {};
+  let activeChainType = pchain.value;
+  const chainInput = name => root.querySelector(`[name=nc-${name}]`);
+  const axisNumber = name => { const v = chainInput(name).value; return v === '' ? null : Number(v); };
   /* theory masses: MOD[key] = {name, ref, url, map: Map(key → [ME keV, β2·1000])}; src = "ame" or a model key */
-  let MOD = {}, PATHS = {}, src = "ame", modelsLoading = null, extraRows = [];
+  let MOD = {}, PATHS = {}, src = "ame", extraRows = [], modelIndex = null, indexLoading = null, modelLoads = new Map(), modelErrors = new Set(), measured = null, inputTable = null;
+  let evaluated=null,evaluatedData=null,evaluatedWarning=false;
+  const MM=window.ZGMeasuredMasses;
   const msel = root.querySelector("[name=nc-model]"), ovl = root.querySelector(".nc-ovl");
   const key = (Z, N) => Z * 1000 + N;
-  const css = getComputedStyle(document.documentElement), ink = (css.getPropertyValue("--zg-ink") || "").trim() || "#1d2433";
+  let ink = '#1d2433';
+  const updateInk = () => { ink=(getComputedStyle(document.documentElement).getPropertyValue('--zg-ink')||'').trim()||'#1d2433'; };
+  updateInk();
   const X = window.zgExport;
   const lineWidth = () => +(root.querySelector("[name=nc-line-width]")?.value || 1);
   const DPR = () => Math.min(4, Math.max(2, window.devicePixelRatio || 1));   /* render at ≥ 2× for crisp text and lines */
@@ -39,46 +49,12 @@
   /* combine a·x + b·y + … ; uncertainties in quadrature (AME correlations neglected) */
   const comb=P.combine;
   const K=P.constant;
-  const memo = new Map();
+  const memo = {clear:()=>surface.clear()};
   const getM = (s, Z, N) => { const v = MOD[s] && MOD[s].map.get(key(Z, N)); return v ? P.primitive("model:"+s+":"+key(Z,N),v[0],null,false) : null; };
-  const getter = s => s === "ame" ? get : (Z, N) => getM(s, Z, N);
+  const getter = s => s === "ame" ? get : s === "hybrid" ? (z,n)=>inputTable ? MM.getter(inputTable,get)(z,n) : get(z,n) : (Z,N)=>getM(s,Z,N);
   const derived = r => derivedZN(r[0], r[1], "ame");
-  function derivedZN(Z, N, s = "ame") {
-    const k = s + ":" + key(Z, N); if (memo.has(k)) return memo.get(k);
-    const get = getter(s), A = Z + N, m = get(Z, N);
-    const BE = comb([Z, MEH], [N, MEn], [-1, m]);
-    const out = {
-      A, me: m, BE, BEA: BE && A > 0 ? comb([1/A,BE]) : null,
-      sn: comb([1, get(Z, N - 1)], [1, MEn], [-1, m]), s2n: comb([1, get(Z, N - 2)], [2, MEn], [-1, m]),
-      sp: comb([1, get(Z - 1, N)], [1, MEH], [-1, m]), s2p: comb([1, get(Z - 2, N)], [2, MEH], [-1, m]),
-      qbm: comb([1, m], [-1, get(Z + 1, N - 1)]), qec: comb([1, m], [-1, get(Z - 1, N + 1)]), qa: comb([1, m], [-1, get(Z - 2, N - 2)], [-1, MEa]),
-    };
-    /* two-neutron shell gap δ2n = S2n(Z,N) − S2n(Z,N+2) */
-    out.d2n = comb([1, get(Z, N - 2)], [-2, m], [1, get(Z, N + 2)]);   /* = ME(N−2) − 2·ME(N) + ME(N+2) */
-    /* Mass-excess odd–even indicators; no absolute-value clamp. */
-    out.d3n = P.pairingIndicator(get, Z, N, "N", 3);
-    out.d3p = P.pairingIndicator(get, Z, N, "Z", 3);
-    out.d5n = P.pairingIndicator(get, Z, N, "N", 5);
-    out.d5p = P.pairingIndicator(get, Z, N, "Z", 5);
-    out.d2p = comb([1, get(Z - 2, N)], [-2, m], [1, get(Z + 2, N)]);   /* δ2p = S2p(Z) − S2p(Z+2) */
-    /* proton–neutron interaction δVpn (Zhang et al. 1989; Cakirli & Casten 2005) from binding energies B = Z·ME(¹H) + N·ME(n) − ME */
-    const B = (z, n) => comb([z, MEH], [n, MEn], [-1, get(z, n)]);
-    const ze = Z % 2 === 0, ne = N % 2 === 0;
-    out.vpn = ze && ne ? comb([0.25, B(Z, N)], [-0.25, B(Z, N - 2)], [-0.25, B(Z - 2, N)], [0.25, B(Z - 2, N - 2)])
-      : !ze && !ne ? comb([1, B(Z, N)], [-1, B(Z, N - 1)], [-1, B(Z - 1, N)], [1, B(Z - 1, N - 1)])
-      : ze ? comb([0.5, B(Z, N)], [-0.5, B(Z, N - 1)], [-0.5, B(Z - 2, N)], [0.5, B(Z - 2, N - 1)])
-      : comb([0.5, B(Z, N)], [-0.5, B(Z, N - 2)], [-0.5, B(Z - 1, N)], [0.5, B(Z - 1, N - 2)]);
-    out.beta2 = s !== "ame" && MOD[s] && MOD[s].map.get(key(Z, N)) ? { v: MOD[s].map.get(key(Z, N))[1], e: null, est: false } : null;   /* β2 × 1000 */
-    /* Wigner-energy indicator (as in the Mulberry code): W = δVpn(N) − ½[δVpn(N+2) + δVpn(N−2)]; peaks at N = Z.
-       Lazy getter: neighbours only need their δVpn, so there is no recursion chain. */
-    let wig;
-    Object.defineProperty(out, "wig", { get() {
-      if (wig !== undefined) return wig;
-      const vp = derivedZN(Z, N + 2, s).vpn, vm = derivedZN(Z, N - 2, s).vpn;
-      return (wig = out.vpn && vp && vm ? comb([1, out.vpn], [-0.5, vp], [-0.5, vm]) : null);
-    } });
-    memo.set(k, out); return out;
-  }
+  const surface=window.ZGMassSurface.create(s=>getter(s),{get MEn(){return MEn;},get MEH(){return MEH;},get MEa(){return MEa;}},(s,z,n)=>{const b=MOD[s]?.map.get(key(z,n))?.[1];return b==null?null:{v:b,e:null,est:false};},(z,n,q)=>evaluated?.get(z,n,q));
+  const derivedZN=(z,n,s='ame')=>surface.derive(z,n,s);
   /* ME(AME) − ME(model) for the chosen (or default FRDM) model */
   const modelKey = () => src !== "ame" ? src : MOD.frdm2012 ? "frdm2012" : MOD.frdm1995 ? "frdm1995" : Object.keys(MOD)[0];
   const dmod = r => { const mk = modelKey(), a = get(r[0], r[1]), b = mk && getM(mk, r[0], r[1]); return a && b ? { v: a.v - b.v, e: a.e, est: a.est } : null; };
@@ -98,10 +74,23 @@
   const ramp = x => `hsl(${(1 - Math.max(0, Math.min(1, x))) * 270},85%,52%)`;
   const mv = (o, f = 1000) => o == null ? null : o.v / f;
   const D = r => derivedZN(r[0], r[1], src);          /* derived values from the current mass source */
+  const reactionDefinitions={
+    q2bm:{label:'Q(2β⁻)',formula:'ME(Z,N) − ME(Z+2,N−2)',terms:[[0,0,1],[2,-2,-1]]},
+    q2ec:{label:'Q(2EC)',formula:'ME(Z,N) − ME(Z−2,N+2)',terms:[[0,0,1],[-2,2,-1]]},
+    qecbp:{label:'Q(ECβ⁺)',formula:'Q(2EC) − 2mₑc²',terms:[[0,0,1],[-2,2,-1]]},
+    q2bp:{label:'Q(2β⁺)',formula:'Q(2EC) − 4mₑc²',terms:[[0,0,1],[-2,2,-1]]},
+    q4bm:{label:'Q(4β⁻)',formula:'ME(Z,N) − ME(Z+4,N−4)',terms:[[0,0,1],[4,-4,-1]]},
+    qep:{label:'Q(ECp)',formula:'ME(Z,N) − ME(Z−2,N+1) − ME(¹H)',terms:[[0,0,1],[-2,1,-1]]},
+    qbmn:{label:'Q(β⁻n)',formula:'ME(Z,N) − ME(Z+1,N−2) − ME(n)',terms:[[0,0,1],[1,-2,-1]]},
+    qda:{label:'Q(d,α)',formula:'ME(Z,N) + ME(²H) − ME(Z−1,N−1) − ME(⁴He)',terms:[[0,0,1],[-1,-1,-1]]},
+    qpa:{label:'Q(p,α)',formula:'ME(Z,N) + ME(¹H) − ME(Z−1,N−2) − ME(⁴He)',terms:[[0,0,1],[-1,-2,-1]]},
+    qna:{label:'Q(n,α)',formula:'ME(Z,N) + ME(n) − ME(Z−2,N−1) − ME(⁴He)',terms:[[0,0,1],[-2,-1,-1]]}
+  };
   const MODES = {
     decay: { label: T.m_decay, f: r => DC[decayClass(r)] },
     hl: { label: T.m_hl, f: r => r[6] === 99 ? "#111827" : r[6] <= -98 ? "#e2e8f0" : ramp((r[6] + 9) / 29), range: ["1 ns", "10²⁰ s"] },
-    bea: { label: T.m_bea, v: r => mv(D(r).BEA), lo: 7.0, hi: 8.8, u: "MeV" },
+    be: { label: T.mf_be, v: r => mv(D(r).BE), lo: 0, hi: 2100, u: "MeV" },
+    bea: { label: T.m_bea, v: r => mv(D(r).BEA), lo: 7.0, hi: 8.8, u: "MeV/nucleon" },
     me: { label: T.m_me, v: r => mv(D(r).me), lo: -95, hi: 80, u: "MeV" },
     sn: { label: T.m_sn, v: r => mv(D(r).sn), lo: 0, hi: 20, u: "MeV" },
     s2n: { label: T.m_s2n, v: r => mv(D(r).s2n), lo: 0, hi: 35, u: "MeV" },
@@ -113,7 +102,7 @@
     year: { label: T.m_year, v: r => r[9], lo: 1900, hi: 2020 },
     iso: { label: T.m_iso, f: r => ["#e5e7eb", "#a78bfa", "#7c3aed", "#4c1d95"][Math.min(3, r[11].length)] },
     eo: { label: T.m_eo, f: r => ["#0ea5e9", "#f59e0b", "#22c55e", "#ef4444"][(r[0] % 2) * 2 + (r[1] % 2)] },
-    s2p: { label: "S₂ₚ", v: r => mv(D(r).s2p), lo: 0, hi: 35, u: "MeV" },
+    s2p: { label: T.mf_s2p, v: r => mv(D(r).s2p), lo: 0, hi: 35, u: "MeV" },
     qec: { label: "Q(EC)", v: r => mv(D(r).qec), lo: 0, hi: 20, u: "MeV" },
     d2n: { label: "δ₂ₙ (shell gap)", v: r => mv(D(r).d2n), lo: 0, hi: 6, u: "MeV" },
     d2p: { label: "δ₂ₚ (shell gap)", v: r => mv(D(r).d2p), lo: 0, hi: 6, u: "MeV" },
@@ -123,17 +112,21 @@
     d5n: { label: "Δₙ⁽⁵⁾", v: r => mv(D(r).d5n), lo: 0, hi: 2.5, u: "MeV" },
     d5p: { label: "Δₚ⁽⁵⁾", v: r => mv(D(r).d5p), lo: 0, hi: 2.5, u: "MeV" },
     d3n: { label: T.m_d3n, v: r => mv(D(r).d3n), lo: 0, hi: 2.5, u: "MeV" },
-    beta2: { label: T.m_beta2, need: true, v: r => { const v = MOD[modelKey()] && MOD[modelKey()].map.get(key(r[0], r[1])); return v ? v[1] / 1000 : null; }, lo: -0.3, hi: 0.4, div: true },
+    beta2: { label: T.m_beta2, need: true, v: r => { const v = MOD[modelKey()] && MOD[modelKey()].map.get(key(r[0], r[1])); return v && v[1] != null ? v[1] / 1000 : null; }, lo: -0.3, hi: 0.4, div: true },
     dmod: { label: T.m_dmod, need: true, v: r => mv(dmod(r)), lo: -3, hi: 3, u: "MeV", div: true },
   };
+  for(const [name,q]of Object.entries(reactionDefinitions))MODES[name]={label:q.label,v:r=>mv(D(r)[name]),lo:-40,hi:40,u:'MeV',div:true};
+  const extraFilters=window.ZGMassSurface.filters;
+  const filterLabel=(name,f)=>name+' · '+T['mf_'+f.kind];
+  for(const [name,f]of Object.entries(extraFilters))MODES[name]={label:filterLabel(name,f),v:r=>mv(D(r)[name]),lo:-3,hi:3,u:'MeV',div:true};
   const FILTERS = {
     all: [T.fl_all, () => true], missing: [T.fl_missing,r=>r[3]==null], unknown_unc: [T.fl_unknown_unc,r=>r[4]==null], known_unc: [T.fl_known_unc,r=>r[3]!=null&&r[4]!=null], state_hash: [T.fl_state_hash,r=>catalog && (catalog.groups.get(r[2].toLowerCase()+(r[0]+r[1]))||[]).some(s=>s.excitation.value_extrapolated)], meas: [T.fl_meas, r => r[3] != null && !r[5]], extr: [T.fl_extr, r => !!r[5]],
     d1: ["δm < 1 keV", r => r[4] != null && !r[5] && r[4] < 1], d10: ["δm < 10 keV", r => r[4] != null && !r[5] && r[4] < 10], d100: ["δm < 100 keV", r => r[4] != null && !r[5] && r[4] < 100],
     stable: [T.fl_stable, r => r[6] === 99], hl: [T.fl_hl, r => r[6] > -90 && r[6] !== 99], iso: [T.fl_iso, r => r[11].length > 0],
     magic: [T.fl_magic, r => MAGIC.includes(r[0]) || MAGIC.includes(r[1])], nz: ["N = Z", r => r[0] === r[1]],
     nz1: ["|N − Z| = 1", r => Math.abs(r[1] - r[0]) === 1], nz2: ["|N − Z| ≤ 2", r => Math.abs(r[1] - r[0]) <= 2], prich: ["N < Z", r => r[1] < r[0]],
-    ee: ["Z even · N even", r => r[0] % 2 === 0 && r[1] % 2 === 0], eo: ["Z even · N odd", r => r[0] % 2 === 0 && r[1] % 2 === 1],
-    oe: ["Z odd · N even", r => r[0] % 2 === 1 && r[1] % 2 === 0], oo: ["Z odd · N odd", r => r[0] % 2 === 1 && r[1] % 2 === 1],
+    ee: [T.fl_ee, r => r[0] % 2 === 0 && r[1] % 2 === 0], eo: [T.fl_eo, r => r[0] % 2 === 0 && r[1] % 2 === 1],
+    oe: [T.fl_oe, r => r[0] % 2 === 1 && r[1] % 2 === 0], oo: [T.fl_oo, r => r[0] % 2 === 1 && r[1] % 2 === 1],
     oddA: [T.fl_oddA || "odd A", r => (r[0] + r[1]) % 2 === 1], evenA: [T.fl_evenA || "even A", r => (r[0] + r[1]) % 2 === 0],
     p3: [T.fl_p3 || "3-point Δ⁽³⁾ available", r => derived(r).d3n != null], p5: [T.fl_p5 || "5-point Δ⁽⁵⁾ available", r => derived(r).d5n != null],
     unb: [T.fl_unb || "particle-unbound (Sₙ or Sₚ < 0)", r => { const d = derived(r); return (d.sn && d.sn.v < 0) || (d.sp && d.sp.v < 0); }],
@@ -153,7 +146,7 @@
     if (mode === "decay") legend.innerHTML = [["stable", T.stable], ["bm", "β⁻"], ["bp", "β⁺/EC"], ["a", "α"], ["sf", "SF"], ["p", "p"], ["n", "n"], ["it", "IT"], ["punst", T.punst]].map(([k, l]) => `<span><i style="background:${DC[k]}"></i>${l}</span>`).join("");
     else if (mode === "est") legend.innerHTML = `<span><i style="background:#0ea5e9"></i>${T.measured}</span><span><i style="background:#f59e0b"></i>${T.extrap}</span>`;
     else if (mode === "iso") legend.innerHTML = [0, 1, 2, 3].map(n => `<span><i style="background:${["#e5e7eb", "#a78bfa", "#7c3aed", "#4c1d95"][n]}"></i>${n}${n === 3 ? "+" : ""}</span>`).join("");
-    else if (mode === "eo") legend.innerHTML = [["#0ea5e9", "Z even · N even"], ["#f59e0b", "Z even · N odd"], ["#22c55e", "Z odd · N even"], ["#ef4444", "Z odd · N odd"]].map(([c, l]) => `<span><i style="background:${c}"></i>${l}</span>`).join("");
+    else if (mode === "eo") legend.innerHTML = [["#0ea5e9", T.fl_ee], ["#f59e0b", T.fl_eo], ["#22c55e", T.fl_oe], ["#ef4444", T.fl_oo]].map(([c, l]) => `<span><i style="background:${c}"></i>${escape(l)}</span>`).join("");
     else { const lo = m.range ? m.range[0] : m.rng ? m.rng[0] : m.lo, hi = m.range ? m.range[1] : m.rng ? m.rng[1] : m.hi; legend.innerHTML = `<span>${lo}</span><span class="nc-ramp${m.div ? " nc-ramp-div" : ""}"></span><span>${hi} ${m.u || ""}</span>` + (m.need || src !== "ame" ? `<span class="nc-mnote">${MOD[modelKey()] ? MOD[modelKey()].name : ""}</span>` : ""); }
   }
 
@@ -178,18 +171,19 @@
       if (x < -s || y < -s || x > Wd || y > Hd) continue;
       const ok = pass(r); c.globalAlpha = ok ? (r.mo ? 0.5 : 1) : 0.1;
       c.fillStyle = r.mo && (mode === "decay" || MODES[mode].f) ? "#cbd5e1" : colour(r); c.fillRect(x, y, s - (s > 3 ? sc : 0.3), s - (s > 3 ? sc : 0.3));
+      if(ok&&s>=10*sc&&measured?.marked(r[0],r[1])){c.strokeStyle="#a71984";c.lineWidth=2*sc;c.strokeRect(x+sc,y+sc,s-3*sc,s-3*sc);}
       if (mid && ok) {
         const dark = r[6] === 99 || ["bm", "sf", "n"].includes(decayClass(r)) && mode === "decay";
         c.fillStyle = dark ? "#fff" : "#111";
         c.font = `${Math.min(14 * sc, s * 0.28)}px system-ui`;
-        c.fillText(sup(r[0] + r[1]) + r[2] + (r[5] ? "#" : "") + (r.mo ? "*" : ""), x + s / 2, y + s * (big ? 0.32 : 0.5));
+        c.fillText(sup(r[0] + r[1]) + r[2] + (r[5] ? "#" : "") + (r.mo ? "*" : "") + (measured?.marked(r[0],r[1]) ? "★" : ""), x + s / 2, y + s * (big ? 0.32 : 0.5));
         if (big && !r.mo) { c.font = `${Math.min(11 * sc, s * 0.2)}px system-ui`; c.fillText(r[7].replace("stable", "★"), x + s / 2, y + s * 0.68); }
       }
     }
     c.globalAlpha = 1;
     drawOverlays(c, v, Hd, sc);
     [[hover, ink], [pin, "#e5484d"]].forEach(([r, col]) => { if (!r || sc > 1 && r === hover) return; const [x, y] = P(r[0], r[1]); c.strokeStyle = col; c.lineWidth = 2 * sc; c.strokeRect(x - sc, y - sc, s + sc, s + sc); });
-    c.fillStyle = ink; c.font = `${12 * sc}px system-ui`; c.textAlign = "left"; c.fillText("N →", Wd - 36 * sc, Hd - 8 * sc); c.fillText("Z ↑", 6 * sc, 14 * sc);
+    c.fillStyle = sc > 1 ? '#222' : ink; c.font = `${12 * sc}px system-ui`; c.textAlign = "left"; c.fillText("N →", Wd - 36 * sc, Hd - 8 * sc); c.fillText("Z ↑", 6 * sc, 14 * sc);
   }
   /* ---------- theory masses, drip lines and process paths ---------- */
   const DRIP = { sn: ["#2563eb", [6, 4]], s2n: ["#1e3a8a", []], sp: ["#ef4444", [6, 4]], s2p: ["#991b1b", []] };
@@ -201,11 +195,10 @@
     const out = [];
     [...by.keys()].sort((a, b) => a - b).forEach(i => {
       const js = by.get(i).sort((a, b) => a - b), val = j => { const d = nType ? derivedZN(i, j, src) : derivedZN(j, i, src); return d[q] ? d[q].v : null; };
-      let last = null, unbound = false;
-      js.forEach(j => { const v = val(j); if (v == null) return; if (v > 0) { last = j; unbound = false; } else if (last != null) unbound = true; });
-      /* AME: only where an unbound nucleus is actually known; models: the table edge is the predicted drip line */
-      const anyUnbound = js.some(j => last != null && j > last && (val(j) ?? 1) <= 0);
-      if (last != null && (src !== "ame" || anyUnbound)) out.push([i, last]);
+      const last = window.ZGMassSurface.dripBoundary(js.map(j => [j, val(j)]));
+      /* Both AME and models require a neighbouring nonpositive value. Unknown
+         values and finite table cutoffs leave a gap in the boundary overlay. */
+      if (last != null) out.push([i, last]);
     });
     dripCache.set(ck, out); return out;
   }
@@ -230,17 +223,49 @@
       c.globalAlpha = 1;
     });
   }
-  function loadModels() {
-    if (modelsLoading) return modelsLoading;
-    modelsLoading = fetch(root.dataset.models).then(r => r.json()).then(d => {
-      Object.entries(d.models).forEach(([k, m]) => { const map = new Map(); m.rows.forEach(([Z, N, me, b2]) => map.set(key(Z, N), [me, b2])); MOD[k] = { name: m.name, ref: m.ref, url: m.url, map }; });
-      PATHS = d.paths; memo.clear(); dripCache.clear();
-    });
-    return modelsLoading;
+  function loadIndex(){
+    if(indexLoading)return indexLoading;
+    indexLoading=fetch(root.dataset.models).then(r=>{if(!r.ok)throw new Error('Model index');return r.json();}).then(d=>{
+      modelIndex=d.models;PATHS=d.paths;
+      msel.innerHTML='<option value="ame">AME2020</option>'+Object.entries(modelIndex).map(([k,m])=>'<option value="'+escape(k)+'">'+escape(m.name)+'</option>').join('');
+      root.querySelector('.nc-model-series').innerHTML=Object.entries(modelIndex).map(([k,m])=>{
+        const table=m.source?.table_url||m.source?.url||new URL(m.data_url,new URL(root.dataset.models,location.href)).href;
+        const paper=m.source?.doi?'https://doi.org/'+m.source.doi:m.url;
+        const related=(m.source?.related_papers||[]).filter(p=>p.doi!==m.source?.doi).map(p=>' · <a href="https://doi.org/'+escape(p.doi)+'" target="_blank" rel="noopener">'+escape(p.name)+'</a>').join('');
+        return '<div class="nc-model-item"><label><input type="checkbox" data-model-series="'+escape(k)+'"> '+escape(m.name)+'</label><small><a href="'+escape(table)+'" target="_blank" rel="noopener">'+escape(T.loaded_data_link)+'</a> · <a href="'+escape(paper)+'" target="_blank" rel="noopener">'+escape(T.loaded_paper_link)+'</a>'+related+'</small></div>';
+      }).join('');
+      root.querySelector('[name=nc-impact-model]').innerHTML='<option value="selected">'+escape(T.loaded_selected_models)+'</option><option value="all">'+escape(T.loaded_all)+'</option>'+Object.entries(modelIndex).map(([k,m])=>'<option value="'+escape(k)+'">'+escape(m.name)+'</option>').join('');
+      return d;
+    }).catch(e=>{indexLoading=null;throw e;});
+    return indexLoading;
   }
+  function loadModels(k){
+    return loadIndex().then(()=>{
+      k=k||modelKey()||'frdm2012';
+      if(MOD[k])return MOD[k];
+      if(modelLoads.has(k))return modelLoads.get(k);
+      const m=modelIndex[k];if(!m)throw new Error('Unknown model');
+      const dataURL=new URL(m.data_url,new URL(root.dataset.models,location.href));if(m.payload_sha256)dataURL.searchParams.set('v',m.payload_sha256);
+      const promise=fetch(dataURL).then(r=>{if(!r.ok)throw new Error('Model data');return r.json();}).then(d=>{
+        const map=new Map();d.rows.forEach(([z,n,me,b])=>map.set(key(z,n),[me,b]));
+        MOD[k]={...m,map};modelErrors.delete(k);memo.clear();dripCache.clear();return MOD[k];
+      }).catch(e=>{modelLoads.delete(k);modelErrors.add(k);throw e;});
+      modelLoads.set(k,promise);return promise;
+    });
+  }
+  function modelFailure(){root.querySelector('.nc-model-error').textContent=T.loaded_model_error;}
+  function selectedModels(){return [...root.querySelectorAll('[data-model-series]:checked')].map(el=>el.dataset.modelSeries);}
+  root.querySelector('.nc-model-series').addEventListener('change',e=>{
+    root.querySelector('.nc-model-error').textContent='';
+    if(e.target.checked)loadModels(e.target.dataset.modelSeries).then(()=>plotChain()).catch(()=>{modelFailure();plotChain();});
+    plotChain();
+  });
+  root.querySelector('[data-model-all]').onclick=()=>{root.querySelector('.nc-model-error').textContent='';root.querySelectorAll('[data-model-series]').forEach(el=>el.checked=true);Promise.allSettled(selectedModels().map(k=>loadModels(k))).then(results=>{if(results.some(r=>r.status==='rejected'))modelFailure();plotChain();});};
+  root.querySelector('[data-model-none]').onclick=()=>{root.querySelectorAll('[data-model-series]').forEach(el=>el.checked=false);plotChain();};
   function setSource(s) {
     const go = () => {
       src = s; memo.clear(); dripCache.clear();
+      if(s!=="ame"){const box=root.querySelector('[data-model-series="'+s+'"]');if(box)box.checked=true;}
       extraRows = s === "ame" ? [] : [...MOD[s].map.keys()].filter(k => !M.has(k)).map(k => { const Z = Math.floor(k / 1000), N = k % 1000, el = EL.find(e => e[0] === Z);
         const r = [Z, N, el ? el[1] : "Z" + Z, null, null, 0, -97, "—", "", null, "", []]; r.mo = true; return r; });
       root.querySelector(".nc-mref").innerHTML = s === "ame" ? "" : `${T.modnote} <a href="${MOD[s].url}" target="_blank" rel="noopener">${MOD[s].ref}</a>`;
@@ -249,16 +274,15 @@
     if (s === "ame") go();
     else {
       if (msel) msel.disabled = true;
-      loadModels().then(go).catch(() => {
+      loadModels(s).then(go).catch(() => {
         root.querySelector(".nc-mref").textContent = "Model data unavailable / 模型数据不可用";
         if (msel) msel.value = src;
-        modelsLoading = null;
       }).finally(() => { if (msel) msel.disabled = false; });
     }
   }
 
   const W = () => cv._cw, H = () => cv._ch;
-  function fit() { const s = Math.min(W() / 182, H() / 122); view = { s, x: (W() - 180 * s) / 2, y: (H() - 120 * s) / 2 }; draw(); }
+  function fit() { cancelAnimationFrame(anim); view = CP.chartFit(allRows(), W(), H()); draw(); }
   function zoomTo(r, s = 34, done) {
     const wide = cv.getBoundingClientRect().width > 640, cxp = wide ? W() * 0.3 : W() / 2;
     const target = { s, x: cxp - (r[1] + 0.5) * s, y: H() / 2 - (r[0] + 0.5) * s }, start = { ...view }, t0 = performance.now();
@@ -270,6 +294,60 @@
     const b = cv.getBoundingClientRect(), x = (ev.clientX - b.left) * W() / b.width, y = (ev.clientY - b.top) * H() / b.height;
     const k = key(Math.floor((H() - view.y - y) / view.s), Math.floor((x - view.x) / view.s));
     return M.get(k) || (src !== "ame" && extraRows.find(r => key(r[0], r[1]) === k)) || null;
+  }
+
+  /* ---------- source/state presentation (pure; no mass recalculation) ---------- */
+  function cardLabels(language='en') {
+    const labels={
+      en:{ground:'Ground state [g]',ame:'AME2020 ground-state mass excess',derived:'Ground-state derived quantities',selected:'Selected NUBASE2020 state',context:'The reference card and chain remain ground-state quantities.',stateME:'NUBASE2020 selected-state mass excess',excitation:'Excitation energy Eₓ',precision:'Sources and published precision',rounding:'AME2020 mass excess is shown at its tabulated precision in keV. NUBASE2020 state masses retain their published precision; small rounding differences are expected. Derived energies are in MeV; B/A is in MeV per nucleon.'},
+      zh:{ground:'基态 [g]',ame:'AME2020 基态质量过剩',derived:'基态导出物理量',selected:'选中的 NUBASE2020 核态',context:'参考卡片与链图仍表示基态物理量。',stateME:'NUBASE2020 所选核态质量过剩',excitation:'激发能 Eₓ',precision:'数据来源与原表精度',rounding:'AME2020 质量过剩以 keV 显示并保留原表数值精度。NUBASE2020 核态质量保留其发布精度；微小舍入差异属于正常情况。导出能量采用 MeV；B/A 的单位为 MeV/核子。'},
+      fi:{ground:'Perustila [g]',ame:'AME2020: perustilan massaylijäämä',derived:'Perustilan johdetut suureet',selected:'Valittu NUBASE2020-tila',context:'Viitekortti ja ketju kuvaavat edelleen perustilaa.',stateME:'NUBASE2020: valitun tilan massaylijäämä',excitation:'Viritysenergia Eₓ',precision:'Lähteet ja julkaistu tarkkuus',rounding:'AME2020-massaylijäämä näytetään taulukon tarkkuudella keV-yksiköissä. NUBASE2020-tilamassat säilyttävät julkaistun tarkkuutensa; pienet pyöristyserot ovat odotettuja. Johdetut energiat ovat MeV-yksiköissä; B/A on MeV nukleonia kohden.'},
+      de:{ground:'Grundzustand [g]',ame:'AME2020-Massenexzess des Grundzustands',derived:'Abgeleitete Größen des Grundzustands',selected:'Gewählter NUBASE2020-Zustand',context:'Die Referenzkarte und Kette zeigen weiterhin Größen des Grundzustands.',stateME:'NUBASE2020-Massenexzess des gewählten Zustands',excitation:'Anregungsenergie Eₓ',precision:'Quellen und veröffentlichte Genauigkeit',rounding:'Der AME2020-Massenexzess wird mit tabellierter Genauigkeit in keV angezeigt. NUBASE2020-Zustandsmassen behalten ihre veröffentlichte Genauigkeit; kleine Rundungsunterschiede sind zu erwarten. Abgeleitete Energien stehen in MeV; B/A in MeV pro Nukleon.'},
+      ja:{ground:'基底状態 [g]',ame:'AME2020 基底状態の質量超過',derived:'基底状態の導出量',selected:'選択した NUBASE2020 核状態',context:'参照カードと系列は引き続き基底状態の量を示します。',stateME:'NUBASE2020 選択状態の質量超過',excitation:'励起エネルギー Eₓ',precision:'出典と公表精度',rounding:'AME2020 の質量超過は表の精度を保ち keV で示します。NUBASE2020 の核状態質量は公表精度を保つため、小さな丸め差が生じます。導出エネルギーは MeV、B/A は核子あたりの MeV です。'}
+    };
+    const referenceLabels={
+      en:{published:'Published AME2020 masses and reactions · ground state',publishedNote:'Published AME2020 table values and evaluated uncertainties include mass correlations. New inputs and model stencils are recalculated separately; unknown model uncertainty stays unknown. Q values describe the stated channel, not an observed branching ratio or a shell-specific neutrino energy.',unavailable:'Published AME2020 reaction data could not load. Recalculated energies use independent mass uncertainties; these are not the evaluated AME reaction uncertainties.',referenceValue:'Value ± uncertainty',notTabulated:'— = not tabulated. Each # belongs to the adjacent value or uncertainty.'},
+      zh:{published:'AME2020 原表质量与反应能 · 基态',publishedNote:'AME2020 原表数值及评价不确定度包含质量关联。新输入和模型的差分组合另行重算；未知模型不确定度保留为未知。Q 值对应所注明的反应道，并不代表已观测分支比或特定电子壳层的中微子能量。',unavailable:'AME2020 原表反应数据未能载入。重算能量采用独立质量不确定度，不等同于 AME 评价反应能不确定度。',referenceValue:'数值 ± 不确定度',notTabulated:'— 表示原表未给出。每个 # 仅属于相邻的数值或不确定度。'},
+      fi:{published:'AME2020:n julkaistut massat ja reaktiot · perustila',publishedNote:'Julkaistut AME2020-arvot ja arvioidut epävarmuudet sisältävät massakorrelaatiot. Uudet syötteet ja mallisuureet lasketaan erikseen; tuntematon malliepävarmuus pysyy tuntemattomana. Q-arvo koskee ilmoitettua kanavaa, ei mitattua haarautumissuhdetta tai kuorikohtaista neutriinon energiaa.',unavailable:'Julkaistua AME2020-reaktiotaulukkoa ei voitu ladata. Uudelleen lasketut energiat käyttävät riippumattomia massaepävarmuuksia, eivät AME:n arvioituja reaktioepävarmuuksia.',referenceValue:'Arvo ± epävarmuus',notTabulated:'— = ei taulukoitu. Kukin # kuuluu viereiseen arvoon tai epävarmuuteen.'},
+      de:{published:'Veröffentlichte AME2020-Massen und Reaktionen · Grundzustand',publishedNote:'Veröffentlichte AME2020-Werte und evaluierte Unsicherheiten berücksichtigen Massenkorrelationen. Neue Eingaben und Modellgrößen werden getrennt berechnet; unbekannte Modellunsicherheiten bleiben unbekannt. Q bezieht sich auf den angegebenen Kanal, nicht auf ein beobachtetes Verzweigungsverhältnis oder eine schalenspezifische Neutrinoenergie.',unavailable:'Die veröffentlichte AME2020-Reaktionstabelle konnte nicht geladen werden. Neu berechnete Energien verwenden unabhängige Massenunsicherheiten, nicht die evaluierten AME-Reaktionsunsicherheiten.',referenceValue:'Wert ± Unsicherheit',notTabulated:'— = nicht tabelliert. Jedes # gehört zum benachbarten Wert oder seiner Unsicherheit.'},
+      ja:{published:'AME2020 公表質量と反応エネルギー · 基底状態',publishedNote:'AME2020 の公表値と評価不確かさは質量相関を含みます。新しい入力と模型の差分量は別に再計算し、未知の模型不確かさは未知のままです。Q 値は記載した反応経路に対応し、観測分岐比や電子殻固有の中微子エネルギーを表しません。',unavailable:'AME2020 公表反応表を読み込めません。再計算値は独立な質量不確かさを用い、AME の評価反応不確かさとは異なります。',referenceValue:'値 ± 不確かさ',notTabulated:'— = 公表表に値なし。各 # は隣接する値または不確かさに対応します。'}
+    };
+    const k=String(language).toLowerCase().split('-')[0];
+    return {...(labels[k]||labels.en),...(referenceLabels[k]||referenceLabels.en)};
+  }
+  function referenceMassText(value,unknown='?') {
+    if(!value||!Number.isFinite(value.v))return '—';
+    const mass=String(value.v)+(value.est?'#':'');
+    const sigma=Number.isFinite(value.e)?String(value.e)+(value.sigmaEst?'#':''):unknown;
+    return mass+' ± '+sigma;
+  }
+  function sourceQuantityText(quantity,unknown='?') {
+    if(!quantity)return '—';
+    const raw=String(quantity.raw??'').trim(),rawSigma=String(quantity.raw_uncertainty??'').trim();
+    const value=raw||(Number.isFinite(quantity.value)?String(quantity.value)+(quantity.value_extrapolated?'#':''):'');
+    if(!value)return '—';
+    if(!rawSigma&&!Number.isFinite(quantity.uncertainty)&&(!Number.isFinite(quantity.value)||quantity.qualifier))return value;
+    const sigma=rawSigma||(Number.isFinite(quantity.uncertainty)?String(quantity.uncertainty)+(quantity.uncertainty_extrapolated?'#':''):unknown);
+    return value+' ± '+sigma;
+  }
+  function isomerExcitationText(row,state,unknown='?') {
+    return sourceQuantityText(state?.excitation||{value:row[1],uncertainty:row[4],value_extrapolated:!!row[5],uncertainty_extrapolated:!!row[6]},unknown);
+  }
+  function selectedStateContext(state,labels) {
+    return labels.selected+': '+state.A+state.element+' ['+state.label+']. '+labels.context;
+  }
+  function publishedReferenceHTML(data,Z,N,labels,unknown='?') {
+    if(!data)return '<p>'+escape(labels.unavailable)+'</p>';
+    const record=data?.records?.[Z+','+N];
+    if(!record)return '<p>'+escape(labels.notTabulated)+'</p>';
+    const names={me:'ME',BEA:'B/A',BE:'B = A × (B/A)',qbm:'Q(β⁻)',sn:'Sₙ',s2n:'S₂ₙ',sp:'Sₚ',s2p:'S₂ₚ',qa:'Q(α)',...Object.fromEntries(Object.entries(reactionDefinitions).map(([k,q])=>[k,q.label]))};
+    const body=(data.quantities||Object.keys(record.values)).map(key=>{
+      const cell=record.values[key],value=cell&&Number.isFinite(cell.value)?sourceQuantityText(cell,unknown):'—';
+      const unit=data.metadata?.quantity_units?.[key]||(key==='BEA'?'keV/nucleon':'keV');
+      return '<tr><th>'+escape(names[key]||key)+'</th><td>'+escape(value)+' '+escape(unit)+'</td></tr>';
+    }).join('');
+    const links=(data.metadata?.sources||[]).map(source=>'<a href="'+escape(source.url)+'">'+escape(source.table||'AME2020')+'</a>').join(' · ');
+    return '<p>'+escape(labels.publishedNote)+'</p><table><thead><tr><th>'+escape(Z+N+' '+record.element+' [g]')+'</th><th>'+escape(labels.referenceValue)+'</th></tr></thead><tbody>'+body+'</tbody></table><p>'+escape(labels.notTabulated)+'</p><p>'+links+'</p>';
   }
 
   /* ---------- formatting: uncertainty with 2 significant digits, value rounded to the same decimal ---------- */
@@ -285,10 +363,10 @@
     const dec = Math.max(0, 1 - Math.floor(Math.log10(e)));
     return [v.toFixed(dec), e.toFixed(dec)];
   }
-  const fv = (o, d = 3, f = 1000, u = " MeV") => { if (o == null) return "—"; const h = o.est ? "#" : "";
+  const fv = (o, d = 3, f = 1000, u = " MeV") => { if (o == null) return "—"; const h = o.est ? "#" : "",sigmaHash=o.sigmaEst?'#':'';
     if (o.e == null) return `${(o.v/f).toFixed(d)}${h}${u} (${unknown})`;
     if (!(o.e > 0)) return `${(o.v / f).toFixed(d)}${h}${u}`;
-    const [a, b] = fmtU(o.v / f, o.e / f); return `${a}${h} ± ${b}${h}${u}`; };
+    const [a, b] = fmtU(o.v / f, o.e / f); return `${a}${h} ± ${b}${sigmaHash}${u}`; };
   const DM = { "B-": "β⁻", "B+": "β⁺", "EC": "EC", "A": "α", "IT": "IT", "SF": "SF", "p": "p", "2p": "2p", "n": "n", "2n": "2n", "B-n": "β⁻n", "B-2n": "β⁻2n", "B+p": "β⁺p", "e+": "e⁺", "2B-": "2β⁻", "2B+": "2β⁺", "IS": T.abund };
   const decayText = b => !b ? "—" : b.split(";").map(x => {
     const m = x.trim().match(/^([A-Za-z0-9+\-]+)(.*)$/); if (!m) return x;
@@ -314,18 +392,24 @@
     const d = derived(r), dm = src !== "ame" && MOD[src] ? derivedZN(r[0], r[1], src) : null, A = r[0] + r[1], el = EL.find(e => e[0] === r[0]), row = (k, v) => `<tr><th>${k}</th><td>${v}</td></tr>`;
     card.hidden = false;
     card.innerHTML = `<button type="button" class="nc-close" aria-label="${T.state_close}">×</button>
-      <div class="nc-head"><span class="nc-sym">${sup(A)}${r[2]}</span><span>${el ? el[2] : ""}<br><small>Z = ${r[0]} · N = ${r[1]} · A = ${A}</small></span></div>
+      <div class="nc-head"><span class="nc-sym">${sup(A)}${r[2]}</span><span>${el ? el[2] : ""}<br><small>${cardT.ground} · Z = ${r[0]} · N = ${r[1]} · A = ${A}</small></span></div>
+      <p class="nc-ground-context zg-small zg-muted" aria-live="polite">${cardT.context}</p>
+      ${evaluatedWarning?'<p class="zg-small" role="status">'+cardT.unavailable+'</p>':''}
       <table>${row(T.hl, r[7] === "stable" ? T.stable : r[7])}${row("Jπ", r[8] || "—")}${row(T.decay, decayText(r[10]))}
-      ${row(T.me, d.me ? (() => { const [a, b] = fmtU(d.me.v, d.me.e), h = d.me.est ? "#" : ""; return `${a}${h} ± ${b}${d.me.sigmaEst ? "#" : ""} keV`; })() : "—")}
-      ${row("B/A", fv(d.BEA, 4))}${row("Sₙ", fv(d.sn))}${row("S₂ₙ", fv(d.s2n))}${row("Sₚ", fv(d.sp))}${row("S₂ₚ", fv(d.s2p))}
+      ${row(cardT.ame, escape(referenceMassText(d.me,unknown))+' keV')}
+      <tr><th colspan="2">${cardT.derived}</th></tr>
+      ${row("B/A", fv(d.BEA, 4,1000," MeV/nucleon"))}${row("Sₙ", fv(d.sn))}${row("S₂ₙ", fv(d.s2n))}${row("Sₚ", fv(d.sp))}${row("S₂ₚ", fv(d.s2p))}
       ${row("Q(β⁻)", fv(d.qbm))}${row("Q(EC)", fv(d.qec))}${row("Q(α)", fv(d.qa))}${row("δ₂ₙ", fv(d.d2n))}
       ${row("Δₙ⁽³⁾ · Δₚ⁽³⁾", fv(d.d3n) + "<br>" + fv(d.d3p))}${row("δV<sub>pn</sub>", fv(d.vpn))}${row(T.wig, fv(d.wig))}
-      ${dm ? `<tr class="nc-mrow"><th colspan="2">${MOD[src].name}</th></tr>${row(T.me, dm.me ? (dm.me.v / 1000).toFixed(3) + " MeV" : "—")}${row("ME(AME) − ME(" + T.model_short + ")", d.me && dm.me ? ((d.me.v - dm.me.v) / 1000).toFixed(3) + " MeV" : "—")}${row("Sₙ · S₂ₙ", fv(dm.sn, 3).replace(/ ± 0\.000/, "") + " · " + fv(dm.s2n, 3).replace(/ ± 0\.000/, ""))}${row("Sₚ · S₂ₚ", fv(dm.sp, 3).replace(/ ± 0\.000/, "") + " · " + fv(dm.s2p, 3).replace(/ ± 0\.000/, ""))}${row("β₂", dm.beta2 ? (dm.beta2.v / 1000).toFixed(3) : "—")}` : ""}
+      ${dm ? `<tr class="nc-mrow"><th colspan="2">${MOD[src].name} · ${cardT.ground}</th></tr>${row(T.me, dm.me ? (dm.me.v / 1000).toFixed(3) + " MeV" : "—")}${row("ME(AME) − ME(" + T.model_short + ")", d.me && dm.me ? ((d.me.v - dm.me.v) / 1000).toFixed(3) + " MeV" : "—")}${row("Sₙ · S₂ₙ", fv(dm.sn, 3).replace(/ ± 0\.000/, "") + " · " + fv(dm.s2n, 3).replace(/ ± 0\.000/, ""))}${row("Sₚ · S₂ₚ", fv(dm.sp, 3).replace(/ ± 0\.000/, "") + " · " + fv(dm.s2p, 3).replace(/ ± 0\.000/, ""))}${row("β₂", dm.beta2 ? (dm.beta2.v / 1000).toFixed(3) : "—")}` : ""}
       ${row(T.disc, r[9] || "—")}
-      ${r[11].length ? row(T.isomers, r[11].map(i => `${sup(A)}${i[0]}${r[2]}: ${i[1] == null ? "?" : i[1].toLocaleString()} keV, ${i[2] || "?"}, ${i[3] || ""}`).join("<br>")) : ""}</table>
+      ${r[11].length ? row(T.isomers, r[11].map(i => `${sup(A)}${i[0]}${r[2]}: Eₓ = ${escape(isomerExcitationText(i,catalog?.states.get(i[7]),unknown))} keV, ${escape(i[2] || "?")}, ${escape(i[3] || "")}`).join("<br>")) : ""}</table>
+      <details class="nc-explanation"><summary>${cardT.precision}</summary><p>${cardT.rounding}</p></details>
+      <details class="nc-explanation nc-published-reference"><summary>${cardT.published}</summary>${publishedReferenceHTML(evaluatedData,r[0],r[1],cardT,unknown)}</details>
       <div class="nc-cbtn"><button type="button" class="zg-btn" data-ch="Z">${T.p_iso}</button><button type="button" class="zg-btn" data-ch="N">${T.p_isot}</button><button type="button" class="zg-btn" data-ch="A">${T.p_isob}</button></div>
       <ul class="nc-facts">${facts(r, d).map(x => "<li>" + x + "</li>").join("")}</ul>
       <p class="nc-src"># ${T.hashnote} · ${T.errnote}<br>AME2020 · NUBASE2020 (Chin. Phys. C 45, 030001–030003, 2021)</p>`;
+    card.insertAdjacentHTML("beforeend",measured?.annotation(r[0],r[1])||"");
     showStates(r);
     card.querySelector(".nc-close").onclick = () => { pin = null; showCard(null); draw(); };
     card.querySelectorAll("[data-ch]").forEach(b => b.onclick = () => { pchain.value = b.dataset.ch; plotChain(r); pc.scrollIntoView({ behavior: "smooth", block: "center" }); });
@@ -335,31 +419,53 @@
   function showStates(r) {
     const group=catalog?.groups.get(r[2].toLowerCase()+(r[0]+r[1])); if(!group)return;
     const panel=document.createElement("div");panel.className="nc-state-list";
-    panel.innerHTML=`<h4>${T.state_heading}</h4><label>${T.state_search}<input type="search" class="nc-state-search"></label><label>${T.state_class}<select class="nc-state-kind"><option value="isomer">${T.state_isomers}</option><option value="all">${T.state_all}</option><option value="unclassified">${T.state_pending}</option></select></label><div class="nc-state-buttons"></div><div class="nc-state-data" aria-live="polite"></div>`;
+    const hintId = "nc-state-" + r[2] + (r[0] + r[1]);
+    panel.innerHTML = `
+      <h4>${T.state_heading}</h4>
+      <details class="nc-explanation"><summary>${T.loaded_hint_toggle}</summary><p class="nc-state-help">${T.state_intro}</p></details>
+      <label>${T.state_search}<input type="search" class="nc-state-search" aria-describedby="${hintId}-search"></label>
+      <details class="nc-explanation"><summary>${T.loaded_hint_toggle} · ${T.state_search}</summary><p class="nc-state-help" id="${hintId}-search">${T.state_search_hint}</p></details>
+      <label>${T.state_class}<select class="nc-state-kind" aria-describedby="${hintId}-class">
+        <option value="isomer">${T.state_isomers}</option><option value="all">${T.state_all}</option><option value="unclassified">${T.state_pending}</option>
+      </select></label>
+      <details class="nc-explanation"><summary>${T.loaded_hint_toggle} · ${T.state_class}</summary><p class="nc-state-help" id="${hintId}-class">${T.state_class_hint}</p></details>
+      <details class="zg-control-help"><summary>${T.state_help_title}</summary><p>${T.state_definitions}</p><p>${T.state_values_hint}</p></details>
+      <button type="button" class="zg-btn zg-btn-ghost nc-state-reset">${T.state_reset}</button>
+      <p class="nc-state-status" role="status"></p><div class="nc-state-buttons"></div><div class="nc-state-data" aria-live="polite"></div>`;
     card.appendChild(panel);
     const target=group.find(s=>s.id===selectedState);
     if(target && !["ground","isomer"].includes(target.kind))panel.querySelector("select").value="all";
     function detail(state) {
       selectedState=state.id;panel.querySelectorAll("[data-state]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.state===state.id?"true":"false"));
-      const format=q=>`${escape(q.raw||"—")} ${q.raw_uncertainty?"± "+escape(q.raw_uncertainty):"("+unknown+")"}`;
+      const format=q=>escape(sourceQuantityText(q,unknown));
       const life=state.half_life;
-      panel.querySelector(".nc-state-data").innerHTML=`<p><b>${state.A}${escape(state.element)} [${state.label}]</b> · ${escape(T.state_kinds[state.kind])}${state.existence==="withdrawn"?" — "+T.state_withdrawn:state.existence==="questioned"?" — "+T.state_questioned:""}</p><p>ME (NUBASE2020): ${format(state.mass_excess)} keV<br>Eₓ: ${format(state.excitation)} keV<br>T½: ${format(life)} ${escape(life.unit)}<br>Jπ: ${escape(state.spin_parity)}</p><p>${state.ordering_uncertain?"* "+T.state_order_uncertain+". ":""}${state.ordering_inverted?"& "+T.state_order_inverted+". ":""}${escape(T.state_bases[state.classification_basis])}.</p><p>${T.state_model_note}</p>`;
-      const a=document.createElement("a");a.href=location.pathname+"?nuclide="+state.A+state.element+"&state="+state.source_state_index;a.textContent=T.state_link;panel.querySelector(".nc-state-data").appendChild(a);
+      card.querySelector('.nc-ground-context').textContent=selectedStateContext(state,cardT);
+      panel.querySelector(".nc-state-data").innerHTML=`<p><b>${state.A}${escape(state.element)} [${state.label}]</b> · ${escape(T.state_kinds[state.kind])}${state.existence==="withdrawn"?" — "+T.state_withdrawn:state.existence==="questioned"?" — "+T.state_questioned:""}</p><p>${cardT.stateME}: ${format(state.mass_excess)} keV<br>${cardT.excitation}: ${format(state.excitation)} keV<br>T½: ${format(life)} ${escape(life.unit)}<br>Jπ: ${escape(state.spin_parity)}</p><p>${state.ordering_uncertain?"* "+T.state_order_uncertain+". ":""}${state.ordering_inverted?"& "+T.state_order_inverted+". ":""}${escape(T.state_bases[state.classification_basis])}.</p><p>${T.state_model_note}</p>`;
+      const stateURL=new URL(location.href);stateURL.searchParams.set('nuclide',state.A+state.element);stateURL.searchParams.set('state',state.source_state_index);
+      const a=document.createElement("a");a.href=stateURL.href;a.textContent=T.state_link;a.onclick=e=>{e.preventDefault();history.pushState(null,'',a.href);a.textContent=T.state_link_ready;};panel.querySelector(".nc-state-data").appendChild(a);
+      if(window.parent!==window)window.parent.postMessage({type:'zg-panel-state',nuclide:state.A+state.element,state:state.source_state_index},location.origin);
     }
     function populate() {
-      const q=panel.querySelector("input").value.toLowerCase(), kind=panel.querySelector("select").value;
-      const visible=group.filter(s=>(kind==="all"||s.kind==="ground"||s.kind===kind)&&`${s.label} ${s.kind} ${T.state_kinds[s.kind]} ${s.excitation.raw} ${s.spin_parity}`.toLowerCase().includes(q));
+      const q=panel.querySelector("input").value.trim().toLowerCase(), kind=panel.querySelector("select").value;
+      const exactLabel = group.some(s => s.label.toLowerCase() === q);
+      const visible = group.filter(s => {
+        const inClass = kind === "all" || s.kind === "ground" || s.kind === kind;
+        const text = `${s.label} ${s.kind} ${T.state_kinds[s.kind]} ${s.excitation.raw} ${s.spin_parity}`.toLowerCase();
+        return inClass && (exactLabel ? s.label.toLowerCase() === q : text.includes(q));
+      });
+      panel.querySelector(".nc-state-status").textContent = visible.length ? T.state_matches.replace("{n}", visible.length).replace("{total}", group.length) : T.state_empty;
       const box=panel.querySelector(".nc-state-buttons");box.innerHTML=visible.map(st=>`<button type="button" data-state="${st.id}" aria-pressed="${selectedState===st.id}">${escape(st.label)} · ${escape(T.state_kinds[st.kind])}${st.source_state_index?" · "+escape(st.excitation.raw)+" ± "+escape(st.excitation.raw_uncertainty||"?")+" keV":""}</button>`).join("");
       box.querySelectorAll("button").forEach(b=>b.onclick=()=>detail(catalog.states.get(b.dataset.state)));
     }
+    panel.querySelector(".nc-state-reset").onclick = () => { panel.querySelector("input").value = ""; panel.querySelector("select").value = "isomer"; populate(); panel.querySelector("input").focus(); };
     panel.querySelector("input").oninput=populate;panel.querySelector("select").onchange=populate;populate();detail(target||group[0]);
   }
 
   /* ---------- chain plot with error bars ---------- */
   const PQ = {
-    me: [T.m_me, d => d.me, "MeV"], bea: [T.m_bea, d => d.BEA, "MeV"], sn: ["Sₙ", d => d.sn, "MeV"], s2n: ["S₂ₙ", d => d.s2n, "MeV"],
-    sp: ["Sₚ", d => d.sp, "MeV"], s2p: ["S₂ₚ", d => d.s2p, "MeV"], qbm: ["Q(β⁻)", d => d.qbm, "MeV"], qec: ["Q(EC)", d => d.qec, "MeV"],
-    qa: ["Q(α)", d => d.qa, "MeV"], d2n: ["δ₂ₙ = S₂ₙ(N) − S₂ₙ(N+2)", d => d.d2n, "MeV"], dme: [T.m_dme, (d, r) => r[4] == null ? null : { v: r[4] * 1000, e: 0, est: !!r[5] }, "keV"],
+    me: [T.m_me, d => d.me, "MeV"], be: [T.mf_be, d => d.BE, "MeV"], bea: [T.m_bea, d => d.BEA, "MeV/nucleon"], sn: ["Sₙ", d => d.sn, "MeV"], s2n: ["S₂ₙ", d => d.s2n, "MeV"],
+    sp: ["Sₚ", d => d.sp, "MeV"], s2p: [T.mf_s2p, d => d.s2p, "MeV"], qbm: ["Q(β⁻)", d => d.qbm, "MeV"], qec: ["Q(EC)", d => d.qec, "MeV"],
+    qa: ["Q(α)", d => d.qa, "MeV"], d2n: ["δ₂ₙ = S₂ₙ(N) − S₂ₙ(N+2)", d => d.d2n, "MeV"], dme: [T.m_dme, d => d.me?.e == null ? null : { v: d.me.e * 1000, e: null, est: d.me.est || d.me.sigmaEst, sigmaEst: d.me.sigmaEst, source: d.me.source, uncertainty_model: 'mass standard uncertainty; uncertainty of the uncertainty unavailable' }, "keV"],
     hl: ["log₁₀(T½ / s)", (d, r) => r[6] > -90 && r[6] !== 99 ? { v: r[6] * 1000, e: 0, est: false } : null, ""],
     d3n: ["Δₙ⁽³⁾ (pairing)", d => d.d3n, "MeV"], d3p: ["Δₚ⁽³⁾ (pairing)", d => d.d3p, "MeV"],
     d5n: ["Δₙ⁽⁵⁾ (pairing, 5-point)", d => d.d5n, "MeV"], d5p: ["Δₚ⁽⁵⁾ (pairing, 5-point)", d => d.d5p, "MeV"], d2p: ["δ₂ₚ = S₂ₚ(Z) − S₂ₚ(Z+2)", d => d.d2p, "MeV"],
@@ -367,85 +473,385 @@
     vpn: ["δVpn", d => d.vpn, "MeV"], wig: ["W = δVpn − ½[δVpn(N±2)]", d => d.wig, "MeV"],
     beta2: ["β₂ (model)", d => d.beta2, ""],
   };
-  pq.innerHTML = Object.entries(PQ).map(([k, v]) => `<option value="${k}">${v[0]}</option>`).join("");
+  for(const [name,q]of Object.entries(reactionDefinitions))PQ[name]=[q.label,d=>d[name],'MeV'];
+  for(const [name,f]of Object.entries(extraFilters))PQ[name]=[filterLabel(name,f),d=>d[name],'MeV'];
+  // A plotted standard uncertainty is not a linear mass expression. Keep its
+  // underlying mass separate for filtering, input labels and CSV provenance.
+  const dependencyValue=(quantity,derived,value)=>quantity==='dme'?derived.me:value;
+  const formulaDefinitions={...extraFilters,...reactionDefinitions};
+  const offsets=f=>f.terms.map(([z,n])=>'('+z+', '+n+')').join(' · ');
+  root.querySelector('.nc-filter-definitions').innerHTML='<table><thead><tr><th>'+escape(T.pq)+'</th><th>'+escape(T.mf_formula)+'</th><th>'+escape(T.mf_neighbours)+'</th></tr></thead><tbody>'+Object.entries(formulaDefinitions).map(([name,f])=>'<tr><th>'+escape(f.label||filterLabel(name,f))+'</th><td>'+escape(f.formula)+'</td><td>'+escape(offsets(f))+'</td></tr>').join('')+'</tbody></table>';
+  function filterFormula(){
+    const f=formulaDefinitions[pq.value],box=root.querySelector('.nc-filter-formula');box.hidden=!f;
+    box.textContent=f?pq.value+': '+f.formula+' · '+T.mf_neighbours+': '+offsets(f):'';
+  }
+  pq.innerHTML = window.ZGMassQuantityMenu.html(Object.fromEntries(Object.entries(PQ).map(([k,v])=>[k,v[0]])),T);
   pq.value = "s2n";
+  const palette=['#167d45','#b94e00','#0095a8','#7352bd','#96610b','#0d807b','#c54646','#525d76','#668100','#874d70','#566bba','#8b651f'];
+  const labelStyles=new Map(),labelColors=['#b41c81','#008080','#d2691e','#6a5acd','#228b22','#dc143c','#4682b4'];
+  const markerPairs=[['diamond','square'],['triangle','down'],['circle','hexagon'],['star','diamond'],['hexagon','triangle'],['square','star']];
+  function labelStyle(labels=['New']){
+    const key=JSON.stringify(labels.length?labels:['New']);
+    if(!labelStyles.has(key)){const i=labelStyles.size,pair=markerPairs[i%markerPairs.length];labelStyles.set(key,{labels:labels.length?labels:['New'],color:labelColors[i%labelColors.length],loaded:pair[0],hybrid:pair[1]});}
+    return {key,...labelStyles.get(key)};
+  }
+  labelStyle();
+  const seriesMeta=(k,labels)=>{
+    if(['loaded','hybrid'].includes(k)){
+      const style=labelStyle(labels),name=style.labels.join(' / ')+(k==='hybrid'?' + AME2020':'');
+      return {id:k,key:k+':'+style.key,labelKey:style.key,name,short:name,color:style.color,shape:style[k],open:false};
+    }
+    return k==='ame'?{id:k,key:k,name:'AME2020',short:'AME2020',color:'#3b5bdb',shape:'circle'}:{id:k,key:k,name:MOD[k]?.name||modelIndex?.[k]?.name||k,short:(MOD[k]?.name||k).split(' (')[0],color:palette[Object.keys(modelIndex||{}).indexOf(k)%palette.length],shape:'model'};
+  };
+  const inSeries=(p,s)=>p.styleKey===s.key;
+  const chainColor=group=>{const groups=plotPts.groups||[];return groups.length>1?'hsl('+groups.indexOf(group)/groups.length*300+',75%,45%)':'#3b5bdb';};
+  const pointColor=(p,s)=>s.id==='ame'?chainColor(p.g):s.color;
+  let markerSignature='';
+  function markerControls(){
+    const current=new Set();
+    for(const active of inputTable?.active.values()||[])if(!active.state.source_state_index)current.add(labelStyle(MM.labels(active.value,inputTable)).key);
+    for(const s of visibleSeries)if(s.labelKey)current.add(s.labelKey);
+    if(!current.size)current.add(labelStyle().key);
+    const entries=[...labelStyles].filter(([key])=>current.has(key)),signature=JSON.stringify(entries.map(([key])=>key));if(signature===markerSignature)return;markerSignature=signature;
+    root.querySelector('.nc-marker-rows').innerHTML=entries.map(([key,s])=>'<fieldset class="nc-marker-row" data-marker-key="'+escape(key)+'"><legend>'+escape(s.labels.join(' / '))+'</legend>'+['loaded','hybrid'].map(k=>'<label>'+escape(k==='loaded'?T.marker_new:T.marker_hybrid)+' <select data-marker-kind="'+k+'" aria-label="'+escape(s.labels.join(' / ')+' — '+(k==='loaded'?T.marker_new:T.marker_hybrid))+'">'+Object.keys(CP.markers).map(shape=>'<option value="'+shape+'"'+(s[k]===shape?' selected':'')+'>'+CP.markers[shape][0]+' / '+CP.markers[shape][1]+'# '+escape(T.marker_names[shape])+'</option>').join('')+'</select></label>').join('')+'<label>'+escape(T.marker_color)+' <select data-marker-kind="color" aria-label="'+escape(s.labels.join(' / ')+' — '+T.marker_color)+'">'+labelColors.map((color,i)=>'<option value="'+color+'"'+(s.color===color?' selected':'')+'>'+escape(T.marker_colors[i])+'</option>').join('')+'</select></label></fieldset>').join('');
+  }
+  root.querySelector('.nc-marker-rows').addEventListener('change',e=>{
+    const control=e.target.closest('[data-marker-kind]');if(!control)return;
+    const style=labelStyles.get(control.closest('[data-marker-key]').dataset.markerKey),kind=control.dataset.markerKind,old=style[kind];style[kind]=control.value;
+    const other=kind==='loaded'?'hybrid':'loaded',collision=kind!=='color'&&style[kind]===style[other];
+    if(collision){style[other]=old;markerSignature='';}
+    root.querySelector('.nc-marker-status').textContent=collision?T.marker_swap:'';plotChain();
+  });
+  const markerGlyph=s=>s.shape==='model'?'– –':CP.markers[s.shape][s.open?1:0];
+  const hasEstimated=s=>plotPts.concat(modPts,residualPts).some(p=>inSeries(p,s)&&p.est);
+  const legendGlyph=s=>markerGlyph(s)+(hasEstimated(s)?' '+(CP.markers[s.shape]?.[1]||'○')+'#':'');
+  function seriesLegendLines(w){
+    const max=Math.max(12,Math.floor((w-120)/6.2)),out=[];
+    for(const s of visibleSeries.slice(0,16)){
+      const name=s.short.slice(0,160);for(let i=0;i<name.length;i+=max)out.push({style:s,first:i===0,text:name.slice(i,i+max)});
+    }
+    if(visibleSeries.length>16)out.push({text:T.marker_more.replace('{n}',visibleSeries.length-16)});return out;
+  }
+  let inputLegend=[];
+  function inputLegendLines(w){
+    const max=Math.max(15,Math.floor((w-80)/6.2)),lines=[];
+    for(const entry of inputLegend.slice(0,8)){
+      const words=entry.text.slice(0,400).split(/\s+/);let line='';for(const word of words){if(line&&(line+' '+word).length>max){lines.push(line);line='';}if(word.length>max){if(line){lines.push(line);line='';}for(let i=0;i<word.length;i+=max)lines.push(word.slice(i,i+max));}else line=line?line+' '+word:word;}if(line)lines.push(line);
+    }if(inputLegend.length>8)lines.push('+ '+(inputLegend.length-8)+' · '+T.loaded_details);return lines;
+  }
+  const legendHeight=w=>16*(seriesLegendLines(w).length+inputLegendLines(w).length);
+  const plotGeom=(domain,w,h,sc=1)=>CP.geometry(domain,w,h,(plotPts.groups||[]).length>1,sc,legendHeight(w/sc));
+  function humanInputs(p){
+    return MM.provenance(p.dependencyValue||p.valueObj,inputTable).map(x=>{
+      const loaded=x.id.startsWith('loaded:')?inputTable.active.get(x.id.split(':')[1]):null;
+      const r=M.get(Number(x.id.split(':').pop()));
+      const name=loaded?loaded.label:r?String(r[0]+r[1])+r[2]:T.loaded_reference;
+      const references=x.references.filter(Boolean);
+      return x.coefficient+' × '+name+(references.length?' ('+references.join('; ')+')':'');
+    }).join('; ');
+  }
+  function pointDetail(p){
+    const box=root.querySelector('.nc-point-detail');
+    if(!p){box.textContent='';return;}
+    const inputs=humanInputs(p);
+    box.textContent=p.r[0]+p.r[1]+p.r[2]+' · '+p.source+' · '+p.y+' ± '+(p.e??'—')+' '+(p.unit||PQ[pq.value][2])+' · '+inputs+(p.referenceEstimated?' · '+T.model_reference_extrapolated:'');
+  }
+  function pointTable(){
+    const d=root.querySelector('.nc-point-table');if(!d.open||!plotDomain)return;
+    const ps=plotPts.concat(modPts).filter(p=>p.x>=plotDomain.x0&&p.x<=plotDomain.x1).slice(0,300);
+    d.querySelector('div').innerHTML='<table><thead><tr><th>Z,N</th><th>x</th><th>'+escape(PQ[pq.value][0])+'</th><th>σ</th><th>'+escape(T.point_source_inputs)+'</th></tr></thead><tbody>'+ps.map(p=>'<tr><td>'+p.r[0]+','+p.r[1]+'</td><td>'+p.x+'</td><td>'+p.y+(p.est?' #':'')+'</td><td>'+(p.e??'—')+'</td><td>'+escape(p.source)+'<br>'+escape(humanInputs(p))+'</td></tr>').join('')+'</tbody></table>';
+  }
+  root.querySelector('.nc-point-table').addEventListener('toggle',pointTable);
+  const impact=root.querySelector('.nc-impact'),impactInput=root.querySelector('[name=nc-impact-input]'),impactQ=root.querySelector('[name=nc-impact-quantity]'),impactM=root.querySelector('[name=nc-impact-model]');
+  let impactRows=[],impactPage=0,impactRequest=0;
+  const impactNames={...Object.fromEntries(Object.entries(PQ).map(([k,v])=>[k,v[0]])),BE:T.loaded_be,BEA:T.m_bea,ex:'Eₓ from ME'};
+  impactQ.insertAdjacentHTML('beforeend',window.ZGMassQuantityMenu.html(Object.fromEntries(window.ZGMassSurface.quantities.concat('ex').map(k=>[k,impactNames[k]])),T));
+  const impactModels=()=>impactM.value==='selected'?selectedModels():impactM.value==='all'?Object.keys(modelIndex||{}):[impactM.value];
+  const impactFiltered=()=>impactRows.filter(r=>(impactQ.value==='all'||r.quantity===impactQ.value)&&(impactInput.value==='all'||MM.affected(r.after,impactInput.value)));
+  function impactInputs(){
+    const selected=impactInput.value;impactInput.innerHTML='<option value="all">'+escape(T.loaded_all_inputs)+'</option>'+[...inputTable.active.values()].map(r=>'<option value="'+r.id+'">'+escape(r.label)+'</option>').join('');
+    if(selected==='all'||inputTable.active.has(selected))impactInput.value=selected;
+  }
+  const impactFormat=v=>v?Number(v.v.toFixed(6))+(v.est?'#':'')+' ± '+(v.e==null?'?':Number(v.e.toPrecision(4))):'—';
+  function impactRender(){
+    if(!impact.open)return;
+    const all=impactFiltered(),models=impactModels(),inputs=[...inputTable.active.values()].filter(r=>impactInput.value==='all'||r.id===impactInput.value);
+    impact.querySelector('.nc-impact-input-info').textContent=inputs.map(r=>r.label+': ME '+impactFormat(r.value)+' keV').join('; ');
+    impact.querySelector('.nc-impact-model-info').textContent=models.length?'':T.loaded_no_comparison;
+    const ownCentre=r=>inputs.some(m=>m.state.Z===r.r[0]&&m.state.N===r.r[1]&&(m.state.label===(r.state||'g')));
+    all.sort((a,b)=>Number(ownCentre(b))-Number(ownCentre(a))||a.r[0]-b.r[0]||a.r[1]-b.r[1]||a.quantity.localeCompare(b.quantity));
+    impactPage=Math.max(0,Math.min(impactPage,Math.ceil(all.length/50)-1));
+    impact.querySelector('.nc-impact-info').textContent=T.loaded_impact_count.replace('{rows}',all.length).replace('{nuclei}',new Set(all.map(r=>r.r[0]+'-'+r.r[1]+'-'+(r.state||'g'))).size)+(models.some(k=>!MOD[k])?' · '+(models.some(k=>modelErrors.has(k))?T.loaded_model_error:T.loaded_model_loading):'');
+    impact.querySelector('tbody').innerHTML=all.length?all.slice(impactPage*50,impactPage*50+50).map(r=>'<tr'+(ownCentre(r)?' class="nc-impact-centre"':'')+'><td>'+escape((r.r[0]+r.r[1])+r.r[2]+(r.state?'['+r.state+']':''))+'</td><td>'+escape(impactNames[r.quantity])+'<br>'+r.unit+'</td><td>'+escape(impactFormat(r.before))+'</td><td>'+escape(impactFormat(r.after))+'</td><td>'+escape(impactFormat(r.delta))+'</td><td>'+models.map(k=>{const v=r.state?null:derivedZN(r.r[0],r.r[1],k)[r.quantity];return escape(MOD[k]?.name||modelIndex?.[k]?.name||k)+': '+escape(impactFormat(v))+'<br>Δ(new − model): '+(v?Number((r.after.v-v.v).toPrecision(8)):'—');}).join('<br>')+(models.length?'':'—')+'</td></tr>').join(''):'<tr><td colspan="6">'+escape(T.loaded_impact_empty)+'</td></tr>';
+    impact.querySelector('.nc-impact-pager').innerHTML=all.length>50?'<button type="button" data-impact-page="-1" '+(impactPage===0?'disabled':'')+'>←</button><span>'+(impactPage*50+1)+'–'+Math.min(all.length,impactPage*50+50)+' / '+all.length+'</span><button type="button" data-impact-page="1" '+((impactPage+1)*50>=all.length?'disabled':'')+'>→</button>':'';
+  }
+  function impactRebuild(){
+    if(!impact.open||!inputTable)return;
+    impactInputs();
+    impactRows=window.ZGMassSurface.changes(rows,inputTable.active,derivedZN,MM.affected);
+    for(const r of inputTable.active.values())if(r.state.source_state_index){
+      const s=r.state,m=s.mass_excess,old=m.value==null?null:P.primitive('NUBASE2020:'+s.id,m.value,m.uncertainty,m.value_extrapolated),gs=get(s.Z,s.N),newgs=getter('hybrid')(s.Z,s.N),centre=[s.Z,s.N,s.element];
+      for(const [quantity,before,after]of [['me',old,r.value],['ex',old&&gs?P.combine([1,old],[-1,gs]):null,newgs?P.combine([1,r.value],[-1,newgs]):null]])if(after)impactRows.push({r:centre,state:s.label,quantity,unit:'keV',before,after,delta:before?P.combine([1,after],[-1,before]):null});
+    }
+    impactRows.sort((a,b)=>a.r[0]-b.r[0]||a.r[1]-b.r[1]||a.quantity.localeCompare(b.quantity));impactRender();
+  }
+  async function impactLoad(){
+    const seq=++impactRequest;impactRebuild();
+    await Promise.allSettled(impactModels().map(k=>loadModels(k)));
+    if(seq===impactRequest&&impact.open){impactRebuild();plotChain();}
+  }
+  function openImpact(id='all'){if(!inputTable)return;measured?.flush();impactPage=0;impactQ.value='all';impactInputs();impactInput.value=inputTable.active.has(id)?id:'all';if(!impact.open)impact.showModal();impactLoad();}
+  root.querySelector('[data-mass=impact]').onclick=()=>openImpact();
+  root.addEventListener('zg-mass-impact',e=>openImpact(e.detail.id));
+  impactInput.onchange=()=>{impactPage=0;impactRender();};
+  impactQ.onchange=()=>{impactPage=0;impactRender();};impactM.onchange=()=>{impactPage=0;impactLoad();};
+  impact.addEventListener('click',e=>{
+    const page=e.target.closest('[data-impact-page]');if(page){impactPage+=+page.dataset.impactPage;impactRender();return;}
+    const act=e.target.closest('[data-impact]')?.dataset.impact;if(act==='close')impact.close();
+    if(act==='csv'){
+      const models=impactModels(),out=[];
+      for(const r of impactFiltered())for(const k of (models.length?models:[''])){const v=k&&!r.state?derivedZN(r.r[0],r.r[1],k)[r.quantity]:null;out.push([r.r[0]+r.r[1]+r.r[2],r.state||'g',r.r[0],r.r[1],r.quantity,r.unit,r.before?.v??'',r.before?.e??'',r.after.v,r.after.e??'',r.delta?.v??'',r.delta?.e??'',k,MOD[k]?.name||'',v?.v??'',v?r.after.v-v.v:'','unknown model uncertainty; independent experimental inputs, shared terms cancelled',JSON.stringify(MM.provenance(r.after,inputTable)),measured.hash()]);}
+      X.csv(['nuclide','state','Z','N','quantity','unit','reference_value','reference_sigma','recalculated','recalculated_sigma','new_minus_reference','delta_sigma','model','model_name','model_value','new_minus_model','uncertainty_basis','input_provenance','input_table_sha256'],out,'affected-mass-quantities');
+    }
+  });
   function plotChain(r) {
-    chain = r || chain; if (!chain) return;
-    const ch = pchain.value, [Z, N] = chain, A = Z + N;
-    const q = PQ[pq.value], rg = root.querySelector("[name=nc-range]"), on = rg && rg.checked, num = n => { const v = root.querySelector(`[name=${n}]`).value; return v === "" ? null : +v; };
-    const own = ch === "Z" ? Z : ch === "N" ? N : A, cfrom = on && num("nc-c0") != null ? num("nc-c0") : own, cto = on && num("nc-c1") != null ? num("nc-c1") : cfrom;
-    const xlo = on ? num("nc-x0") : null, xhi = on ? num("nc-x1") : null;
-    plotPts = [];
-    for (let c = Math.min(cfrom, cto); c <= Math.max(cfrom, cto) && c - Math.min(cfrom, cto) < 40; c++) {
-      rows.filter(x => ch === "Z" ? x[0] === c : ch === "N" ? x[1] === c : x[0] + x[1] === c).forEach(x => {
-        const v = q[1](derived(x), x), xv = ch === "Z" ? x[1] : x[0];
-        if (v && (xlo == null || xv >= xlo) && (xhi == null || xv <= xhi)) plotPts.push({ r: x, x: xv, y: v.v / 1000, e: v.e == null ? null : v.e / 1000, est: v.est, g: c });
-      });
+    chain = r || chain; filterFormula(); if (!chain) return;
+    const ch = pchain.value, [Z,N] = chain, A=Z+N;
+    if(ch!==activeChainType){
+      rangeMemory[activeChainType]=Object.fromEntries(['c0','c1','x0','x1'].map(k=>[k,chainInput(k).value]));activeChainType=ch;
+      Object.entries(CP.rangeFor(rangeMemory,ch,ch==='Z'?Z:ch==='N'?N:A)).forEach(([k,v])=>chainInput(k).value=v);
     }
-    plotPts.sort((a, b) => a.g - b.g || a.x - b.x);
-    plotPts.groups = [...new Set(plotPts.map(p => p.g))];
-    /* model curve over the whole chain the model predicts (needs a model source, or β₂ which only models give) */
-    const mk = src !== "ame" ? src : pq.value === "beta2" ? modelKey() : null;
-    modPts = [];
-    if (mk && MOD[mk] && plotPts.groups.length <= 1 && !["dme", "hl", "dmod"].includes(pq.value)) {
-      const ks = [...MOD[mk].map.keys()].map(k => [Math.floor(k / 1000), k % 1000]).filter(([z, n]) => (ch === "Z" ? z === cfrom : ch === "N" ? n === cfrom : z + n === cfrom) && (xlo == null || (ch === "Z" ? n : z) >= xlo) && (xhi == null || (ch === "Z" ? n : z) <= xhi));
-      modPts = ks.map(([z, n]) => { const v = q[1](derivedZN(z, n, mk), [z, n]); return v && { x: ch === "Z" ? n : z, y: v.v / 1000 }; }).filter(Boolean).sort((a, b) => a.x - b.x);
-      modPts.name = MOD[mk].name;
+    const q=PQ[pq.value],on=chainInput('range').checked,own=ch==='Z'?Z:ch==='N'?N:A;
+    const cfrom=on&&axisNumber('c0')!=null?axisNumber('c0'):own,cto=on&&axisNumber('c1')!=null?axisNumber('c1'):cfrom;
+    const xlo=on?axisNumber('x0'):null,xhi=on?axisNumber('x1'):null;
+    const first=Math.max(0,Math.ceil(Math.min(cfrom,cto))),last=Math.min(400,Math.floor(Math.max(cfrom,cto))),total=Math.max(0,last-first+1),shown=Math.min(total,40);
+    const group=(z,n)=>ch==='Z'?z:ch==='N'?n:z+n, xv=(z,n)=>ch==='Z'?n:z;
+    const belongs=(z,n)=>group(z,n)>=first&&group(z,n)<first+shown;
+    const inX=(z,n)=>(xlo==null||xv(z,n)>=xlo)&&(xhi==null||xv(z,n)<=xhi);
+    const advanced=shown<=6,filter=chainInput('exp-filter').value,maxSigma=axisNumber('max-sigma');
+    const hasNewGround=!!inputTable&&[...inputTable.active.values()].some(r=>!r.state.source_state_index);
+    [...inputTable?.active.values()||[]].filter(r=>!r.state.source_state_index).map(r=>MM.labels(r.value,inputTable)).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b))).forEach(labels=>labelStyle(labels));
+    for(const s of ['loaded','hybrid']){
+      const control=root.querySelector('[data-series='+s+']');
+      control.disabled=!hasNewGround;
+      control.parentElement.title=hasNewGround?'':T.loaded_requires_ground;
     }
-    const gs = plotPts.groups, multi = gs.length > 1, nm = ch === "Z" ? "Z" : ch === "N" ? "N" : "A";
-    const lab = multi ? `${ch === "Z" ? T.p_iso : ch === "N" ? T.p_isot : T.p_isob}: ${nm} = ${gs[0]}–${gs[gs.length - 1]}` : ch === "Z" ? `${T.p_iso}: Z = ${Z} (${chain[2]})` : ch === "N" ? `${T.p_isot}: N = ${N}` : `${T.p_isob}: A = ${A}`;
-    pinfo.textContent = `${lab} · ${q[0]} · ${plotPts.length} ${T.points}`;
-    drawPlot();
+    const passPoint=(r,v,source)=>{
+      const [z,n]=r,ame=get(z,n),mass=source==='loaded'||source==='hybrid'?getter('hybrid')(z,n):ame;
+      const referenceDerived=derivedZN(z,n,'ame'),hybridDerived=derivedZN(z,n,'hybrid');
+      const reference=['hl','beta2'].includes(pq.value)?ame:q[1](referenceDerived,r);
+      return CP.experimentalFilter({mode:filter,centre:ame,reference,value:v,
+        active:!!inputTable?.active.has(z+'-'+n+'-0'),
+        affected:MM.affected(dependencyValue(pq.value,hybridDerived,q[1](hybridDerived,r))),mass,maxSigma});
+    };
+    const makePoint=(r,s)=>{
+      const v=q[1](derivedZN(r[0],r[1],s==='loaded'?'hybrid':s),r);if(!v||!Number.isFinite(v.v)||!passPoint(r,v,s))return null;
+      const primitiveValue=dependencyValue(pq.value,derivedZN(r[0],r[1],s==='loaded'?'hybrid':s),v),composition=CP.composition(primitiveValue);
+      if(s==='hybrid'&&!composition.mixed||s==='loaded'&&!composition.experimental.length)return null;
+      const labels=['loaded','hybrid'].includes(s)?MM.labels(primitiveValue,inputTable):[],style=seriesMeta(s,labels);
+      return {r,x:xv(r[0],r[1]),y:v.v/1000,e:v.e==null?null:v.e/1000,est:!!v.est,g:group(r[0],r[1]),series:s,styleKey:style.key,labels,source:style.name,valueObj:v,dependencyValue:primitiveValue};
+    };
+    plotPts=[];modPts=[];residualPts=[];bands=[];plotHover=null;pointDetail(null);
+    const centres=new Map(rows.filter(r=>belongs(r[0],r[1])).map(r=>[key(r[0],r[1]),r]));
+    for(const r of inputTable?.active.values()||[])if(!r.state.source_state_index&&belongs(r.state.Z,r.state.N)&&!centres.has(key(r.state.Z,r.state.N)))centres.set(key(r.state.Z,r.state.N),[r.state.Z,r.state.N,r.state.element,null,null,0,-97,'—','',null,'',[]]);
+    for(const s of ['ame','loaded','hybrid']){
+      if(!root.querySelector('[data-series='+s+']').checked||s!=='ame'&&(!advanced||!hasNewGround))continue;
+      if(s!=='ame'&&['hl','beta2','dmod'].includes(pq.value))continue;
+      for(const r of centres.values()){
+        if(!inX(r[0],r[1])||s==='loaded'&&!inputTable?.active.has(r[0]+'-'+r[1]+'-0'))continue;
+        const p=makePoint(r,s);if(p)plotPts.push(p);
+      }
+    }
+    const modelKeys=selectedModels();
+    const modelReason=modelKeys.length&&!advanced?T.loaded_cap:modelKeys.length&&['dme','hl','dmod'].includes(pq.value)?T.model_quantity:modelKeys.some(k=>modelErrors.has(k))?T.loaded_model_error:modelKeys.some(k=>!MOD[k])?T.loaded_model_loading:'';
+    const modelNuclei=[];
+    if(advanced&&!['dme','hl','dmod'].includes(pq.value))for(const mk of modelKeys){
+      if(!MOD[mk])continue;
+      for(const k of MOD[mk].map.keys()){
+        const z=Math.floor(k/1000),n=k%1000;if(!belongs(z,n))continue;modelNuclei.push([z,n]);if(!inX(z,n))continue;
+        const r=M.get(k)||Object.assign([z,n,(EL.find(e=>e[0]===z)||[z,'Z'+z])[1],null,null,0,-97,'—','',null,'',[]],{mo:true});
+        const p=makePoint(r,mk);if(p)modPts.push(p);
+      }
+    }
+    const sort=(a,b)=>a.series.localeCompare(b.series)||a.g-b.g||a.x-b.x;plotPts.sort(sort);modPts.sort(sort);
+    plotPts.groups=[...new Set(plotPts.concat(modPts).map(p=>p.g))];
+    const seriesRank=s=>s.id==='ame'?0:s.id==='loaded'?1:s.id==='hybrid'?2:3;
+    visibleSeries=[...new Map(plotPts.concat(modPts).map(p=>[p.styleKey,seriesMeta(p.series,p.labels)])).values()].sort((a,b)=>seriesRank(a)-seriesRank(b)||a.name.localeCompare(b.name));
+    markerControls();
+    inputLegend=measured?measured.legend().filter(x=>plotPts.some(p=>['loaded','hybrid'].includes(p.series)&&Object.keys((p.dependencyValue||p.valueObj).terms||{}).some(id=>id.startsWith('loaded:'+x.id+':')))):[];
+    root.querySelector('.nc-input-legend').textContent=inputLegend.map(x=>x.text).join(' · ');
+    if(chainInput('band').checked){
+      bands=CP.experimentalBands(plotPts);
+    }
+    if(chainInput('residual').checked&&!['hl','dme','dmod','beta2'].includes(pq.value)){
+      for(const p of plotPts.concat(modPts).filter(p=>p.series!=='ame')){
+        const a=q[1](derived(p.r),p.r);if(!a)continue;
+        const d=P.combine([1,p.valueObj],[-1,a]),model=!['loaded','hybrid'].includes(p.series);
+        if(filter==='measured'&&d.est)continue;
+        residualPts.push({...p,y:d.v,e:model?a.e:d.e,...CP.residualStyle(d,a,model),valueObj:d,dependencyValue:d,unit:pq.value==='bea'?'keV/nucleon':'keV',panel:'residual',source:p.source+' − AME2020'});
+      }
+    }
+    root.querySelector('.nc-residual-panel').hidden=!chainInput('residual').checked;
+    root.querySelector('.nc-series-legend').innerHTML=visibleSeries.map(s=>'<span style="--series-color:'+s.color+'"><b aria-hidden="true">'+legendGlyph(s)+'</b> '+escape(s.name)+' ('+plotPts.concat(modPts).filter(p=>inSeries(p,s)).length+')</span>').join('');
+    const label=(ch==='Z'?T.p_iso:ch==='N'?T.p_isot:T.p_isob)+': '+ch+' = '+first+(shown>1?'–'+(first+shown-1):'');
+    pinfo.textContent=label+' · '+q[0]+' · '+(plotPts.length+modPts.length)+' '+T.points+' · '+T.chain_count.replace('{shown}',shown).replace('{total}',total)+(modelReason?' · '+modelReason:'')+(!advanced&&modelReason!==T.loaded_cap&&['loaded','hybrid'].some(s=>root.querySelector('[data-series='+s+']').checked)?' · '+T.loaded_cap:'')+' · '+bands.length+' '+T.loaded_band_points+(hasNewGround&&root.querySelector('[data-series=hybrid]').checked&&!plotPts.some(p=>p.series==='hybrid')?' · '+T.loaded_no_mixed:'');
+    const fullX=[...centres.values()].map(r=>xv(r[0],r[1])).concat(modelNuclei.map(([z,n])=>xv(z,n)));
+    plotDomain=CP.chainExtent(plotPts,modPts,{xMode:chainInput('xscale').value,yMode:chainInput('yscale').value,fullX,errors:chainInput('axis-errors').checked,manual:Object.fromEntries(['x0','x1','y0','y1'].map(k=>[k,axisNumber('axis-'+k)]))});
+    root.querySelector('.nc-axis-note').textContent=(plotDomain.warnings.length?T.axis_invalid+' · ':'')+T.axis_offscale;
+    root.querySelector('.nc-manual-x').hidden=chainInput('xscale').value!=='manual';root.querySelector('.nc-manual-y').hidden=chainInput('yscale').value!=='manual';
+    pc.setAttribute('aria-label',label+'; '+q[0]+'; x '+plotDomain.x0+'–'+plotDomain.x1+'; '+(plotPts.length+modPts.length)+' '+T.points);
+    pointTable();resize();drawPlot();drawResidual();
+  }
+  function drawBands(c,points,px,py,sc=1){
+    if(!chainInput('band').checked)return;
+    const grouped=new Map();for(const p of CP.experimentalBands(points)){
+      const k=p.styleKey+':'+p.g;if(!grouped.has(k))grouped.set(k,[]);grouped.get(k).push(p);
+    }
+    c.save();c.globalAlpha=.16;
+    for(const ps of grouped.values()){
+      ps.sort((a,b)=>a.x-b.x);c.fillStyle=pointColor(ps[0],seriesMeta(ps[0].series,ps[0].labels));
+      for(const p of ps)c.fillRect(px(p.x)-2*sc,py(p.hi),4*sc,Math.max(.5*sc,py(p.lo)-py(p.hi)));
+      if(chainInput('lines').checked)for(let i=1;i<ps.length;i++){
+        const a=ps[i-1],b=ps[i];if(!CP.connects(a,b))continue;
+        c.beginPath();c.moveTo(px(a.x),py(a.lo));c.lineTo(px(a.x),py(a.hi));c.lineTo(px(b.x),py(b.hi));c.lineTo(px(b.x),py(b.lo));c.closePath();c.fill();
+      }
+    }c.restore();
   }
   function drawPlot(c = pg, Wd = pc._cw, Hd = pc._ch, sc = 1) {
     if (c === pg) pg.setTransform(pc.width / pc._cw, 0, 0, pc.height / pc._ch, 0, 0);
     c.clearRect(0, 0, Wd, Hd); c.fillStyle = sc > 1 ? "#fff" : "transparent"; if (sc > 1) c.fillRect(0, 0, Wd, Hd);
-    if (!plotPts.length && !modPts.length) { c.fillStyle = "#888"; c.font = `${13 * sc}px system-ui`; c.fillText(T.p_hint, 20 * sc, 30 * sc); return; }
-    const L = 62 * sc, R = 16 * sc, Tp = 18 * sc, B = 42 * sc, xs = plotPts.map(p => p.x).concat(modPts.map(p => p.x)), ys = plotPts.flatMap(p => [p.y - (p.e || 0), p.y + (p.e || 0)]).concat(modPts.map(p => p.y));
-    let x0 = Math.min(...xs) - 1, x1 = Math.max(...xs) + 1, y0 = Math.min(...ys), y1 = Math.max(...ys); const pad = (y1 - y0) * 0.08 || 1; y0 -= pad; y1 += pad;
-    const px = x => L + (x - x0) / (x1 - x0) * (Wd - L - R), py = y => Hd - B - (y - y0) / (y1 - y0) * (Hd - B - Tp);
+    if (!plotPts.length && !modPts.length) { c.fillStyle = "#888"; c.font = `${13 * sc}px system-ui`; c.fillText(chain ? T.loaded_no_points : T.p_hint, 20 * sc, 30 * sc); return; }
+    const { x0,x1,y0,y1 } = plotDomain, geom = plotGeom(plotDomain,Wd,Hd,sc);
+    const { L,R,T:Tp,B,px,py } = geom;
     c.strokeStyle = "rgba(127,127,160,.45)"; c.lineWidth = 0.45 * lineWidth() * sc; c.strokeRect(L, Tp, Wd - L - R, Hd - B - Tp);
     c.fillStyle = sc > 1 ? "#222" : ink; c.font = `${11 * sc}px system-ui`; c.textAlign = "center";
-    niceTicks(x0, x1, 12).filter(x => Number.isInteger(x)).forEach(x => { c.fillText(x, px(x), Hd - B + 15 * sc); c.save(); c.strokeStyle = "rgba(127,127,160,.15)"; c.beginPath(); c.moveTo(px(x), Tp); c.lineTo(px(x), Hd - B); c.stroke(); c.restore(); });
+    const xTicks = Math.max(2, Math.min(12, Math.floor((Wd - L - R) / (45 * sc))));
+    niceTicks(x0, x1, xTicks).filter(x => Number.isInteger(x)).forEach(x => { c.fillText(x, px(x), Hd - B + 15 * sc); c.save(); c.strokeStyle = "rgba(127,127,160,.15)"; c.beginPath(); c.moveTo(px(x), Tp); c.lineTo(px(x), Hd - B); c.stroke(); c.restore(); });
     const ch = pchain.value; c.fillText(ch === "Z" ? "N" : "Z", (L + Wd - R) / 2, Hd - 8 * sc);
     c.textAlign = "right"; niceTicks(y0, y1, 6).forEach(y => { c.fillText(fmtTick(y), L - 6 * sc, py(y) + 4 * sc); c.save(); c.strokeStyle = "rgba(127,127,160,.15)"; c.beginPath(); c.moveTo(L, py(y)); c.lineTo(Wd - R, py(y)); c.stroke(); c.restore(); });
     c.save(); c.translate(14 * sc, (Tp + Hd - B) / 2); c.rotate(-Math.PI / 2); c.textAlign = "center"; c.fillText(`${PQ[pq.value][0]}${PQ[pq.value][2] ? " (" + PQ[pq.value][2] + ")" : ""}`, 0, 0); c.restore();
     c.strokeStyle = "rgba(229,72,77,.35)"; c.setLineDash([4 * sc, 4 * sc]);
     MAGIC.forEach(m => { if (m > x0 && m < x1) { c.beginPath(); c.moveTo(px(m), Tp); c.lineTo(px(m), Hd - B); c.stroke(); } }); c.setLineDash([]);
-    if (modPts.length) {   /* theory curve: dashed green, gaps where the chain is interrupted */
-      c.strokeStyle = "#16a34a"; c.lineWidth = lineWidth() * sc; c.setLineDash([6 * sc, 4 * sc]); c.beginPath();
-      modPts.forEach((p, i) => i && p.x - modPts[i - 1].x <= 2 ? c.lineTo(px(p.x), py(p.y)) : c.moveTo(px(p.x), py(p.y))); c.stroke(); c.setLineDash([]);
-      c.fillStyle = "#16a34a"; modPts.forEach(p => { c.beginPath(); c.arc(px(p.x), py(p.y), 1.8 * sc, 0, 6.283); c.fill(); });
-      c.font = `${10.5 * sc}px system-ui`; c.textAlign = "left"; c.fillText(`– – ${modPts.name}`, L + 8 * sc, Tp + 30 * sc);
-      c.strokeStyle = "rgba(127,127,160,.6)"; c.lineWidth = 0.45 * lineWidth() * sc; c.beginPath(); c.moveTo(L, py(0)); c.lineTo(Wd - R, py(0)); if (y0 < 0 && y1 > 0) c.stroke();
+    c.save(); c.beginPath(); c.rect(L,Tp,Wd-L-R,Hd-B-Tp); c.clip();
+    const groups=plotPts.groups||[],multi=groups.length>1;
+    const gcol=chainColor;
+    const showLine=chainInput('lines').checked,showErr=chainInput('err').checked;
+    drawBands(c,plotPts,px,py,sc);
+    // Mixed calculations first, then the reference and new input centres.
+    const paintOrder=visibleSeries.slice().sort((a,b)=>(a.id==='loaded'?2:a.id==='ame'?1:0)-(b.id==='loaded'?2:b.id==='ame'?1:0));
+    for(const s of paintOrder)for(const group of groups){
+      const ps=plotPts.concat(modPts).filter(p=>inSeries(p,s)&&p.g===group);if(!ps.length)continue;
+      const col=pointColor(ps[0],s);
+      c.strokeStyle=col;c.lineWidth=(s.shape==='model'?1:1.2)*lineWidth()*sc;c.setLineDash(s.shape==='model'?[6*sc,4*sc]:s.id==='hybrid'?[2*sc,3*sc]:[]);
+      if(showLine&&s.id!=='loaded'){c.beginPath();ps.forEach((p,i)=>i&&CP.connects(ps[i-1],p)?c.lineTo(px(p.x),py(p.y)):c.moveTo(px(p.x),py(p.y)));c.stroke();}c.setLineDash([]);
+      for(const p of ps){
+        if(p.x<x0||p.x>x1)continue;
+        const xx=px(p.x),yy=py(p.y),color=col;c.strokeStyle=color;c.fillStyle=color;
+        if(p.y<y0||p.y>y1){const y=geom.clampY(p.y),sign=p.y>y1?1:-1;c.beginPath();c.moveTo(xx,y);c.lineTo(xx-4*sc,y+sign*7*sc);c.lineTo(xx+4*sc,y+sign*7*sc);c.closePath();c.fill();continue;}
+        if(showErr&&p.e>0){c.beginPath();c.moveTo(xx,py(p.y-p.e));c.lineTo(xx,py(p.y+p.e));for(const ey of [p.y-p.e,p.y+p.e]){c.moveTo(xx-3*sc,py(ey));c.lineTo(xx+3*sc,py(ey));}c.stroke();}
+        const radius=(s.shape==='model'?1.8:multi?2.8:3.6)*sc;
+        const background=sc>1?'#fff':getComputedStyle(document.documentElement).getPropertyValue('--zg-card').trim()||'#fff';
+        CP.paintMarker(c,s.shape,xx,yy,radius,color,p.est||s.open,background);
+        if(chainInput('reference-ring').checked&&chain&&p.r[0]===chain[0]&&p.r[1]===chain[1]){c.strokeStyle='#e5484d';c.lineWidth=1.5*sc;c.beginPath();c.arc(xx,yy,7*sc,0,6.283);c.stroke();}
+      }
     }
-    const groups = plotPts.groups || [], multi = groups.length > 1, gcol = g => multi ? `hsl(${(groups.indexOf(g) / groups.length) * 300},75%,${sc > 1 ? 40 : 48}%)` : "#3b5bdb";
-    const showLine = !root.querySelector("[name=nc-lines]") || root.querySelector("[name=nc-lines]").checked, showErr = !root.querySelector("[name=nc-err]") || root.querySelector("[name=nc-err]").checked;
-    if (showLine) groups.forEach(gk => { const ps = plotPts.filter(p => p.g === gk); c.strokeStyle = multi ? gcol(gk) : "rgba(139,108,255,.55)"; c.lineWidth = 1.2 * sc; c.beginPath();
-      ps.forEach((p, i) => i && p.x - ps[i - 1].x <= 2 ? c.lineTo(px(p.x), py(p.y)) : c.moveTo(px(p.x), py(p.y))); c.stroke();
-      if (multi && ps.length) { const l = ps[ps.length - 1]; c.fillStyle = gcol(gk); c.font = `${10 * sc}px system-ui`; c.textAlign = "left"; c.fillText((pchain.value === "Z" ? (EL.find(e => e[0] === gk) || [0, "Z" + gk])[1] : (pchain.value === "N" ? "N=" : "A=") + gk), px(l.x) + 5 * sc, py(l.y) + 3 * sc); } });
-    plotPts.forEach(p => {
-      const xx = px(p.x), col = multi ? gcol(p.g) : p.est ? "#f59e0b" : "#3b5bdb";
-      c.strokeStyle = col; c.lineWidth = 1.3 * sc;
-      if (showErr && p.e > 0) { c.beginPath(); c.moveTo(xx, py(p.y - p.e)); c.lineTo(xx, py(p.y + p.e)); c.moveTo(xx - 3 * sc, py(p.y - p.e)); c.lineTo(xx + 3 * sc, py(p.y - p.e)); c.moveTo(xx - 3 * sc, py(p.y + p.e)); c.lineTo(xx + 3 * sc, py(p.y + p.e)); c.stroke(); }
-      c.beginPath(); c.arc(xx, py(p.y), (multi ? 2.8 : 3.6) * sc, 0, 6.283);
-      if (p.est) { c.fillStyle = sc > 1 ? "#fff" : "rgba(255,255,255,.9)"; c.fill(); c.stroke(); } else { c.fillStyle = col; c.fill(); }
-      if (chain && p.r === chain) { c.strokeStyle = "#e5484d"; c.lineWidth = 2 * sc; c.beginPath(); c.arc(xx, py(p.y), 7 * sc, 0, 6.283); c.stroke(); }
-    });
-    c.textAlign = "left"; c.font = `${10.5 * sc}px system-ui`; c.fillStyle = "#3b5bdb"; c.fillText(`● ${T.measured}`, L + 8 * sc, Tp + 14 * sc); c.fillStyle = "#f59e0b"; c.fillText(`○ ${T.extrap}`, L + 90 * sc, Tp + 14 * sc);
-    if (plotHover && sc === 1) { const p = plotHover; c.fillStyle = ink; c.textAlign = "left"; c.font = `${12}px system-ui`; c.fillText(`${sup(p.r[0] + p.r[1])}${p.r[2]}: ${(([a, b]) => p.e > 0 ? a + (p.est ? "#" : "") + " ± " + b : a)(fmtU(p.y, p.e))}`, Math.min(px(p.x) + 8, Wd - 220), Math.max(py(p.y) - 10, 30)); }
+    c.restore();
+    if(multi)groups.forEach(gk=>{const ps=plotPts.filter(p=>p.series==='ame'&&p.g===gk&&p.x>=x0&&p.x<=x1);if(!ps.length)return;const p=ps[ps.length-1];c.fillStyle=gcol(gk);c.font=10*sc+'px system-ui';c.textAlign='left';c.fillText(ch+'='+gk,Math.min(px(p.x)+5*sc,Wd-R+4*sc),geom.clampY(p.y)+3*sc);});
+    c.textAlign='left';c.font=10.5*sc+'px system-ui';
+    const legendLines=seriesLegendLines(Wd/sc);
+    legendLines.forEach((line,i)=>{const y=(12+i*16)*sc;if(line.first){c.fillStyle=line.style.color;c.fillText(legendGlyph(line.style),L,y);}c.fillStyle=sc>1?'#222':ink;c.fillText(line.text,L+40*sc,y);});
+    c.fillStyle=sc>1?'#222':ink;inputLegendLines(Wd/sc).forEach((text,i)=>c.fillText(text,L,(12+16*(legendLines.length+i))*sc));
+    if (plotHover && sc === 1 && plotHover.r) {
+      const p = plotHover, value = p.e == null ? Number(p.y.toPrecision(7)).toString() : (([a,b])=>p.e>0?a+(p.est?'#':'')+' ± '+b:a)(fmtU(p.y,p.e));
+      c.fillStyle=ink;c.textAlign='left';c.font='12px system-ui';
+      const width=Wd-L-R-8, text=`${sup(p.r[0]+p.r[1])}${p.r[2]}: ${value}${p.source?' ('+p.source+')':''}`, lines=[];
+      let line='';for(const word of text.split(' ')){const next=line?line+' '+word:word;if(line&&c.measureText(next).width>width){lines.push(line);line=word;}else line=next;}if(line)lines.push(line);
+      const left=Math.max(L+4,Math.min(px(p.x)+8,Wd-R-width)), top=Math.max(Tp+16,Math.min(geom.clampY(p.y)-10,Hd-B-lines.length*14));
+      lines.forEach((s,i)=>c.fillText(s,left,top+i*14));
+    }
+  }
+  function drawResidual(c=rg,width=pc._cw,height=Math.max(230,Math.min(320,width*.45)),exporting=false){
+    if(!plotDomain||root.querySelector('.nc-residual-panel').hidden)return;
+    if(c===rg){sizeCanvas(rc,width,height);c.setTransform(rc.width/width,0,0,rc.height/height,0,0);}c.clearRect(0,0,width,height);if(exporting){c.fillStyle='#fff';c.fillRect(0,0,width,height);}
+    if(!residualPts.length){
+      residualDomain=null;c.fillStyle=exporting?'#222':ink;c.font='12px system-ui';c.textAlign='left';
+      const words=T.loaded_residual_empty.split(/\s+/);let line='',y=28;
+      for(const word of words){
+        const next=line?line+' '+word:word;
+        if(line&&c.measureText(next).width>width-40){c.fillText(line,20,y);y+=18;line='';}
+        if(c.measureText(word).width>width-40){for(const char of word){if(line&&c.measureText(line+char).width>width-40){c.fillText(line,20,y);y+=18;line='';}line+=char;}}
+        else line=line?line+' '+word:word;
+      }if(line)c.fillText(line,20,y);
+      if(c===rg)rc.setAttribute('aria-label',T.loaded_residual_empty);return;
+    }
+    const domain={...CP.chainExtent(residualPts,[],{errors:chainInput('axis-errors').checked}),x0:plotDomain.x0,x1:plotDomain.x1};
+    domain.y0=Math.min(domain.y0,0);domain.y1=Math.max(domain.y1,0);residualDomain=domain;
+    const geom=CP.geometry(domain,width,height,(plotPts.groups||[]).length>1),{L,R,T:top,B,px,py}=geom;
+    c.lineWidth=lineWidth();c.strokeStyle='rgba(127,127,160,.5)';c.strokeRect(L,top,width-L-R,height-B-top);c.fillStyle=exporting?'#222':ink;c.font='11px system-ui';
+    c.textAlign='right';niceTicks(domain.y0,domain.y1,4).forEach(y=>c.fillText(fmtTick(y),L-5,py(y)+3));c.textAlign='center';
+    niceTicks(domain.x0,domain.x1,Math.max(2,Math.floor((width-L-R)/50))).filter(Number.isInteger).forEach(x=>c.fillText(x,px(x),height-B+15));
+    c.fillText('Δ ('+(pq.value==='bea'?'keV/nucleon':'keV')+') = series − AME2020',(L+width-R)/2,12);c.beginPath();c.moveTo(L,py(0));c.lineTo(width-R,py(0));c.stroke();
+    c.save();c.beginPath();c.rect(L,top,width-L-R,height-B-top);c.clip();
+    const showLine=chainInput('lines').checked,showErr=chainInput('err').checked;
+    drawBands(c,residualPts,px,py);
+    for(const s of visibleSeries.filter(s=>s.id!=='ame'))for(const group of plotPts.groups||[]){
+      const ps=residualPts.filter(p=>inSeries(p,s)&&p.g===group);c.strokeStyle=s.color;c.fillStyle=s.color;c.setLineDash(s.shape==='model'?[5,3]:s.id==='hybrid'?[2,3]:[]);
+      if(showLine&&s.id!=='loaded'){c.beginPath();ps.forEach((p,i)=>i&&CP.connects(ps[i-1],p)?c.lineTo(px(p.x),py(p.y)):c.moveTo(px(p.x),py(p.y)));c.stroke();}c.setLineDash([]);
+      ps.forEach(p=>{const x=px(p.x),y=py(p.y),background=exporting?'#fff':getComputedStyle(document.documentElement).getPropertyValue('--zg-card').trim()||'#fff';CP.paintMarker(c,s.shape,x,y,2.5,s.color,p.est||s.open,background);if(showErr&&p.e>0){c.beginPath();c.moveTo(x,py(p.y-p.e));c.lineTo(x,py(p.y+p.e));c.stroke();}});
+    }
+    c.restore();if(c===rg)rc.setAttribute('aria-label','Δ = series − AME2020, keV; shared x '+domain.x0+'–'+domain.x1+'; '+residualPts.length+' points');
+  }
+  rc.addEventListener('mousemove',e=>{if(!residualDomain)return;const b=rc.getBoundingClientRect(),geom=CP.geometry(residualDomain,rc._cw,rc._ch,(plotPts.groups||[]).length>1);pointDetail(CP.nearest(residualPts,(e.clientX-b.left)*rc._cw/b.width,(e.clientY-b.top)*rc._ch/b.height,geom));});
+  function plotAt(e) {
+    if(!plotDomain)return null;const b=pc.getBoundingClientRect(),x=(e.clientX-b.left)*pc._cw/b.width,y=(e.clientY-b.top)*pc._ch/b.height,geom=plotGeom(plotDomain,pc._cw,pc._ch);
+    if(x<geom.L||x>geom.right||y<geom.T||y>geom.bottom)return null;
+    return CP.nearest(modPts.filter(p=>p.r).concat(plotPts),x,y,geom);
   }
   pc.addEventListener("mousemove", e => {
-    if (!plotPts.length) return; const b = pc.getBoundingClientRect(), x = (e.clientX - b.left) * pc._cw / b.width;
-    const L = 62, R = 16, xs = plotPts.map(p => p.x), x0 = Math.min(...xs) - 1, x1 = Math.max(...xs) + 1, xv = x0 + (x - L) / (pc._cw - L - R) * (x1 - x0);
-    plotHover = plotPts.reduce((a, p) => Math.abs(p.x - xv) < Math.abs(a.x - xv) ? p : a, plotPts[0]); drawPlot();
+    plotHover = plotAt(e); pointDetail(plotHover);drawPlot();
   });
-  pc.addEventListener("click", () => { if (plotHover) { pin = plotHover.r; zoomTo(pin); showCard(pin); } });
+  pc.addEventListener('mouseleave',()=>{plotHover=null;drawPlot();});
+  pc.addEventListener("click", e => { if(plotMoved)return;const point=plotAt(e); if (point) { pointDetail(point);pin = point.r; zoomTo(pin); showCard(pin); } });
+  function applyPlotView(d){
+    if(!d||!['x0','x1','y0','y1'].every(k=>Number.isFinite(d[k]))||d.x1-d.x0<1e-7||d.y1-d.y0<1e-12)return;
+    for(const axis of ['x','y']){chainInput(axis+'scale').value='manual';for(const end of [0,1])chainInput('axis-'+axis+end).value=Number(d[axis+end].toPrecision(14));}plotChain();
+  }
+  function zoomPlot(f,x=.5,y=.5){if(plotDomain)applyPlotView(CP.zoomExtent(plotDomain,f,x,y));}
+  function fitPlot(){chainInput('xscale').value='full';chainInput('yscale').value='all';plotChain();}
+  root.querySelector('[data-plot=in]').onclick=()=>zoomPlot(1/1.5);
+  root.querySelector('[data-plot=out]').onclick=()=>zoomPlot(1.5);
+  root.querySelector('[data-plot=fit]').onclick=fitPlot;
+  const plotPointers=new Map();let plotDrag=null,plotMoved=false,plotPinch=null;
+  const plotPos=e=>{const b=pc.getBoundingClientRect(),g=plotGeom(plotDomain,pc._cw,pc._ch);return {x:(e.clientX-b.left)*pc._cw/b.width,y:(e.clientY-b.top)*pc._ch/b.height,g};};
+  pc.addEventListener('wheel',e=>{if(!plotDomain)return;e.preventDefault();const {x,y,g}=plotPos(e);zoomPlot(Math.exp(Math.max(-.5,Math.min(.5,e.deltaY*.002))),(x-g.L)/(g.right-g.L),1-(y-g.T)/(g.bottom-g.T));},{passive:false});
+  pc.addEventListener('pointerdown',e=>{
+    if(!plotDomain||e.button>0)return;pc.setPointerCapture(e.pointerId);pc.focus({preventScroll:true});plotPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});plotMoved=false;
+    plotDrag={x:e.clientX,y:e.clientY,d:{...plotDomain}};
+    if(plotPointers.size===2){const [a,b]=[...plotPointers.values()];plotPinch={distance:Math.hypot(a.x-b.x,a.y-b.y),d:{...plotDomain}};plotMoved=true;}
+  });
+  pc.addEventListener('pointermove',e=>{
+    if(!plotPointers.has(e.pointerId)||!plotDrag)return;plotPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(plotPointers.size===2&&plotPinch){const [a,b]=[...plotPointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);if(distance>1)applyPlotView(CP.zoomExtent(plotPinch.d,plotPinch.distance/distance));plotMoved=true;return;}
+    const dx=e.clientX-plotDrag.x,dy=e.clientY-plotDrag.y;if(Math.abs(dx)+Math.abs(dy)<4&&!plotMoved)return;plotMoved=true;
+    const box=pc.getBoundingClientRect(),g=plotGeom(plotDrag.d,pc._cw,pc._ch);
+    applyPlotView(CP.panExtent(plotDrag.d,-dx*pc._cw/box.width/(g.right-g.L)*(plotDrag.d.x1-plotDrag.d.x0),dy*pc._ch/box.height/(g.bottom-g.T)*(plotDrag.d.y1-plotDrag.d.y0)));
+  });
+  function endPlotPointer(e){plotPointers.delete(e.pointerId);plotPinch=null;plotDrag=null;}
+  pc.addEventListener('pointerup',endPlotPointer);pc.addEventListener('pointercancel',endPlotPointer);
+  pc.addEventListener('dblclick',e=>{e.preventDefault();fitPlot();});
+  pc.addEventListener('keydown',e=>{
+    if(!plotDomain)return;const dx=(plotDomain.x1-plotDomain.x0)*.1,dy=(plotDomain.y1-plotDomain.y0)*.1;
+    if(['+','=','-','Home','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))e.preventDefault();
+    if(e.key==='+'||e.key==='=')zoomPlot(1/1.5);else if(e.key==='-')zoomPlot(1.5);else if(e.key==='Home')fitPlot();
+    else if(e.key.startsWith('Arrow'))applyPlotView(CP.panExtent(plotDomain,e.key==='ArrowLeft'?-dx:e.key==='ArrowRight'?dx:0,e.key==='ArrowDown'?-dy:e.key==='ArrowUp'?dy:0));
+  });
   pq.onchange = () => { if (["beta2", "dmod"].includes(pq.value) && !Object.keys(MOD).length) loadModels().then(() => plotChain()); plotChain(); };
-  root.querySelectorAll(".nc-prange input, [name=nc-lines], [name=nc-err]").forEach(el => el.addEventListener("input", () => plotChain()));
+  root.querySelectorAll(".nc-prange input, [name=nc-lines], [name=nc-err], [name=nc-reference-ring]").forEach(el => el.addEventListener("input", () => plotChain()));
+  root.querySelectorAll('.nc-axes input,.nc-axes select').forEach(el=>el.addEventListener('input',()=>plotChain()));
   const rgb = root.querySelector("[name=nc-range]"); if (rgb) rgb.addEventListener("change", () => { root.querySelector(".nc-prange-in").hidden = !rgb.checked;
     if (rgb.checked && chain) { const ch = pchain.value, own = ch === "Z" ? chain[0] : ch === "N" ? chain[1] : chain[0] + chain[1], set = (n, v) => { const el = root.querySelector(`[name=${n}]`); if (el.value === "") el.value = v; };
       set("nc-c0", own); set("nc-c1", own); } plotChain(); });
+  root.querySelectorAll('.nc-series input,.nc-experiment-filter input,.nc-experiment-filter select').forEach(el=>el.addEventListener('input',()=>plotChain()));
   pchain.onchange = () => plotChain();
 
   /* ---------- periodic table (mulberry) ---------- */
@@ -468,13 +874,23 @@
   }
 
   /* ---------- exports ---------- */
-  const csvRow = r => { const d = derived(r), f = o => o ? [String(o.v / 1000), o.e == null ? "" : String(o.e / 1000), o.est ? "#" : ""] : ["", "", ""];
+  const csvRow = r => {
+    const d = derived(r), info = o => o ? [!!o.est, !!o.sigmaEst,
+      o.uncertainty_model || (o.e == null ? 'uncertainty unavailable' : 'AME2020 tabulated marginal mass uncertainty'),
+      o.source || (o.uncertainty_model ? 'AME2020 marginal masses; recalculated' : 'AME2020 mass table')] : ['', '', '', ''];
+    const f = o => o ? [String(o.v / 1000), o.e == null ? '' : String(o.e / 1000), o.est ? '#' : '', ...info(o)] : ['', '', '', '', '', '', ''];
     const m = src !== "ame" && MOD[src] ? MOD[src].map.get(key(r[0], r[1])) : null;
-    return [r[0], r[1], r[0] + r[1], r[2], d.me ? d.me.v : "", d.me ? d.me.e : "", r[5] ? "#" : "", ...f(d.BEA), ...f(d.sn), ...f(d.s2n), ...f(d.sp), ...f(d.s2p), ...f(d.qbm), ...f(d.qec), ...f(d.qa), ...f(d.d3n), ...f(d.d3p), ...f(d.vpn), r[7], r[8], r[10], r[9] || "", r[11].length, ...(src !== "ame" ? [m ? m[0] : "", m ? m[1] / 1000 : ""] : [])]; };
-  const csvHead = () => ["Z", "N", "A", "El", "ME_keV", "dME_keV", "ME_flag", ...["BE/A", "Sn", "S2n", "Sp", "S2p", "Qbeta-", "QEC", "Qalpha", "D3n", "D3p", "dVpn"].flatMap(k => [k + "_MeV", "d" + k + "_MeV", k + "_flag"]), "T1/2", "Jpi", "decay_modes", "discovery_year", "isomers", ...(src !== "ame" ? ["ME_keV_" + src, "beta2_" + src] : [])];
-  root.querySelector("[name=nc-line-width]").onchange = () => { draw(); drawPlot(); };
+    const modelInfo = m ? [false, false, 'model uncertainty unavailable', MOD[src].name || src] : ['', '', '', ''];
+    return [r[0], r[1], r[0] + r[1], r[2], d.me ? d.me.v : '', d.me ? d.me.e ?? '' : '', d.me?.est ? '#' : '', ...info(d.me), ...f(d.BEA), ...f(d.sn), ...f(d.s2n), ...f(d.sp), ...f(d.s2p), ...f(d.qbm), ...f(d.qec), ...f(d.qa), ...f(d.d3n), ...f(d.d3p), ...f(d.vpn), ...Object.keys(window.ZGMassSurface.filters).flatMap(k=>f(d[k])), ...window.ZGMassSurface.quantities.filter(k=>k.startsWith('q')&&!['qbm','qec','qa'].includes(k)).flatMap(k=>f(d[k])), ...['BE','d2n','d2p','d5n','d5p','wig'].flatMap(k=>f(d[k])), r[7], r[8], r[10], r[9] || '', r[11].length, ...(src !== 'ame' ? [m ? m[0] : '', m && m[1] != null ? m[1] / 1000 : '', ...modelInfo] : [])];
+  };
+  const csvHead = () => {
+    const info = k => [k+'_value_extrapolated', k+'_uncertainty_extrapolated', k+'_uncertainty_basis', k+'_source'];
+    const f = k => { const unit = k === 'BE/A' ? 'MeV_per_nucleon' : 'MeV'; return [k+'_'+unit, 'd'+k+'_'+unit, k+'_flag', ...info(k)]; };
+    return ['Z', 'N', 'A', 'El', 'ME_keV', 'dME_keV', 'ME_flag', ...info('ME'), ...['BE/A', 'Sn', 'S2n', 'Sp', 'S2p', 'Qbeta-', 'QEC', 'Qalpha', 'D3n', 'D3p', 'dVpn'].flatMap(f), ...Object.keys(window.ZGMassSurface.filters).flatMap(f), ...window.ZGMassSurface.quantities.filter(k=>k.startsWith('q')&&!['qbm','qec','qa'].includes(k)).flatMap(f), ...['BE','d2n','d2p','d5n','d5p','wig'].flatMap(f), 'T1/2', 'Jpi', 'decay_modes', 'discovery_year', 'isomers', ...(src !== 'ame' ? ['ME_keV_'+src, 'beta2_'+src, ...info('ME_'+src)] : [])];
+  };
+  root.querySelector("[name=nc-line-width]").onchange = () => { draw(); drawPlot(); drawResidual(); };
   root.querySelector("[data-nc=png]").onclick = () => X.png(sc => { const o = document.createElement("canvas"); o.width = W() * sc; o.height = H() * sc; draw(o.getContext("2d"), o.width, o.height, sc); return o; }, "chart-of-nuclides", 6);
-  root.querySelector("[data-nc=csv]").onclick = () => X.csv(csvHead(), rows.filter(pass).map(csvRow), "ame2020-nubase2020" + (filt === "all" ? "" : "-" + filt) + (src === "ame" ? "" : "-with-" + src));
+  root.querySelector("[data-nc=csv]").onclick = () => X.csv(csvHead(), allRows().filter(pass).map(csvRow), "ame2020-nubase2020" + (filt === "all" ? "" : "-" + filt) + (src === "ame" ? "" : "-with-" + src));
   root.querySelector("[data-nc=video]").onclick = e => {
     const b = e.currentTarget, tour = [rows.find(r => r[0] === 50 && r[1] === 50), rows.find(r => r[0] === 55 && r[1] === 78), rows.find(r => r[0] === 82 && r[1] === 126)].filter(Boolean);
     const keep = [cv._cw, cv._ch], hi = () => { cv.width = Math.round(cv._cw * 3); cv.height = Math.round(cv._ch * 3); draw(); };
@@ -482,13 +898,19 @@
     X.record(cv, 9, "chart-of-nuclides-tour", on => { b.disabled = on; b.classList.toggle("is-rec", on); if (!on) { sizeCanvas(cv, keep[0], keep[1]); draw(); } });
     fit(); let i = 0; const next = () => { if (i < tour.length) { const r = tour[i++]; pin = r; zoomTo(r, 30, () => setTimeout(next, 900)); } else setTimeout(fit, 400); }; setTimeout(next, 600);
   };
-  root.querySelector("[data-nc=ppng]").onclick = () => X.png(sc => { const o = document.createElement("canvas"); o.width = pc._cw * sc; o.height = pc._ch * sc; drawPlot(o.getContext("2d"), o.width, o.height, sc); return o; }, "chain-" + pq.value, 6);
+  root.querySelector("[data-nc=ppng]").onclick = () => X.png(sc => {
+    const o=document.createElement('canvas'),includeResidual=!root.querySelector('.nc-residual-panel').hidden;
+    const residualHeight=includeResidual?Math.max(230,Math.min(320,pc._cw*.45)):0,gap=includeResidual?18:0;
+    o.width=pc._cw*sc;o.height=(pc._ch+gap+residualHeight)*sc;
+    const ctx=o.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,o.width,o.height);drawPlot(ctx,o.width,pc._ch*sc,sc);
+    if(includeResidual){ctx.save();ctx.setTransform(sc,0,0,sc,0,(pc._ch+gap)*sc);drawResidual(ctx,pc._cw,residualHeight,true);ctx.restore();}
+    return o;
+  },"chain-"+pq.value,6);
   root.querySelector("[data-nc=pcsv]").onclick = () => {
-    if ((plotPts.groups || []).length > 1) return X.csv(["chain (" + pchain.value + ")", "Z", "N", "A", "El", PQ[pq.value][0] + " (" + (PQ[pq.value][2] || "-") + ")", "uncertainty", "flag"],
-      plotPts.map(p => [p.g, p.r[0], p.r[1], p.r[0] + p.r[1], p.r[2], String(p.y), p.e == null ? "" : String(p.e), p.est ? "#" : ""]), "chains-" + pq.value);
-    const mm = new Map(modPts.map(p => [p.x, p.y])), xsAll = [...new Set(plotPts.map(p => p.x).concat(modPts.map(p => p.x)))].sort((a, b) => a - b), pm = new Map(plotPts.map(p => [p.x, p]));
-    X.csv(["x (" + (pchain.value === "Z" ? "N" : "Z") + ")", "El", PQ[pq.value][0] + " AME2020 (" + (PQ[pq.value][2] || "-") + ")", "uncertainty", "flag", ...(modPts.length ? [modPts.name] : [])],
-      xsAll.map(x => { const p = pm.get(x); return [x, p ? p.r[2] : "", p ? String(p.y) : "", p ? p.e == null ? "" : String(p.e) : "", p && p.est ? "#" : "", ...(modPts.length ? [mm.has(x) ? String(mm.get(x)) : ""] : [])]; }), "chain-" + pq.value + (modPts.length ? "-" + modelKey() : ""));
+    if(!plotDomain)return;
+    const points=plotPts.concat(modPts).map(p=>({...p,panel:'value',unit:PQ[pq.value][2]})).concat(residualPts);
+    X.csv(['panel','chain_type','chain','x','Z','N','A','element','quantity','unit','value','uncertainty','uncertainty_basis','flag','series','source','input_provenance','loaded_table_sha256','AME_version','model_source_url','model_raw_sha256','axis_x0','axis_x1','axis_y0','axis_y1','input_labels','marker','marker_open','color','AME_reference_extrapolated','experimental_band_lower','experimental_band_upper','value_extrapolated','uncertainty_extrapolated'],
+      points.map(p=>{const s=seriesMeta(p.series,p.labels);return [p.panel,pchain.value,p.g,p.x,p.r[0],p.r[1],p.r[0]+p.r[1],p.r[2],pq.value,p.unit,p.y,p.e??'',MOD[p.series]?(p.panel==='residual'?'AME only; model uncertainty unavailable':'unavailable model uncertainty'):(p.valueObj?.uncertainty_model||'independent primitives; shared terms cancelled'),p.est?'#':'',p.series,p.valueObj?.source||p.source,JSON.stringify(MM.provenance(p.dependencyValue||p.valueObj,inputTable)),measured.hash(),'AME2020/NUBASE2020',MOD[p.series]?.url||'',MOD[p.series]?.source?.raw_sha256||MOD[p.series]?.source?.sha256||'',plotDomain.x0,plotDomain.x1,p.panel==='value'?plotDomain.y0:residualDomain?.y0??'',p.panel==='value'?plotDomain.y1:residualDomain?.y1??'',JSON.stringify(p.labels||[]),s.shape,!!(p.est||s.open),pointColor(p,s),!!p.referenceEstimated,chainInput('band').checked&&['ame','loaded','hybrid'].includes(p.series)&&!p.est&&p.e>0?p.y-p.e:'',chainInput('band').checked&&['ame','loaded','hybrid'].includes(p.series)&&!p.est&&p.e>0?p.y+p.e:'',!!p.est,!!p.valueObj?.sigmaEst];}),'chain-'+pq.value);
   };
 
   /* ---------- events ---------- */
@@ -509,7 +931,8 @@
   root.querySelector("[data-nc=out]").onclick = () => zoomBy(1 / 1.4);
   root.querySelector("[data-nc=fit]").onclick = () => { pin = null; showCard(null); fit(); };
   root.querySelector("[data-nc=random]").onclick = () => { const p = rows.filter(pass), r = p[Math.floor(Math.random() * p.length)]; pin = r; zoomTo(r); showCard(r); plotChain(r); };
-  sel.innerHTML = Object.entries(MODES).map(([k, m]) => `<option value="${k}">${m.label}</option>`).join("");
+  sel.innerHTML = window.ZGMassQuantityMenu.html(Object.fromEntries(Object.entries(MODES).map(([k,m])=>[k,m.label])),T);
+  sel.value=mode;
   sel.onchange = () => { mode = sel.value; if (MODES[mode].need && !Object.keys(MOD).length) loadModels().then(() => { memo.clear(); drawLegend(); draw(); }); drawLegend(); draw(); };
   if (msel) msel.onchange = () => setSource(msel.value);
   if (ovl) ovl.addEventListener("change", e => { if (e.target.dataset.path && !Object.keys(PATHS).length) loadModels().then(draw); draw(); });
@@ -528,19 +951,35 @@
   const resize = () => {
     const w = Math.round(cv.getBoundingClientRect().width), h = Math.round(Math.min(w * 0.62, innerHeight * 0.78, 1100));
     if (w && (Math.abs(w - cv._cw) > 2 || Math.abs(h - cv._ch) > 2 || cv.width !== Math.round(w * DPR()))) { sizeCanvas(cv, w, h); fit(); }
-    const pw = Math.round(pc.getBoundingClientRect().width), ph = Math.round(Math.max(260,Math.min(pw * 0.5, innerHeight * 0.6, 700)));
-    if (pw && (Math.abs(pw - pc._cw) > 2 || Math.abs(ph - pc._ch) > 2 || pc.width !== Math.round(pw * DPR()))) { sizeCanvas(pc, pw, ph); drawPlot(); }
+    const pw = Math.round(pc.getBoundingClientRect().width);
+    const ph = Math.round(Math.max(260,Math.min(pw * 0.5, innerHeight * 0.6, 700))+legendHeight(pw));
+    if (pw && (Math.abs(pw - pc._cw) > 2 || Math.abs(ph - pc._ch) > 2 || pc.width !== Math.round(pw * DPR()))) { sizeCanvas(pc, pw, ph); drawPlot();drawResidual(); }
   };
   new ResizeObserver(resize).observe(cv); new ResizeObserver(resize).observe(pc); addEventListener("resize", resize);
+  new MutationObserver(()=>{updateInk();draw();drawPlot();drawResidual();}).observe(document.documentElement,{attributes:true,attributeFilter:['class','data-theme']});
 
-  Promise.all([fetch(root.dataset.src).then(r=>{if(!r.ok)throw new Error("Nuclear data unavailable");return r.json();}),P.load(root.dataset.catalogue,root.dataset.ame)]).then(([d,c]) => {
-    catalog=c;
+  const evaluatedRequest=fetch(root.dataset.reactions).then(response=>{
+    if(!response.ok)throw new Error('Published AME2020 reference table unavailable');
+    return response.json();
+  }).then(data=>({data,adapter:window.ZGAMEEvaluated.fromData(data)})).catch(error=>{
+    evaluatedWarning=true;console.warn('Published AME2020 reaction values unavailable; independent-mass fallback',error);return null;
+  });
+  Promise.all([fetch(root.dataset.src).then(r=>{if(!r.ok)throw new Error("Nuclear data unavailable");return r.json();}),P.load(root.dataset.catalogue,root.dataset.ame),evaluatedRequest]).then(([d,c,reference]) => {
+    catalog=c;evaluated=reference?.adapter||null;evaluatedData=reference?.data||null;
     rows = d.rows; EL = d.elements; rows.forEach(r => M.set(key(r[0], r[1]), r));
     MEn = get(0, 1) || MEn; MEH = get(1, 0) || MEH; MEa = get(2, 2) || MEa;
     root.querySelector(".nc-count").textContent = `${rows.length} ${T.nuclides} · ${rows.reduce((a,r)=>a+r[11].length,0)} ${T.state_count}`;
+    measured=window.ZGMeasuredMassUI.attach(root,T,catalog,get,table=>{inputTable=table;memo.clear();plotChain();draw();if(pin)showCard(pin);impactRebuild();});
+    inputTable=measured.table();
+    loadIndex().catch(modelFailure);
     buildPT(); drawLegend(); fit(); fsel.onchange();
-    const q = new URLSearchParams(location.search).get("nuclide");
-    if (q) { const state=new URLSearchParams(location.search).get("state"); search.value = q+(state?`[${state}]`:""); search.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" })); }
-    else { const sn = rows.find(r => r[0] === 50 && r[1] === 50); pchain.value = "Z"; plotChain(sn); }
-  }).catch(() => { card.hidden = false; card.textContent = "Chart data could not load."; });
+    function openBookmark(){
+      const params=new URLSearchParams(location.search),name=params.get('nuclide');if(!name)return false;
+      const state=catalog.lookupState(name,params.get('state')||0),r=state&&M.get(key(state.Z,state.N));
+      if(!r){card.hidden=false;card.textContent=T.notfound;return true;}
+      search.value=name+(state.source_state_index?'['+state.label+']':'');selectedState=state.id;pin=r;zoomTo(r);showCard(r);plotChain(r);return true;
+    }
+    addEventListener('popstate',openBookmark);
+    if(!openBookmark()){const sn=rows.find(r=>r[0]===50&&r[1]===50);pchain.value='Z';plotChain(sn);}
+  }).catch(error => { console.error('Nuclear chart initialization failed',error);card.hidden = false; card.textContent = "Chart data could not load."; });
 })();

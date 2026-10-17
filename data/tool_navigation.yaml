@@ -1,4 +1,5 @@
 en:
+  fancier: "Fancier: JYFLTRAP double trap"
   classic: Original game / demo
   advanced: Advanced simulation
   tools: Physics tools
@@ -7,6 +8,7 @@ en:
   guide_no: nominal guide < required R
   guide_unknown: unknown nominal guide
 zh:
+  fancier: "更进阶：JYFLTRAP 双阱"
   classic: 原版游戏 / 演示
   advanced: 高级仿真
   tools: 物理工具
@@ -15,6 +17,7 @@ zh:
   guide_no: 标称指南 < 所需 R
   guide_unknown: 标称指南未知
 fi:
+  fancier: "Vielä edistyneempi: JYFLTRAP-kaksoisloukku"
   classic: Alkuperäinen peli / esitys
   advanced: Edistynyt simulaatio
   tools: Fysiikan työkalut
@@ -23,6 +26,7 @@ fi:
   guide_no: nimellinen ohje < vaadittu R
   guide_unknown: nimellinen ohje tuntematon
 de:
+  fancier: "Noch ausgefeilter: JYFLTRAP-Doppelfalle"
   classic: Originalspiel / Demo
   advanced: Erweiterte Simulation
   tools: Physikwerkzeuge
@@ -31,6 +35,7 @@ de:
   guide_no: nominaler Richtwert < erforderliches R
   guide_unknown: nominaler Richtwert unbekannt
 ja:
+  fancier: "さらに高度：JYFLTRAP ダブルトラップ"
   classic: 従来のゲーム・デモ
   advanced: 詳細シミュレーション
   tools: 物理ツール

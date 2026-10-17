@@ -76,6 +76,21 @@
       "published": "2026-10-08",
       "collected_at": "2026-10-10",
       "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-10",
+      "type": "news",
+      "title": "Hybrid quantum computer observes foundational quantum effect in a new setting",
+      "summary": "Physicists in the Department of Physics at the University of Oxford have used a hybrid quantum computer, made up of qubits and quantum oscillators, to observe the Aharonov–Bohm effect in a quantum simulation. The effect is a quantum phenomenon in which a particle can acquire a…",
+      "url": "https://phys.org/news/2026-10-hybrid-quantum-foundational-effect.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-10",
+      "collected_at": "2026-10-10",
+      "verification_status": "feed-collected"
     }
   ],
   "fetched": "2026-10-10T07:42:46+00:00"

@@ -230,6 +230,73 @@
       "published": "2026-10-14",
       "collected_at": "2026-10-15",
       "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-15",
+      "type": "paper",
+      "title": "$^{16}\\mathrm{O}(\\mathrm{p},γ)^{17}\\mathrm{F}$ Reaction and the C and O Isotopic Ratios in Red Giant Branch Stars",
+      "summary": "Author(s): D. Robb et al. (LUNA Collaboration) The $^{16}\\mathrm{O}:^{17}\\mathrm{O}$ isotopic ratio is a widely used tracer of nucleosynthesis and mixing processes in red giant stars. Its value depends on the rates of the proton-capture reactions responsible for the production…",
+      "url": "http://link.aps.org/doi/10.1103/tclf-b44m",
+      "source": "Physical Review Letters — Nuclear Physics",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-14",
+      "collected_at": "2026-10-15",
+      "verification_status": "feed-collected",
+      "facility_ids": [
+        "lngs-luna"
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "type": "paper",
+      "title": "Precision Hypernuclear Structure from Interaction Cross Sections",
+      "summary": "Author(s): Carlos A. Bertulani We establish interaction cross sections as a quantitative structural observable for hypernuclei. Using the hypertriton, $_{\\mathrm{Λ}}^{3}\\mathrm{H}$, as the most stringent benchmark, microscopic three-body wave functions are combined with a…",
+      "url": "http://link.aps.org/doi/10.1103/vzp5-ttyh",
+      "source": "Physical Review Letters — Nuclear Physics",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-15",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-15",
+      "type": "paper",
+      "title": "Direct transfer to $^{46,48}\\mathrm{K}$ as a survey of the $π({s}_{1/2})\\text{−}ν(sdpf)$ interaction",
+      "summary": "Author(s): C. J. Paxman et al. Nucleon-adding and -removing transfer reactions provide a unique experimental window into the anatomy of the shell-model picture of atomic nuclei. The authors put the neutron-removing transfer reaction 47K(d,t) and the neutron-adding counterpart…",
+      "url": "http://link.aps.org/doi/10.1103/z145-rfy7",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-15",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-15",
+      "type": "paper",
+      "title": "Chiral effective field theory analysis of the (“hep”) reaction $S$ factor and the (“hen”) reaction cross section",
+      "summary": "Author(s): M. Viviani, A. Gnech, L. E. Marcucci, A. Kievsky, and L. Girlanda We present a new accurate analysis of the $^{3}\\mathrm{He}(p,{e}^{+}{ν}_{e})^{4}\\mathrm{He}$ (“hep”) reaction at astrophysical energies. The $S$-factor is computed using a state-of-the-art method to…",
+      "url": "http://link.aps.org/doi/10.1103/h98v-cd4t",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-15",
+      "collected_at": "2026-10-15",
+      "verification_status": "feed-collected"
     }
   ],
   "fetched": "2026-10-15T19:22:34+00:00"

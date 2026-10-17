@@ -1,0 +1,160 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
+const P=require('../static/js/periodic-table-core.js');
+const data=JSON.parse(fs.readFileSync(__dirname+'/../static/data/periodic-table.json','utf8')),m=P.createModel(data);
+const near=(a,b,t=1e-9)=>assert.ok(Math.abs(a-b)<=t,`${a} != ${b}; tol ${t}`);
+
+test('Model loads 118 elements; group and period follow the grid (f-block has period but no group)',()=>{
+ assert.equal(m.elements.length,118);
+ assert.deepEqual([m.bySym.H,m.bySym.He,m.bySym.Hf].map(P.groupOf),[1,18,4]);
+ assert.deepEqual([m.bySym.H,m.bySym.La,m.bySym.Lr,m.bySym.Og].map(P.periodOf),[1,6,7,7]);
+ assert.equal(P.groupOf(m.bySym.La),null);
+ assert.throws(()=>P.createModel({elements:[]}),TypeError);
+});
+test('Ionisation energy converts eV to kJ/mol with the stored factor (H: 1312.0 kJ/mol)',()=>{
+ near(P.value(m,m.bySym.H,'ie','eV'),13.598,1e-9);near(P.value(m,m.bySym.H,'ie','kJ/mol'),1312.0,0.2);
+ assert.equal(P.unitFor(m,'ie','kJ/mol'),'kJ/mol');assert.equal(P.unitFor(m,'ie'),'eV');assert.equal(P.unitFor(m,'mp'),'K');
+ assert.equal(P.value(m,m.bySym.Og,'ie','eV'),null);assert.equal(P.value(m,m.bySym.Fe,'year'),null); // "Ancient" is not numeric
+});
+test('Number formatting uses a decimal comma for fi/de/fr and keeps significant digits',()=>{
+ assert.equal(P.formatNumber(13.598,'en'),'13.598');assert.equal(P.formatNumber(13.598,'de'),'13,598');assert.equal(P.formatNumber(3695,'fr'),'3695');
+ assert.equal(P.formatNumber(null,'en'),'—');assert.equal(P.formatNumber(0.000123456,'en',3),'0.000123');
+ assert.match(P.formatValue(m,m.bySym.Fe,'ie','fi','kJ/mol'),/^762,\d+ kJ\/mol$/);
+});
+test('Localised values: block, state, origin list and year',()=>{
+ assert.equal(P.formatValue(m,m.bySym.Fe,'block','de'),'Übergangsmetall');assert.equal(P.formatValue(m,m.bySym.Hg,'state','ja'),'液体');
+ assert.equal(P.formatValue(m,m.bySym.Li,'origin','en'),'Big Bang fusion + Cosmic-ray fission (spallation) + Dying low-mass stars');
+ assert.equal(P.formatValue(m,m.bySym.Fe,'year','en'),'Ancient');assert.equal(P.formatValue(m,m.bySym.Og,'year','en'),'2006');
+ assert.match(P.formatValue(m,m.bySym.Cd,'iso','en'),/113Cd 12\.22 %/);
+});
+test('Origin gradient: single colour for one source, equal hard-stop stripes for several',()=>{
+ const c=m.i18n.origins.color;assert.equal(P.originGradient(['b'],c),c.b);
+ const g=P.originGradient(['y','o'],c);assert.match(g,/^linear-gradient\(135deg, /);assert.ok(g.includes(`${c.y} 0.00% 50.00%`)&&g.includes(`${c.o} 50.00% 100.00%`));
+ assert.ok(P.originGradient(['g','c','y'],c).includes('33.33% 66.67%'));
+});
+test('Cell styles: striped origin cells keep dark text, single-source cells pick contrast text, highlight dims the rest',()=>{
+ const s=P.cellStyle(m,m.bySym.Au,'origin');assert.ok(s.striped&&s.color==='#111111'&&s.background.startsWith('linear-gradient'));
+ const h=P.cellStyle(m,m.bySym.H,'origin');assert.equal(h.striped,false);assert.equal(h.background,m.i18n.origins.color.b);
+ const d=P.cellStyle(m,m.bySym.H,'block',{highlight:new Set(['He'])});assert.equal(d.dim,true);assert.equal(P.cellStyle(m,m.bySym.He,'block',{highlight:new Set(['He'])}).dim,false);
+ assert.equal(P.textColor('#ffffff'),'#111111');assert.equal(P.textColor('#000000'),'#ffffff');
+});
+test('Heat scale spans the ramp ends, handles missing values and logarithmic axis',()=>{
+ const s=P.heatScale(m,'mass');near(s.min,m.bySym.H.mass);assert.equal(s.color(s.min),P.RAMP[0]);assert.equal(s.color(s.max),P.RAMP[4]);assert.equal(s.color(null),null);
+ const c=P.cellStyle(m,m.bySym.Og,'heat',{key:'ie'});assert.equal(c.missing,true);
+ const l=P.heatScale(m,'density',undefined,true);assert.equal(l.log,true);const mid=l.color(Math.sqrt(l.min*l.max));assert.notEqual(mid,P.RAMP[0]);
+ assert.equal(P.heatScale(m,'ea',undefined,true).log,false); // zeros present: log is not applicable
+});
+test('Legend counts match the data and every element has at least one origin class',()=>{
+ const n=P.legendCounts(m);for(const [c,k] of Object.entries(n))assert.equal(k,m.elements.filter(e=>e.origin.includes(c)).length);
+ assert.ok(m.elements.every(e=>e.origin.length>=1));assert.equal(n.z,26); // Tc, Pm, Am-Lr (9) and Rf-Og (15)
+ assert.ok(n.o>40&&n.g>30,JSON.stringify(n));
+});
+test('Search: symbol first, then Z, then names in any language; diacritics and case ignored',()=>{
+ assert.equal(P.search(m,'fe')[0],'Fe');assert.equal(P.search(m,'26')[0],'Fe');assert.equal(P.search(m,'Eisen')[0],'Fe');assert.equal(P.search(m,'鉄')[0],'Fe');
+ assert.equal(P.search(m,'hydrogene')[0],'H');assert.equal(P.search(m,'Wasserstoff')[0],'H');assert.equal(P.search(m,'氢')[0],'H');
+ assert.equal(P.search(m,'')[0],undefined);assert.ok(P.search(m,'ium').length>40);assert.equal(P.search(m,'zzzz').length,0);
+});
+test('Trends: group 1 has 7 members, period 6 has 32 (f-block included), Z trend has 118 points with gaps kept',()=>{
+ assert.deepEqual(P.trend(m,'group',1,'mass').map(p=>p.sym),['H','Li','Na','K','Rb','Cs','Fr']);
+ assert.equal(P.trend(m,'period',6,'mass').length,32);assert.equal(P.trend(m,'period',1,'mass').length,2);
+ const t=P.trend(m,'z',0,'ie');assert.equal(t.length,118);assert.equal(t[117].y,null);near(t[0].y,13.598);
+});
+test('Nice ticks follow the 1-2-5 rule',()=>{
+ assert.deepEqual(P.niceTicks(0,100,6),[0,20,40,60,80,100]);assert.deepEqual(P.niceTicks(0,1,6),[0,0.2,0.4,0.6,0.8,1]);assert.deepEqual(P.niceTicks(3,3),[3]);
+});
+test('Find game: +10 / -5 scoring, new target after a hit, countdown ends the game',()=>{
+ const g=P.createFindGame(m,{rng:P.makeRng(7),seconds:3});const t=g.target;
+ assert.equal(g.guess(t==='H'?'He':'H').correct,false);assert.equal(g.score,-5);
+ const r=g.guess(t);assert.equal(r.correct,true);assert.equal(g.score,5);assert.notEqual(g.target,t);assert.equal(g.rounds,1);
+ g.tick(2);assert.equal(g.finished,false);g.tick(2);assert.equal(g.timeLeft,0);assert.equal(g.finished,true);assert.equal(g.guess(g.target).ignored,true);
+ const free=P.createFindGame(m,{rng:P.makeRng(1)});assert.equal(free.timeLeft,null);free.tick(100);assert.equal(free.finished,false);
+});
+test('Origin game (select): finding all members wins; wrong clicks are penalised once',()=>{
+ const g=P.createOriginGame(m,{rng:P.makeRng(3),target:'c'});const members=[...g.members];assert.ok(members.includes('Fe')&&!members.includes('H'));
+ assert.equal(g.click('H').correct,false);assert.equal(g.score,-5);g.click('H');assert.equal(g.score,-5);
+ let last;for(const s of members)last=g.click(s);assert.equal(last.done,true);assert.equal(g.finished,true);assert.equal(g.score,-5+10*members.length);
+ assert.equal(g.click('Fe').ignored,true);g.restart('b');assert.equal(g.finished,false);assert.deepEqual([...g.members],['H','He','Li']);
+});
+test('Origin game (which): four options with one valid source and three invalid ones',()=>{
+ const g=P.createOriginGame(m,{rng:P.makeRng(11),mode:'which'});
+ for(let k=0;k<50;k++){const q=g.question,e=m.bySym[q.sym];assert.equal(q.options.length,4);assert.equal(q.options.filter(c=>e.origin.includes(c)).length,1);
+  const right=q.options.find(c=>e.origin.includes(c)),wrong=q.options.find(c=>!e.origin.includes(c));
+  const before=g.score;const res=k%2?g.answer(right):g.answer(wrong);assert.equal(res.correct,!!(k%2));assert.equal(g.score-before,k%2?10:-5);}
+});
+test('Timeline: ancient and early elements are known in 1800, later ones are not; the set grows monotonically',()=>{
+ const k=P.knownBy(m,1800);assert.ok(k.has('Fe')&&k.has('H')&&k.has('Cu')&&!k.has('Og')&&!k.has('U')===false);
+ assert.ok(P.knownBy(m,2020).size===118&&P.knownBy(m,1700).size<P.knownBy(m,1800).size&&P.knownBy(m,1800).size<P.knownBy(m,1900).size);
+ assert.ok(!P.knownBy(m,1900).has('Ts')&&P.knownBy(m,2010).has('Ts'));
+});
+test('Comparison rows give b - a and bond class follows the 0.4 / 1.7 rule of thumb',()=>{
+ const rows=P.compareRows(m,'Cu','Cl'),chi=rows.find(r=>r.key==='chi');near(chi.diff,3.16-1.9,1e-9);assert.equal(rows.find(r=>r.key==='year').diff,null);
+ near(P.compareRows(m,'H','H','kJ/mol').find(r=>r.key==='ie').a,1312.0,0.2);
+ assert.deepEqual([0.2,0.4,1.7,1.71,null].map(P.bondClass),['nonpolar','polar','polar','ionic',null]);
+});
+test('Table layout matches the GUI geometry: 18 columns, f-block below with a gap, same total aspect',()=>{
+ const L=P.tableLayout(m,100);near(L.pitch,104);near(L.left,80);near(L.top,70);near(L.width,80+18*104-4);near(L.height,70+9.5*104-4);
+ near(L.rects.H.x,80);near(L.rects.H.y,70);near(L.rects.He.x,80+17*104);near(L.rects.Fe.x,80+7*104);near(L.rects.Fe.y,70+3*104);
+ near(L.rects.La.y,70+7.5*104);near(L.rects.Lr.y,70+8.5*104);near(L.rects.La.x,80+2*104);
+ assert.equal(new Set(Object.values(L.rects).map(r=>r.x+','+r.y)).size,118);
+});
+test('CSV export: 119 rows, localised names, eV and kJ/mol, RFC 4180 quoting',()=>{
+ const rows=P.csvRows(m,'de');assert.equal(rows.length,119);assert.deepEqual(rows[0].slice(0,4),['Z','symbol','name','name_en']);const fe=rows.find(r=>r[1]==='Fe');
+ assert.equal(fe[2],'Eisen');near(Number(fe[11]),7.902,1e-9);near(Number(fe[12]),7.902*m.evToKj,1e-6);assert.ok(rows.every(r=>r.length===P.CSV_HEADER.length));
+ assert.equal(P.toCsv([['a,b','c"d','e\nf','g']]),'"a,b","c""d","e\nf",g\r\n');
+});
+test('Cell styles expose the list of fills (stripes) for the canvas and SVG export',()=>{
+ const o=P.cellStyle(m,m.bySym.Li,'origin');assert.equal(o.fills.length,3);assert.deepEqual(P.cellStyle(m,m.bySym.H,'block').fills,[m.i18n.groups.color.Nonmetal]);
+});
+test('Scatter keeps only elements with both values; neighbour keys walk the painted table',()=>{
+ const pts=P.scatter(m,'chi','ie');assert.ok(pts.length>80&&pts.length<118&&pts.every(p=>p.x!==null&&p.y!==null));near(pts.find(p=>p.sym==='Cl').x,3.16);
+ const nb=(s,dr,dc)=>P.neighbor(m,s,dr,dc);
+ assert.equal(nb('H',0,1),'He');assert.equal(nb('He',0,-1),'H');assert.equal(nb('H',1,0),'Li');assert.equal(nb('Fe',1,0),'Ru');assert.equal(nb('Fe',0,1),'Co');assert.equal(nb('Be',1,0),'Mg');
+ assert.equal(nb('H',-1,0),null);assert.equal(nb('H',0,-1),null);assert.equal(nb('Og',0,1),null);
+ assert.equal(nb('Ra',1,0),'La');assert.equal(nb('La',1,0),'Ac');assert.equal(nb('Lu',-1,0),'Ts');assert.equal(nb('Fe',-1,0),'Al'); // gaps: nearest element in that direction
+ // every element can be reached from H with the four arrow keys (no isolated cells)
+ const seen=new Set(['H']),queue=['H'];while(queue.length){const s=queue.pop();for(const [dr,dc] of [[0,1],[0,-1],[1,0],[-1,0]]){const n=nb(s,dr,dc);if(n&&!seen.has(n)){seen.add(n);queue.push(n);}}}assert.equal(seen.size,118);
+});
+test('Data table rows sort numerically with missing values last and text by locale',()=>{
+ const rows=P.dataRows(m,'en','eV'),asc=P.sortRows(rows,'ie',true,'en'),desc=P.sortRows(rows,'ie',false,'en');
+ assert.equal(asc[0].sym,'Cs');assert.equal(desc[0].sym,'He');assert.equal(asc[asc.length-1].ie,null);assert.equal(desc[desc.length-1].ie,null); // gaps last both ways
+ assert.equal(P.sortRows(rows,'name',true,'en')[0].name,'Actinium');assert.ok(P.sortRows(rows,'year',true,'en')[0].year<=1700);
+ assert.equal(rows.length,118);assert.equal(P.dataRows(m,'de','kJ/mol').find(r=>r.sym==='H').ie.toFixed(0),'1312');
+});
+test('Electron configurations: every element has Z electrons; Hund filling; Madelung order',()=>{
+ for(const e of m.elements)assert.equal(P.electronCount(m,e.sym),e.z,`${e.sym} ${e.config}`);
+ const fe=P.subshells(m,'Fe').map(x=>`${x.n}${x.letter}${x.e}`).join(' ');assert.equal(fe,'1s2 2s2 2p6 3s2 3p6 4s2 3d6');
+ assert.equal(P.subshells(m,'Cr').map(x=>`${x.n}${x.letter}${x.e}`).slice(-2).join(' '),'4s1 3d5');
+ assert.deepEqual(P.orbitalFill(2,6).map(b=>[b.up,b.down]),[[true,true],[true,false],[true,false],[true,false],[true,false]]);
+ assert.deepEqual(P.orbitalFill(1,3).map(b=>[b.up,b.down]),[[true,false],[true,false],[true,false]]);assert.deepEqual(P.orbitalFill(0,2).map(b=>[b.up,b.down]),[[true,true]]);
+ assert.throws(()=>P.orbitalFill(0,3),RangeError);assert.equal(P.subshells(m,'Og').length,19);
+});
+test('Discovery country: flags, localised names, stripes for shared discoveries, counts',()=>{
+ const data2=JSON.parse(require('node:fs').readFileSync(__dirname+'/../static/data/periodic-table.json','utf8')),m2=P.createModel(data2);
+ assert.equal(P.countryText(m2,m2.bySym.H,'en',false),'\u{1F1EC}\u{1F1E7}');assert.equal(P.countryText(m2,m2.bySym.Cs,'de',true),'\u{1F1E9}\u{1F1EA} Deutschland');
+ assert.equal(P.countryText(m2,m2.bySym.Rf,'ja',true),'\u{1F1F7}\u{1F1FA}\u{1F1FA}\u{1F1F8} ロシア / アメリカ合衆国');assert.match(P.countryText(m2,m2.bySym.Fe,'en',true),/Known since antiquity/);
+ assert.equal(P.formatValue(m2,m2.bySym.Al,'country','fr'),'\u{1F1E9}\u{1F1F0} Danemark');
+ const st=P.cellStyle(m2,m2.bySym.Rf,'country');assert.ok(st.striped&&st.fills.length===2&&st.background.startsWith('linear-gradient'));assert.equal(P.cellStyle(m2,m2.bySym.H,'country').fills[0],m2.i18n.countries.color.GB);
+ const n=P.countryCounts(m2);assert.equal(Object.values(n).reduce((a,b)=>a+b,0),118+m2.elements.filter(e=>e.cc.length>1).length);assert.ok(n.XX===11&&n.GB>8,JSON.stringify(n));
+ for(const e of m2.elements){assert.ok(e.cc.length>=1&&e.cc.every(c=>m2.i18n.countries.flag[c]&&m2.i18n.countries.label.en[c]),e.sym);}
+});
+test('Cell texts for numbers and extras; fitted font sizes never exceed the cell width',()=>{
+ const fe=m.bySym.Fe;assert.equal(P.cellText(m,fe,'mass','en'),'55.845');assert.equal(P.cellText(m,fe,'z','en'),'26');assert.equal(P.cellText(m,m.bySym.Og,'ie','en'),'–');
+ assert.equal(P.cellText(m,fe,'state','en'),'s');assert.equal(P.cellText(m,m.bySym.Hg,'state','en'),'l');assert.equal(P.cellText(m,m.bySym.He,'state','en'),'g');
+ assert.equal(P.cellText(m,fe,'ox','en'),'+3 +2');assert.equal(P.cellText(m,fe,'config','en'),'4s2 3d6');assert.equal(P.cellText(m,m.bySym.Mt,'config','en'),'7s2 5f14 6d7');
+ assert.equal(P.cellText(m,fe,'group','en'),'8');assert.equal(P.cellText(m,m.bySym.La,'group','en'),'–');assert.equal(P.cellText(m,m.bySym.La,'period','en'),'6');
+ assert.equal(P.cellText(m,m.bySym.Cd,'iso_n','en'),'8');assert.equal(P.cellText(m,m.bySym.Li,'origin_n','en'),'3');
+ for(const text of ['Fe','Praseodymium','Protactinium','[Rn]7s2 5f14 6d10']){const px=P.fitFont(text,48);assert.ok(px>=5&&px<=48*0.19+1e-9&&(px<=5||px*0.52*text.length<=48*0.94+1e-6),text);}
+ assert.ok(P.fitFont('Praseodymium',48)<P.fitFont('Iron',48));
+});
+test('Cell layout: Z, symbol, name and value never overlap and stay inside the cell (all elements, sizes, text scales)',()=>{
+ const inside=(r,c)=>r.x>=-1e-6&&r.y>=-1e-6&&r.x+r.w<=c+1e-6&&r.y+r.h<=c+1e-6,hit=(p,q)=>{const a=P.visualBox(p),b=P.visualBox(q);return a.x<b.x+b.w-1e-9&&b.x<a.x+a.w-1e-9&&a.y<b.y+b.h-1e-9&&b.y<a.y+a.h-1e-9;};
+ const m2=P.createModel(JSON.parse(require('node:fs').readFileSync(__dirname+'/../static/data/periodic-table.json','utf8')));let checked=0;
+ for(const c of [24,32,48,80,160])for(const ts of [0.5,1,1.6,2.5])for(const e of m2.elements)for(const opt of [{},{name:P.displayName(e,'de')},{value:P.cellText(m2,e,'config','en')},{name:P.displayName(e,'fi'),value:P.cellText(m2,e,'mass','en')},{value:P.cellText(m2,e,'country','en'),flag:true,name:P.displayName(e,'ja')}]){
+  const L=P.cellLayout(c,{textScale:ts,sym:e.sym,z:e.z,...opt}),parts=[L.z,L.sym,L.name,L.val].filter(Boolean);checked++;
+  for(const p of parts)assert.ok(inside(p,c),`${e.sym} c${c} ts${ts} outside ${JSON.stringify(p)}`);
+  for(let i=0;i<parts.length;i++)for(let j=i+1;j<parts.length;j++)assert.ok(!hit(parts[i],parts[j]),`${e.sym} c${c} ts${ts} ${L.mode} overlap ${i}/${j}`);
+ }
+ assert.ok(checked>10000);
+ const a=P.cellLayout(100,{sym:'Fe',z:26}),b=P.cellLayout(100,{sym:'Fe',z:26,textScale:1.5});assert.equal(a.mode,'corner');assert.ok(b.sym.px>a.sym.px&&a.z.px>0);
+ const big=P.cellLayout(48,{sym:'Fe',z:26,name:'Praseodymium',value:'140.91',textScale:2.5});assert.ok(big.shrink<1&&[big.sym,big.name,big.val].filter(Boolean).reduce((s,x)=>s+x.px*1.18,0)<=48*0.94+1e-6);
+ assert.equal(P.cellLayout(24,{sym:'Fe',z:26,name:'Praseodymium'}).name,null); // too small to read: dropped instead of overlapping
+});

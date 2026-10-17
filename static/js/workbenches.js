@@ -44,7 +44,7 @@
       if (!Number.isFinite(n) || (input.step === "1" && !Number.isInteger(n)) || n < +input.min || (input.max !== "" && n > +input.max)) throw new Error(`${input.closest("label").textContent.trim()}: invalid value`);
       return n;
     };
-    const field = (name, label, value, min = 0, max = 1e6, step = .01) => `<label>${esc(label)}<input name="${name}" type="number" value="${step === 1 ? value : Number(value).toFixed(2)}" min="${min}" max="${max}" step="${step}"></label>`;
+    const field = (name, label, value, min = 0, max = 1e6, step = .01) => `<label>${esc(label)}<input name="${name}" type="number" value="${name === 'B' ? Number(value).toFixed(10) : step === 1 ? value : Number(value).toFixed(2)}" min="${min}" max="${max}" step="${name === 'B' ? 'any' : step}"${name === 'B' ? ' data-decimal-places="10"' : ''}></label>`;
     const select = (name, label, options, selected) => `<label>${esc(label)}<select name="${name}">${options.map(([v, s]) => `<option value="${v}"${String(v) === String(selected) ? " selected" : ""}>${esc(s)}</option>`).join("")}</select></label>`;
     const check = (name, label, selected = true) => `<label class="wb-check"><input name="${name}" type="checkbox"${selected ? " checked" : ""}>${esc(label)}</label>`;
     const figure = (id, title) => `<figure class="wb-figure"><figcaption>${esc(title)}</figcaption><canvas data-plot="${id}"></canvas><div class="wb-legend" data-legend="${id}"></div><div class="wb-actions">${["png","csv","json"].map(format=>`<button class="zg-btn zg-btn-ghost" type="button" data-wb="figure-${format}" data-figure="${id}">${esc(format==="png"?T.png:format==="csv"?T.csv:T.save)}</button>`).join("")}</div></figure>`;
@@ -125,7 +125,18 @@
       } catch (e) { controls.querySelector(".wb-cal-result").textContent = e.message; }
       displayRows = xs.map((x, i) => [x, ...curves.filter(c => !c.bars).map(c => c.points[i][1])]);
     }
-    function tofParameters() { return { B: val("B"), T: val("T") / 1000, scheme: $("scheme").value }; }
+    /* CAL1: calibrant-based field (and ν−/νz) when the calibration box is checked */
+    const calEl = root.querySelector("[data-cal-panel]"), calOf = () => (window.ZGCal ? window.ZGCal.active(calEl) : null);
+    /* fancier tab: double-trap summary for one ion (trap-1 cleaning νc, trap-2 frequencies, periods, TOFs) */
+    function calibrationNote(ion) {
+      const dt = calEl && calEl.zgCal ? calEl.zgCal.double() : null, c = calOf(); if (!dt || !c) return "";
+      const f = P.doubleTrapFrequencies(ion, dt), t2 = f.trap2, p = f.periodsUs;
+      return `<p>⚙ ${esc(c.list.map(x => x.label).join(", "))} · ${esc(c.mode)} · B = ${fmt(c.B, 10)} T</p><p>${esc(ion.label)}: ` +
+        (f.trap1 ? `νc(T1) = ${fmt(f.trap1.nc, 10)} Hz; ` : "") + (t2 ? `νc(T2) = ${fmt(t2.nc, 10)}${t2.snc != null ? ` ± ${fmt(t2.snc, 3)}` : ""} Hz; ν+ = ${fmt(t2.np, 10)} Hz; ν− = ${fmt(t2.nm, 7)} Hz; νz = ${fmt(t2.nz, 8)} Hz; ` : "") +
+        (p ? `T(axial/cyc/mag) = ${fmt(p.axial, 4)} / ${fmt(p.cyclotron, 4)} / ${fmt(p.magnetron, 4)} µs; ` : "") + (f.keVperHz != null ? `${fmt(f.keVperHz, 4)} keV/Hz; ` : "") +
+        (f.tofRfqT1 != null ? `TOF RFQ→T1 ${fmt(f.tofRfqT1, 4)} µs; ` : "") + (f.tofT1T2 != null ? `TOF T1→T2 ${fmt(f.tofT1T2, 4)} µs` : "") + `</p>`;
+    }
+    function tofParameters() { const c = calOf(); return { B: c ? c.B : val("B"), T: val("T") / 1000, scheme: $("scheme").value, calibrated: !!c }; }
     function renderTOF() {
       parameters = tofParameters(); const target = Math.min(val("target"), ions.length - 1); $("target").value = target;
       [...$("target").options].forEach((o, i) => { o.hidden = i >= ions.length; o.textContent = ions[i]?.label || "—"; });
@@ -144,16 +155,16 @@
       plot(canvas("distribution"), distributions, { xlabel: T.event_tof, ylabel: T.probability_density }); legend("distribution", ions.map(i => i.label));
       controls.querySelector(".wb-sequence").innerHTML = parameters.scheme === "rect" ? `<span style="width:100%">RF ${fmt(parameters.T * 1000)} ms</span>` : `<span style="width:10%" title="RF ${fmt(parameters.T*100)} ms">RF</span><span class="wb-wait" style="width:80%">${fmt(parameters.T * 800)} ms</span><span style="width:10%" title="RF ${fmt(parameters.T*100)} ms">RF</span>`;
       const pairs = []; for (let i = 0; i < centres.length; i++) for (let j = i + 1; j < centres.length; j++) pairs.push(`${i + 1}–${j + 1}: Δν = ${fmt(Math.abs(centres[i] - centres[j]))} Hz`);
-      summary.innerHTML = `<p>νtarget = <b>${fmt(origin, 12)} Hz</b>. ${pairs.join("; ")}. 1/T = ${fmt(1 / parameters.T)} Hz (scale).</p>` + (fit?.predict ? `<p>Fit: <b>${esc(fit.status)}</b>; νfit = ${fmt(fit.center, 12)} Hz; <b>bias = ${fmt(fit.bias)} Hz</b>; χ²/dof = ${fmt(fit.reducedChi2)} (${fit.dof} dof).</p><p>Local Δχ² = 1 interval: ${fit.interval?.every(P.numeric) ? fit.interval.map(x => fmt(x, 12)).join("–") + " Hz" : T.unknown}. Baseline ${fmt(fit.baseline)} µs; depth ${fmt(fit.depth)} µs.</p>` : `<p>${fit ? "Fit: " + esc(fit.status) : T.generate + " → " + T.fit}.</p>`) + `<p>${T.tof_note}</p>`;
+      summary.innerHTML = (parameters.calibrated ? calibrationNote(ions[target]) : "") + `<p>νtarget = <b>${fmt(origin, 12)} Hz</b>. ${pairs.join("; ")}. 1/T = ${fmt(1 / parameters.T)} Hz (scale).</p>` + (fit?.predict ? `<p>Fit: <b>${esc(fit.status)}</b>; νfit = ${fmt(fit.center, 12)} Hz; <b>bias = ${fmt(fit.bias)} Hz</b>; χ²/dof = ${fmt(fit.reducedChi2)} (${fit.dof} dof).</p><p>Local Δχ² = 1 interval: ${fit.interval?.every(P.numeric) ? fit.interval.map(x => fmt(x, 12)).join("–") + " Hz" : T.unknown}. Baseline ${fmt(fit.baseline)} µs; depth ${fmt(fit.depth)} µs.</p>` : `<p>${fit ? "Fit: " + esc(fit.status) : T.generate + " → " + T.fit}.</p>`) + `<p>${T.tof_note}</p>`;
       model = { centresHz: centres.map(c => c + origin), span, target }; displayRows = xs.map((x, i) => [x + origin, ...curves.filter(c => !c.dots).map(c => c.points[i][1])]);
     }
     function renderPenning() {
       parameters = { B: val("B"), voltage: val("voltage"), d: val("d") / 1000, rp: val("rp"), rm: val("rm"), axial: val("axial"), duration: val("duration") * 1e-6, x0:val("x0"),y0:val("y0"),z0:val("z0") };
-      model = P.penning(ions[0], parameters.B, parameters.voltage, parameters.d);
+      { const c = calOf(); if (c) { parameters.B = c.B; parameters.calibrated = c.list.map(x => x.label).join(", ") + " · " + c.mode; } model = c ? P.calibratedPenning(ions[0], c) : P.penning(ions[0], parameters.B, parameters.voltage, parameters.d); }
       if (!model.stable) { orbit = []; displayRows = []; plot(canvas("trajectory"), [], { x: [-1, 1], y: [-1, 1], xlabel: "x (mm)", ylabel: "y (mm)" }); summary.innerHTML = `<p><b>${model.marginal ? "Marginal confinement" : "Unconfined / invalid ideal-trap parameters"}</b>. νc² − 2νz² must be positive and U₀ > 0 for confinement.</p>`; return; }
       const count = Math.max(200, Math.ceil(model.np * parameters.duration * 24)); if (count > 60000) throw new Error("Shorten the trajectory duration: at least 24 samples per cyclotron cycle are required.");
       orbit = Array.from({ length: count + 1 }, (_, i) => { const time = parameters.duration * i / count; return [time, parameters.x0 + parameters.rp * Math.cos(2 * Math.PI * model.np * time) + parameters.rm * Math.cos(2 * Math.PI * model.nm * time), parameters.y0 - parameters.rp * Math.sin(2 * Math.PI * model.np * time) - parameters.rm * Math.sin(2 * Math.PI * model.nm * time), parameters.z0 + parameters.axial * Math.cos(2 * Math.PI * model.nz * time)]; });
-      summary.innerHTML = `<p>νc = <b>${fmt(model.nc, 10)} Hz</b>; ν+ = ${fmt(model.np, 10)} Hz; ν− = ${fmt(model.nm, 10)} Hz; νz = ${fmt(model.nz, 10)} Hz.</p><p>ν+ + ν− = νc; ν+² + ν−² + νz² = νc². t = ${fmt(parameters.duration * 1e6)} µs, ${count + 1} samples.</p><p>${T.penning_note}</p>`;
+      summary.innerHTML = (parameters.calibrated ? calibrationNote(ions[0]) : "") + `<p>νc = <b>${fmt(model.nc, 10)} Hz</b>; ν+ = ${fmt(model.np, 10)} Hz; ν− = ${fmt(model.nm, 10)} Hz; νz = ${fmt(model.nz, 10)} Hz.</p><p>ν+ + ν− = νc; ν+² + ν−² + νz² = νc². t = ${fmt(parameters.duration * 1e6)} µs, ${count + 1} samples.</p><p>${T.penning_note}</p>`;
       displayRows = orbit; paintOrbit();
     }
     function paintOrbit() {
@@ -207,6 +218,7 @@
       } catch (err) { error.hidden = false; error.textContent = err.message; }
     });
     for (let i = 0; i < ionRows; i++) syncStates(i, false, kind === "mr" && i === 1 ? 1 : 0);
+    if (calEl) calEl.addEventListener("zg-cal-change", () => update());
     update();
     if (kind === "tof" && model) { acquisition = P.acquire(ions, parameters, origin - model.span, origin + model.span); fit = P.fitSingle(acquisition.scan, parameters, origin); renderTOF(); }
     new ResizeObserver(() => { if (!model) return; if (kind === "mr") renderMR(); else if (kind === "tof") renderTOF(); else paintOrbit(); }).observe(plots);

@@ -60,12 +60,12 @@ PRIVATE_PATTERNS = {  # regex → reason
     r"(?i)\bCONFIDENTIAL\b|\bDO NOT PUBLISH\b|\bINTERNAL ONLY\b": "confidential marker",
 }
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
-WEB_SUFFIXES = {".html", ".xml", ".css", ".js", ".json", ".geojson", ".txt", ".svg", ".png", ".jpg", ".jpeg",
+WEB_SUFFIXES = {".html", ".xml", ".css", ".js", ".json", ".geojson", ".txt", ".csv", ".tsv", ".svg", ".png", ".jpg", ".jpeg",
                 ".gif", ".webp", ".avif", ".ico", ".mp4", ".webm", ".woff", ".woff2", ".ttf", ".webmanifest",
                 ".pdf", ".map", ""}
 FORBIDDEN_NAMES = re.compile(r"(?i)(manual|handoff|changelog|audit|snapshot|\.bundle$|\.docx$|\.tex$|\.py$|\.ya?ml$|\.toml$|\.md$|\.env$|\.git/)")
 MAX_FILE_MB, MAX_SITE_MB = 50, 900
-TEXT_SUFFIXES = {".html", ".xml", ".css", ".js", ".json", ".txt", ".svg", ".webmanifest"}
+TEXT_SUFFIXES = {".html", ".xml", ".css", ".js", ".json", ".txt", ".csv", ".tsv", ".svg", ".webmanifest"}
 
 
 class Gate:
@@ -120,7 +120,7 @@ def check_privacy_sources(g):
         p = ROOT / base
         files = [p] if p.is_file() else [f for f in p.rglob("*") if f.is_file()]
         for f in files:
-            if f.suffix.lower() not in {".md", ".yaml", ".yml", ".json", ".html", ".js", ".css", ".toml", ".txt", ".gotmpl"}:
+            if f.suffix.lower() not in {".md", ".yaml", ".yml", ".json", ".html", ".js", ".css", ".toml", ".txt", ".csv", ".tsv", ".gotmpl"}:
                 continue
             if f.stat().st_size > 8_000_000:
                 continue
@@ -175,22 +175,29 @@ class Links(html.parser.HTMLParser):
         for k, v in attrs:
             if v and k in ("href", "src", "poster") and tag in ("a", "link", "script", "img", "source", "video", "iframe"):
                 self.urls.append(v)
+            if v and k == "srcset" and not v.startswith("data:"):
+                self.urls.extend(part.strip().split()[0] for part in v.split(",") if part.strip())
 
 
 def check_links(g, base_url):
     base_path = urllib.parse.urlparse(base_url).path or "/"
     missing, external = [], set()
-    for f in PUBLIC.rglob("*.html"):
+    for f in list(PUBLIC.rglob("*.html")) + list(PUBLIC.rglob("*.css")):
         p = Links()
         try:
-            p.feed(f.read_text(errors="ignore"))
+            text = f.read_text(errors="ignore")
+            if f.suffix == ".css":
+                text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+                p.urls = re.findall(r"url\(\s*[\"']?([^\"')]+)", text)
+            else:
+                p.feed(text)
         except Exception:
             continue
         for u in p.urls:
             if u.startswith(("mailto:", "tel:", "javascript:", "data:", "#")):
                 continue
             pu = urllib.parse.urlparse(u)
-            if pu.scheme in ("http", "https") and not u.startswith(base_url):
+            if (pu.scheme in ("http", "https") or pu.netloc) and not u.startswith(base_url):
                 external.add(u)
                 continue
             path = urllib.parse.unquote(pu.path if pu.scheme else u.split("#")[0].split("?")[0])
@@ -296,6 +303,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
     c = sub.add_parser("check"); c.add_argument("--base-url", default=SITE_URL)
+    c = sub.add_parser("links"); c.add_argument("--base-url", default=SITE_URL)
     s = sub.add_parser("push")
     s.add_argument("--approve", action="store_true"); s.add_argument("--dry-run", action="store_true")
     s.add_argument("--fresh", action="store_true"); s.add_argument("--repo", default=PUBLIC_REPO)
@@ -303,6 +311,9 @@ def main():
     a = p.parse_args()
     if a.cmd == "check":
         sys.exit(0 if run_gate(a.base_url).ok else 1)
+    if a.cmd == "links":
+        g = Gate(); check_links(g, a.base_url)
+        sys.exit(0 if g.ok else 1)
     push(a)
 
 

@@ -1,7 +1,7 @@
 name: Validate and deploy website
 on:
   push:
-    branches: [main, 'codex/**']
+    branches: [main, test, 'codex/**']
   pull_request:
   schedule:
     # Daily feeds refresh at 00:01 and 08:01 Helsinki time. GitHub cron is UTC and best-effort
@@ -30,7 +30,8 @@ env:
 jobs:
   daily:
     # Runs on schedule, on manual request, and on every push to main (a push refreshes Daily only if it is older than 12 h)
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'push' || inputs.fetch)
+    # Owner-approved Daily parity: root, IGISOL and traps each retain and refresh their own archive.
+    if: (github.repository == format('{0}/{0}.github.io', github.repository_owner) || github.repository == 'gezhuang0717/igisol.github.io' || github.repository == 'gezhuang0717/traps.github.io') && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'push' || inputs.fetch)
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -70,12 +71,13 @@ jobs:
         run: |
           python tools/site.py fetch
           python tools/site.py check
+          python tools/site.py export-react
       - id: commit
         name: One logical Daily commit
         run: |
           git config user.name "Zhuang Ge"
           git config user.email gezhuang0717@users.noreply.github.com
-          git add data/daily
+          git add data/daily static/data/daily.json react/src/data/site.json
           if ! git diff --cached --quiet; then
             git commit -m "Daily feeds $(TZ=Europe/Helsinki date '+%F %H:%M') Helsinki"
             git pull --rebase --autostash origin main
@@ -84,7 +86,7 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   validate:
     needs: daily
-    if: always() && (needs.daily.result == 'success' || needs.daily.result == 'skipped') && (needs.daily.outputs.ran != 'no' || github.event_name != 'schedule')
+    if: always() && (github.event_name != 'schedule' || github.repository == format('{0}/{0}.github.io', github.repository_owner) || github.repository == 'gezhuang0717/igisol.github.io' || github.repository == 'gezhuang0717/traps.github.io') && (needs.daily.result == 'success' || needs.daily.result == 'skipped') && (needs.daily.outputs.ran != 'no' || github.event_name != 'schedule')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -111,6 +113,11 @@ jobs:
           owner=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]'); repo="${GITHUB_REPOSITORY#*/}"
           base="https://${owner}.github.io/"; [ "$(echo "$repo" | tr '[:upper:]' '[:lower:]')" = "${owner}.github.io" ] || base="${base}${repo}/"
           echo "SITE_BASE_URL=$base" >> "$GITHUB_ENV"
+          # Owner-approved final traps site (2026-10-10); preserve explicit preview overrides elsewhere.
+          if [ "$GITHUB_REPOSITORY" = "gezhuang0717/traps.github.io" ]; then
+            echo "HUGO_PARAMS_TESTSITE=false" >> "$GITHUB_ENV"
+            echo "HUGO_PARAMS_ROBOTS=index, follow" >> "$GITHUB_ENV"
+          fi
       - name: Data and recovery tests
         run: |
           python tools/site.py check
@@ -133,14 +140,17 @@ jobs:
           theme=$(python -c "import yaml;print(yaml.safe_load(open('site.yaml'))['live_theme'])")
           rm -rf public && mv "builds/$theme" public
           cp -R builds/react public/react
+      - name: Final internal HTML, CSS and image links
+        run: python tools/publish.py links --base-url "$SITE_BASE_URL"
       - uses: actions/upload-artifact@v4
         with:
           name: validated-website
           path: public
   deploy:
     needs: validate
-    # Publish the original user site or the owner-selected IGISOL project; other copies only validate.
-    if: always() && (github.repository == format('{0}/{0}.github.io', github.repository_owner) || github.repository == 'gezhuang0717/igisol.github.io') && github.ref == 'refs/heads/main' && needs.validate.result == 'success' && github.event_name != 'pull_request'
+    # Publish the user site, the owner-selected IGISOL project or the test/staging site; other copies
+    # and the `test` branch only validate.
+    if: always() && (github.repository == format('{0}/{0}.github.io', github.repository_owner) || github.repository == 'gezhuang0717/igisol.github.io' || github.repository == 'gezhuang0717/traps.github.io') && github.ref == 'refs/heads/main' && needs.validate.result == 'success' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write
