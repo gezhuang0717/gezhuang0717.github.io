@@ -1,0 +1,130 @@
+{
+  "entries": [
+    {
+      "date": "2026-10-20",
+      "type": "job",
+      "title": "Postdoctoral Fellow in Nuclear Theory, Physics Division, Argonne National Laboratory — Argonne (main)",
+      "summary": "North America · deadline 2026-11-20 · POSTDOC. The Theory Group in the Physics Division at Argonne National Laboratory is seeking candidates for postdoctoral positions in nuclear theory, to begin as early as Spring 2026. The positions are for two years, with the possibility of…",
+      "url": "https://inspirehep.net/jobs/3216123",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "deadline": "2026-11-20",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-20",
+      "type": "news",
+      "title": "Forgotten particle could answer mystery of why we exist, say physicists",
+      "summary": "Scientists have unveiled a new theory on the birth of the cosmos, suggesting the early universe was shaped by an ancient particle that has been overlooked for decades.",
+      "url": "https://phys.org/news/2026-10-forgotten-particle-mystery-physicists.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-20",
+      "type": "paper",
+      "title": "Systematic study of the half-lives of nuclear bound-state ${β}^{−}$ decay",
+      "summary": "Author(s): Jing-Wen Ran and Long-Jun Wang Nuclear bound-state ${β}^{−}$ decay (${β}_{\\text{b}}$ decay) is a novel weak-interaction process that becomes possible when atoms are highly ionized, such as in stellar environments or heavy-ion storage rings. In this work we present…",
+      "url": "http://link.aps.org/doi/10.1103/mm62-58yl",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-20",
+      "type": "paper",
+      "title": "Resonance-dominated heavy-ion fusion and structures with negative components in the representation ${d}^{2}(Eσ)/d{E}^{2}$ of the fusion cross section",
+      "summary": "Author(s): Basudeb Sahu The true ion-ion interaction governed by the repulsive electrostatic potential and the attractive nuclear potential at small separation is approximated as a Coulomb barrier decorated by an attractive $δ$-shell potential placed under the barrier. This…",
+      "url": "http://link.aps.org/doi/10.1103/mbqf-s378",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-20",
+      "type": "paper",
+      "title": "Impact of soft versus hard equations of state on hybrid stars",
+      "summary": "Author(s): H. Güven, K. Bozkurt, E. Khan, and J. Margueron The nuclear stiffness as a dominant contribution of nuclear symmetry energy is analyzed in the context of the properties of compact stars, considering constraints from nuclear physics and astrophysics. A compact star…",
+      "url": "http://link.aps.org/doi/10.1103/vxhx-gw7q",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-20",
+      "type": "paper",
+      "title": "Measurement of the $^{19}\\mathrm{F}(p,αγ)^{16}\\mathrm{O}$ astrophysical factor at threshold energies",
+      "summary": "Author(s): X. D. Su et al. Proton-induced reactions on $^{19}\\mathrm{F}$ can lead to different branches of the CNO cycles, possibly resulting in the synthesis of heavier nuclei. For instance, CNO breakout is considered to be a viable path to the production of calcium in the…",
+      "url": "http://link.aps.org/doi/10.1103/bnc6-z6hj",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-20",
+      "type": "paper",
+      "title": "A liquid-crystal analogue of the skyrmion Hall effect",
+      "summary": "Nature Physics, Published online: 19 October 2026; doi:10.1038/s41567-026-03379-0 Magnetic skyrmions are known to exhibit a Hall effect in the presence of an electric current. Now it is shown that liquid-crystal solitons also exhibit a Hall-like drift under shear flow.",
+      "url": "https://www.nature.com/articles/s41567-026-03379-0",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-20",
+      "type": "paper",
+      "title": "Evidence for spin-fluctuation-mediated superconductivity in electron-doped cuprates",
+      "summary": "Nature Physics, Published online: 19 October 2026; doi:10.1038/s41567-026-03454-6 The mechanism for superconductivity in cuprates is still not known. Now, the observation of a relationship between the critical temperature and strength of coupling between electrons and spin…",
+      "url": "https://www.nature.com/articles/s41567-026-03454-6",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-19",
+      "collected_at": "2026-10-20",
+      "verification_status": "feed-collected"
+    }
+  ],
+  "fetched": "2026-10-20T06:32:15+00:00"
+}
