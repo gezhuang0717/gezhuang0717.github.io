@@ -1,35 +1,35 @@
-432 links: {'OK': 279, 'CHECK': 135, 'BROKEN': 18}
+432 links: {'OK': 276, 'CHECK': 138, 'BROKEN': 18}
 BROKEN   0 http://radiology.hku.hk/en/Research-Services/Cyclotron  ← data/facilities/facilities.json ConnectTimeout: HTTPConnectionPool(host='radiology.hku.hk', port=80): Max retries exceeded with url: /en/Research-Services/Cyclotron (Caused by ConnectTimeoutError(<HTTPConnect
-BROKEN   0 http://slcj.uw.edu.pl/en  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.slcj.uw.edu.pl', port=443): Max retries exceeded with url: /en (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_
 BROKEN   0 http://www.incan.salud.gob.mx/  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='incan.salud.gob.mx', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VE
-BROKEN   0 http://www.parsisotope.com  ← data/facilities/facilities.json ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+BROKEN   0 http://www.parsisotope.com  ← data/facilities/facilities.json ConnectionError: HTTPConnectionPool(host='www.parsisotope.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.parsisotope.c
 BROKEN   0 http://www.sparklepet.it/en/index.htm  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.sparklepet.it', port=443): Max retries exceeded with url: /en/index.htm (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CER
 BROKEN   0 http://www.tlabs.ac.za  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='www.tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIF
 BROKEN 404 https://arxiv.org/abs/  ← layouts/_partials/zg/paper.html 
 BROKEN   0 https://chetec-infra.eu/  ← content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/daily_link SSLError: HTTPSConnectionPool(host='chetec-infra.eu', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIF
 BROKEN 404 https://doi.org/10.1016/0029-5582  ← content/en/books/mass-light/standard-model.md 
 BROKEN 404 https://doi.org/10.1016/0370-2693  ← content/en/books/mass-light/cosmology.md; content/zh/books/mass-light/cosmology.md 
+BROKEN   0 https://flerovlab.jinr.ru/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='flerovlab.jinr.ru', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='flerovlab.jinr.r
+BROKEN   0 https://luna.lngs.infn.it/  ← content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/facilities ConnectTimeout: HTTPSConnectionPool(host='luna.lngs.infn.it', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='luna.lngs.infn.i
 BROKEN 404 https://physics.nist.gov/cuu/Units/mass.html  ← data/nuclides.yaml 
 BROKEN   0 https://tlabs.ac.za/  ← data/facilities/facilities.json SSLError: HTTPSConnectionPool(host='tlabs.ac.za', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FA
 BROKEN   0 https://www.hkdyfy.cn/en/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.hkdyfy.cn', port=443): Max retries exceeded with url: /en/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.hkdyfy.cn', p
-BROKEN   0 https://www.kxc120.cn/  ← data/facilities/facilities.json ReadTimeout: HTTPSConnectionPool(host='www.kxc120.cn', port=443): Read timed out. (read timeout=20)
+BROKEN   0 https://www.kxc120.cn/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.kxc120.cn', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kxc120.cn', port
 BROKEN   0 https://www.monrol.com.tr/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.monrol.com.tr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.monrol.com.t
 BROKEN   0 https://www.pesrmyy.com/  ← data/facilities/facilities.json ConnectTimeout: HTTPSConnectionPool(host='www.pesrmyy.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.pesrmyy.com', 
 BROKEN   0 https://www.slhd.nsw.gov.au  ← data/facilities/facilities.json ReadTimeout: HTTPSConnectionPool(host='slhd.health.nsw.gov.au', port=443): Read timed out. (read timeout=20)
-BROKEN   0 https://www.ugent.be  ← data/facilities/facilities.json ConnectionError: HTTPSConnectionPool(host='www.ugent.be', port=443): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPSConnection(host='www.ugent.be', port=44
 CHECK  500 http://www.asst-spedalicivili.it  ← data/facilities/facilities.json 
 CHECK  403 http://www.beaconhospital.com.my/cyclotron  ← data/facilities/facilities.json 
-CHECK  504 http://www.ciae.ac.cn/  ← data/facilities/facilities.json 
 CHECK  412 http://www.en.jdyfy.com/index.htm  ← data/facilities/facilities.json 
 CHECK  403 http://www.feofaniya.org  ← data/facilities/facilities.json 
 CHECK  403 http://www.nkti.gov.ph/index.php/services/kidney-pancreas-transplant/pet-ct-center  ← data/facilities/facilities.json 
-CHECK  500 http://www.radnusa.com  ← data/facilities/facilities.json 
 CHECK  403 http://www.svetamarina.com/  ← data/facilities/facilities.json 
-CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2014.04.051  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2020.164713  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2024.170083  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nima.2024.170186  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1016/j.nimb.2016.02.006  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1016/j.nimb.2019.05.029  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1016/j.nimb.2023.05.007  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1016/j.nuclphysa.2025.123041  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2022.137135  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2022.137226  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1016/j.physletb.2023.138249  ← data/publications.yaml 
@@ -52,6 +52,7 @@ CHECK  429 https://api.crossref.org/works/10.1088/0031-8949/2015/t166/014009  �
 CHECK  429 https://api.crossref.org/works/10.1088/0031-8949/2015/t166/014010  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1088/0031-8949/2015/t166/014044  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1088/1674-1137/39/10/104001  ← data/publications.yaml 
+CHECK  429 https://api.crossref.org/works/10.1088/1674-1137/39/10/106201  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1088/1742-6596/1643/1/012058  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1088/1742-6596/1643/1/012090  ← data/publications.yaml 
 CHECK  429 https://api.crossref.org/works/10.1103/PhysRevC.103.065502  ← data/publications.yaml 
@@ -133,6 +134,7 @@ CHECK  403 https://doi.org/10.1103/PhysRevLett.94.092501  ← layouts/_shortcode
 CHECK  403 https://doi.org/10.1103/RevModPhys.29.454  ← content/en/books/mass-light/cosmology.md; content/zh/books/mass-light/cosmology.md 
 CHECK  403 https://doi.org/10.1103/bgj9-mzcq  ← data/daily/manual/2026-09.yaml 
 CHECK  403 https://doi.org/10.7566/JPSCP.35.011023  ← data/gallery.yaml 
+CHECK  403 https://euraxess.ec.europa.eu/jobs/search  ← data/daily_links.yaml 
 CHECK  403 https://journals.aps.org/prc  ← data/daily_links.yaml 
 CHECK  403 https://journals.aps.org/prl  ← data/daily_links.yaml 
 CHECK  403 https://sciprofiles.com/profile/zhuang-ge  ← content/de/publications.md; content/en/publications.md; content/fi/publications.md; content/ja/publications.md; content/ 
@@ -141,6 +143,7 @@ CHECK  403 https://www-nds.iaea.org/amdc/ame2020/  ← layouts/_shortcodes/nucli
 CHECK  403 https://www.austin.org.au/PET_for_health_professionals/#Section1  ← data/facilities/facilities.json 
 CHECK  403 https://www.cancer.gov.co/  ← data/facilities/facilities.json 
 CHECK  403 https://www.cardiff.ac.uk/wales-research-diagnostic-pet-imaging-centre  ← data/facilities/facilities.json 
+CHECK  500 https://www.jinaweb.org/  ← content/de/group.md; content/en/group.md; content/fi/group.md; content/ja/group.md; content/zh/group.md; data/daily_link 
 CHECK  999 https://www.linkedin.com/in/zhuang-ge-847898202  ← site.yaml 
 CHECK  403 https://www.mdpi.com/journal/atoms  ← data/daily_links.yaml 
 CHECK  403 https://www.mdpi.com/journal/sensors/special_issues/8I8CN6PDV1  ← content/de/cv.md; content/de/group.md; content/en/cv.md; content/en/group.md; content/fi/cv.md; content/fi/group.md; con 
