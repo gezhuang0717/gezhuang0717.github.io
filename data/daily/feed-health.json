@@ -1,23 +1,23 @@
 {
-  "checked_at": "2026-10-26T20:44:52+00:00",
+  "checked_at": "2026-10-27T06:47:40+00:00",
   "feeds": [
     {
       "source": "arXiv — ion traps & mass spectrometry",
       "status": "PASS",
-      "matched": 1,
+      "matched": 0,
       "new": 0
     },
     {
       "source": "arXiv — nuclear masses, Q-values & astrophysics",
       "status": "PASS",
-      "matched": 1,
+      "matched": 0,
       "new": 0
     },
     {
       "source": "INSPIRE-HEP Jobs — nuclear physics",
       "status": "PASS",
-      "matched": 4,
-      "new": 1
+      "matched": 1,
+      "new": 0
     },
     {
       "source": "APS Physics — news",
@@ -29,7 +29,7 @@
       "source": "Phys.org — nuclear physics",
       "status": "PASS",
       "matched": 30,
-      "new": 5
+      "new": 1
     },
     {
       "source": "Physical Review Letters — Nuclear Physics",
@@ -46,14 +46,13 @@
     {
       "source": "Physical Review C",
       "status": "PASS",
-      "matched": 10,
+      "matched": 8,
       "new": 0
     },
     {
       "source": "Nature Physics",
-      "status": "PASS",
-      "matched": 8,
-      "new": 3
+      "status": "FAILED",
+      "error": "not well-formed (invalid token): line 14, column 4"
     },
     {
       "source": "TRIUMF news",
