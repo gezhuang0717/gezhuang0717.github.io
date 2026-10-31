@@ -1,0 +1,52 @@
+{
+  "entries": [
+    {
+      "date": "2026-10-31",
+      "type": "job",
+      "title": "PhD position: Exclusive π0 muoproduction cross section at COMPASS (CERN) — CTU, Prague",
+      "summary": "Europe · deadline 2026-12-15 · PHD. The Department of Dosimetry and Application of Ionizing Radiation, Faculty of Nuclear Sciences and Physical Engineering, Czech Technical University in Prague, offers a PhD position in experimental hadron physics within the COMPASS…",
+      "url": "https://inspirehep.net/jobs/3220801",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-30",
+      "deadline": "2026-12-15",
+      "collected_at": "2026-10-31",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "news",
+      "title": "Machine learning helps track semiconductor defects under more realistic temperature conditions",
+      "summary": "All materials contain inherent defects. These are not always harmful, since they can be used to engineer and introduce certain properties into a material. However, it is crucial to understand how they function and how they affect the material's properties.",
+      "url": "https://phys.org/news/2026-10-machine-track-semiconductor-defects-realistic.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-10-29",
+      "collected_at": "2026-10-31",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "paper",
+      "title": "Accurate Charge Radius Measurement of $^{14}\\mathrm{C}$ Confronts Ab Initio Theory",
+      "summary": "Author(s): Kristian König, Patrick Müller, Tobias Gesser, Emily Burbach, Stefano Gandolfi, Matthias Heinz, Phillip Imgram, Alessandro Lovato, Pieter Maris, Takayuki Miyagi, Wilfried Nörtershäuser, Robert Roth, Achim Schwenk, and Julien Spahn Located at the neutron shell closure…",
+      "url": "http://link.aps.org/doi/10.1103/f5s7-1t7w",
+      "source": "Physical Review Letters — Nuclear Physics",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-30",
+      "collected_at": "2026-10-31",
+      "verification_status": "feed-collected"
+    }
+  ],
+  "fetched": "2026-10-31T07:27:57+00:00"
+}
