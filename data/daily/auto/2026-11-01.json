@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "date": "2026-11-01",
+      "type": "news",
+      "title": "Breaking the ice: Scientists use attracting particles to form an anti-spin ice",
+      "summary": "In a recent Nature Communications study, researchers have reported the realization of an anti-spin ice, a system that does the opposite of conventional spin ices by breaking the ice rule that governs them.",
+      "url": "https://phys.org/news/2026-10-ice-scientists-particles-anti.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-01",
+      "collected_at": "2026-11-01",
+      "verification_status": "feed-collected"
+    }
+  ],
+  "fetched": "2026-11-01T12:42:06+00:00"
+}

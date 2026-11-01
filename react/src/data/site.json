@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-10-31T23:53:23+00:00",
+  "generated": "2026-11-01T12:42:07+00:00",
   "config": {
     "live_theme": "congo",
     "base_url": "https://gezhuang0717.github.io/igisol.github.io/",
@@ -5664,6 +5664,21 @@
     }
   ],
   "daily": [
+    {
+      "date": "2026-11-01",
+      "type": "news",
+      "title": "Breaking the ice: Scientists use attracting particles to form an anti-spin ice",
+      "summary": "In a recent Nature Communications study, researchers have reported the realization of an anti-spin ice, a system that does the opposite of conventional spin ices by breaking the ice rule that governs them.",
+      "url": "https://phys.org/news/2026-10-ice-scientists-particles-anti.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-01",
+      "collected_at": "2026-11-01",
+      "verification_status": "feed-collected"
+    },
     {
       "date": "2026-10-31",
       "type": "job",
