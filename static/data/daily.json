@@ -1,6 +1,51 @@
 {
   "entries": [
     {
+      "date": "2026-11-02",
+      "type": "paper",
+      "title": "The challenge of recognition in large scientific collaborations",
+      "summary": "Nature Physics, Published online: 30 October 2026; doi:10.1038/s41567-026-03511-0 The authorship practices of large collaborations can hide individual contributions. A recognition programme developed by the LIGO Scientific Collaboration publicly documents verified contributions…",
+      "url": "https://www.nature.com/articles/s41567-026-03511-0",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-30",
+      "collected_at": "2026-11-02",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-02",
+      "type": "paper",
+      "title": "Thermodynamic demonstration of tetracriticality and multicomponent superconductivity in UTe 2",
+      "summary": "Nature Physics, Published online: 30 October 2026; doi:10.1038/s41567-026-03504-z Prior measurements of the phase diagram of UTe2 contain a triple point that is forbidden by thermodynamics. Now, an additional phase boundary is discovered that resolves this problem and confirms…",
+      "url": "https://www.nature.com/articles/s41567-026-03504-z",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-30",
+      "collected_at": "2026-11-02",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-02",
+      "type": "paper",
+      "title": "Multiparticle quantum walks in a dipole-conserving Bose–Hubbard model",
+      "summary": "Nature Physics, Published online: 30 October 2026; doi:10.1038/s41567-026-03512-z Strong potential gradients can localize individual particles, but interactions can still generate collective motion. An experiment with ultracold atoms in a tilted lattice now shows this…",
+      "url": "https://www.nature.com/articles/s41567-026-03512-z",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-10-30",
+      "collected_at": "2026-11-02",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-01",
       "type": "news",
       "title": "Breaking the ice: Scientists use attracting particles to form an anti-spin ice",
@@ -7271,12 +7316,12 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-01T12:42:06+00:00",
+    "checked_at": "2026-11-02T01:14:32+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
         "status": "PASS",
-        "matched": 1,
+        "matched": 0,
         "new": 0
       },
       {
@@ -7288,7 +7333,7 @@
       {
         "source": "INSPIRE-HEP Jobs — nuclear physics",
         "status": "PASS",
-        "matched": 6,
+        "matched": 2,
         "new": 0
       },
       {
@@ -7301,7 +7346,7 @@
         "source": "Phys.org — nuclear physics",
         "status": "PASS",
         "matched": 30,
-        "new": 1
+        "new": 0
       },
       {
         "source": "Physical Review Letters — Nuclear Physics",
@@ -7323,8 +7368,9 @@
       },
       {
         "source": "Nature Physics",
-        "status": "FAILED",
-        "error": "not well-formed (invalid token): line 14, column 4"
+        "status": "PASS",
+        "matched": 8,
+        "new": 3
       },
       {
         "source": "TRIUMF news",
