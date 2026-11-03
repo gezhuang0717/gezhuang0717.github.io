@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-11-02T23:13:56+00:00",
+  "generated": "2026-11-03T12:35:05+00:00",
   "config": {
     "live_theme": "congo",
     "base_url": "https://gezhuang0717.github.io/igisol.github.io/",
@@ -5664,6 +5664,37 @@
     }
   ],
   "daily": [
+    {
+      "date": "2026-11-03",
+      "type": "preprint",
+      "title": "Regularity of core coupled high-spin structure in neutron-rich $^{196-202}$Au isotopes approaching N $=126$",
+      "summary": "Y. Cho et al. — Excited states built upon long-lived high-spin isomers in hard-to-reach neutron-rich Au ($Z=79$) isotopes were populated using multi-nucleon transfer reactions between $^{136}$Xe and $^{198}$Pt at 7 MeV/u. These states in $^{196,\\,198-202}$Au were identified for…",
+      "url": "https://arxiv.org/abs/2611.03139v1",
+      "source": "arXiv — nuclear masses, Q-values & astrophysics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-02",
+      "arxiv": "2611.03139v1",
+      "collected_at": "2026-11-03",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-03",
+      "type": "news",
+      "title": "Using Pulsars to Probe Early Growth of Black Holes",
+      "summary": "Author(s): Sarah Burke-Spolaor Researchers have used radio observations of rapidly spinning neutron stars to search for signals from supermassive black hole pairs at the dawn of galaxy formation. [Physics 19, 146] Published Mon Nov 02, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.146",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-02",
+      "collected_at": "2026-11-03",
+      "verification_status": "feed-collected"
+    },
     {
       "date": "2026-11-02",
       "type": "paper",
