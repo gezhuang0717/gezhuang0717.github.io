@@ -136,7 +136,132 @@
       "published": "2026-11-03",
       "collected_at": "2026-11-04",
       "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "job",
+      "title": "“Ramón y Cajal” Tenure-Track Positions — Santiago de Compostela U., IGFAE",
+      "summary": "Europe · deadline 2026-12-10 · JUNIOR/SENIOR. The Galician Institute of High Energy Physics (IGFAE) at the University of Santiago de Compostela (USC) invites outstanding researchers to apply for the 2026 “ Ramón y Cajal” tenure-track positions , funded by the Spanish State…",
+      "url": "https://inspirehep.net/jobs/3222651",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "deadline": "2026-12-10",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "job",
+      "title": "Postdoc research associate in fundamental physics, quantum information, and AI — Maryland U., College Park",
+      "summary": "North America · deadline 2026-11-15 · POSTDOC. Maryland Center for Fundamental Physics (MCFP) and the Joint Center for Quantum Information and Computer Science (QuICS) at the University of Maryland (UMD), College Park, seek applications for up to two postdoctoral research…",
+      "url": "https://inspirehep.net/jobs/3222094",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-03",
+      "deadline": "2026-11-15",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "job",
+      "title": "Accelerator Physicist (Lead) — Acceleron Fusion",
+      "summary": "North America · deadline 2026-12-31 · SENIOR/JUNIOR. About us Acceleron Fusion is developing muon-catalyzed fusion—a path to clean, abundant energy. Building on research sponsored by the U.S. DOE, we have raised over $20M in our Series A venture capital round and have already…",
+      "url": "https://inspirehep.net/jobs/3222007",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-03",
+      "deadline": "2026-12-31",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "news",
+      "title": "Calculating Superconductors from Scratch",
+      "summary": "Author(s): Charles Day A new formalism yields the quantities that characterize a conventional superconductor without adjustable parameters. [Physics 19, s138] Published Tue Nov 03, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.s138",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-03",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "news",
+      "title": "New research uncovers chiral topological phases in metals without structural order",
+      "summary": "Fermions are among the most important particles in physics and include both everyday electrons and more exotic variants. Chiral fermions, like gloves, come in left- and right-handed versions and were proposed over a century ago. While high-energy neutrinos—the leading…",
+      "url": "https://phys.org/news/2026-11-uncovers-chiral-topological-phases-metals.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "news",
+      "title": "Five things to know about guiding sound for better communication",
+      "summary": "Every time someone picks up a call, the phone does a quiet bit of translation. Incoming radio signals are converted into tiny sound waves that ripple across chips before being turned back into data.",
+      "url": "https://phys.org/news/2026-11-communication.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "paper",
+      "title": "$S$ factor of $^{13}\\mathrm{C}$($α,n$)$^{16}\\mathrm{O}$ at low energies in cluster effective field theory",
+      "summary": "Author(s): Shung-Ichi Ando The $^{13}\\mathrm{C}$($α,n$)$^{16}\\mathrm{O}$ reaction at low energies is studied by constructing an effective field theory. A separation scale of the theory is chosen at $E=1$ MeV, where $E$ is the initial $α\\text{−}^{13}\\mathrm{C}$ energy in…",
+      "url": "http://link.aps.org/doi/10.1103/bvt9-x31l",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-04",
+      "type": "paper",
+      "title": "Inherited collectivity from shape-coexisting cores in the ${i}_{13/2}$ rotational band of $^{189}\\mathrm{Hg}$",
+      "summary": "Author(s): I. Zanon et al. Background: The neutron-deficient Hg isotopes provide one of the most prominent examples of nuclear shape coexistence. While the even-even nuclei have been extensively investigated, much less is known about how an unpaired neutron influences the…",
+      "url": "http://link.aps.org/doi/10.1103/jkvj-3qcz",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-03",
+      "collected_at": "2026-11-04",
+      "verification_status": "feed-collected"
     }
   ],
-  "fetched": "2026-11-04T07:57:57+00:00"
+  "fetched": "2026-11-04T21:29:10+00:00"
 }
