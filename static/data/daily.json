@@ -1,6 +1,101 @@
 {
   "entries": [
     {
+      "date": "2026-11-05",
+      "type": "preprint",
+      "title": "Search for the 229Pa Parity Doublet via Internal-Conversion Spectroscopy at FRIB",
+      "summary": "Silviu-Marian Udrescu et al. — The radioisotope $^{229}$Pa is predicted to possess a nearly degenerate ground-state parity doublet. Previous $γ$-ray and conversion-electron spectroscopy suggests a splitting of $ΔE = (60\\pm 50)~\\mathrm{eV}$, although the doublet's existence…",
+      "url": "https://arxiv.org/abs/2611.05494v1",
+      "source": "arXiv — ion traps & mass spectrometry",
+      "tags": [
+        "trap"
+      ],
+      "lang": "en",
+      "published": "2026-11-03",
+      "arxiv": "2611.05494v1",
+      "collected_at": "2026-11-05",
+      "verification_status": "feed-collected",
+      "facility_ids": [
+        "frib"
+      ]
+    },
+    {
+      "date": "2026-11-05",
+      "type": "job",
+      "title": "Postdoctoral Scholar — Michigan State U., East Lansing (main)",
+      "summary": "North America · deadline 2027-03-01 · POSTDOC. The Postdoctoral Scholar will conduct research within the Nuclear Theory Group, focusing on the development and application of microscopic transport models and modern statistical and artificial intelligence/machine learning (AI/ML)…",
+      "url": "https://inspirehep.net/jobs/3222744",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "deadline": "2027-03-01",
+      "collected_at": "2026-11-05",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-05",
+      "type": "news",
+      "title": "Atomic Wave Simulates Black Hole Properties",
+      "summary": "Author(s): Susan Curtis Using sheets of light to corral waves of ultracold atoms, researchers have created an experimental platform for studying the event horizons of black holes. [Physics 19, 149] Published Wed Nov 04, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.149",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "collected_at": "2026-11-05",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-05",
+      "type": "news",
+      "title": "A new route to calculating gluon production in proton–nucleus collisions",
+      "summary": "In the theoretical study of proton-nucleus collisions, the colliding projectiles can be described as streams of color charges moving along their respective trajectories. These color charges couple to gluons, which then produce the particles that are observed in the final state…",
+      "url": "https://phys.org/news/2026-11-route-gluon-production-protonnucleus-collisions.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "collected_at": "2026-11-05",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-05",
+      "type": "news",
+      "title": "A carefully timed pair of light pulses can amplify the motion of atomic layers in a quantum material",
+      "summary": "The principle \"Work smarter, not harder!\" apparently also applies to controlling quantum materials with light. Many of their fascinating properties depend on how the atoms are arranged in the crystal. Ultrashort laser pulses can be used to alter these structures in a targeted…",
+      "url": "https://phys.org/news/2026-11-pair-pulses-amplify-motion-atomic.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "collected_at": "2026-11-05",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-05",
+      "type": "news",
+      "title": "A new superinductor created within a silicon integrated circuit",
+      "summary": "A recent study published in Nature Electronics and carried out by researchers from nanoGUNE's Quantum Hardware research group, Quantum Motion, London Center for Nanotechnology, Imperial College London and the University of Cambridge introduces a new superinductor created within…",
+      "url": "https://phys.org/news/2026-11-superinductor-silicon-circuit.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "collected_at": "2026-11-05",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-04",
       "type": "news",
       "title": "Finding the fingerprints of noisy distributions in random quantum systems",
@@ -7825,13 +7920,13 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-04T21:29:10+00:00",
+    "checked_at": "2026-11-05T12:53:45+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
         "status": "PASS",
-        "matched": 0,
-        "new": 0
+        "matched": 1,
+        "new": 1
       },
       {
         "source": "arXiv — nuclear masses, Q-values & astrophysics",
@@ -7842,8 +7937,8 @@
       {
         "source": "INSPIRE-HEP Jobs — nuclear physics",
         "status": "PASS",
-        "matched": 7,
-        "new": 3
+        "matched": 6,
+        "new": 1
       },
       {
         "source": "APS Physics — news",
@@ -7855,7 +7950,7 @@
         "source": "Phys.org — nuclear physics",
         "status": "PASS",
         "matched": 30,
-        "new": 2
+        "new": 3
       },
       {
         "source": "Physical Review Letters — Nuclear Physics",
@@ -7872,8 +7967,8 @@
       {
         "source": "Physical Review C",
         "status": "PASS",
-        "matched": 8,
-        "new": 2
+        "matched": 7,
+        "new": 0
       },
       {
         "source": "Nature Physics",
@@ -7895,9 +7990,8 @@
       },
       {
         "source": "ECT* news & workshops",
-        "status": "PASS",
-        "matched": 10,
-        "new": 0
+        "status": "FAILED",
+        "error": "HTTP Error 504: Gateway Timeout"
       },
       {
         "source": "IAEA — nuclear science news",

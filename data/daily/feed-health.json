@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-04T21:29:10+00:00",
+  "checked_at": "2026-11-05T12:53:45+00:00",
   "feeds": [
     {
       "source": "arXiv — ion traps & mass spectrometry",
       "status": "PASS",
-      "matched": 0,
-      "new": 0
+      "matched": 1,
+      "new": 1
     },
     {
       "source": "arXiv — nuclear masses, Q-values & astrophysics",
@@ -16,8 +16,8 @@
     {
       "source": "INSPIRE-HEP Jobs — nuclear physics",
       "status": "PASS",
-      "matched": 7,
-      "new": 3
+      "matched": 6,
+      "new": 1
     },
     {
       "source": "APS Physics — news",
@@ -29,7 +29,7 @@
       "source": "Phys.org — nuclear physics",
       "status": "PASS",
       "matched": 30,
-      "new": 2
+      "new": 3
     },
     {
       "source": "Physical Review Letters — Nuclear Physics",
@@ -46,8 +46,8 @@
     {
       "source": "Physical Review C",
       "status": "PASS",
-      "matched": 8,
-      "new": 2
+      "matched": 7,
+      "new": 0
     },
     {
       "source": "Nature Physics",
@@ -69,9 +69,8 @@
     },
     {
       "source": "ECT* news & workshops",
-      "status": "PASS",
-      "matched": 10,
-      "new": 0
+      "status": "FAILED",
+      "error": "HTTP Error 504: Gateway Timeout"
     },
     {
       "source": "IAEA — nuclear science news",
