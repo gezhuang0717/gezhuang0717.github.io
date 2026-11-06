@@ -1,0 +1,80 @@
+{
+  "entries": [
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "Laser-plasma accelerator could generate bright X-rays for biological imaging, simulations show",
+      "summary": "X-rays with wavelengths between approximately 2.3 and 4.4 nanometers, i.e., in the so-called water window, are particularly well suited to examining biological samples in their natural, aqueous environment. To date, however, it has been technically difficult to access this type…",
+      "url": "https://phys.org/news/2026-11-laser-plasma-generate-bright-rays.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "Pinning down the structure of quark-gluon plasma, the universe's first fluid",
+      "summary": "In the first fraction of a second following the Big Bang, matter existed as a trillion-degree plasma of quarks and gluons—subatomic particles that zinged around at close to the speed of light. This roiling soup lasted for just a few microseconds before the particles coalesced…",
+      "url": "https://phys.org/news/2026-11-pinning-quark-gluon-plasma-universe.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "Electrical control of an unconventional quantum transport state demonstrated in a magnet for the first time",
+      "summary": "Researchers at Tohoku University and the Japan Atomic Energy Agency (JAEA) have successfully controlled a unique quantum phenomenon—the quantum-geometric nonlinear Hall (QgNLH) state—using electric current for the first time. The breakthrough was achieved by revealing and…",
+      "url": "https://phys.org/news/2026-11-electrical-unconventional-quantum-state-magnet.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "How palm orientation shapes spin characteristics in volleyball jump serves",
+      "summary": "A new biomechanical study has uncovered how elite volleyball players control ball spin during jump serves, offering fresh scientific insight into one of the sport's most decisive offensive skills.",
+      "url": "https://phys.org/news/2026-11-palm-characteristics-volleyball.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "Physicist develops detector capable of counting photons for quantum computing",
+      "summary": "Detecting a single photon is a challenge in itself. But what if you also want to know exactly how many photons arrive at a particular point at the same time? Physicist Erik Baalbergen is working on light detectors that can do just that. They form a key building block for the…",
+      "url": "https://phys.org/news/2026-11-physicist-detector-capable-photons-quantum.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    }
+  ],
+  "fetched": "2026-11-06T01:19:12+00:00"
+}
