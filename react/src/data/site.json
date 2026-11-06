@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-11-06T01:19:13+00:00",
+  "generated": "2026-11-06T13:45:45+00:00",
   "config": {
     "live_theme": "congo",
     "base_url": "https://gezhuang0717.github.io/igisol.github.io/",
@@ -5738,6 +5738,195 @@
       "published": "2026-11-05",
       "collected_at": "2026-11-06",
       "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "preprint",
+      "title": "General-relativistic neutrino-radiation hydrodynamics of crust ejection in magnetar giant flares",
+      "summary": "Tetyana Pitik et al. — Magnetar giant flares are thought to eject $\\gtrsim 10^{-9}\\,M_\\odot$ of baryons, as inferred from the radio afterglow of the 2004 flare of SGR 1806-20. One proposed mechanism is a shock driven into the neutron-star crust by the hot, high-pressure layer…",
+      "url": "https://arxiv.org/abs/2611.07022v1",
+      "source": "arXiv — nuclear masses, Q-values & astrophysics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-04",
+      "arxiv": "2611.07022v1",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "Images Capture Unusual Quantum Turbulence",
+      "summary": "Author(s): Rachel Berkowitz Random tangles of vortex lines have been observed untangling in an ultracold gas. [Physics 19, s137] Published Thu Nov 05, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.s137",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "Probing Strangeness",
+      "summary": "Author(s): Charles Day Close encounters between kaons and deuterons help to elucidate quantum chromodynamics in a challenging mass range. [Physics 19, s145] Published Thu Nov 05, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.s145",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "After 40 years of searching, physicists find evidence for an ultrarare particle decay",
+      "summary": "Physicists at CERN report that they've detected evidence of a rare meson particle decay (B⁰→ µ⁺µ⁻) that occurs when the meson's beauty quark annihilates with a down-type quark. The pair decays into a muon and antimuon, which are particles similar to electrons. Because evidence…",
+      "url": "https://phys.org/news/2026-11-years-physicists-evidence-ultrarare-particle.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "When Einstein's gravitational waves meet Newton's tides",
+      "summary": "Newton's theory of gravity has described the tides accurately for centuries. But could a tiny trace of Einstein's general relativity also be hidden in them? In a new study, a mathematician at Freie Universität Berlin has outlined how a targeted approach could be used to search…",
+      "url": "https://phys.org/news/2026-11-einstein-gravitational-newton-tides.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "paper",
+      "title": "Heavy Quark Transport Is Non-Gaussian beyond Leading Logarithm",
+      "summary": "Author(s): Jean F. Du Plessis and Bruno Scheihing-Hitschfeld We find that heavy quark transport beyond leading logarithm at weak coupling is intrinsically non-Gaussian: the longitudinal momentum transfer distribution has asymmetric exponential tails that are crucial for…",
+      "url": "http://link.aps.org/doi/10.1103/7fd5-1kq5",
+      "source": "Physical Review Letters — Nuclear Physics",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "paper",
+      "title": "Classification of Scissors Rotational Bands in Deformed Nuclei",
+      "summary": "Author(s): Sheng-Nan Wang, Yu Zhang, and P. Van Isacker We propose a classification scheme for rotational bands built on nuclear scissors vibrations, based on a systematic analysis of the competition among distinct collective modes. Our analysis within the proton-neutron…",
+      "url": "http://link.aps.org/doi/10.1103/z6d8-2q1g",
+      "source": "Physical Review Letters — Nuclear Physics",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "paper",
+      "title": "First Measurement of Compton Scattering on $^{3}\\mathrm{He}$ at $\\mathrm{HI}γ\\mathrm{S}$",
+      "summary": "Author(s): J. Zhou et al. (Compton@HI γ S Collaboration) The world’s first Compton scattering measurements on a $^{3}\\mathrm{He}$ target were performed to probe neutron electromagnetic polarizabilities. Differential cross sections were measured at laboratory angles of 40°, 55°,…",
+      "url": "http://link.aps.org/doi/10.1103/gn45-7lpx",
+      "source": "Physical Review Letters — Nuclear Physics",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "paper",
+      "title": "Ab initio calculations of $^{229}\\mathrm{Th}$ band-to-band internal conversion rate in $^{229}\\mathrm{ThO}_{2}$",
+      "summary": "Author(s): Udeshika C. Perera, H. B. Tran Tan, H. W. T. Morgan, Eric R. Hudson, Daniel A. Rehn, and Andrei Derevianko We present an ab initio calculation of the band-to-band internal-conversion rate of the $ℏ{ω}_{\\mathrm{nuc}}≈8.35\\phantom{\\rule{4pt}{0ex}}\\mathrm{eV}$ isomeric…",
+      "url": "http://link.aps.org/doi/10.1103/kdw3-fdyx",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "paper",
+      "title": "Suppression of heavy-ion fusion by slow quasifission",
+      "summary": "Author(s): L. T. Bezzina, E. C. Simpson, D. J. Hinde, M. Dasgupta, J. Buete, K. Banerjee, A. C. Berriman, K. J. Cook, D. Y. Jeung, P. McGlynn, C. Simenel, and B. M. A. Swinton-Bland Heavy-element synthesis hinges on the formation of a compound nucleus — a fully equilibrated…",
+      "url": "http://link.aps.org/doi/10.1103/8x4j-pg8f",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-05",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "paper",
+      "title": "Coherence enhancement through equilibration to near-zero optical temperatures",
+      "summary": "Nature Physics, Published online: 06 November 2026; doi:10.1038/s41567-026-03520-z Phase-space conservation bars coherence enhancement in passive linear optics, a limit often bypassed by gain or feedback. Here conservative nonlinearity reshapes phase space, thermodynamically…",
+      "url": "https://www.nature.com/articles/s41567-026-03520-z",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "news",
+      "title": "Conférence grand public avec François De Oliveira vendredi 6 novembre à la Bibliothèque Universitaire Rosalind-Franklin à Caen",
+      "summary": "François de Oliveira Santos, chercheur au GANIL, animera la conférence sur l&#8217;origine cosmique des éléments chimiques vendredi 6 novembre à 17h30, à la bibliothèque Rosalind-Franklin située sur le campus 2 de l&#8217;Université de Caen Normandie. Cette conférence retrace…",
+      "url": "https://www.ganil-spiral2.eu/2026/11/06/conference-grand-public-avec-francois-de-oliveira-vendredi-6-novembre-a-la-bibliotheque-universitaire-rosalind-franklin-a-caen/",
+      "source": "GANIL news",
+      "tags": [
+        "facility"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-06",
+      "verification_status": "feed-collected",
+      "facility_ids": [
+        "ganil-spiral2"
+      ]
     },
     {
       "date": "2026-11-05",
