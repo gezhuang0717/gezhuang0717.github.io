@@ -1,6 +1,113 @@
 {
   "entries": [
     {
+      "date": "2026-11-07",
+      "type": "news",
+      "title": "Air holes turn silicon wafers into flat ultraviolet focusing mirrors for compact optics",
+      "summary": "Traditional lenses and mirrors focus light using curved surfaces. Metasurfaces can achieve similar functions with a flat layer of nanoscale structures that locally control the phase of light. Extending these flat optics into the ultraviolet could support compact systems for…",
+      "url": "https://phys.org/news/2026-11-air-holes-silicon-wafers-flat.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "news",
+      "title": "Quantum gas microscope reveals individual atoms in first tunable three-component Hubbard system",
+      "summary": "For the first time, an international team of researchers from Germany, Thailand, India, China and the United States has created a three-component Hubbard system with tunable interactions in the laboratory. In doing so, the team used a quantum gas microscope to make the…",
+      "url": "https://phys.org/news/2026-11-quantum-gas-microscope-reveals-individual.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "news",
+      "title": "Scientists achieve record-breaking low temperature on China's space station, paving the way for new physics experiments",
+      "summary": "Matter starts to behave differently at extremely low temperatures, creating conditions ideal for studying quantum physics and new states of matter. Now, researchers from China have achieved a new low-temperature record aboard their Tiangong space station. Their research,…",
+      "url": "https://phys.org/news/2026-11-scientists-temperature-china-space-station.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "news",
+      "title": "From chaos to 'intelligent' soft matter—how tiny chemical differences guide droplets into ordered structures",
+      "summary": "Disorder can make sense, and understanding its logic can be genuinely useful. A study by a research group at the University of Trento shows how a minimal chemical difference can turn chaotic, disordered motion into a highly coordinated and reproducible structure.",
+      "url": "https://phys.org/news/2026-11-chaos-intelligent-soft-tiny-chemical.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "news",
+      "title": "Paired but out of step: Why electron pairing alone is not enough for room-temperature superconductivity",
+      "summary": "Levitating trains, ultra-efficient energy storage, and quantum computers: superconductivity could unlock a wealth of possibilities for the future. New research led by scientists from Utrecht, Leiden, and Munich has now shed light on one of the key requirements for achieving…",
+      "url": "https://phys.org/news/2026-11-paired-electron-pairing-room-temperature.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "paper",
+      "title": "Coulomb excitation of $^{130}\\mathrm{Te}$: Evidence for weak oblate deformation near $N=82$",
+      "summary": "Author(s): N. Sensharma et al. Background: Even-even tellurium isotopes, located just above the $Z=50$ shell closure, are expected to exhibit near-spherical vibrational character. However, previous measurements have indicated nonzero quadrupole moments and possible shape…",
+      "url": "http://link.aps.org/doi/10.1103/11zr-2d5l",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-07",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "paper",
+      "title": "Plasma-modified inelastic electron scattering for $^{93m}\\mathrm{Mo}$ nuclear isomer depletion in warm dense matter",
+      "summary": "Author(s): You-Tian Zou, Qing-Bo Luo, Yong Hou, and Tong-Pu Yu Nuclear excitation by inelastic electron scattering (NEIES) provides an electron-driven pathway for triggering nuclear-isomer depletion. In this work, we theoretically investigate the NEIES-induced depletion of…",
+      "url": "http://link.aps.org/doi/10.1103/rds9-9p7r",
+      "source": "Physical Review C",
+      "tags": [
+        "nuclear",
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-06",
+      "collected_at": "2026-11-07",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-06",
       "type": "news",
       "title": "Laser-plasma accelerator could generate bright X-rays for biological imaging, simulations show",
@@ -8184,7 +8291,7 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-06T13:45:43+00:00",
+    "checked_at": "2026-11-07T07:43:51+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
@@ -8195,8 +8302,8 @@
       {
         "source": "arXiv — nuclear masses, Q-values & astrophysics",
         "status": "PASS",
-        "matched": 3,
-        "new": 1
+        "matched": 1,
+        "new": 0
       },
       {
         "source": "INSPIRE-HEP Jobs — nuclear physics",
@@ -8208,19 +8315,19 @@
         "source": "APS Physics — news",
         "status": "PASS",
         "matched": 21,
-        "new": 2
+        "new": 0
       },
       {
         "source": "Phys.org — nuclear physics",
         "status": "PASS",
         "matched": 30,
-        "new": 2
+        "new": 5
       },
       {
         "source": "Physical Review Letters — Nuclear Physics",
         "status": "PASS",
         "matched": 30,
-        "new": 3
+        "new": 0
       },
       {
         "source": "Physical Review Letters — traps, masses & astrophysics",
@@ -8231,14 +8338,14 @@
       {
         "source": "Physical Review C",
         "status": "PASS",
-        "matched": 10,
+        "matched": 12,
         "new": 2
       },
       {
         "source": "Nature Physics",
         "status": "PASS",
         "matched": 8,
-        "new": 1
+        "new": 0
       },
       {
         "source": "TRIUMF news",
@@ -8250,7 +8357,7 @@
         "source": "GANIL news",
         "status": "PASS",
         "matched": 10,
-        "new": 1
+        "new": 0
       },
       {
         "source": "ECT* news & workshops",
