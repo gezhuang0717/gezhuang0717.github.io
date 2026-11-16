@@ -1,6 +1,66 @@
 {
   "entries": [
     {
+      "date": "2026-11-16",
+      "type": "news",
+      "title": "Quantum teleportation method uses weaker entanglement to transfer encoded information",
+      "summary": "Over the past several decades, researchers have demonstrated quantum teleportation, the transfer of one quantum system's state to another, in a range of systems. However, many quantum computers encode logical qubits (units of quantum information) across groups of physical…",
+      "url": "https://phys.org/news/2026-11-quantum-teleportation-method-weaker-entanglement.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-16",
+      "collected_at": "2026-11-16",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-16",
+      "type": "paper",
+      "title": "150 years proving fundamental science is worth the wait",
+      "summary": "Nature Physics, Published online: 16 November 2026; doi:10.1038/s41567-026-03538-3 Founded in 1876, the Indian Association for the Cultivation of Science created an early space for Indians to pursue science. Its achievements offer valuable lessons for strengthening today’s…",
+      "url": "https://www.nature.com/articles/s41567-026-03538-3",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-16",
+      "collected_at": "2026-11-16",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-16",
+      "type": "paper",
+      "title": "Extension of coherence time beyond breakeven point using only drives and dissipation",
+      "summary": "Nature Physics, Published online: 16 November 2026; doi:10.1038/s41567-026-03528-5 An autonomous quantum error correction protocol based on engineered drives and dissipation extends the coherence time of a bosonic logical qubit beyond that of the best physical qubit in the same…",
+      "url": "https://www.nature.com/articles/s41567-026-03528-5",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-16",
+      "collected_at": "2026-11-16",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-16",
+      "type": "paper",
+      "title": "Extending qubit lifetime beyond break-even and enhancing quantum sensing by autonomous quantum error correction",
+      "summary": "Nature Physics, Published online: 16 November 2026; doi:10.1038/s41567-026-03493-z A measurement-free quantum error-correction protocol is shown to extend the lifetime of a bosonic logical qubit beyond the best physical qubit in the same system. This also offers prospects for…",
+      "url": "https://www.nature.com/articles/s41567-026-03493-z",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-16",
+      "collected_at": "2026-11-16",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-15",
       "type": "news",
       "title": "Tangled quantum whirlpools caught unraveling in an ultracold gas",
@@ -9345,7 +9405,7 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-15T20:34:25+00:00",
+    "checked_at": "2026-11-16T13:18:01+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
@@ -9362,7 +9422,7 @@
       {
         "source": "INSPIRE-HEP Jobs — nuclear physics",
         "status": "PASS",
-        "matched": 5,
+        "matched": 1,
         "new": 0
       },
       {
@@ -9399,7 +9459,7 @@
         "source": "Nature Physics",
         "status": "PASS",
         "matched": 6,
-        "new": 0
+        "new": 3
       },
       {
         "source": "TRIUMF news",
@@ -9409,8 +9469,9 @@
       },
       {
         "source": "GANIL news",
-        "status": "FAILED",
-        "error": "<urlopen error timed out>"
+        "status": "PASS",
+        "matched": 10,
+        "new": 0
       },
       {
         "source": "ECT* news & workshops",
