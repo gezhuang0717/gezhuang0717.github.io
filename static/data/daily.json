@@ -190,6 +190,204 @@
       "verification_status": "feed-collected"
     },
     {
+      "date": "2026-11-24",
+      "type": "preprint",
+      "title": "QED theory of scalar hyperfine interactions in HD$^+$",
+      "summary": "Tymon Kilich et al. — HD$^+$ is the simplest heteronuclear molecular ion. It has been used to determine the proton-to-electron and deuteron-to-electron mass ratios, to test quantum electrodynamics, and to search for new interactions. All these applications rely on an accurate…",
+      "url": "https://arxiv.org/abs/2611.30481v1",
+      "source": "arXiv — ion traps & mass spectrometry",
+      "tags": [
+        "trap"
+      ],
+      "lang": "en",
+      "published": "2026-11-23",
+      "arxiv": "2611.30481v1",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "preprint",
+      "title": "Emergence of collectivity in the $0^+_2$ band of $^{92}$Zr",
+      "summary": "E. J. Williams et al. — The $2^+_2 \\rightarrow 0^+_2$ transition in $^{92}$Zr was observed for the first time in a high-statistics decay study of the 10-day isomer $^{92m}$Nb. Its $E2$ transition strength of 8.9(7) W.u. is enhanced by 40% relative to the ground state band,…",
+      "url": "https://arxiv.org/abs/2611.30940v1",
+      "source": "arXiv — nuclear masses, Q-values & astrophysics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-23",
+      "arxiv": "2611.30940v1",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "preprint",
+      "title": "Non-Equilibrium Steady States in Nucleosynthesis",
+      "summary": "Zewei Xiong et al. — Steady-state behavior underlies many nucleosynthesis processes in which the population number of nuclei can remain nearly constant despite the rapid nuclear reactions. While existing theoretical descriptions largely focus on established chemical…",
+      "url": "https://arxiv.org/abs/2611.30370v1",
+      "source": "arXiv — nuclear masses, Q-values & astrophysics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-23",
+      "arxiv": "2611.30370v1",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "job",
+      "title": "PhD Position - Neuromorphic Computing in Gravitational Wave Detection — ZAT, Julich",
+      "summary": "Europe · deadline 2027-01-08 · PHD. What does the early universe look like? What sound does a black hole collision make? Big questions require big instruments to measure the faintest signals, like the Einstein Telescope (ET) . Here, even the smallest disturbances influence the…",
+      "url": "https://inspirehep.net/jobs/3232435",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-24",
+      "deadline": "2027-01-08",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "Symmetry Guides the Search for Magnetic Order",
+      "summary": "Author(s): Zhi-Da Song New symmetry-based computational approaches could make it easier to identify magnetic materials for spintronic devices and other technologies. [Physics 19, 157] Published Mon Nov 23, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.157",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-23",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "A Paradox That Still Puzzles Physicists",
+      "summary": "Author(s): Michael Schirber A survey of leading researchers finds broad agreement that information escapes from black holes—but little consensus on how, or whether the paradox is solved. [Physics 19, 162] Published Mon Nov 23, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.162",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-23",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "Copper aluminum oxide could make light-controlling components for smart glasses 120 times thinner",
+      "summary": "Could augmented reality (AR) glasses become as thin and lightweight as everyday eyeglasses? Researchers at the Korea Advanced Institute of Science and Technology (KAIST) and their collaborators have identified a material that could reduce the thickness of polarization-control…",
+      "url": "https://phys.org/news/2026-11-copper-aluminum-oxide-components-smart.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-24",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "New theoretical model allows for sustained entanglement between diamond qubits at greater separations",
+      "summary": "In a new study accepted in the journal Physical Review B, a team of physicists from the University of Delaware may have found a way to overcome limitations in maintaining the entanglement of diamond qubits. The model involves driving the qubits away from equilibrium using…",
+      "url": "https://phys.org/news/2026-11-theoretical-sustained-entanglement-diamond-qubits.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-24",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "Ultracold atoms reveal first direct view of bound-pair motion in a fracton system",
+      "summary": "Particles can generally move between neighboring sites in a crystal, a solid in which atoms are arranged in a regular, repeating pattern, or an optical lattice, an arrangement of laser-based traps that confines atoms. A strong potential gradient (i.e., a steep change in…",
+      "url": "https://phys.org/news/2026-11-ultracold-atoms-reveal-view-bound.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-24",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "New fiber laser combines ultrashort pulses with broad spectrum and stable output",
+      "summary": "Femtosecond lasers produce pulses lasting only quadrillionths of a second. Their speed makes them useful for imaging rapid processes, sampling high-frequency signals and measuring distance or time with high precision. For these applications, a laser must provide not only short…",
+      "url": "https://phys.org/news/2026-11-fiber-laser-combines-ultrashort-pulses.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-23",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "Theoretical model describes a new type of atomic oscillation with cloverleaf symmetry in altermagnets",
+      "summary": "A team of researchers at Martin Luther University Halle-Wittenberg (MLU) and the University of Münster has discovered a new type of atomic oscillation in altermagnets, which exhibit a striking cloverleaf symmetry. The findings were published in the journal Physical Review…",
+      "url": "https://phys.org/news/2026-11-theoretical-atomic-oscillation-cloverleaf-symmetry.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-23",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "paper",
+      "title": "Rich quantum phase diagram revealed in semimetallic rhombohedral graphene",
+      "summary": "Nature Physics, Published online: 24 November 2026; doi:10.1038/s41567-026-03456-4 Previous studies of rhombohedral graphene have focused on a single topological and flat conduction or valence band isolated by strong electric fields. Rhombohedral hexalayer graphene is now found…",
+      "url": "https://www.nature.com/articles/s41567-026-03456-4",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-24",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-24",
+      "type": "news",
+      "title": "Supporting Children's Health Using Nuclear Techniques",
+      "summary": "From understanding malnutrition to strengthening medical imaging services, nuclear science and technology contribute to improving the health and well-being of children around the world.",
+      "url": "http://www.iaea.org/newscenter/news/supporting-childrens-health-using-nuclear-techniques",
+      "source": "IAEA — nuclear science news",
+      "tags": [
+        "facility"
+      ],
+      "lang": "en",
+      "collected_at": "2026-11-24",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-23",
       "type": "preprint",
       "title": "Parity-violating optical rotation in the Th-229 nuclear clock transition",
@@ -10670,31 +10868,31 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-24T05:05:43+00:00",
+    "checked_at": "2026-11-24T20:20:50+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
         "status": "PASS",
-        "matched": 1,
+        "matched": 2,
         "new": 1
       },
       {
         "source": "arXiv — nuclear masses, Q-values & astrophysics",
         "status": "PASS",
-        "matched": 2,
+        "matched": 4,
         "new": 2
       },
       {
         "source": "INSPIRE-HEP Jobs — nuclear physics",
         "status": "PASS",
-        "matched": 2,
+        "matched": 3,
         "new": 1
       },
       {
         "source": "APS Physics — news",
         "status": "PASS",
         "matched": 22,
-        "new": 0
+        "new": 2
       },
       {
         "source": "Phys.org — nuclear physics",
@@ -10706,25 +10904,25 @@
         "source": "Physical Review Letters — Nuclear Physics",
         "status": "PASS",
         "matched": 30,
-        "new": 1
+        "new": 0
       },
       {
         "source": "Physical Review Letters — traps, masses & astrophysics",
         "status": "PASS",
         "matched": 1,
-        "new": 1
+        "new": 0
       },
       {
         "source": "Physical Review C",
         "status": "PASS",
-        "matched": 8,
-        "new": 1
+        "matched": 7,
+        "new": 0
       },
       {
         "source": "Nature Physics",
         "status": "PASS",
         "matched": 6,
-        "new": 0
+        "new": 1
       },
       {
         "source": "TRIUMF news",
@@ -10746,8 +10944,9 @@
       },
       {
         "source": "IAEA — nuclear science news",
-        "status": "FAILED",
-        "error": "undefined entity: line 55, column 138"
+        "status": "PASS",
+        "matched": 1,
+        "new": 1
       },
       {
         "source": "Ion Traps Newsletter (iontraps.net)",
