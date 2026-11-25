@@ -62,6 +62,128 @@
       "verification_status": "feed-collected"
     },
     {
+      "date": "2026-11-25",
+      "type": "job",
+      "title": "Postdoctoral Position in Theoretical Particle Physics — Charles U., Prague (main)",
+      "summary": "Europe · deadline 2027-01-22 · POSTDOC. The Institute of Particle and Nuclear Physics (IPNP), Charles University in Prague, invites applications for a postdoctoral position in theoretical particle physics , working closely with Lukáš Gráf and his research group. We particularly…",
+      "url": "https://inspirehep.net/jobs/3233709",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-25",
+      "deadline": "2027-01-22",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "job",
+      "title": "Postdoc (f/m/x) on the application of Machine Learning to Particle Physics — Marietta Blau Inst., Vienna",
+      "summary": "Europe · deadline 2027-01-31 · POSTDOC. The Marietta Blau Institute for Particle Physics (MBI, formerly Institute of High Energy Physics (HEPHY) and Stefan Meyer Institue of Subatomic Physics (SMI) of the Austrian Academy of Sciences (ÖAW)), Austria’s leading non-university…",
+      "url": "https://inspirehep.net/jobs/3233706",
+      "source": "INSPIRE-HEP Jobs — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-25",
+      "deadline": "2027-01-31",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "news",
+      "title": "Quantum Computing with Location-Based Bits",
+      "summary": "Author(s): Rachel Berkowitz Researchers demonstrate quantum computing with ultracold atoms in an optical lattice in which information is stored in the atoms’ locations. [Physics 19, 163] Published Tue Nov 24, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.163",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-24",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "news",
+      "title": "Pulsar Data Mask Gravitational-Wave Secrets",
+      "summary": "Author(s): Rachel Berkowitz One promising test fails to distinguish between signals from supermassive black holes and those from primordial gravitational fluctuations. [Physics 19, s143] Published Tue Nov 24, 2026",
+      "url": "http://link.aps.org/doi/10.1103/Physics.19.s143",
+      "source": "APS Physics — news",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-24",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "news",
+      "title": "New quantum network entangles 123 qubits that store information in atoms' positions",
+      "summary": "Researchers are constantly getting closer to making practical quantum computers. Now, a team of researchers has overcome another hurdle in the process. Their study, published in Physical Review Letters, describes a new platform for manipulating entangled atomic networks in…",
+      "url": "https://phys.org/news/2026-11-quantum-network-entangles-qubits-atoms.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-25",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "news",
+      "title": "Quantum leap: Computing's next frontier takes shape",
+      "summary": "After several dashed predictions, quantum computing is accelerating rapidly with actual use cases and scientific breakthroughs now expected within years, not decades.",
+      "url": "https://phys.org/news/2026-11-quantum-frontier.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-25",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "news",
+      "title": "Most precise measurement of coherent elastic neutrino–nucleus scattering to date tightens limits on new forces",
+      "summary": "Neutrinos are tiny elementary particles with little mass and no electric charge. While most neutrinos pass through matter without interacting, a neutrino can occasionally scatter off an atomic nucleus, transferring a little energy to it and causing it to move.",
+      "url": "https://phys.org/news/2026-11-precise-coherent-elastic-neutrinonucleus-date.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-25",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-25",
+      "type": "paper",
+      "title": "Coherent manipulation of interacting electron qubits on solid neon",
+      "summary": "Nature Physics, Published online: 25 November 2026; doi:10.1038/s41567-026-03529-4 Electrons on the surface of solid neon have been established as high-quality individual qubits. Now two-qubit gates have been demonstrated using the strong coupling between electrons confined in…",
+      "url": "https://www.nature.com/articles/s41567-026-03529-4",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-25",
+      "collected_at": "2026-11-25",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-24",
       "type": "preprint",
       "title": "Low Vibration Closed-Cycle Flow Cryostat for Ion-Cavity Experiments",
@@ -10929,29 +11051,31 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-25T10:25:20+00:00",
+    "checked_at": "2026-11-25T23:47:04+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
-        "status": "FAILED",
-        "error": "HTTP Error 429: Unknown Error"
-      },
-      {
-        "source": "arXiv — nuclear masses, Q-values & astrophysics",
-        "status": "FAILED",
-        "error": "The read operation timed out"
-      },
-      {
-        "source": "INSPIRE-HEP Jobs — nuclear physics",
         "status": "PASS",
         "matched": 2,
         "new": 0
       },
       {
+        "source": "arXiv — nuclear masses, Q-values & astrophysics",
+        "status": "PASS",
+        "matched": 3,
+        "new": 0
+      },
+      {
+        "source": "INSPIRE-HEP Jobs — nuclear physics",
+        "status": "PASS",
+        "matched": 4,
+        "new": 2
+      },
+      {
         "source": "APS Physics — news",
         "status": "PASS",
         "matched": 22,
-        "new": 0
+        "new": 2
       },
       {
         "source": "Phys.org — nuclear physics",
@@ -10975,13 +11099,13 @@
         "source": "Physical Review C",
         "status": "PASS",
         "matched": 8,
-        "new": 1
+        "new": 0
       },
       {
         "source": "Nature Physics",
         "status": "PASS",
         "matched": 6,
-        "new": 0
+        "new": 1
       },
       {
         "source": "TRIUMF news",
@@ -11004,7 +11128,7 @@
       {
         "source": "IAEA — nuclear science news",
         "status": "PASS",
-        "matched": 1,
+        "matched": 0,
         "new": 0
       },
       {
