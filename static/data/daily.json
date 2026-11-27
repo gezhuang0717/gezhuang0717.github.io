@@ -16,6 +16,51 @@
       "verification_status": "feed-collected"
     },
     {
+      "date": "2026-11-27",
+      "type": "news",
+      "title": "Nonlinear optical lattice boosts spatial coherence by concentrating light in a single mode",
+      "summary": "Light waves can have varying degrees of coherence, which means that the consistency of the relationship between their phases across space or time can differ. Reliable methods to enhance the coherence of light could pave the way for the development of high-quality lasers and…",
+      "url": "https://phys.org/news/2026-11-nonlinear-optical-lattice-boosts-spatial.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-27",
+      "collected_at": "2026-11-27",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-27",
+      "type": "paper",
+      "title": "Chemical gradients turn bacterial aggregates inside out",
+      "summary": "Nature Physics, Published online: 27 November 2026; doi:10.1038/s41567-026-03531-w When a Neisseria gonorrhoeae aggregate grows large enough, cell–cell adhesion in the oxygen-deprived core is weaker than among peripheral cells. This differential adhesion drives the inner cells…",
+      "url": "https://www.nature.com/articles/s41567-026-03531-w",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-27",
+      "collected_at": "2026-11-27",
+      "verification_status": "feed-collected"
+    },
+    {
+      "date": "2026-11-27",
+      "type": "paper",
+      "title": "Differential active adhesion and a capillary instability drive global eversion and dissemination of bacterial colonies",
+      "summary": "Nature Physics, Published online: 27 November 2026; doi:10.1038/s41567-026-03530-x Chemical gradients help shape bacterial colonies. Now it is shown that these gradients can lead to a nonlinear shape instability in a colony of Neisseria gonorrhoeae.",
+      "url": "https://www.nature.com/articles/s41567-026-03530-x",
+      "source": "Nature Physics",
+      "tags": [
+        "journal"
+      ],
+      "lang": "en",
+      "published": "2026-11-27",
+      "collected_at": "2026-11-27",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-26",
       "type": "preprint",
       "title": "Direct mass measurements of the high-spin isomers in self-conjugate 94Ag",
@@ -11173,7 +11218,7 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-27T00:01:07+00:00",
+    "checked_at": "2026-11-27T14:35:49+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
@@ -11203,7 +11248,7 @@
         "source": "Phys.org — nuclear physics",
         "status": "PASS",
         "matched": 30,
-        "new": 0
+        "new": 1
       },
       {
         "source": "Physical Review Letters — Nuclear Physics",
@@ -11226,8 +11271,8 @@
       {
         "source": "Nature Physics",
         "status": "PASS",
-        "matched": 6,
-        "new": 0
+        "matched": 7,
+        "new": 2
       },
       {
         "source": "TRIUMF news",
@@ -11237,14 +11282,14 @@
       },
       {
         "source": "GANIL news",
-        "status": "FAILED",
-        "error": "<urlopen error timed out>"
-      },
-      {
-        "source": "ECT* news & workshops",
         "status": "PASS",
         "matched": 10,
         "new": 0
+      },
+      {
+        "source": "ECT* news & workshops",
+        "status": "FAILED",
+        "error": "HTTP Error 403: Forbidden"
       },
       {
         "source": "IAEA — nuclear science news",
@@ -11256,7 +11301,7 @@
         "source": "Ion Traps Newsletter (iontraps.net)",
         "status": "PASS",
         "matched": 10,
-        "new": 1
+        "new": 0
       }
     ]
   },
