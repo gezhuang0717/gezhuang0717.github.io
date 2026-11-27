@@ -1,6 +1,21 @@
 {
   "entries": [
     {
+      "date": "2026-11-27",
+      "type": "news",
+      "title": "ITN Newsletter – September 2026",
+      "summary": "Foreword Dear Ion Trappers, We would like to thank you for the ongoing engagement from the iontrap community, who keep the conversation lively by sharing their latest news, events, jobs, publications, and editorials. Visit the ITN-Website (https://iontraps.net/) where you can…",
+      "url": "https://iontraps.net/itn-newsletter-september-2026/",
+      "source": "Ion Traps Newsletter (iontraps.net)",
+      "tags": [
+        "trap"
+      ],
+      "lang": "en",
+      "published": "2026-11-26",
+      "collected_at": "2026-11-27",
+      "verification_status": "feed-collected"
+    },
+    {
       "date": "2026-11-26",
       "type": "preprint",
       "title": "Direct mass measurements of the high-spin isomers in self-conjugate 94Ag",
@@ -11158,18 +11173,18 @@
     }
   ],
   "health": {
-    "checked_at": "2026-11-26T14:39:32+00:00",
+    "checked_at": "2026-11-27T00:01:07+00:00",
     "feeds": [
       {
         "source": "arXiv — ion traps & mass spectrometry",
         "status": "PASS",
-        "matched": 3,
-        "new": 1
+        "matched": 2,
+        "new": 0
       },
       {
         "source": "arXiv — nuclear masses, Q-values & astrophysics",
         "status": "PASS",
-        "matched": 4,
+        "matched": 3,
         "new": 0
       },
       {
@@ -11182,7 +11197,7 @@
         "source": "APS Physics — news",
         "status": "PASS",
         "matched": 24,
-        "new": 3
+        "new": 0
       },
       {
         "source": "Phys.org — nuclear physics",
@@ -11206,7 +11221,7 @@
         "source": "Physical Review C",
         "status": "PASS",
         "matched": 9,
-        "new": 1
+        "new": 0
       },
       {
         "source": "Nature Physics",
@@ -11222,9 +11237,8 @@
       },
       {
         "source": "GANIL news",
-        "status": "PASS",
-        "matched": 10,
-        "new": 0
+        "status": "FAILED",
+        "error": "<urlopen error timed out>"
       },
       {
         "source": "ECT* news & workshops",
@@ -11242,7 +11256,7 @@
         "source": "Ion Traps Newsletter (iontraps.net)",
         "status": "PASS",
         "matched": 10,
-        "new": 2
+        "new": 1
       }
     ]
   },
