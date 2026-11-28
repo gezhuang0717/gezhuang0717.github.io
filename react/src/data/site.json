@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-11-27T23:43:38+00:00",
+  "generated": "2026-11-28T13:48:55+00:00",
   "config": {
     "live_theme": "congo",
     "base_url": "https://gezhuang0717.github.io/igisol.github.io/",
@@ -5664,6 +5664,21 @@
     }
   ],
   "daily": [
+    {
+      "date": "2026-11-28",
+      "type": "news",
+      "title": "Why squeezing a rock can pull it apart",
+      "summary": "When a brittle material, such as a ceramic, rock or concrete sample, is squeezed between two plates, it can split lengthwise, even if the plates are pushing its ends together. So far, the physical explanation for this phenomenon has remained largely unclear.",
+      "url": "https://phys.org/news/2026-11-why-squeezing-a-rock-can.html",
+      "source": "Phys.org — nuclear physics",
+      "tags": [
+        "nuclear"
+      ],
+      "lang": "en",
+      "published": "2026-11-28",
+      "collected_at": "2026-11-28",
+      "verification_status": "feed-collected"
+    },
     {
       "date": "2026-11-27",
       "type": "news",
